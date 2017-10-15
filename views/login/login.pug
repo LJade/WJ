@@ -1,0 +1,35 @@
+extends ../components/layout
+block title
+    title 欢迎登录
+block style
+    link(rel='stylesheet', href='/stylesheets/login.css')
+block content
+    #box-center
+        .panel.panel-primary
+            .panel-heading
+                h1.panel-title 吴江交通综合信息管理与服务平台
+            .panel-body
+                form.form-horizontal
+                    .form-group.form-group-sm
+                        label.col-sm-2.control-label(for='loginUser') 用户名:
+                        .col-sm-10
+                            input#loginUser.form-control(type='text')
+                    .form-group.form-group-sm
+                        label.col-sm-2.control-label(for='loginPass') 密码:
+                        .col-sm-10
+                            input#loginPass.form-control(type='password')
+                    .form-group.form-group-sm#code-filed
+                        label.col-sm-2.control-label(for='loginCode') 验证码:
+                        .col-sm-3
+                            input#loginCode.form-control(type='text')
+                        .col-sm-3
+                            .img-wrapper
+                                img(src='')
+                        .col-sm-4
+                            a 看不清楚,刷新一下
+                    .form-group
+                        .col-sm-offset-4.col-sm-6
+                            button.btn.btn-primary.btn-block(type='submit') 登录
+                #router-link
+                    a 忘记密码
+                    a 新用户注册

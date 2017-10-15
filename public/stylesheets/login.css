@@ -1,0 +1,40 @@
+#box-center{
+    width:520px;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin-left: -260px;
+    margin-top: -200px;
+}
+#box-center .panel{
+    border-color: #36a4e3;
+    margin-bottom: 0;
+}
+#box-center .panel-title{
+    font-size: 28px;
+    font-weight: 200;
+}
+#box-center .panel-body{
+    padding: 20px 40px;
+}
+#box-center button{
+    margin: 30px auto;
+}
+#code-filed .img-wrapper{
+   width: 100%;
+    height: 28px;
+    background: red;
+}
+#code-filed a{
+    font-size: 12px;
+    line-height: 30px;
+}
+#router-link{
+    font-size: 12px;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+#router-link  a{
+    margin-left: 10px;
+}
