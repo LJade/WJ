@@ -2,3 +2,55 @@ extends ../components/base
 block title
     title 新闻阅览
 block main_content
+    include ../components/mixin
+    +RouteNav('新闻查阅')
+    #inner-wrapper.clearfix
+        #inner-nav
+            ul
+                li
+                    a(href='/news_lst') 新闻查阅
+                li
+                    a(href='/news_manage') 新闻管理
+                li
+                    a(href='/news_create') 发布新闻
+                li
+                    a(href='/news_approve') 待我审批
+        #inner-content
+            form.form-inline
+                .form-group
+                    label(for='exampleInputName2') Name
+                    input#exampleInputName2.form-control(type='text', placeholder='Jane Doe')
+                .form-group
+                    label(for='exampleInputEmail2') Email
+                    input#exampleInputEmail2.form-control(type='email', placeholder='jane.doe@example.com')
+                button.btn.btn-default(type='submit') Send invitation
+
+            table.table.table-bordered
+                thead
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  标题
+                        td  发布人
+                        td  发布时间
+                        td  新闻状态
+                tbody
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  xxx
+                        td  xxx
+                        td  2017-12-01
+                        td  已读
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  xxx
+                        td  xxx
+                        td  2017-12-01
+                        td  已读
+
+
+
+
+
