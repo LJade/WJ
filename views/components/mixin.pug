@@ -2,3 +2,9 @@
 mixin RouteNav(nav)
     div.route-nav
         h2 #{nav}
+
+mixin RouterLink(obj)
+    ul
+        each item in obj
+            li
+                a(href=""+item.link) #{item.text}

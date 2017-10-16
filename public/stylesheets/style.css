@@ -20,12 +20,16 @@ a{
   color: #333333;
   text-decoration: none;
 }
+label{
+  font-weight: 200;
+}
 /* main layout*/
 #wrapper{
   width: 100%;
   min-width: 1000px;
   overflow-x: auto;
   height: 100%;
+  position: absolute;
 }
 #main-wrapper{
   position: relative;
@@ -109,4 +113,5 @@ a{
   margin-left: 150px;
   height: 100%;
   padding: 15px;
+  max-width: 1600px;
 }

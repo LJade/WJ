@@ -1,54 +1,60 @@
 extends ../components/base
 block title
     title 新闻阅览
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
 block main_content
     include ../components/mixin
     +RouteNav('新闻查阅')
     #inner-wrapper.clearfix
         #inner-nav
-            ul
-                li
-                    a(href='/news_lst') 新闻查阅
-                li
-                    a(href='/news_manage') 新闻管理
-                li
-                    a(href='/news_create') 发布新闻
-                li
-                    a(href='/news_approve') 待我审批
+            -var routerObj = [{link:'/news_list',text:'新闻查阅'},{link:'/news_manage',text:'新闻管理'},{link:'/news_create',text:'发布新闻'},{link:'/news_approve',text:'待我审批'}]
+            +RouterLink(routerObj)
         #inner-content
-            form.form-inline
-                .form-group
-                    label(for='exampleInputName2') Name
-                    input#exampleInputName2.form-control(type='text', placeholder='Jane Doe')
-                .form-group
-                    label(for='exampleInputEmail2') Email
-                    input#exampleInputEmail2.form-control(type='email', placeholder='jane.doe@example.com')
-                button.btn.btn-default(type='submit') Send invitation
-
-            table.table.table-bordered
-                thead
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  标题
-                        td  发布人
-                        td  发布时间
-                        td  新闻状态
-                tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  xxx
-                        td  xxx
-                        td  2017-12-01
-                        td  已读
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  xxx
-                        td  xxx
-                        td  2017-12-01
-                        td  已读
+            .container-fluid
+                .row
+                    .form-group.form-group-sm.col-lg-4.col-md-4.col-sm-6.col-xs-6
+                        label.control-label(for='newsTheme') 主题:
+                        input#newsTheme.form-control(type='text')
+                    .form-group.form-group-sm.col-lg-4.col-md-4.col-sm-6.col-xs-6
+                        label.control-label(for='newsState') 新闻状态:
+                        select.form-control#newsState
+                            option 未审批
+                            option 已审批
+                    .form-group.form-group-sm.col-lg-4.col-md-4.col-sm-6.col-xs-6
+                        label.control-label(for='newsCreate') 发布时间:
+                        input#newsCreate.form-control(type='time')
+                .row
+                    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                        button.btn.btn-warning.btn-sm.pull-right(type='button' style='margin-left:20px') 删除
+                        button.btn.btn-default.btn-sm.pull-right(type='button') 查询
+            .container-fluid(style='margin-top:30px')
+                table.table.table-bordered
+                    thead
+                        tr
+                            td
+                                input(type='checkbox')
+                            td  标题
+                            td  发布人
+                            td  发布时间
+                            td  新闻状态
+                    tbody
+                        tr
+                            td
+                                input(type='checkbox')
+                            td  xxx
+                            td  xxx
+                            td  2017-12-01
+                            td  已读
+                        tr
+                            td
+                                input(type='checkbox')
+                            td  xxx
+                            td  xxx
+                            td  2017-12-01
+                            td  已读
+            .container-fluid
+                button.btn.btn-default.btn-sm(type='button') 分类管理
 
 
 
