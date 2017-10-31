@@ -2,7 +2,10 @@
 module.exports = function (app) {
     /* GET home page. */
     app.get('/', function(req, res, next) {
-        res.render('index');
+        res.render('home/index');
+    });
+    app.get('/add_application', function(req, res, next) {
+        res.render('home/add_application');
     });
     app.get('/login', function(req, res, next) {
         res.render('login/login');

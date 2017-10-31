@@ -1,0 +1,33 @@
+extends ../components/base
+block title
+    title 添加桌面应用
+block main_content
+    include ../components/mixin
+    +RouteNav('桌面应用添加')
+    .add-app.margin-20
+        form.form-horizontal(style='max-width:500px')
+            .form-group.form-group-sm
+                label.col-sm-2.control-label(for='name') 应用名称
+                .col-sm-10
+                    input#name.form-control(type='text', placeholder='')
+            .form-group.form-group-sm
+                label.col-sm-2.control-label(for='appName') 应用选择
+                .col-sm-10
+                    select.form-control#appName
+                        option 1
+                        option 2
+                        option 3
+                        option 4
+                        option 5
+            .form-group.form-group-sm
+                label.col-sm-2.control-label(for='icon') 图标上传
+                .col-sm-10
+                    input#icon(type='file')
+            .form-group.form-group-sm
+                .col-sm-6
+                    button.btn.btn-sm.btn-default.center-block(type='reset') 取消
+                .col-sm-6
+                    button.btn.btn-sm.btn-primary.center-block(type='submit') 创建
+
+
+
