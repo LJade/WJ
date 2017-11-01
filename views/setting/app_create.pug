@@ -1,0 +1,34 @@
+extends ../components/base
+block title
+    title 应用添加
+block main_content
+    include ../components/mixin
+    +RouteNav('应用添加')
+    .panel.panel-default.margin-top-20.margin-left-20(style='max-width:600px')
+        .panel-heading 基本信息
+        .panel-body
+            form.form-horizontal
+                .form-group.form-group-sm
+                    label.col-sm-2.control-label(for='name') 系统中文名称
+                    .col-sm-10
+                        input#name.form-control(type='text', placeholder='')
+                .form-group.form-group-sm
+                    label.col-sm-2.control-label(for='location') URL地址
+                    .col-sm-10
+                        input#location.form-control(type='text', placeholder='')
+                .form-group.form-group-sm
+                    label.col-sm-2.control-label(for='name') 应用排序
+                    .col-sm-10
+                        input#order.form-control(type='order', placeholder='')
+                .form-group.form-group-sm
+                    label.col-sm-2.control-label(for='desc') 应用描述
+                    .col-sm-10
+                        textarea#desc.form-control(placeholder='' rows='5')
+                .form-group.form-group-sm
+                    .col-sm-6
+                        button.btn.btn-sm.btn-default.center-block(type='reset') 取消
+                    .col-sm-6
+                        button.btn.btn-sm.btn-primary.center-block(type='submit') 确定
+
+
+

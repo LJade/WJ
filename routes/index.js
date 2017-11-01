@@ -25,4 +25,7 @@ module.exports = function (app) {
     app.get('/news_approve', function(req, res, next) {
         res.render('news/news_approve');
     });
+    app.get('/app_create', function(req, res, next) {
+        res.render('setting/app_create');
+    });
 };
