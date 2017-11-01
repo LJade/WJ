@@ -28,4 +28,7 @@ module.exports = function (app) {
     app.get('/app_create', function(req, res, next) {
         res.render('setting/app_create');
     });
+    app.get('/region_manage', function(req, res, next) {
+        res.render('setting/region_manage');
+    });
 };
