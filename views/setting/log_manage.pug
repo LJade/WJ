@@ -1,0 +1,36 @@
+extends ../components/base
+block title
+    title 日志管理
+block main_content
+    include ../components/mixin
+    +RouteNav('日志管理')
+    .user-manage.margin-top-20.margin-left-20
+        form.form-inline
+            .form-group.form-group-sm
+                label(for='username') 用户名:&nbsp;&nbsp;
+                input#username.form-control(type='text', placeholder='' style='width:200px')
+            .form-group.form-group-sm.margin-left-20
+                label(for='date') 用户名:&nbsp;&nbsp;
+                input#date.form-control(type='date', style='width:150px')
+            button.btn.btn-primary.btn-sm.margin-left-20(type='button') 检索
+        table.table.table-bordered.text-center.margin-top-20(style='max-width:750px')
+            theader
+                tr
+                    td
+                        input(type='checkbox')
+                    td 用户名
+                    td 操作内容
+                    td 操作时间
+            tbody
+                tr
+                    td
+                        input(type='checkbox')
+                    td xxx
+                    td xxx
+                    td xxx
+        .row
+            .col-sm-12
+                button.btn.btn-default.btn-sm(type='button') 日志维护频率设置
+
+
+

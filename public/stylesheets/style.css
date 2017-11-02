@@ -118,6 +118,9 @@ textarea{
   padding: 15px;
   max-width: 1600px;
 }
+.link{
+  color: #37a4e4;
+}
 .margin-top-20{
   margin-top: 20px;
 }

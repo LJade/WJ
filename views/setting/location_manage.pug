@@ -1,0 +1,28 @@
+extends ../components/base
+block title
+    title 用户位置信息管理
+block main_content
+    include ../components/mixin
+    +RouteNav('用户位置信息管理')
+    .user-manage.margin-top-20.margin-left-20
+        form.form-inline
+            .form-group.form-group-sm
+                label(for='username') 姓名:&nbsp;&nbsp;
+                input#username.form-control(type='text', placeholder='' style='width:200px')
+            button.btn.btn-primary.btn-sm.margin-left-20(type='button') 检索
+        table.table.table-bordered.text-center.margin-top-20(style='max-width:750px')
+            theader
+                tr
+                    td 用户名
+                    td 姓名
+                    td 用户上传位置信息
+                    td 上传时间
+            tbody
+                tr
+                    td xxx
+                    td xxx
+                    td xxx
+                    td xxx
+
+
+
