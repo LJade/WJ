@@ -3,7 +3,19 @@ style.
         border-radius: 0;
         margin-bottom: 0;
     }
-nav.navbar.navbar-default
-    .container-fluid
-        .navbar-header
-            a.navbar-brand(href='#') 吴江交通综合信息管理与服务平台
+header#common-header
+    .header-left
+        .header-logo
+            img(src='/images/logo.png')
+        .header-nav
+            a.active(href='') 首页空间
+            a(href='') 消息列表
+            a(href='') 通讯录
+            a(href='') 网盘
+            a(href='') 设置
+    .header-right
+        .login-user
+            .img-wrapper
+                img(src='/images/avatar.png')
+            .name   Lingyu.ZHOU
+        a.login-out 退出

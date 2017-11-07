@@ -2,67 +2,82 @@ extends ../components/base
 block title
   title 首页
 block main_content
-  .home.clearfix
-        .panel.panel-default.module-nav
-          .panel-heading
-            h3.panel-title 日常办公
-          .panel-body
-            ul.nav-links.clearfix
-              li
-                a(href='/news_list') 新闻
-              li
-                a(href='/news') 公告
-              li
-                a(href='/news') 公文
-              li
-                a(href='/news') 邮箱
-              li
-                a(href='/news') 工单
-              li
-                a(href='/news') 会议管理
-              li
-                a(href='/news') 网盘
-              li
-                a(href='/news')   +
-        .panel.panel-default.module-nav
-          .panel-heading
-            h3.panel-title 日常办公
-          .panel-body
-            ul.nav-links
-              li
-                a(href='/news') 新闻
-              li
-                a(href='/news') 公告
-              li
-                a(href='/news') 公文
-              li
-                a(href='/news') 邮箱
-              li
-                a(href='/news') 工单
-              li
-                a(href='/news') 会议管理
-              li
-                a(href='/news') 网盘
-              li
-                a(href='/news')   +
-        .panel.panel-default.module-nav
-          .panel-heading
-            h3.panel-title 日常办公
-          .panel-body
-            ul.nav-links
-              li
-                a(href='/news') 新闻
-              li
-                a(href='/news') 公告
-              li
-                a(href='/news') 公文
-              li
-                a(href='/news') 邮箱
-              li
-                a(href='/news') 工单
-              li
-                a(href='/news') 会议管理
-              li
-                a(href='/news') 网盘
-              li
-                a(href='/news')   +
+  .home
+    .module-nav
+      .nav-heading
+        h3 日常办公
+      ul.nav-body.clearfix
+        li
+          a(href='/news_list')
+            .img-wrapper
+              img(src='/images/nav.png')
+            span 新闻
+        li
+          a(href='/news_list')
+            .img-wrapper
+              img(src='/images/nav.png')
+            span  公告
+        li
+          a(href='/news_list')
+            .img-wrapper
+              img(src='/images/nav.png')
+            span 公文
+        li
+          a(href='/news_list')
+            .img-wrapper
+              img(src='/images/nav.png')
+            span 邮箱
+        li
+          a(href='/news_list')
+            .img-wrapper
+              img(src='/images/nav.png')
+            span 工单
+        li
+          a(href='/news_list')
+            .img-wrapper
+              img(src='/images/nav.png')
+            span 会议管理
+        li
+          a(href='/news_list')
+            .img-wrapper
+              img(src='/images/add.png')
+            span 添加
+    .module-nav
+        .nav-heading
+            h3 日常办公
+        ul.nav-body.clearfix
+            li
+                a(href='/news_list')
+                    .img-wrapper
+                        img(src='/images/nav.png')
+                    span 新闻
+            li
+                a(href='/news_list')
+                    .img-wrapper
+                        img(src='/images/nav.png')
+                    span  公告
+            li
+                a(href='/news_list')
+                    .img-wrapper
+                        img(src='/images/nav.png')
+                    span 公文
+            li
+                a(href='/news_list')
+                    .img-wrapper
+                        img(src='/images/nav.png')
+                    span 邮箱
+            li
+                a(href='/news_list')
+                    .img-wrapper
+                        img(src='/images/nav.png')
+                    span 工单
+            li
+                a(href='/news_list')
+                    .img-wrapper
+                        img(src='/images/nav.png')
+                    span 会议管理
+            li
+                a(href='/news_list')
+                    .img-wrapper
+                        img(src='/images/add.png')
+                    span 添加
