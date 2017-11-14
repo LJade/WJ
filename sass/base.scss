@@ -1,0 +1,51 @@
+@import "./normalize";
+@import "./font";
+
+$IMG_PATH:'/images/';
+$theme-color:#36a4e3;
+$border-color:#ececec;
+$text-color:#333333;
+$text-gray:#999999;
+$text-vice:#666666;
+$white-color:#ffffff;
+
+/*base setting*/
+html{
+  height: 100%;
+}
+body {
+  font: 14px "微软雅黑", Helvetica, Arial, sans-serif;
+  height: 100%;
+  color:$text-color;
+}
+h1,h2,h3,h4,h5,h6,p,ul,ol{
+  margin: 0;
+}
+ul{
+  padding: 0;
+}
+ul li{
+  list-style-type: none;
+}
+a{
+  color: $text-color;
+  text-decoration: none;
+}
+label{
+  font-weight: 200;
+}
+textarea{
+  resize: none;
+}
+div,header{
+  box-sizing: border-box;
+}
+
+.img-wrapper img{
+  width:100%;
+}
+.clearfix:after{
+  content: '';
+  display: block;
+  clear: both;
+}

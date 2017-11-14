@@ -1,0 +1,115 @@
+@import "./base";
+.outer-wrapper{
+  width: 100%;
+  height: 100%;
+  background: url("/images/loginbg.jpg") no-repeat;
+  background-size: cover;
+}
+#box-intro{
+  color: $white-color;
+  position: absolute;
+  left: 230px;
+  top: 240px;
+}
+#box-intro h1{
+  font-size: 54px;
+  font-family: 'STKaitiSC-Regular';
+}
+#box-intro h4{
+  font-size: 36px;
+  margin-top: 5px;
+  font-weight: 200;
+}
+#box-intro p{
+  margin-top: 100px;
+}
+
+#box-center{
+  width:335px;
+  height: 405px;
+  position: absolute;
+  right: 230px;
+  top:145px;
+  background: rgba(255,255,255,0.7);
+  overflow: hidden;
+}
+#box-center .panel{
+  border-color: $theme-color;
+  margin-bottom: 0;
+}
+#box-center .panel-title{
+  font-size: 18px;
+  font-weight: 200;
+  position: relative;
+  text-align: center;
+  background: #ffffff;
+  height: 85px;
+  line-height: 85px;
+}
+.binary-code{
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.binary-code:after{
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 30px solid #ffffff;
+  border-right: 30px solid transparent;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+.binary-code img{
+  width:100%;
+}
+#box-center .panel-body{
+  padding: 50px 40px 0;
+}
+#box-center button{
+
+}
+.form-group{
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.form-input{
+  border-bottom: 1px solid ;
+}
+.form-group label{
+  margin-right: 10px;
+}
+.form-group input[type='text'],.form-group input[type='password']{
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.form-check{
+  font-size: 12px;
+}
+.form-check input[type='checkbox']{
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
+}
+#router-link{
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 0;
+  margin-bottom: 0;
+  padding: 0 10px
+}

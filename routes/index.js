@@ -11,6 +11,9 @@ module.exports = function (app) {
     app.get('/login', function(req, res, next) {
         res.render('login/login');
     });
+    app.get('/admin_login', function(req, res, next) {
+        res.render('login/admin_login');
+    });
     app.get('/register', function(req, res, next) {
         res.render('register/register');
     });
