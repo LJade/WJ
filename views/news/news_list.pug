@@ -2,15 +2,17 @@ extends ../components/base
 block title
     title 新闻阅览
 block style
-    link(rel='stylesheet', href='/stylesheets/news.css')
+    link(rel='stylesheet', href='/public/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/news_list',text:'新闻查阅'},{link:'/news_manage',text:'新闻管理'},{link:'/news_create',text:'发布新闻'},{link:'/news_approve',text:'待我审批'}]
+    +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
     +RouteNav('新闻查阅')
-    #inner-wrapper.clearfix
-        #inner-nav
-            -var routerObj = [{link:'/news_list',text:'新闻查阅'},{link:'/news_manage',text:'新闻管理'},{link:'/news_create',text:'发布新闻'},{link:'/news_approve',text:'待我审批'}]
-            +RouterLink(routerObj)
+    #inner-wrapper
         #inner-content
+            header.handle
             .container-fluid
                 .row
                     .form-group.form-group-sm.col-lg-4.col-md-4.col-sm-6.col-xs-6

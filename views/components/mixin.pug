@@ -8,3 +8,9 @@ mixin RouterLink(obj)
         each item in obj
             li
                 a(href=""+item.link) #{item.text}
+
+mixin asideNav(obj,activeIndex)
+    ul#aside
+        each item,index in obj
+            li(class=(activeIndex==index)?'active':'')
+                a(href=""+item.link) #{item.text}

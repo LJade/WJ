@@ -1,0 +1,50 @@
+extends ../components/base
+block title
+    title 新闻管理
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/news_list',text:'新闻查阅'},{link:'/news_manage',text:'新闻管理'},{link:'/news_create',text:'发布新闻'},{link:'/news_approve',text:'待我审批'}]
+    +asideNav(routerObj,1)
+block main_content
+    include ../components/mixin
+    +RouteNav('新闻管理')
+    #inner-wrapper
+        header.head-block
+            .title 分类管理
+            .handle
+                button.btn.btn-sm.btn-default(type='button' style='margin-right:20px') 新建
+                button.btn.btn-sm.btn-default(type='button' style='margin-left:20px') 删除
+        div.section-block
+            table.table.table-bordered
+                thead
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  标题
+                        td  发布人
+                        td  发布时间
+                        td  新闻状态
+                tbody
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  xxx
+                        td  xxx
+                        td  2017-12-01
+                        td  已读
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  xxx
+                        td  xxx
+                        td  2017-12-01
+                        td  已读
+
+
+
+
+
+
+

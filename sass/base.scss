@@ -49,3 +49,9 @@ div,header{
   display: block;
   clear: both;
 }
+
+@mixin flex-aside{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
