@@ -11,6 +11,15 @@ module.exports = function (app) {
     app.get('/login', function(req, res, next) {
         res.render('login/login');
     });
+    app.get('/find_pass', function(req, res, next) {
+        res.render('login/find_pass');
+    });
+    app.get('/change_pass', function(req, res, next) {
+        res.render('login/change_pass');
+    });
+    app.get('/set_pass', function(req, res, next) {
+        res.render('login/set_pass');
+    });
     app.get('/admin_login', function(req, res, next) {
         res.render('login/admin_login');
     });

@@ -1,14 +1,23 @@
 var gulp  = require('gulp');
 var sass = require('gulp-sass');
-//var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 
-// gulp.task('jade',function(){
-//    gulp.src('./views/**/*.jade')
-//        .pipe(jade({
-//            pretty: true
-//        }))
-//        .pipe(gulp.dest('public'))
-// });
+gulp.task('pug',function(){
+   gulp.src('./views/**/*.pug')
+       .pipe(pug({
+           pretty: true
+       }))
+       .pipe(gulp.dest('dist'))
+});
+gulp.task('build',['pug','sassExplain'],function () {
+    gulp.src('./public/images/*')
+        .pipe(gulp.dest('dist/images'))
+})
+gulp.task('sassExplain',function(){
+    gulp.src('./sass/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('dist/stylesheets'))
+});
 
 gulp.task('sass',function(){
     gulp.src('./sass/*.scss')

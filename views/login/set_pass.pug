@@ -1,0 +1,18 @@
+extends loginLayout
+block title
+    title 密码设置
+block box
+    .admin-login
+        .panel.fixed-width-panel
+            .panel-heading
+                h2.panel-title 新用户密码设置
+            .panel-body
+                form
+                    .form-group.form-input
+                        label.icon.icon-user(for='loginUser')
+                        input#loginUser.form-control(type='password' placeholder='输入密码' required)
+                    .form-group.form-input
+                        label.icon.icon-pass(for='loginPass')
+                        input#loginPass.form-control(type='password' placeholder='确认密码' required)
+                    .form-group
+                        button.btn.btn-default.btn-lg.btn-block(type='submit') 注册

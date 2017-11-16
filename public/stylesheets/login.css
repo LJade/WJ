@@ -530,3 +530,13 @@ div, header {
   line-height: 0;
   margin-bottom: 0;
   padding: 0 10px; }
+
+.getPhoneCode {
+  font-size: 14px;
+  background: #36a4e3;
+  color: #ffffff;
+  padding: 2px 8px;
+  position: absolute;
+  right: 40px;
+  border-radius: 4px;
+  font-weight: 200; }
