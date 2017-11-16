@@ -410,7 +410,8 @@ ul li {
 
 a {
   color: #333333;
-  text-decoration: none; }
+  text-decoration: none;
+  font-weight: 200; }
 
 label {
   font-weight: 200; }
@@ -440,6 +441,7 @@ div, header {
   padding-left: 30px;
   min-height: 400px; }
   .section-block table {
+    width: 100%;
     min-width: 500px;
     line-height: 2; }
     .section-block table > thead {
@@ -447,3 +449,44 @@ div, header {
       color: #666666; }
     .section-block table tr td {
       min-width: 60px; }
+
+.condition {
+  display: flex;
+  padding: 20px;
+  margin-top: 10px; }
+  .condition .inline-group {
+    margin-right: 25px; }
+    .condition .inline-group input[type='input'] {
+      width: 100px; }
+    .condition .inline-group label {
+      margin-right: 5px; }
+    .condition .inline-group button {
+      margin-left: 20px; }
+    .condition .inline-group input[type='radio'] {
+      display: none; }
+    .condition .inline-group input[type='radio']:checked + label {
+      background: rgba(248, 181, 81, 0.8);
+      color: #ffffff;
+      padding: 0 5px; }
+
+.content-list {
+  background: #ffffff; }
+
+.news-create {
+  margin-top: 10px;
+  background: #ffffff; }
+
+.form-control {
+  padding: 15px;
+  display: flex;
+  align-items: flex-start; }
+  .form-control label {
+    display: inline-block;
+    min-width: 120px; }
+  .form-control input, .form-control textarea {
+    padding: 0;
+    min-width: 400px;
+    resize: none;
+    border: 1px solid #ececec; }
+  .form-control input {
+    height: 25px; }

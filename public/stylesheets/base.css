@@ -410,7 +410,8 @@ ul li {
 
 a {
   color: #333333;
-  text-decoration: none; }
+  text-decoration: none;
+  font-weight: 200; }
 
 label {
   font-weight: 200; }

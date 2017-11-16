@@ -10,22 +10,22 @@
   position: absolute;
   left: 230px;
   top: 240px;
-}
-#box-intro h1{
-  font-size: 54px;
-  font-family: 'STKaitiSC-Regular';
-}
-#box-intro h4{
-  font-size: 36px;
-  margin-top: 5px;
-  font-weight: 200;
-}
-#box-intro p{
-  margin-top: 100px;
+  h1{
+    font-size: 54px;
+    font-family: 'STKaitiSC-Regular';
+  }
+  h4{
+    font-size: 36px;
+    margin-top: 5px;
+    font-weight: 200;
+  }
+  p{
+    margin-top: 100px;
+  }
 }
 
 #box-center{
-  width:335px;
+  //width:335px;
   height: 405px;
   position: absolute;
   right: 230px;
@@ -45,38 +45,34 @@
   background: #ffffff;
   height: 85px;
   line-height: 85px;
+  span{
+    font-size: 12px;
+    margin-left: 20px;
+  }
+}
+.binary-code,.login-container{
+  float: left;
+}
+.login-container{
+  button{
+    height: 35px;
+  }
 }
 .binary-code{
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
+  width: 185px;
+  height: 185px;
+  background: $white-color;
   overflow: hidden;
-}
-.binary-code:after{
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  border-left: 30px solid #ffffff;
-  border-right: 30px solid transparent;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid #ffffff;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-}
-.binary-code img{
-  width:100%;
+  margin-right: 35px;
+  img{
+    width:100%;
+  }
 }
 #box-center .panel-body{
   padding: 50px 40px 0;
 }
-#box-center button{
-
+.fixed-width-panel{
+  width: 330px;
 }
 .form-group{
   width: 100%;

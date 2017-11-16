@@ -8,6 +8,7 @@ $text-color:#333333;
 $text-gray:#999999;
 $text-vice:#666666;
 $white-color:#ffffff;
+$yellow-color:#f8b551;
 
 /*base setting*/
 html{
@@ -30,6 +31,7 @@ ul li{
 a{
   color: $text-color;
   text-decoration: none;
+  font-weight: 200;
 }
 label{
   font-weight: 200;

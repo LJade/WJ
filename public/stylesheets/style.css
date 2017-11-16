@@ -410,7 +410,8 @@ ul li {
 
 a {
   color: #333333;
-  text-decoration: none; }
+  text-decoration: none;
+  font-weight: 200; }
 
 label {
   font-weight: 200; }
@@ -440,39 +441,56 @@ div, header {
   justify-content: space-between;
   padding: 0 35px;
   box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.2); }
-
-#common-header .header-left, #common-header .header-right {
-  display: flex;
-  align-items: center; }
-
-#common-header .header-left .header-logo {
-  width: 135px;
-  height: 30px;
-  margin-right: 70px;
-  cursor: pointer; }
-
-#common-header .header-left .header-logo img {
-  width: 100%; }
-
-#common-header .header-left .header-nav a {
-  margin-right: 30px;
-  line-height: 60px; }
-
-#common-header .header-left .header-nav a.active {
-  color: #36a4e3; }
-
-#common-header .header-right .login-user {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-  cursor: pointer; }
-
-#common-header .header-right .login-user .img-wrapper {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 10px; }
+  #common-header .header-left, #common-header .header-right {
+    display: flex;
+    align-items: center; }
+  #common-header .header-left .header-nav a {
+    float: left;
+    margin-right: 30px;
+    line-height: 60px;
+    display: block;
+    padding: 0 15px;
+    font-weight: 400; }
+    #common-header .header-left .header-nav a.active, #common-header .header-left .header-nav a:hover {
+      color: #36a4e3;
+      border-bottom: 2px solid #36a4e3; }
+  #common-header .header-left .header-logo {
+    width: 135px;
+    height: 30px;
+    margin-right: 25px;
+    cursor: pointer; }
+    #common-header .header-left .header-logo img {
+      width: 100%; }
+  #common-header .header-right .login-user {
+    display: flex;
+    align-items: center;
+    cursor: pointer; }
+    #common-header .header-right .login-user .img-wrapper {
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-right: 10px; }
+  #common-header .header-right .header-search {
+    position: relative;
+    border: 1px solid #ececec;
+    margin-right: 20px; }
+    #common-header .header-right .header-search input {
+      width: 220px;
+      height: 30px;
+      border: none;
+      padding: 0;
+      outline: none; }
+    #common-header .header-right .header-search i {
+      position: absolute;
+      right: 5px;
+      top: 5px; }
+  #common-header .header-right a.star, #common-header .header-right a.login-out {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #36a4e3;
+    margin-left: 15px; }
 
 /* main layout*/
 #wrapper {
@@ -517,38 +535,35 @@ div, header {
   color: #ffffff; }
 
 /*home page style*/
-.home {
-  padding: 20px; }
-
 .module-nav {
   background: #ffffff;
-  padding: 0 20px;
-  margin-top: 10px;
-  max-width: 810px; }
-
-.module-nav .nav-heading {
-  border-bottom: 1px solid #bfbfbf;
-  height: 40px; }
-
-.module-nav .nav-heading h3 {
-  font-size: 14px;
-  font-weight: 300;
-  color: #36a4e3;
-  line-height: 40px; }
-
-.module-nav .nav-body {
-  padding: 30px 0 20px; }
-
-.module-nav .nav-body li {
-  float: left;
-  width: 60px;
-  text-align: center;
-  height: 80px;
-  margin-right: 40px; }
-
-.module-nav .nav-body li span {
-  display: block;
-  line-height: 2; }
+  padding-left: 30px;
+  max-width: 825px;
+  margin-bottom: 10px; }
+  .module-nav .nav-heading {
+    height: 40px;
+    padding-right: 30px; }
+    .module-nav .nav-heading h3 {
+      float: left;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 40px; }
+    .module-nav .nav-heading a.more {
+      float: right;
+      line-height: 40px;
+      color: #36a4e3; }
+  .module-nav .nav-body {
+    padding: 10px 0 20px; }
+    .module-nav .nav-body li {
+      float: left;
+      width: 60px;
+      text-align: center;
+      height: 80px;
+      margin-right: 70px;
+      margin-bottom: 15px; }
+      .module-nav .nav-body li span {
+        display: block;
+        line-height: 2; }
 
 /*current page nav style*/
 .route-nav {
@@ -602,6 +617,9 @@ div, header {
 .margin-left-20 {
   margin-left: 20px; }
 
+.no-padding {
+  padding: 0 !important; }
+
 .btn {
   border: none;
   outline: none;
@@ -619,6 +637,8 @@ div, header {
     padding: 0 20px; }
   .btn.btn-default {
     background: #36a4e3; }
+  .btn.btn-warning {
+    background: #f8b551; }
 
 .btn-block {
   display: block;

@@ -1,0 +1,18 @@
+extends loginLayout
+block title
+    title 找回密码
+block box
+    .admin-login
+        .panel.fixed-width-panel
+            .panel-heading
+                h2.panel-title 找回密码
+            .panel-body
+                form
+                    .form-group.form-input
+                        label.icon.icon-user(for='loginUser')
+                        input#loginUser.form-control(type='password' placeholder='请输入旧密码' required)
+                    .form-group.form-input
+                        label.icon.icon-pass(for='loginPass')
+                        input#loginPass.form-control(type='password' placeholder='请输入新密码' required)
+                    .form-group
+                        button.btn.btn-default.btn-lg.btn-block(type='submit') 登录

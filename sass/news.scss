@@ -8,10 +8,10 @@
   padding-left: 30px;
   min-height: 400px;
   table{
+    width: 100%;
     min-width: 500px;
     line-height: 2;
     >thead{
-
       font-weight: 400;
       color: $text-vice;
     }
@@ -22,3 +22,55 @@
     }
   }
 }
+
+.condition{
+  display: flex;
+  padding: 20px;
+  margin-top: 10px;
+  .inline-group{
+    margin-right: 25px;
+    input[type='input']{
+      width: 100px;
+    }
+    label{
+      margin-right: 5px;
+    }
+    button{
+      margin-left: 20px;
+    }
+    input[type='radio']{
+      display: none;
+    }
+    input[type='radio']:checked + label{
+      background: rgba(248,181,81,0.8);
+      color: $white-color;
+      padding: 0 5px;
+    }
+  }
+}
+.content-list{
+  background: $white-color;
+}
+.news-create{
+  margin-top: 10px;
+  background: $white-color;
+}
+.form-control{
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  label{
+    display: inline-block;
+    min-width: 120px;
+  }
+  input,textarea{
+    padding: 0;
+    min-width: 400px;
+    resize: none;
+    border:1px solid  $border-color;
+  }
+  input{
+    height: 25px;
+  }
+}
+

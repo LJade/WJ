@@ -5,22 +5,23 @@ block box
     .login-page
         .panel
             .panel-heading
-                h2.panel-title 统一账号登录
+                h2.panel-title 登录
+                    span 使用手机APP扫码登录或账号密码登录
+            .panel-body.clearfix
                 .binary-code
-                    img(src='/images/loginCode.png')
-            .panel-body
-                form
+                    img(src='/images/code.png')
+                form.login-container
                     .form-group.form-input
                         label.icon.icon-user(for='loginUser')
-                        input#loginUser.form-control(type='text' placeholder='账号或手机号')
+                        input#loginUser.form-control(type='text' placeholder='账号或手机号' required)
                     .form-group.form-input
                         label.icon.icon-pass(for='loginPass')
-                        input#loginPass.form-control(type='password' placeholder='密码')
+                        input#loginPass.form-control(type='password' placeholder='密码' required)
                     .form-group.form-check
                         input#rememberPass.form-control(type='checkbox')
                         label.control-label(for='rememberPass') 记住密码
-                    .form-group
-                        button.btn.btn-default.btn-lg.btn-block(type='submit') 登录
-                    .form-group#router-link
+                    .form-group.no-padding
+                        button.btn.btn-default.btn-block(type='submit') 登录
+                    #router-link
                         a 新用户注册
                         a 忘记密码
