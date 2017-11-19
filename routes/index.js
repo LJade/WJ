@@ -55,4 +55,17 @@ module.exports = function (app) {
     app.get('/log_manage', function(req, res, next) {
         res.render('setting/log_manage');
     });
+    /** 工单申请相关路由*/
+    app.get('/order/order_create', function(req, res, next) {
+        res.render('workOrder/order_create');
+    });
+    app.get('/order/order_approve', function(req, res, next) {
+        res.render('workOrder/order_approve');
+    });
+    app.get('/order/order_mine', function(req, res, next) {
+        res.render('workOrder/order_mine');
+    });
+    app.get('/order/order_detail', function(req, res, next) {
+        res.render('workOrder/order_detail');
+    });
 };

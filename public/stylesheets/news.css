@@ -392,8 +392,8 @@ template {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("/fonts/icomoon.eot?4rdfm6");
-  src: url("/fonts/icomoon.eot?4rdfm6#iefix") format("embedded-opentype"), url("/fonts/icomoon.ttf?4rdfm6") format("truetype"), url("/fonts/icomoon.woff?4rdfm6") format("woff"), url("/fonts/icomoon.svg?4rdfm6#icomoon") format("svg");
+  src: url("/fonts/icomoon.eot?1yn0ii");
+  src: url("/fonts/icomoon.eot?1yn0ii#iefix") format("embedded-opentype"), url("/fonts/icomoon.ttf?1yn0ii") format("truetype"), url("/fonts/icomoon.woff?1yn0ii") format("woff"), url("/fonts/icomoon.svg?1yn0ii#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -588,23 +588,6 @@ div, header {
   justify-content: space-between;
   padding: 20px; }
 
-.section-block {
-  background: #ffffff;
-  padding-left: 30px;
-  min-height: 400px; }
-  .section-block table {
-    width: 100%;
-    min-width: 500px;
-    line-height: 2.5;
-    font-size: 16px;
-    border-collapse: collapse; }
-    .section-block table > thead {
-      font-weight: 400;
-      color: #666666;
-      border-bottom: 1px solid #ececec; }
-    .section-block table tr td {
-      min-width: 60px; }
-
 .condition {
   display: flex;
   padding: 20px;
@@ -617,15 +600,11 @@ div, header {
       margin-right: 5px; }
     .condition .inline-group button {
       margin-left: 20px; }
-    .condition .inline-group input[type='radio'] {
-      display: none; }
-    .condition .inline-group input[type='radio']:checked + label {
-      background: rgba(248, 181, 81, 0.8);
-      color: #ffffff;
-      padding: 0 5px; }
 
 .content-list {
   background: #ffffff; }
+  .content-list .content-bottom-handle {
+    padding: 30px 0; }
 
 .news-create {
   margin-top: 10px;

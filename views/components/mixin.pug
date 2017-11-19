@@ -3,10 +3,10 @@ mixin RouteNav(nav)
     div.route-nav
         h2 #{nav}
 
-mixin RouterLink(obj)
-    ul
-        each item in obj
-            li
+mixin menuLink(obj,activeIndex)
+    ul.inner-menu.clearfix
+        each item,index in obj
+            li(class=(activeIndex==index)?'active':'')
                 a(href=""+item.link) #{item.text}
 
 mixin asideNav(obj,activeIndex)

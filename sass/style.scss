@@ -23,6 +23,11 @@
       display: block;
       padding: 0 15px;
       font-weight: 400;
+      i{
+        font-size: 16px;
+        margin-right: 3px;
+        vertical-align: text-top;
+      }
       &.active,&:hover{
         color: $theme-color;
         border-bottom: 2px solid $theme-color;
@@ -61,16 +66,21 @@
         border: none;
         padding: 0;
         outline: none;
+        box-sizing: border-box;
+        padding-left: 10px;
       }
       i{
         position: absolute;
         right:5px;
-        top: 5px;
+        top: 8px;
+        cursor: pointer;
       }
     }
     a.star,a.login-out{
       font-size: 18px;
       margin-left: 15px;
+      line-height: 60px;
+      cursor: pointer;
     }
   }
 }
@@ -106,6 +116,7 @@
 #aside li{
   width: 100%;
   height: 60px;
+  cursor: pointer;
 
 }
 #aside li a{
@@ -113,6 +124,10 @@
   display: block;
   line-height: 60px;
   padding-left: 30px;
+  i{
+    font-size: 16px;
+    margin-right: 5px;
+  }
 }
 #aside li.active >a,#aside li:hover >a{
   background: $theme-color;
@@ -140,6 +155,10 @@
         float: right;
         line-height: 40px;
         color: $theme-color;
+        cursor: pointer;
+        i{
+          margin-left: 2px;
+        }
       }
   }
   .nav-body{
@@ -235,6 +254,12 @@
   &.btn-default{
     background: $theme-color;
   }
+  &.btn-primary{
+    background: #80d4ff;
+  }
+  &.btn-disable{
+    background: $text-gray;
+  }
   &.btn-warning{
     background: $yellow-color;
   }
@@ -255,14 +280,14 @@ input[type='checkbox']{
 
 .section-block{
   background: $white-color;
-  padding-left: 30px;
-  min-height: 400px;
+  padding: 30px;
   table{
     width: 100%;
     min-width: 500px;
     line-height: 2.5;
     font-size: 16px;
     border-collapse: collapse;
+    font-weight: 200;
     >thead{
       font-weight: 400;
       color: #afafaf;
@@ -271,7 +296,34 @@ input[type='checkbox']{
     tr{
       td{
         min-width: 60px;
+        padding: 3px 15px;
+        &.multi{
+         height: 200px;
+        }
+        &.em{
+          font-weight: 400;
+        }
+        &.fixed-width{
+          width: 120px;
+        }
       }
+    }
+  }
+}
+
+.inner-menu{
+  line-height: 3;
+  background: $white-color;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  li{
+    float: left;
+    margin-right: 60px;
+    a{
+
+    }
+    &.active a,&:hover a{
+      color: $yellow-color;
     }
   }
 }

@@ -1,0 +1,54 @@
+extends ../components/base
+block title
+    title 工单申请
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/news_list',text:'工单管理',icon:'icon-order'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    -var menuObj = [{link:'/',text:'工单申请'},{link:'/',text:'待我审批'},{link:'/',text:'我的申请'}]
+    +menuLink(menuObj,0)
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='title') 索引号:
+                input#title.form-control(type='text')
+            .form-control
+                label.control-label(for='type') 信息分类:
+                select#type.form-control
+                    option xxx
+                    option xxx
+                    option xxx
+                    option xxx
+                    option xxx
+            .form-control
+                label.control-label(for='creator') 发布机构:
+                input#creator.form-control(type='text' readonly placeholder='默认当前部门')
+            .form-control
+                label.control-label(for='time') 生成日期:
+                input#time.form-control(type='date' readonly)
+            .form-control
+                label.control-label(for='time') 生效日期:
+                input#start.form-control(type='date' readonly)
+            .form-control
+                label.control-label(for='time') 废止日期:
+                input#end.form-control(type='date' readonly)
+            .form-control
+                label.control-label(for='review') 信息名称:
+                input#review.form-control(type='text')
+            .form-control
+                label.control-label(for='detail') 内容概览:
+                textarea#detail.form-control(rows=10 )
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='button') 发布
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+
+
+
+
+
+
+

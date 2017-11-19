@@ -20,17 +20,14 @@
       margin-left: 20px;
     }
     input[type='radio']{
-      display: none;
-    }
-    input[type='radio']:checked + label{
-      background: rgba(248,181,81,0.8);
-      color: $white-color;
-      padding: 0 5px;
     }
   }
 }
 .content-list{
   background: $white-color;
+  .content-bottom-handle{
+    padding: 30px 0;
+  }
 }
 .news-create{
   margin-top: 10px;

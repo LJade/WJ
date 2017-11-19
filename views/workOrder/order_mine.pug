@@ -1,32 +1,33 @@
 extends ../components/base
 block title
-    title 待我审批
+    title 我的申请
 block style
     link(rel='stylesheet', href='/stylesheets/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/news_list',text:'新闻查阅'},{link:'/news_manage',text:'新闻管理'},{link:'/news_create',text:'发布新闻'},{link:'/news_approve',text:'待我审批'}]
-    +asideNav(routerObj,3)
+    -var routerObj = [{link:'/news_list',text:'工单管理',icon:'icon-order'}]
+    +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
-    +RouteNav('待我审批')
+    -var menuObj = [{link:'/',text:'工单申请'},{link:'/',text:'待我审批'},{link:'/',text:'我的申请'}]
+    +menuLink(menuObj,2)
     #inner-wrapper
         .condition
             .inline-group
-                label(for='newsTheme') 主题:
+                label(for='newsTheme') 名称:
                 input#newsTheme(type='text')
             .inline-group
-                span(style='margin-right:10px') 新闻状态:
+                span(style='margin-right:10px') 工单状态:
                 input#unread(type='radio' name='read' checked style='margin-right:10px')
-                label(for='unread' style='margin-right:25px') 未阅读
+                label(for='unread' style='margin-right:25px') 未审批
                 input#read(type='radio' name='read' style='margin-right:10px')
-                label(for='read') 已阅读
+                label(for='read') 已审批
             .inline-group
                 label(for='newsCreate') 发布时间:
                 input#newsCreate(type='time')
             .inline-group
                 button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建
+                button.btn.btn-default.btn-sm(type='button') 新建
                 button.btn.btn-default.btn-sm(type='button') 删除
         .content-list.section-block
             table.table.table-bordered
@@ -131,6 +132,11 @@ block main_content
                         td  2017-12-01
                         td  已审批
                         td.link  审核
+            .content-bottom-handle
+                button.btn.btn-default.btn-sm(type='button') 审批通过
+                button.btn.btn-primary.btn-sm(type='button' style='margin-left:20px') 审批不通过
+
+
 
 
 
