@@ -1,0 +1,138 @@
+extends ../components/base
+block title
+    title 公告管理
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'公告查阅'},{link:'/',text:'公告发布'},{link:'/',text:'公告管理'},{link:'/',text:'待我审批'}]
+    +asideNav(routerObj,2)
+block main_content
+    include ../components/mixin
+    +RouteNav('公告')
+    #inner-wrapper
+        .condition
+            .inline-group
+                label(for='newsTheme') 主题:
+                input#newsTheme(type='text')
+            .inline-group
+                span(style='margin-right:10px') 公文状态:
+                input#unread(type='radio' name='read' checked style='margin-right:10px')
+                label(for='unread' style='margin-right:25px') 未阅读
+                input#read(type='radio' name='read' style='margin-right:10px')
+                label(for='read') 已阅读
+            .inline-group
+                label(for='newsCreate') 发布时间:
+                input#newsCreate(type='time')
+            .inline-group
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建
+                button.btn.btn-default.btn-sm(type='button') 删除
+        .content-list.section-block
+            table.table.table-bordered
+                thead
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  标题
+                        td  发布人
+                        td  新闻类型
+                        td  发布时间
+                        td  发布状态
+                        td  操作
+                tbody
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  管理员
+                        td  XXX
+                        td  2017-12-01
+                        td  已审批
+                        td.link  审核
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  管理员
+                        td  XXX
+                        td  2017-12-01
+                        td  已审批
+                        td.link  审核
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  管理员
+                        td  XXX
+                        td  2017-12-01
+                        td  已审批
+                        td.link  审核
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  管理员
+                        td  XXX
+                        td  2017-12-01
+                        td  已审批
+                        td.link  审核
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  管理员
+                        td  XXX
+                        td  2017-12-01
+                        td  已审批
+                        td.link  审核
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  管理员
+                        td  XXX
+                        td  2017-12-01
+                        td  已审批
+                        td.link  审核
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  管理员
+                        td  XXX
+                        td  2017-12-01
+                        td  已审批
+                        td.link  审核
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  管理员
+                        td  XXX
+                        td  2017-12-01
+                        td  已审批
+                        td.link  审核
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  管理员
+                        td  XXX
+                        td  2017-12-01
+                        td  已审批
+                        td.link  审核
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  管理员
+                        td  XXX
+                        td  2017-12-01
+                        td  已审批
+                        td.link  审核
+
+
+
+
+

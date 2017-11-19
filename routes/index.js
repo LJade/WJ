@@ -84,4 +84,20 @@ module.exports = function (app) {
     app.get('/docu/docu_detail', function(req, res, next) {
         res.render('document/docu_detail');
     });
+    /** 公告相关路由*/
+    app.get('/notice/notice_list', function(req, res, next) {
+        res.render('notice/notice_list');
+    });
+    app.get('/notice/notice_create', function(req, res, next) {
+        res.render('notice/notice_create');
+    });
+    app.get('/notice/notice_manage', function(req, res, next) {
+        res.render('notice/notice_manage');
+    });
+    app.get('/notice/notice_approve', function(req, res, next) {
+        res.render('notice/notice_approve');
+    });
+    app.get('/notice/notice_detail', function(req, res, next) {
+        res.render('notice/notice_detail');
+    });
 };

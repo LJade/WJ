@@ -1,0 +1,37 @@
+extends ../components/base
+block title
+    title 公告发布
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'公告查阅'},{link:'/',text:'公告发布'},{link:'/',text:'公告管理'},{link:'/',text:'待我审批'}]
+    +asideNav(routerObj,1)
+block main_content
+    include ../components/mixin
+    +RouteNav('公告发布')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='title') 标题:
+                input#title.form-control(type='text')
+            .form-control
+                label.control-label(for='creator') 发布人:
+                input#creator.form-control(type='text')
+            .form-control
+                label.control-label(for='time') 发布时间:
+                input#time.form-control(type='date')
+            .form-control
+                label.control-label(for='review') 查阅人员:
+                input#review.form-control(type='text' readonly)
+            .form-control
+                label.control-label(for='detail') 发布内容:
+                textarea#detail.form-control(rows=10 )
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='button') 发布
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+
+
+
+
+

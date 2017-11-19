@@ -1,0 +1,43 @@
+extends ../components/base
+block title
+    title 待我审核
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'公告查阅'},{link:'/',text:'公告发布'},{link:'/',text:'公告管理'},{link:'/',text:'待我审批'}]
+    +asideNav(routerObj,3)
+block main_content
+    include ../components/mixin
+    +RouteNav('审批')
+    #inner-wrapper
+        .condition
+            .inline-group(style='margin:0')
+                button.btn.btn-warning.btn-sm(type='button') 审批流程查阅
+        .content-list.section-block
+            table.table.table-bordered(border="1" cellspacing="0" style='border:1px solid #ececec;width:850px')
+                tr
+                    td.em.fixed-width 工单名称
+                    td XXX工单
+                    td.em.fixed-width 发布时间
+                    td 2017-11-08
+                tr
+                    td.em.fixed-width 发布人
+                    td(colspan='3') XXX
+                tr
+                    td.em.multi.fixed-width 发布内容
+                    td.multi(colspan='3') XXX
+                tr
+                    td.em.fixed-width 审批人
+                    td(colspan='3') XXX
+                tr
+                    td.em.fixed-width 审批意见
+                    td(colspan='3') XXX
+            .content-bottom-handle
+                button.btn.btn-default.btn-sm(type='button') 审批通过
+                button.btn.btn-primary.btn-sm(type='button' style='margin-left:20px') 审批不通过
+
+
+
+
+
