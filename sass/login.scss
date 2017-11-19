@@ -1,14 +1,16 @@
 @import "./base";
 .outer-wrapper{
   width: 100%;
+  min-width: 1200px;
   height: 100%;
   background: url('#{$IMG_PATH}loginbg.jpg') no-repeat;
   background-size: cover;
+  position: relative;
 }
 #box-intro{
   color: $white-color;
   position: absolute;
-  left: 230px;
+  left: 200px;
   top: 240px;
   h1{
     font-size: 40px;
@@ -28,7 +30,7 @@
   //width:335px;
   height: 405px;
   position: absolute;
-  right: 230px;
+  right: 200px;
   top:145px;
   background: rgba(255,255,255,0.7);
   overflow: hidden;
@@ -107,7 +109,7 @@
   align-items: center;
   line-height: 0;
   margin-bottom: 0;
-  padding: 0 10px
+  padding: 10px 0
 }
 .getPhoneCode{
   font-size: 14px;

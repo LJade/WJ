@@ -53,7 +53,7 @@
         height: 30px;
         border-radius: 4px;
         overflow: hidden;
-        margin-right: 10px;
+        margin-right: 5px;
       }
     }
     .header-search{
@@ -77,10 +77,13 @@
       }
     }
     a.star,a.login-out{
-      font-size: 18px;
-      margin-left: 15px;
+      font-size: 22px;
+      margin-left: 10px;
       line-height: 60px;
       cursor: pointer;
+    }
+    a.star{
+      color: $theme-color;
     }
   }
 }
@@ -88,7 +91,6 @@
 #wrapper{
   width: 100%;
   min-width: 1200px;
-  overflow-x: auto;
   height: 100%;
   position: absolute;
   background: #f2f0f0;
@@ -106,7 +108,8 @@
   top: 0;
 }
 #main-content{
-  margin-left: 195px;
+  position: absolute;
+  left: 185px;
   height: 100%;
 }
 #aside{

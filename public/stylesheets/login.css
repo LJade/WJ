@@ -392,8 +392,8 @@ template {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("/fonts/icomoon.eot?1yn0ii");
-  src: url("/fonts/icomoon.eot?1yn0ii#iefix") format("embedded-opentype"), url("/fonts/icomoon.ttf?1yn0ii") format("truetype"), url("/fonts/icomoon.woff?1yn0ii") format("woff"), url("/fonts/icomoon.svg?1yn0ii#icomoon") format("svg");
+  src: url("/fonts/icomoon.eot?hyof2e");
+  src: url("/fonts/icomoon.eot?hyof2e#iefix") format("embedded-opentype"), url("/fonts/icomoon.ttf?hyof2e") format("truetype"), url("/fonts/icomoon.woff?hyof2e") format("woff"), url("/fonts/icomoon.svg?hyof2e#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -584,14 +584,16 @@ div, header {
 
 .outer-wrapper {
   width: 100%;
+  min-width: 1200px;
   height: 100%;
   background: url("/images/loginbg.jpg") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  position: relative; }
 
 #box-intro {
   color: #ffffff;
   position: absolute;
-  left: 230px;
+  left: 200px;
   top: 240px; }
   #box-intro h1 {
     font-size: 40px;
@@ -606,7 +608,7 @@ div, header {
 #box-center {
   height: 405px;
   position: absolute;
-  right: 230px;
+  right: 200px;
   top: 145px;
   background: rgba(255, 255, 255, 0.7);
   overflow: hidden; }
@@ -681,7 +683,7 @@ div, header {
   align-items: center;
   line-height: 0;
   margin-bottom: 0;
-  padding: 0 10px; }
+  padding: 10px 0; }
 
 .getPhoneCode {
   font-size: 14px;
