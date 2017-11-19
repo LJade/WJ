@@ -69,10 +69,7 @@
       }
     }
     a.star,a.login-out{
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: $theme-color;
+      font-size: 18px;
       margin-left: 15px;
     }
   }
@@ -104,7 +101,6 @@
 }
 #aside{
   width: 100%;
-  text-align: center;
   height: 100%;
 }
 #aside li{
@@ -113,8 +109,10 @@
 
 }
 #aside li a{
+  box-sizing: border-box;
   display: block;
   line-height: 60px;
+  padding-left: 30px;
 }
 #aside li.active >a,#aside li:hover >a{
   background: $theme-color;
@@ -247,7 +245,33 @@
 }
 .icon{
   display: inline-block;
+  vertical-align: middle;
+}
+input[type='checkbox']{
   width: 16px;
-  height: 20px;
-  background: $theme-color;
+  height: 16px;
+  border-radius: 0;
+}
+
+.section-block{
+  background: $white-color;
+  padding-left: 30px;
+  min-height: 400px;
+  table{
+    width: 100%;
+    min-width: 500px;
+    line-height: 2.5;
+    font-size: 16px;
+    border-collapse: collapse;
+    >thead{
+      font-weight: 400;
+      color: #afafaf;
+      border-bottom: 1px solid $border-color;
+    }
+    tr{
+      td{
+        min-width: 60px;
+      }
+    }
+  }
 }

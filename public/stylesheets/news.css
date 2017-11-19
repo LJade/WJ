@@ -595,10 +595,13 @@ div, header {
   .section-block table {
     width: 100%;
     min-width: 500px;
-    line-height: 2; }
+    line-height: 2.5;
+    font-size: 16px;
+    border-collapse: collapse; }
     .section-block table > thead {
       font-weight: 400;
-      color: #666666; }
+      color: #666666;
+      border-bottom: 1px solid #ececec; }
     .section-block table tr td {
       min-width: 60px; }
 

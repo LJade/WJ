@@ -1,149 +1,157 @@
 extends ../components/base
 block title
-  title 首页
+    title 首页
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/',text:'应用'},{link:'/',text:'消息'},{link:'/',text:'平台管理'}]
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/',text:'消息',icon:'icon-message2'},{link:'/',text:'平台管理',icon:'icon-setting'}]
     +asideNav(routerObj,0)
 block main_content
-  .home
-    .module-nav
-      .nav-heading.clearfix
-        h3 日常办公
-        a.more 更多
-      ul.nav-body.clearfix
-        li
-          a(href='/news_list')
-            .img-wrapper
-              img(src='/images/nav.png')
-            span 新闻
-        li
-          a(href='/news_list')
-            .img-wrapper
-              img(src='/images/nav.png')
-            span  公告
-        li
-          a(href='/news_list')
-            .img-wrapper
-              img(src='/images/nav.png')
-            span 公文
-        li
-          a(href='/news_list')
-            .img-wrapper
-              img(src='/images/nav.png')
-            span 邮箱
-        li
-          a(href='/news_list')
-            .img-wrapper
-              img(src='/images/nav.png')
-            span 工单
-        li
-          a(href='/news_list')
-            .img-wrapper
-              img(src='/images/nav.png')
-            span 会议管理
-    .module-nav
-        .nav-heading.clearfix
-            h3 日常办公
-            a.more 更多
-        ul.nav-body.clearfix
-            li
-                a(href='/news_list')
-                    .img-wrapper
-                        img(src='/images/nav.png')
-                    span 新闻
-            li
-                a(href='/news_list')
-                    .img-wrapper
-                        img(src='/images/nav.png')
-                    span  公告
-            li
-                a(href='/news_list')
-                    .img-wrapper
-                        img(src='/images/nav.png')
-                    span 公文
-            li
-                a(href='/news_list')
-                    .img-wrapper
-                        img(src='/images/nav.png')
-                    span 邮箱
-            li
-                a(href='/news_list')
-                    .img-wrapper
-                        img(src='/images/nav.png')
-                    span 工单
-            li
-                a(href='/news_list')
-                    .img-wrapper
-                        img(src='/images/nav.png')
-                    span 会议管理
-    .module-nav
-          .nav-heading.clearfix
-              h3 日常办公
-              a.more 更多
-          ul.nav-body.clearfix
-              li
-                  a(href='/news_list')
-                      .img-wrapper
-                          img(src='/images/nav.png')
-                      span 新闻
-              li
-                  a(href='/news_list')
-                      .img-wrapper
-                          img(src='/images/nav.png')
-                      span  公告
-              li
-                  a(href='/news_list')
-                      .img-wrapper
-                          img(src='/images/nav.png')
-                      span 公文
-              li
-                  a(href='/news_list')
-                      .img-wrapper
-                          img(src='/images/nav.png')
-                      span 邮箱
-              li
-                  a(href='/news_list')
-                      .img-wrapper
-                          img(src='/images/nav.png')
-                      span 工单
-              li
-                  a(href='/news_list')
-                      .img-wrapper
-                          img(src='/images/nav.png')
-                      span 会议管理
-    .module-nav
-                          .nav-heading.clearfix
-                              h3 日常办公
-                              a.more 更多
-                          ul.nav-body.clearfix
-                              li
-                                  a(href='/news_list')
-                                      .img-wrapper
-                                          img(src='/images/nav.png')
-                                      span 新闻
-                              li
-                                  a(href='/news_list')
-                                      .img-wrapper
-                                          img(src='/images/nav.png')
-                                      span  公告
-                              li
-                                  a(href='/news_list')
-                                      .img-wrapper
-                                          img(src='/images/nav.png')
-                                      span 公文
-                              li
-                                  a(href='/news_list')
-                                      .img-wrapper
-                                          img(src='/images/nav.png')
-                                      span 邮箱
-                              li
-                                  a(href='/news_list')
-                                      .img-wrapper
-                                          img(src='/images/nav.png')
-                                      span 工单
-                              li
-                                  a(href='/news_list')
-                                      .img-wrapper
-                                          img(src='/images/nav.png')
-                                      span 会议管理
+    .home
+        .module-nav
+            .nav-heading.clearfix
+                h3 日常办公
+                a.more
+                    | 更多
+                    i.icon-add
+            ul.nav-body.clearfix
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 新闻
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span  公告
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 公文
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 邮箱
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 工单
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 会议管理
+        .module-nav
+            .nav-heading.clearfix
+                h3 日常办公
+                a.more
+                    | 更多
+                    i.icon-add
+            ul.nav-body.clearfix
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 新闻
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span  公告
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 公文
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 邮箱
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 工单
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 会议管理
+        .module-nav
+            .nav-heading.clearfix
+                h3 日常办公
+                a.more
+                    | 更多
+                    i.icon-add
+            ul.nav-body.clearfix
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 新闻
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span  公告
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 公文
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 邮箱
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 工单
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 会议管理
+        .module-nav
+            .nav-heading.clearfix
+                h3 日常办公
+                a.more
+                    | 更多
+                    i.icon-add
+            ul.nav-body.clearfix
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 新闻
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span  公告
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 公文
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 邮箱
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 工单
+                li
+                    a(href='/news_list')
+                        .img-wrapper
+                            img(src='/images/nav.png')
+                        span 会议管理

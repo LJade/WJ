@@ -638,10 +638,7 @@ div, header {
       right: 5px;
       top: 5px; }
   #common-header .header-right a.star, #common-header .header-right a.login-out {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #36a4e3;
+    font-size: 18px;
     margin-left: 15px; }
 
 /* main layout*/
@@ -671,7 +668,6 @@ div, header {
 
 #aside {
   width: 100%;
-  text-align: center;
   height: 100%; }
 
 #aside li {
@@ -679,8 +675,10 @@ div, header {
   height: 60px; }
 
 #aside li a {
+  box-sizing: border-box;
   display: block;
-  line-height: 60px; }
+  line-height: 60px;
+  padding-left: 30px; }
 
 #aside li.active > a, #aside li:hover > a {
   background: #36a4e3;
@@ -798,6 +796,4 @@ div, header {
 
 .icon {
   display: inline-block;
-  width: 16px;
-  height: 20px;
-  background: #36a4e3; }
+  vertical-align: middle; }

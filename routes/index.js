@@ -24,7 +24,7 @@ module.exports = function (app) {
         res.render('login/admin_login');
     });
     app.get('/register', function(req, res, next) {
-        res.render('register/register');
+        res.render('login/register');
     });
     /** 新闻相关路由*/
     app.get('/news_list', function(req, res, next) {

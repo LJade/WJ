@@ -9,10 +9,12 @@ block box
             .panel-body
                 form
                     .form-group.form-input
-                        label.icon.icon-user(for='loginUser')
-                        input#loginUser.form-control(type='password' placeholder='请输入手机号' required)
+                        label(for='loginUser')
+                            i.icon.icon-user
+                        input#loginUser.form-control(type='password' placeholder='旧密码' required)
                     .form-group.form-input
-                        label.icon.icon-pass(for='loginPass')
+                        label(for='loginPass')
+                            i.icon.icon-pass
                         input#loginPass.form-control(type='password' placeholder='验证码' required)
                         .getPhoneCode 获取验证码
                     .form-group

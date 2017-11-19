@@ -8,10 +8,18 @@ header#common-header
         .header-logo
             img(src='/images/logo.png')
         .header-nav.clearfix
-            a.active(href='/') 工作台
-            a(href='') 即时通讯
-            a(href='') 网盘
-            a(href='') 多屏幕模式
+            a.active(href='/')
+                i.icon.icon-home
+                |工作台
+            a(href='')
+                i.icon.icon-envelope
+                |即时通讯
+            a(href='')
+                i.icon.icon-disk
+                |网盘
+            a(href='')
+                i.icon.icon-screen
+                |多屏幕模式
     .header-right
         .header-search
             input(type='text')
@@ -21,4 +29,6 @@ header#common-header
                 img(src='/images/avatar.png')
             //.name   Lingyu.ZHOU
         a.star
+            i.icon.icon-star
         a.login-out
+            i.icon.icon-close

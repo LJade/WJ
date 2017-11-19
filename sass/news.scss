@@ -3,25 +3,6 @@
   @include flex-aside;
   padding: 20px;
 }
-.section-block{
-  background: $white-color;
-  padding-left: 30px;
-  min-height: 400px;
-  table{
-    width: 100%;
-    min-width: 500px;
-    line-height: 2;
-    >thead{
-      font-weight: 400;
-      color: $text-vice;
-    }
-    tr{
-      td{
-        min-width: 60px;
-      }
-    }
-  }
-}
 
 .condition{
   display: flex;

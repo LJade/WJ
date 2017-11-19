@@ -12,10 +12,12 @@ block box
                     img(src='/images/code.png')
                 form.login-container
                     .form-group.form-input
-                        label.icon.icon-user(for='loginUser')
+                        label(for='loginUser')
+                            i.icon.icon-user
                         input#loginUser.form-control(type='text' placeholder='账号或手机号' required)
                     .form-group.form-input
-                        label.icon.icon-pass(for='loginPass')
+                        label(for='loginPass')
+                            i.icon.icon-lock
                         input#loginPass.form-control(type='password' placeholder='密码' required)
                     .form-group.form-check
                         input#rememberPass.form-control(type='checkbox')
