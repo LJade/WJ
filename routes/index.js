@@ -68,4 +68,20 @@ module.exports = function (app) {
     app.get('/order/order_detail', function(req, res, next) {
         res.render('workOrder/order_detail');
     });
+    /** 公文相关路由*/
+    app.get('/docu/docu_list', function(req, res, next) {
+        res.render('document/docu_list');
+    });
+    app.get('/docu/docu_create', function(req, res, next) {
+        res.render('document/docu_create');
+    });
+    app.get('/docu/docu_manage', function(req, res, next) {
+        res.render('document/docu_manage');
+    });
+    app.get('/docu/docu_approve', function(req, res, next) {
+        res.render('document/docu_approve');
+    });
+    app.get('/docu/docu_detail', function(req, res, next) {
+        res.render('document/docu_detail');
+    });
 };
