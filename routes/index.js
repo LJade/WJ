@@ -111,4 +111,15 @@ module.exports = function (app) {
     app.get('/mail/mail_receive', function(req, res, next) {
         res.render('mail/mail_receive');
     });
+
+    /** 会议相关路由 */
+    app.get('/conference/con_approve', function(req, res, next) {
+        res.render('conference/con_approve');
+    });
+    app.get('/conference/con_create', function(req, res, next) {
+        res.render('conference/con_create');
+    });
+    app.get('/conference/con_history', function(req, res, next) {
+        res.render('conference/con_history');
+    });
 };

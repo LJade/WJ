@@ -1,0 +1,49 @@
+extends ../components/base
+block title
+    title 会议发起
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'会议室维护'},{link:'/',text:'会议申请'},{link:'/',text:'待我审批'},{link:'/',text:'会议纪要'},{link:'/',text:'历史会议'},{link:'/',text:'会议签到情况'}]
+    +asideNav(routerObj,1)
+block main_content
+    include ../components/mixin
+    +RouteNav('会议发起')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='topic') 会议主题:
+                input#topic.form-control(type='text')
+            .form-control
+                label.control-label(for='start') 开始时间:
+                input#start.form-control(type='date')
+            .form-control
+                label.control-label(for='end') 结束时间:
+                input#end.form-control(type='date')
+            .form-control
+                label.control-label(for='creator') 会议发起人:
+                input#creator.form-control(type='text')
+            .form-control
+                label.control-label(for='participation') 与会人员:
+                input#participation.form-control(type='text')
+            .form-control
+                label.control-label(for='room') 会议室:
+                input#room.form-control(type='text')
+            .form-control
+                label.control-label(for='resource') 会议室资源:
+                textarea#resource.form-control(rows=4)
+            .form-control
+                label.control-label(for='summary') 会议纪要人员:
+                input#summary.form-control(type='text' readonly)
+            .form-control
+                label.control-label(for='detail') 会议内容:
+                textarea#detail.form-control(rows=10)
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='button') 发起会议
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+
+
+
+
+
