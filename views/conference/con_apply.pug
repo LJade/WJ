@@ -1,0 +1,49 @@
+extends ../components/base
+block title
+    title 会议申请
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'会议室维护'},{link:'/',text:'会议申请'},{link:'/',text:'待我审批'},{link:'/',text:'会议纪要'},{link:'/',text:'历史会议'},{link:'/',text:'会议签到情况'}]
+    +asideNav(routerObj,1)
+block main_content
+    include ../components/mixin
+    +RouteNav('会议申请')
+    #inner-wrapper
+        .condition
+            .inline-group
+                label(for='newsTheme') 会议主题:
+                input#newsTheme(type='text')
+            .inline-group
+                label(for='newsCreate') 开会日期:
+                input#newsCreate(type='time')
+            .inline-group
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 会议发起
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 取消会议
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 会议纪要
+        .content-list.section-block
+            table.table.table-bordered
+                thead
+                    tr
+                        td  会议议题
+                        td  会议时间
+                        td  会议纪要
+                tbody
+                    tr
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  2017-12-01
+                        td  有
+                    tr
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  2017-12-01
+                        td  无
+                    tr
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  2017-12-01
+                        td  有
+
+
+
+

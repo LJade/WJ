@@ -1,0 +1,48 @@
+extends ../components/base
+block title
+    title  会议室维护
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'会议室维护'},{link:'/',text:'会议申请'},{link:'/',text:'待我审批'},{link:'/',text:'会议纪要'},{link:'/',text:'历史会议'},{link:'/',text:'会议签到情况'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('会议室维护')
+    #inner-wrapper
+        .condition
+            .inline-group
+                label(for='newsTheme') 资源名称:
+                input#newsTheme(type='text')
+            .inline-group
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 新建
+        .content-list.section-block
+            table.table.table-bordered
+                thead
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  资源名称
+                tbody
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  投影仪
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  话筒
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  小米电视
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  耳麦
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  黑板

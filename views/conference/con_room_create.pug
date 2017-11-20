@@ -1,0 +1,28 @@
+extends ../components/base
+block title
+    title  会议室维护
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'会议室维护'},{link:'/',text:'会议申请'},{link:'/',text:'待我审批'},{link:'/',text:'会议纪要'},{link:'/',text:'历史会议'},{link:'/',text:'会议签到情况'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('会议室维护')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='name') 会议室名称:
+                input#name.form-control(type='text')
+            .form-control
+                label.control-label(for='count') 容纳人数:
+                input#count.form-control(type='text')
+            .form-control
+                label.control-label(for='resource') 会议室资源:
+                input#resource.form-control(type='text')
+                span 资源选择
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='button') 发布
+                button.btn.btn-default.btn-sm(type='button') 保存并继续
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消

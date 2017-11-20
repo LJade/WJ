@@ -838,6 +838,8 @@ input[type='checkbox'] {
       font-weight: 400;
       color: #afafaf;
       border-bottom: 1px solid #ececec; }
+    .section-block table > tbody {
+      font-size: 14px; }
     .section-block table tr td {
       min-width: 60px;
       padding: 3px 15px; }

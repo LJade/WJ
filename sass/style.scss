@@ -295,6 +295,9 @@ input[type='checkbox']{
       color: #afafaf;
       border-bottom: 1px solid $border-color;
     }
+    >tbody{
+      font-size: 14px;
+    }
     tr{
       td{
         min-width: 60px;

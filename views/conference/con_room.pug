@@ -1,0 +1,58 @@
+extends ../components/base
+block title
+    title  会议室维护
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'会议室维护'},{link:'/',text:'会议申请'},{link:'/',text:'待我审批'},{link:'/',text:'会议纪要'},{link:'/',text:'历史会议'},{link:'/',text:'会议签到情况'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('会议室维护')
+    #inner-wrapper
+        .condition
+            .inline-group
+                label(for='newsTheme') 会议室名称:
+                input#newsTheme(type='text')
+            .inline-group
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 新建
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 编辑
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 删除
+        .content-list.section-block
+            table.table.table-bordered
+                thead
+                    tr
+                        td  会议室名称
+                        td  容纳人数
+                        td  会议室资源
+                tbody
+                    tr
+                        td.link  天安门会议室
+                        td  60
+                        td  投影仪 话筒
+                    tr
+                        td.link  天安门会议室
+                        td  60
+                        td  投影仪 话筒
+                    tr
+                        td.link  天安门会议室
+                        td  60
+                        td  投影仪 话筒
+                    tr
+                        td.link  天安门会议室
+                        td  60
+                        td  投影仪 话筒
+                    tr
+                        td.link  天安门会议室
+                        td  60
+                        td  投影仪 话筒
+                    tr
+                        td.link  天安门会议室
+                        td  60
+                        td  投影仪 话筒
+
+
+
+
+

@@ -122,4 +122,19 @@ module.exports = function (app) {
     app.get('/conference/con_history', function(req, res, next) {
         res.render('conference/con_history');
     });
+    app.get('/conference/con_summary', function(req, res, next) {
+        res.render('conference/con_summary');
+    });
+    app.get('/conference/con_sign', function(req, res, next) {
+        res.render('conference/con_sign');
+    });
+    app.get('/conference/con_apply', function(req, res, next) {
+        res.render('conference/con_apply');
+    });
+    app.get('/conference/con_room', function(req, res, next) {
+        res.render('conference/con_room');
+    });
+    app.get('/conference/con_room_resource', function(req, res, next) {
+        res.render('conference/con_room_resource');
+    });
 };
