@@ -100,4 +100,15 @@ module.exports = function (app) {
     app.get('/notice/notice_detail', function(req, res, next) {
         res.render('notice/notice_detail');
     });
+
+    /** 邮件相关路由*/
+    app.get('/mail/mail_create', function(req, res, next) {
+        res.render('mail/mail_create');
+    });
+    app.get('/mail/mail_send', function(req, res, next) {
+        res.render('mail/mail_send');
+    });
+    app.get('/mail/mail_receive', function(req, res, next) {
+        res.render('mail/mail_receive');
+    });
 };

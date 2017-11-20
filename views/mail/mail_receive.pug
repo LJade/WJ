@@ -1,0 +1,67 @@
+extends ../components/base
+block title
+    title 已收邮件
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'发送邮件'},{link:'/',text:'已发邮件'},{link:'/',text:'已收邮件'}]
+    +asideNav(routerObj,2)
+block main_content
+    include ../components/mixin
+    +RouteNav('已收邮件')
+    #inner-wrapper
+        .condition
+            .inline-group
+                label(for='newsCreate') 发送时间:
+                input#newsCreate(type='time')
+            .inline-group
+                label(for='newsTheme') 发送人:
+                input#newsTheme(type='text')
+            .inline-group
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 新建
+                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 编辑
+                button.btn.btn-warning.btn-sm(type='button') 删除
+        .content-list.section-block
+            table.table.table-bordered
+                thead
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  标题
+                        td  发布时间
+                        td  发布人
+                tbody
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  2017-12-01
+                        td  管理员
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  2017-12-01
+                        td  管理员
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  2017-12-01
+                        td  管理员
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  关于江苏省苏州市吴江交通局技术人才培训
+                        td  2017-12-01
+                        td  管理员
+
+
+
+
+
+
+
+

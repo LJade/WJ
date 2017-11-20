@@ -673,8 +673,7 @@ div, header {
   top: 0; }
 
 #main-content {
-  position: absolute;
-  left: 185px;
+  margin-left: 195px;
   height: 100%; }
 
 #aside {

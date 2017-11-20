@@ -1,0 +1,41 @@
+extends ../components/base
+block title
+    title 发送邮件
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'发送邮件'},{link:'/',text:'已发邮件'},{link:'/',text:'已收邮件'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('发送邮件')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='received') 接收人:
+                input#received.form-control(type='text' readonly placeholder='请选择')
+            .form-control
+                label.control-label(for='title') 标题:
+                input#title.form-control(type='text')
+            .form-control
+                label.control-label(for='creator') 发送人:
+                input#creator.form-control(type='text')
+            .form-control
+                label.control-label(for='time') 发布日期:
+                input#time.form-control(type='date')
+            .form-control
+                label.control-label(for='detail') 发布内容:
+                textarea#detail.form-control(rows=10 )
+            .form-control
+                label.control-label(for='file') 上传附件:
+                input#file.form-control(type='file')
+                p 可以支持多个附件上传，附件总大小为20
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='button') 发布
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+
+
+
+
+
