@@ -26,34 +26,35 @@ module.exports = function (app) {
     app.get('/register', function(req, res, next) {
         res.render('login/register');
     });
-    /** 新闻相关路由*/
-    app.get('/news_list', function(req, res, next) {
-        res.render('news/news_list');
-    });
-    app.get('/news_manage', function(req, res, next) {
-        res.render('news/news_manage');
-    });
-    app.get('/news_create', function(req, res, next) {
-        res.render('news/news_create');
-    });
-    app.get('/news_approve', function(req, res, next) {
-        res.render('news/news_approve');
-    });
+
     /** 系统设置相关路由*/
-    app.get('/app_create', function(req, res, next) {
+    app.get('/setting/app_create', function(req, res, next) {
         res.render('setting/app_create');
     });
-    app.get('/region_manage', function(req, res, next) {
+    app.get('/setting/region_manage', function(req, res, next) {
         res.render('setting/region_manage');
     });
-    app.get('/user_manage', function(req, res, next) {
+    app.get('/setting/user_manage', function(req, res, next) {
         res.render('setting/user_manage');
     });
-    app.get('/location_manage', function(req, res, next) {
+    app.get('/setting/location_manage', function(req, res, next) {
         res.render('setting/location_manage');
     });
-    app.get('/log_manage', function(req, res, next) {
+    app.get('/setting/log_manage', function(req, res, next) {
         res.render('setting/log_manage');
+    });
+    /** 新闻相关路由*/
+    app.get('/news/news_list', function(req, res, next) {
+        res.render('news/news_list');
+    });
+    app.get('/news/news_manage', function(req, res, next) {
+        res.render('news/news_manage');
+    });
+    app.get('/news/news_create', function(req, res, next) {
+        res.render('news/news_create');
+    });
+    app.get('/news/news_approve', function(req, res, next) {
+        res.render('news/news_approve');
     });
     /** 工单申请相关路由*/
     app.get('/order/order_create', function(req, res, next) {
@@ -136,5 +137,13 @@ module.exports = function (app) {
     });
     app.get('/conference/con_room_resource', function(req, res, next) {
         res.render('conference/con_room_resource');
+    });
+
+    /* 用户相关*/
+    app.get('/user/user_center', function(req, res, next) {
+        res.render('user/user_center');
+    });
+    app.get('/user/change_pass', function(req, res, next) {
+        res.render('user/change_pass');
     });
 };

@@ -1,0 +1,36 @@
+extends ../components/base
+block title
+    title 修改密码
+block style
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'个人中心',icon:'icon-user'},{link:'/',text:'修改密码',icon:'icon-lock'}]
+    +asideNav(routerObj,1)
+block main_content
+    include ../components/mixin
+    +RouteNav('修改密码')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='old') 原始密码:
+                input#old.form-control(type='password')
+            .form-control
+                label.control-label(for='new') 新密码:
+                input#new.form-control(type='password')
+            .form-control
+                label.control-label(for='confirm') 确认密码:
+                input#confirm.form-control(type='password')
+            .form-control
+                button.btn.btn-default.btn-sm(type='button') 保存
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 保存
+
+
+
+
+
+
+
+
+
+
