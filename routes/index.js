@@ -34,6 +34,9 @@ module.exports = function (app) {
     app.get('/setting/region_manage', function(req, res, next) {
         res.render('setting/region_manage');
     });
+    app.get('/setting/organization_manage', function(req, res, next) {
+        res.render('setting/organization_manage');
+    });
     app.get('/setting/user_manage', function(req, res, next) {
         res.render('setting/user_manage');
     });

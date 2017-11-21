@@ -332,3 +332,21 @@ input[type='checkbox']{
     }
   }
 }
+#menu-list{
+  background: #f8f8f8;
+  border-bottom: 1px solid $theme-color;
+  li{
+    float: left;
+    padding: 10px 20px;
+    a{
+      display: block;
+      line-height: 2.5;
+    }
+    &.active,&:hover{
+      background: $theme-color;
+      a{
+        color: $white-color;
+      }
+    }
+  }
+}

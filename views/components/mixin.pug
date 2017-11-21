@@ -16,3 +16,8 @@ mixin asideNav(obj,activeIndex)
                 a(href=""+item.link)
                     i.icon(class=[item.icon])
                     |#{item.text}
+mixin menuNav(obj,activeIndex)
+    ul#menu-list.clearfix
+        each item,index in obj
+            li(class=(activeIndex==index)?'active':'')
+                a(href=""+item.link) #{item.text}
