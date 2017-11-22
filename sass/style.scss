@@ -350,3 +350,39 @@ input[type='checkbox']{
     }
   }
 }
+.container-wrapper{
+  display: flex;
+  .structure{
+    background: $white-color;
+    border-right: 1px solid $border-color;
+    padding: 10px 0;
+    width: 320px;
+  }
+  .content-list{
+   width: 100%;
+  }
+}
+.structure-tree{
+  padding: 0 20px;
+  line-height: 2.5;
+
+  .structure-node{
+    position: relative;
+    cursor: pointer;
+    &.open-node{
+      &:before{
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-top: 10px solid $text-color;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 10px solid transparent;
+        vertical-align: middle;
+        margin-right: 5px;
+        margin-top: 5px;
+      }
+    }
+  }
+}

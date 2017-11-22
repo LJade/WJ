@@ -896,3 +896,34 @@ input[type='checkbox'] {
       background: #36a4e3; }
       #menu-list li.active a, #menu-list li:hover a {
         color: #ffffff; }
+
+.container-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .container-wrapper .structure {
+    background: #ffffff;
+    border-right: 1px solid #ececec;
+    padding: 10px 0;
+    width: 320px; }
+  .container-wrapper .content-list {
+    width: 100%; }
+
+.structure-tree {
+  padding: 0 20px;
+  line-height: 2.5; }
+  .structure-tree .structure-node {
+    position: relative;
+    cursor: pointer; }
+    .structure-tree .structure-node.open-node:before {
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 10px solid #333333;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 10px solid transparent;
+      vertical-align: middle;
+      margin-right: 5px;
+      margin-top: 5px; }

@@ -51,4 +51,16 @@
     height: 25px;
   }
 }
+.nav-handle{
+  padding: 15px 20px;
+  background: $white-color;
+  border-bottom: 1px solid $border-color;
+  .nav-name{
+     float: left;
+    line-height: 30px;
+   }
+  .handle-wrapper{
+    float: right;
+  }
+}
 

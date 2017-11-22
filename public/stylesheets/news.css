@@ -641,3 +641,13 @@ div, header {
     border: 1px solid #ececec; }
   .form-control input {
     height: 25px; }
+
+.nav-handle {
+  padding: 15px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #ececec; }
+  .nav-handle .nav-name {
+    float: left;
+    line-height: 30px; }
+  .nav-handle .handle-wrapper {
+    float: right; }
