@@ -2,7 +2,7 @@ extends ../components/base
 block title
     title 已发邮件
 block style
-    link(rel='stylesheet', href='/stylesheets/news.css')
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/',text:'发送邮件'},{link:'/',text:'已发邮件'},{link:'/',text:'已收邮件'}]

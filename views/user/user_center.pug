@@ -2,7 +2,7 @@ extends ../components/base
 block title
     title 个人中心
 block style
-    link(rel='stylesheet', href='/stylesheets/news.css')
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/',text:'个人中心',icon:'icon-user'},{link:'/',text:'修改密码',icon:'icon-lock'}]

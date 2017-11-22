@@ -396,8 +396,8 @@ template {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("/fonts/icomoon.eot?hyof2e");
-  src: url("/fonts/icomoon.eot?hyof2e#iefix") format("embedded-opentype"), url("/fonts/icomoon.ttf?hyof2e") format("truetype"), url("/fonts/icomoon.woff?hyof2e") format("woff"), url("/fonts/icomoon.svg?hyof2e#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?hyof2e");
+  src: url("../fonts/icomoon.eot?hyof2e#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?hyof2e") format("truetype"), url("../fonts/icomoon.woff?hyof2e") format("woff"), url("../fonts/icomoon.svg?hyof2e#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 

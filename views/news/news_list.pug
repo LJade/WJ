@@ -2,7 +2,7 @@ extends ../components/base
 block title
     title 新闻阅览
 block style
-    link(rel='stylesheet', href='/stylesheets/news.css')
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/news_list',text:'新闻查阅'},{link:'/news_manage',text:'新闻管理'},{link:'/news_create',text:'发布新闻'},{link:'/news_approve',text:'待我审批'}]
