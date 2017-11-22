@@ -44,6 +44,12 @@ module.exports = function (app) {
     app.get('/setting/organization_manage', function(req, res, next) {
         res.render('setting/organization_manage', gulpConfig);
     });
+    app.get('/setting/organization_create', function(req, res, next) {
+        res.render('setting/organization_create', gulpConfig);
+    });
+    app.get('/setting/organization_edit', function(req, res, next) {
+        res.render('setting/organization_edit', gulpConfig);
+    });
     app.get('/setting/user_manage', function(req, res, next) {
         res.render('setting/user_manage', gulpConfig);
     });

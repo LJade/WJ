@@ -1,0 +1,42 @@
+extends ../components/base
+block title
+    title 组织机构新增
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/',text:'消息',icon:'icon-message2'},{link:'/',text:'平台管理',icon:'icon-setting'}]
+    +asideNav(routerObj,2)
+block main_content
+    include ../components/mixin
+    -var menuObj = [{link:'/',text:'平台自身管理'},{link:'/',text:'对接系统管理'},{link:'/',text:'数据服务管理'},{link:'/',text:'第三方应用系统管理'}]
+    +menuLink(menuObj,0)
+    -var navObj = [{link:'/',text:'组织机构管理'},{link:'/',text:'用户管理'},{link:'/',text:'角色权限管理'},{link:'/',text:'行政区划分'},{link:'/',text:'日志管理'}]
+    +menuNav(navObj,0)
+    +RouteNav('组织机构新增')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='department') 部门名称:
+                input#department.form-control(type='text')
+            .form-control
+                label.control-label(for='depart') 上级部门:
+                select#depart.form-control
+                    option xxx
+                    option xxx
+                    option xxx
+                    option xxx
+                    option xxx
+            .form-control
+                label.control-label(for='order') 排序:
+                input#order.form-control(type='text')
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='button') 保存
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+
+
+
+
+
+
+
