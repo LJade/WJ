@@ -40,6 +40,12 @@ var hmConfig = function () {
         __IMAGES_PATH__: "../" + path.relative(DEV_HTML_PATH ,DEV_IMAGES_PATH).replace("\\","/"),
         __COMPRESSED_SUFFIX__:""
     };
+    var jade_config = {
+        __PLUGINS_PATH__:  path.relative(DEV_HTML_PATH,DEV_PLUGINS_PATH),
+        __CSS_PATH__:  path.relative(DEV_HTML_PATH,DEV_CSS_PATH),
+        __JS_PATH__: path.relative(DEV_HTML_PATH,DEV_JS_PATH),
+        __IMAGES_PATH__:  path.relative(DEV_HTML_PATH ,DEV_IMAGES_PATH),
+    };
     //提供给gulp的参数
     var gulp = {
         sassPath: SASS_PATH,
@@ -86,7 +92,8 @@ var hmConfig = function () {
             switchMode(env);
         },
         jade: jade,
-        gulp: gulp
+        gulp: gulp,
+        jade_config:jade_config
     };
 }();
 
