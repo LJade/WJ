@@ -6,7 +6,7 @@ block aside_content
     -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/',text:'消息',icon:'icon-message2'},{link:'/',text:'平台管理',icon:'icon-setting'}]
     +asideNav(routerObj,0)
 block main_content
-    .home
+    .home(style="display:inline-block;")
         .module-nav
             .nav-heading.clearfix
                 h3 日常办公
@@ -22,25 +22,138 @@ block main_content
                 li
                     a(href='/notice/notice_list')
                         .img-wrapper
-                            img(src=__IMAGES_PATH__ + '/nav.png')
+                            img(src=__IMAGES_PATH__ + '/公告.png')
                         span  公告
                 li
                     a(href='/docu/docu_list')
                         .img-wrapper
-                            img(src=__IMAGES_PATH__ + '/nav.png')
+                            img(src=__IMAGES_PATH__ + '/公文.png')
                         span 公文
                 li
                     a(href='/mail/mail_receive')
                         .img-wrapper
-                            img(src=__IMAGES_PATH__ + '/nav.png')
+                            img(src=__IMAGES_PATH__ + '/邮箱.png')
                         span 邮箱
                 li
                     a(href='/order/order_mine')
                         .img-wrapper
-                            img(src=__IMAGES_PATH__ + '/nav.png')
+                            img(src=__IMAGES_PATH__ + '/功能.png')
                         span 工单
                 li
                     a(href='/conference/con_history')
                         .img-wrapper
-                            img(src=__IMAGES_PATH__ + '/nav.png')
+                            img(src=__IMAGES_PATH__ + '/会议.png')
                         span 会议管理
+        .module-nav
+            .nav-heading.clearfix
+                h3 日常办公
+                a.more
+                    | 更多
+                    i.icon-add
+            ul.nav-body.clearfix
+                li
+                    a(href='/news/news_list')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/nav.png')
+                        span 新闻
+                li
+                    a(href='/notice/notice_list')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/公告.png')
+                        span  公告
+                li
+                    a(href='/docu/docu_list')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/公文.png')
+                        span 公文
+                li
+                    a(href='/mail/mail_receive')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/邮箱.png')
+                        span 邮箱
+                li
+                    a(href='/order/order_mine')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/功能.png')
+                        span 工单
+                li
+                    a(href='/conference/con_history')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/会议.png')
+                        span 会议管理
+        .module-nav
+            .nav-heading.clearfix
+                h3 日常办公
+                a.more
+                    | 更多
+                    i.icon-add
+            ul.nav-body.clearfix
+                li
+                    a(href='/news/news_list')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/nav.png')
+                        span 新闻
+                li
+                    a(href='/notice/notice_list')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/公告.png')
+                        span  公告
+                li
+                    a(href='/docu/docu_list')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/公文.png')
+                        span 公文
+                li
+                    a(href='/mail/mail_receive')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/邮箱.png')
+                        span 邮箱
+                li
+                    a(href='/order/order_mine')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/功能.png')
+                        span 工单
+                li
+                    a(href='/conference/con_history')
+                        .img-wrapper
+                            img(src=__IMAGES_PATH__ + '/会议.png')
+                        span 会议管理
+    #calendar
+    link(rel='stylesheet', href=__CSS_PATH__ + '/simple-calendar.css')
+    script(src=__JS_PATH__ + "/simple-calendar.js")
+    script(type="text/javascript").
+        var options = {
+            width: '400px',
+            height: '400px',
+            language: 'CH', //语言
+            showLunarCalendar: false, //阴历
+            showHoliday: false, //休假
+            showFestival: false, //节日
+            showLunarFestival: false, //农历节日
+            showSolarTerm: false, //节气
+            showMark: true, //标记
+            timeRange: {
+                startYear: 2010,
+                endYear: 2049
+            },
+            mark: {
+                '2017-11-25': '上学'
+            },
+            theme: {
+                changeAble: true,
+                weeks: {
+                    backgroundColor: '#FFFFFF',
+                    fontColor: '#000000',
+                    fontSize: '15px',
+                },
+                days: {
+                    backgroundColor: '#ffffff',
+                    fontColor: '#565555',
+                    fontSize: '14px'
+                },
+                todaycolor: '#82C2F1',
+                activeSelectColor: '#82C2F1',
+            }
+        }
+        var myCalendar = new SimpleCalendar('#calendar',options);
+

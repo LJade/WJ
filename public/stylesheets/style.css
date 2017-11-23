@@ -678,7 +678,7 @@ div, header {
   width: 100%;
   min-width: 1200px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   background: #f2f0f0; }
 
 #main-wrapper {
@@ -719,6 +719,11 @@ div, header {
 #aside li.active > a, #aside li:hover > a {
   background: #36a4e3;
   color: #ffffff; }
+
+#calendar {
+  position: absolute;
+  left: 1010px;
+  top: 0; }
 
 /*home page style*/
 .module-nav {

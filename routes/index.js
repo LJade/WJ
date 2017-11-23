@@ -162,6 +162,11 @@ module.exports = function (app) {
     app.get('/user/change_pass', function(req, res, next) {
         res.render('user/change_pass', gulpConfig);
     });
+    /* 用户聊天*/
+    app.get('/im/message',function (req, res, next) {
+        res.render('IM/message',gulpConfig);
+    });
+
     /** 首页相关 */
     app.get('/', function(req, res, next) {
         res.render('home/index', gulpConfig);

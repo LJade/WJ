@@ -1,0 +1,28 @@
+extends ../components/base
+
+block title
+    title 消息
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/',text:'消息',icon:'icon-message2'},{link:'/',text:'平台管理',icon:'icon-setting'}]
+    +asideNav(routerObj,1)
+block main_content
+    .home
+        .module-nav
+            .nav-heading.clearfix
+        section(id='main').w100
+            article(id='demo')
+            article(id='components')
+    script(src=__JS_PATH__ + '/webim/browser-polyfill.min.js')
+    script(src=__JS_PATH__ + '/webim/webim.config.js')
+    script(src=__JS_PATH__ + '/webim/strophe-1.2.8.js')
+    //script(type="text/javascript").
+    //        document.write("<script src='#{__JS_PATH__}/webim/strophe-1.2.8.min.js'><\/script>");
+    script(src=__JS_PATH__ + '/webim/websdk-1.4.13.js')
+    script(type="text/javascript").
+        if (WebIM.config.isWebRTC) {
+            document.write("<script src='./webrtc/dist/adapter.js'><\/script>");
+            document.write("<script src='./webrtc/dist/webrtc-1.4.13.js'><\/script>");
+        }
+    script(src=__JS_PATH__ + "/webim/swfupload/swfupload.min.js")
+    script(src=__JS_PATH__ + "/webim/demo-1.4.13.js")
