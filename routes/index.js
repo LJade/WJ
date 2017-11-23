@@ -162,6 +162,15 @@ module.exports = function (app) {
         res.render('IM/message',gulpConfig);
     });
 
+
+    /** 网盘相关 */
+    app.get('/netdisk/company_disk', function(req, res, next) {
+        res.render('netdisk/company_disk', gulpConfig);
+    });
+    app.get('/netdisk/company_disk_recycle', function(req, res, next) {
+        res.render('netdisk/company_disk_recycle', gulpConfig);
+    });
+
     /** 首页相关 */
     app.get('/', function(req, res, next) {
         res.render('home/index', gulpConfig);

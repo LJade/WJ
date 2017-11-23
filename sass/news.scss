@@ -21,6 +21,12 @@
     }
     input[type='radio']{
     }
+    &:nth-child(1){
+      button:nth-child(1){
+        margin-left: 0;
+
+      }
+    }
   }
 }
 .content-list{
@@ -61,6 +67,21 @@
    }
   .handle-wrapper{
     float: right;
+  }
+}
+
+.disk-table{
+  td{
+    vertical-align: middle;
+    .icon{
+      font-size: 16px;
+      margin-right: 5px;
+      &.icon-file{  color:#f7710d;}
+      &.icon-sound{  color:#f43420;}
+      &.icon-folder{  color:#f19149;}
+      &.icon-picture{  color:#48c3a7;}
+      &.icon-word{  color:$theme-color;}
+    }
   }
 }
 
