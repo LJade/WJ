@@ -48,6 +48,9 @@ module.exports = function (app) {
     app.get('/setting/user_manage', function(req, res, next) {
         res.render('setting/user_manage', gulpConfig);
     });
+    app.get('/setting/role_create', function(req, res, next) {
+        res.render('setting/role_create', gulpConfig);
+    });
     app.get('/setting/location_manage', function(req, res, next) {
         res.render('setting/location_manage', gulpConfig);
     });

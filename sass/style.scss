@@ -402,3 +402,46 @@ input[type='checkbox']{
   line-height: 60px;
   color: $text-gray;
 }
+.role-control{
+  display: flex;
+  padding: 0 15px 30px;
+  .user-list{
+    width: 200px;
+    border: 1px solid $border-color;
+    min-height: 400px;
+    max-height: 600px;
+    line-height: 3;
+    overflow: auto;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    .list-title{
+      background: $theme-color;
+      padding-left: 15px;
+      color: $white-color;
+      position: relative;
+      i{
+        position: absolute;
+        font-size: 12px;
+        right: 10px;
+        top: 15px;
+      }
+    }
+    .list-wrapper{
+      padding: 15px 0;
+      .list-item{
+        padding-left: 40px;
+        cursor: pointer;
+        &.active{
+          background: #eaf6ff;
+        }
+      }
+    }
+  }
+  .role-handle{
+    margin: 70px 30px 0;
+    button{
+      margin-bottom: 20px;
+    }
+  }
+}

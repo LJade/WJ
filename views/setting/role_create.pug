@@ -1,0 +1,55 @@
+extends ../components/base
+block title
+    title 角色新建
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/',text:'消息',icon:'icon-message2'},{link:'/',text:'平台管理',icon:'icon-setting'}]
+    +asideNav(routerObj,2)
+block main_content
+    include ../components/mixin
+    -var menuObj = [{link:'/',text:'平台自身管理'},{link:'/',text:'对接系统管理'},{link:'/',text:'数据服务管理'},{link:'/',text:'第三方应用系统管理'}]
+    +menuLink(menuObj,0)
+    -var navObj = [{link:'/',text:'组织机构管理'},{link:'/',text:'用户管理'},{link:'/',text:'角色权限管理'},{link:'/',text:'行政区划分'},{link:'/',text:'日志管理'}]
+    +menuNav(navObj,2)
+    +RouteNav('角色新建')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='role') 角色名称:
+                input#role.form-control(type='text')
+            .role-control
+                .user-list.option-user
+                    .list-title
+                        span 按照人员进行选择
+                        i.icon-down
+                    .list-wrapper
+                        .list-item 孙悟空
+                        .list-item 唐僧
+                        .list-item 白骨精
+                        .list-item.active 猪八戒
+                        .list-item 沙悟净
+                        .list-item 玉皇大帝
+                        .list-item 太上老君
+                .role-handle
+                    button.btn.btn-default.btn-sm(type='button') 添加>
+                    br
+                    button.btn.btn-warning.btn-sm(type='button') <删除
+                .user-list.select-user
+                    .list-title
+                        span 已选人员
+                    .list-wrapper
+                        .list-item 观音菩萨
+                        .list-item 如来佛祖
+                        .list-item 红孩儿
+                        .list-item 金角大王
+                        .list-item 银角大王
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='button') 保存
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+
+
+
+
+
