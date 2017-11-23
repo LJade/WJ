@@ -1,0 +1,23 @@
+extends ../components/base
+block title
+    title 版本管理
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'版本管理',icon:'icon-version'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('版本管理')
+    .version-desc(style='margin-top:5px') 当前版本信息为吴江交通综合信息管理与服务平台9.26版本
+
+
+
+
+
+
+
+
+
+

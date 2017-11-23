@@ -344,10 +344,11 @@ input[type='checkbox']{
   border-bottom: 1px solid $theme-color;
   li{
     float: left;
-    padding: 10px 20px;
+    padding: 10px 30px;
+    cursor: pointer;
     a{
       display: block;
-      line-height: 2.5;
+      line-height: 2;
     }
     &.active,&:hover{
       background: $theme-color;
@@ -392,4 +393,12 @@ input[type='checkbox']{
       }
     }
   }
+}
+
+.version-desc{
+  background: #f8f8f8;
+  padding-left: 20px;
+  height: 60px;
+  line-height: 60px;
+  color: $text-gray;
 }

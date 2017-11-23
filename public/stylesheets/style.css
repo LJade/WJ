@@ -893,10 +893,11 @@ input[type='checkbox'] {
   border-bottom: 1px solid #36a4e3; }
   #menu-list li {
     float: left;
-    padding: 10px 20px; }
+    padding: 10px 30px;
+    cursor: pointer; }
     #menu-list li a {
       display: block;
-      line-height: 2.5; }
+      line-height: 2; }
     #menu-list li.active, #menu-list li:hover {
       background: #36a4e3; }
       #menu-list li.active a, #menu-list li:hover a {
@@ -932,3 +933,10 @@ input[type='checkbox'] {
       vertical-align: middle;
       margin-right: 5px;
       margin-top: 5px; }
+
+.version-desc {
+  background: #f8f8f8;
+  padding-left: 20px;
+  height: 60px;
+  line-height: 60px;
+  color: #999999; }

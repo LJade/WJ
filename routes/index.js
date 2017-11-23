@@ -9,11 +9,6 @@ console.log(gulpConfig);
 
 module.exports = function (app) {
 
-
-
-    app.get('/add_application', function(req, res, next) {
-        res.render('home/add_application', gulpConfig);
-    });
     /** 登录相关路由*/
     app.get('/login', function(req, res, next) {
         res.render('login/login', gulpConfig);
@@ -170,5 +165,11 @@ module.exports = function (app) {
     /** 首页相关 */
     app.get('/', function(req, res, next) {
         res.render('home/index', gulpConfig);
+    });
+    app.get('/add_application', function(req, res, next) {
+        res.render('home/add_application', gulpConfig);
+    });
+    app.get('/version', function(req, res, next) {
+        res.render('home/version', gulpConfig);
     });
 };

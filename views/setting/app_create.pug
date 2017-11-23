@@ -1,34 +1,43 @@
 extends ../components/base
 block title
     title 应用添加
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/',text:'消息',icon:'icon-message2'},{link:'/',text:'平台管理',icon:'icon-setting'}]
+    +asideNav(routerObj,2)
 block main_content
     include ../components/mixin
+    -var menuObj = [{link:'/',text:'平台自身管理'},{link:'/',text:'对接系统管理'},{link:'/',text:'数据服务管理'},{link:'/',text:'第三方应用系统管理'}]
+    +menuLink(menuObj,1)
+    -var navObj = [{link:'/',text:'应用配置'},{link:'/',text:'应用权限配置'}]
+    +menuNav(navObj,0)
     +RouteNav('应用添加')
-    .panel.panel-default.margin-top-20.margin-left-20(style='max-width:600px')
-        .panel-heading 基本信息
-        .panel-body
-            form.form-horizontal
-                .form-group.form-group-sm
-                    label.col-sm-2.control-label(for='name') 系统中文名称
-                    .col-sm-10
-                        input#name.form-control(type='text', placeholder='')
-                .form-group.form-group-sm
-                    label.col-sm-2.control-label(for='location') URL地址
-                    .col-sm-10
-                        input#location.form-control(type='text', placeholder='')
-                .form-group.form-group-sm
-                    label.col-sm-2.control-label(for='name') 应用排序
-                    .col-sm-10
-                        input#order.form-control(type='order', placeholder='')
-                .form-group.form-group-sm
-                    label.col-sm-2.control-label(for='desc') 应用描述
-                    .col-sm-10
-                        textarea#desc.form-control(placeholder='' rows='5')
-                .form-group.form-group-sm
-                    .col-sm-6
-                        button.btn.btn-sm.btn-default.center-block(type='reset') 取消
-                    .col-sm-6
-                        button.btn.btn-sm.btn-primary.center-block(type='submit') 确定
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='sysName') 系统中文名称:
+                input#sysName.form-control(type='text')
+            .form-control
+                label.control-label(for='source') URL地址:
+                input#source.form-control(type='text')
+            .form-control
+                label.control-label(for='order') 应用排序:
+                input#order.form-control(type='text')
+            .form-control
+                label.control-label(for='description') 应用描述:
+                textarea#description.form-control(rows='8')
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='button') 添加
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+
+
+
+
+
+
+
 
 
 
