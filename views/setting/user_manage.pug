@@ -13,15 +13,15 @@ block main_content
     +menuLink(menuObj,0)
     -var navObj = [{link:'/',text:'组织机构管理'},{link:'/',text:'用户管理'},{link:'/',text:'角色权限管理'},{link:'/',text:'行政区划分'},{link:'/',text:'日志管理'}]
     +menuNav(navObj,1)
+    .condition
+        .inline-group
+            label(for='username') 用户名称:
+            input#username(type='text')
+        .inline-group
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 检索
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 删除
     #inner-wrapper
-        .condition
-            .inline-group
-                label(for='username') 用户名称:
-                input#username(type='text')
-            .inline-group
-                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 检索
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 删除
         .content-list.section-block
             table.table.table-bordered
                 thead

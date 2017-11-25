@@ -10,14 +10,14 @@ block aside_content
 block main_content
     include ../components/mixin
     +RouteNav('回收站')
+    .condition
+        .inline-group
+            button.btn.btn-default.btn-sm(type='button') 上传
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建文件夹
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 下载
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 分享
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 回收站
     #inner-wrapper
-        .condition
-            .inline-group
-                button.btn.btn-default.btn-sm(type='button') 上传
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建文件夹
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 下载
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 分享
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 回收站
         .content-list.section-block
             table.table.table-bordered.disk-table
                 thead

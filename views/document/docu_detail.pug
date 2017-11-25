@@ -5,15 +5,15 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/',text:'公文查阅'},{link:'/',text:'公文发布'},{link:'/',text:'公文管理'},{link:'/',text:'待我审核'}]
+    -var routerObj = [{link:'/docu/docu_list',text:'公文查阅'},{link:'/docu/docu_create',text:'公文发布'},{link:'/docu/docu_manage',text:'公文管理'},{link:'/docu/docu_approve',text:'待我审核'}]
     +asideNav(routerObj,3)
 block main_content
     include ../components/mixin
     +RouteNav('审批')
+    .condition
+        .inline-group(style='margin:0')
+            button.btn.btn-warning.btn-sm(type='button') 审批流程查阅
     #inner-wrapper
-        .condition
-            .inline-group(style='margin:0')
-                button.btn.btn-warning.btn-sm(type='button') 审批流程查阅
         .content-list.section-block
             table.table.table-bordered(border="1" cellspacing="0" style='border:1px solid #ececec;width:850px')
                 tr

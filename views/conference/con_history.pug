@@ -5,22 +5,22 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/',text:'会议室维护'},{link:'/',text:'会议申请'},{link:'/',text:'待我审批'},{link:'/',text:'会议纪要'},{link:'/',text:'历史会议'},{link:'/',text:'会议签到情况'}]
+    -var routerObj = [{link:'/conference/con_room',text:'会议室维护'},{link:'/conference/con_apply',text:'会议申请'},{link:'/conference/con_approve',text:'待我审批'},{link:'/conference/con_summary',text:'会议纪要'},{link:'/conference/con_history',text:'历史会议'},{link:'/conference/con_sign',text:'会议签到情况'}]
     +asideNav(routerObj,4)
 block main_content
     include ../components/mixin
     +RouteNav('历史会议')
+    .condition
+        .inline-group
+            label(for='newsTheme') 会议主题:
+            input#newsTheme(type='text')
+        .inline-group
+            label(for='newsCreate') 发布时间:
+            input#newsCreate(type='time')
+        .inline-group
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+            button.btn.btn-warning.btn-sm(type='button') 删除
     #inner-wrapper
-        .condition
-            .inline-group
-                label(for='newsTheme') 会议主题:
-                input#newsTheme(type='text')
-            .inline-group
-                label(for='newsCreate') 发布时间:
-                input#newsCreate(type='time')
-            .inline-group
-                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-                button.btn.btn-warning.btn-sm(type='button') 删除
         .content-list.section-block
             table.table.table-bordered
                 thead

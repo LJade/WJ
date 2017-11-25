@@ -10,11 +10,11 @@ block aside_content
 block main_content
     include ../components/mixin
     +RouteNav('回收站')
-    #inner-wrapper(style='margin-top:5px;')
-        .condition
-            .inline-group
-                button.btn.btn-default.btn-sm(type='button') 恢复
-                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 永久删除
+    .condition
+        .inline-group
+            button.btn.btn-default.btn-sm(type='button') 恢复
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 永久删除
+    #inner-wrapper
         .content-list.section-block
             table.table.table-bordered.disk-table
                 thead
