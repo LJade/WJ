@@ -1,0 +1,31 @@
+extends ../components/base
+block title
+    title 统计报表
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'统计报表'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('统计报表')
+    #inner-wrapper
+        .content-list.section-block.margin-top-10
+            table.table.border(border=1 bordercolor="#ececec" style='text-align:center')
+                thead
+                    tr
+                        td  新闻发布数量
+                        td  公告发布数量
+                        td  公文发布数量
+                        td  邮箱发布数量
+                        td  工单创建数量
+                        td  注册用户数量
+                tbody
+                    tr
+                        td 222
+                        td 222
+                        td 222
+                        td 222
+                        td 2222
+                        td 2222

@@ -587,6 +587,13 @@ div, header {
   display: block;
   clear: both; }
 
+input:focus,
+textarea:focus {
+  outline: 0;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none; }
+
 /*header*/
 #common-header {
   width: 100%;
@@ -655,11 +662,10 @@ div, header {
       width: 220px;
       height: 30px;
       border: none;
-      padding: 0;
       outline: none;
       -webkit-box-sizing: border-box;
               box-sizing: border-box;
-      padding-left: 10px; }
+      padding: 0 0 0 10px; }
     #common-header .header-right .header-search i {
       position: absolute;
       right: 5px;
@@ -683,7 +689,6 @@ div, header {
 
 #main-wrapper {
   position: relative;
-  height: 100%;
   margin-top: 10px; }
 
 #aside-nav {
@@ -698,7 +703,6 @@ div, header {
   height: 100%; }
 
 #aside {
-  width: 100%;
   height: 100%; }
 
 #aside li {
@@ -776,7 +780,7 @@ div, header {
 /* inner two column style*/
 #inner-wrapper {
   position: relative;
-  height: 100%; }
+  background: #ffffff; }
 
 #inner-nav {
   width: 150px;
@@ -798,15 +802,17 @@ div, header {
 
 #inner-content {
   margin-left: 150px;
-  height: 100%;
   padding: 15px;
-  max-width: 1600px; }
+  max-width: 1200px; }
 
 .link {
   color: #36a4e3; }
 
 .margin-top-20 {
   margin-top: 20px; }
+
+.margin-top-10 {
+  margin-top: 10px; }
 
 .margin-left-20 {
   margin-left: 20px; }
@@ -860,7 +866,8 @@ input[type='checkbox'] {
     line-height: 2.5;
     font-size: 16px;
     border-collapse: collapse;
-    font-weight: 200; }
+    font-weight: 200;
+    border-color: #ececec; }
     .section-block table > thead {
       font-weight: 400;
       color: #afafaf;

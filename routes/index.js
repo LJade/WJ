@@ -184,4 +184,10 @@ module.exports = function (app) {
     app.get('/version', function(req, res, next) {
         res.render('home/version', gulpConfig);
     });
+    app.get('/statistics', function(req, res, next) {
+        res.render('home/statistics', gulpConfig);
+    });
+    app.get('/start', function(req, res, next) {
+        res.render('home/start', gulpConfig);
+    });
 };

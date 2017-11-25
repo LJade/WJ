@@ -1,0 +1,50 @@
+extends ../components/base
+block title
+    title 启动页设置
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'启动页设置'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('启动页设置')
+    .condition
+        .inline-group
+            button.btn.btn-default.btn-sm(type='button') 新建
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 删除
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 设置为启动页
+    #inner-wrapper
+        .content-list.section-block
+            table.table.table-bordered
+                thead
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  图片名称
+                        td  上传日期
+                        td  图片上上
+                        td  编辑
+                tbody
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  手机端启动页图片
+                        td  2017-11-11
+                        td  启动页.jpg
+                        td.link  编辑
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  手机端启动页图片
+                        td  2017-11-11
+                        td  启动页.jpg
+                        td.link  编辑
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  手机端启动页图片
+                        td  2017-11-11
+                        td  启动页.jpg
+                        td.link  编辑

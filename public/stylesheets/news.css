@@ -587,6 +587,11 @@ div, header {
   display: block;
   clear: both; }
 
+input:focus,
+textarea:focus {
+  outline: 0;
+  outline: none; }
+
 .head-block {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -603,8 +608,9 @@ div, header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 20px;
-  margin-top: 10px; }
+  padding: 15px  20px;
+  margin-top: 10px;
+  background: #f8f8f8; }
   .condition .inline-group {
     margin-right: 25px; }
     .condition .inline-group input[type='input'] {

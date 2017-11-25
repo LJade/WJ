@@ -64,10 +64,9 @@
         width: 220px;
         height: 30px;
         border: none;
-        padding: 0;
         outline: none;
         box-sizing: border-box;
-        padding-left: 10px;
+        padding:0 0 0 10px;
       }
       i{
         position: absolute;
@@ -97,7 +96,6 @@
 }
 #main-wrapper{
   position: relative;
-  height: 100%;
   margin-top: 10px;
 }
 #aside-nav{
@@ -112,7 +110,6 @@
   height: 100%;
 }
 #aside{
-  width: 100%;
   height: 100%;
 }
 #aside li{
@@ -205,7 +202,7 @@
 /* inner two column style*/
 #inner-wrapper{
   position: relative;
-  height: 100%;
+  background: #ffffff;
 }
 #inner-nav{
   width: 150px;
@@ -227,15 +224,17 @@
 }
 #inner-content{
   margin-left: 150px;
-  height: 100%;
   padding: 15px;
-  max-width: 1600px;
+  max-width: 1200px;
 }
 .link{
   color: $theme-color;
 }
 .margin-top-20{
   margin-top: 20px;
+}
+.margin-top-10{
+  margin-top: 10px;
 }
 .margin-left-20{
   margin-left: 20px;
@@ -297,6 +296,7 @@ input[type='checkbox']{
     font-size: 16px;
     border-collapse: collapse;
     font-weight: 200;
+    border-color: $border-color;
     >thead{
       font-weight: 400;
       color: #afafaf;

@@ -57,3 +57,8 @@ div,header{
   align-items: center;
   justify-content: space-between;
 }
+input:focus,
+textarea:focus {
+  outline: 0;
+  outline: none;
+}
