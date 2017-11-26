@@ -1,0 +1,100 @@
+extends ../components/base
+block title
+    title 角色新建
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/',text:'消息',icon:'icon-message2'},{link:'/',text:'平台管理',icon:'icon-setting'}]
+    +asideNav(routerObj,2)
+block main_content
+    include ../components/mixin
+    -var menuObj = [{link:'/',text:'平台自身管理'},{link:'/',text:'对接系统管理'},{link:'/',text:'数据服务管理'},{link:'/',text:'第三方应用系统管理'}]
+    +menuLink(menuObj,0)
+    -var navObj = [{link:'/',text:'组织机构管理'},{link:'/',text:'用户管理'},{link:'/',text:'角色权限管理'},{link:'/',text:'行政区划分'},{link:'/',text:'日志管理'}]
+    +menuNav(navObj,2)
+    #inner-wrapper
+        .user-permission
+            .user-wrapper
+                .user-handle
+                    button.btn.btn-warning.btn-lg 新建
+                    button.btn.btn-warning.btn-lg 编辑
+                ul.user-list
+                    li 吴江交通局
+                        ul
+                            li ROOT
+                            li 管理员
+                            li 实名用户
+                                ul
+                                    li 唐僧
+                                    li 孙悟空
+                                    li 猪八戒
+                                    li 沙悟净
+                                    li 东海龙王
+                                    li.active 西海龙王
+                                    li 南海龙王
+                .manage-handle
+                    button.btn.btn-sm.btn-primary 保存
+                    button.btn.btn-sm.btn-disable 取消
+            .permission-handle
+                ul.app-list
+                    li.app-item
+                        div
+                            label
+                                input(type='checkbox')
+                            span
+                                i.icon.icon-tag
+                                | 系统管理
+                        ul.app-child
+                            li.child-item
+                                label
+                                    input(type='checkbox')
+                                span
+                                    i.icon.icon-tag
+                                    | 组织机构管理
+                            li.child-item
+                                label
+                                    input(type='checkbox')
+                                span
+                                    i.icon.icon-tag
+                                    | 统一应用管理
+                            li.child-item
+                                label
+                                    input(type='checkbox')
+                                span
+                                    i.icon.icon-tag
+                                    | 用户管理
+                            li.child-item
+                                label
+                                    input(type='checkbox')
+                                span
+                                    i.icon.icon-tag
+                                    | 用户权限管理
+                            li.child-item
+                                label
+                                    input(type='checkbox')
+                                span
+                                    i.icon.icon-tag
+                                    | 日志管理
+                            li.child-item
+                                label
+                                    input(type='checkbox')
+                                span
+                                    i.icon.icon-tag
+                                    | 流程审批管理
+                            li.child-item
+                                label
+                                    input(type='checkbox')
+                                span
+                                    i.icon.icon-tag
+                                    | 会议室管理
+
+
+
+
+
+
+
+
+
+
