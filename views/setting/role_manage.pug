@@ -20,11 +20,11 @@ block main_content
                     button.btn.btn-warning.btn-lg 新建
                     button.btn.btn-warning.btn-lg 编辑
                 ul.user-list
-                    li 吴江交通局
+                    li.open 吴江交通局
                         ul
-                            li ROOT
-                            li 管理员
-                            li 实名用户
+                            li.close ROOT
+                            li.close 管理员
+                            li.open 实名用户
                                 ul
                                     li 唐僧
                                     li 孙悟空
@@ -34,7 +34,7 @@ block main_content
                                     li.active 西海龙王
                                     li 南海龙王
                 .manage-handle
-                    button.btn.btn-sm.btn-primary 保存
+                    button.btn.btn-sm.btn-default 保存
                     button.btn.btn-sm.btn-disable 取消
             .permission-handle
                 ul.app-list
@@ -42,59 +42,84 @@ block main_content
                         div
                             label
                                 input(type='checkbox')
-                            span
-                                i.icon.icon-tag
+                            span.open
+                                i.icon.icon-file
                                 | 系统管理
                         ul.app-child
                             li.child-item
                                 label
                                     input(type='checkbox')
-                                span
-                                    i.icon.icon-tag
-                                    | 组织机构管理
+                                    span
+                                        i.icon.icon-tag
+                                        | 组织机构管理
                             li.child-item
                                 label
                                     input(type='checkbox')
-                                span
-                                    i.icon.icon-tag
-                                    | 统一应用管理
+                                    span
+                                        i.icon.icon-tag
+                                        | 统一应用管理
                             li.child-item
                                 label
                                     input(type='checkbox')
-                                span
-                                    i.icon.icon-tag
-                                    | 用户管理
+                                    span
+                                        i.icon.icon-tag
+                                        | 用户管理
                             li.child-item
                                 label
                                     input(type='checkbox')
-                                span
-                                    i.icon.icon-tag
-                                    | 用户权限管理
+                                    span
+                                        i.icon.icon-tag
+                                        | 用户权限管理
                             li.child-item
                                 label
                                     input(type='checkbox')
-                                span
-                                    i.icon.icon-tag
-                                    | 日志管理
+                                    span
+                                        i.icon.icon-tag
+                                        | 日志管理
                             li.child-item
                                 label
                                     input(type='checkbox')
-                                span
-                                    i.icon.icon-tag
-                                    | 流程审批管理
+                                    span
+                                        i.icon.icon-tag
+                                        | 流程审批管理
                             li.child-item
                                 label
                                     input(type='checkbox')
-                                span
-                                    i.icon.icon-tag
-                                    | 会议室管理
-
-
-
-
-
-
-
-
-
-
+                                    span
+                                        i.icon.icon-tag
+                                        | 会议室管理
+                    li.app-item
+                        div
+                            label
+                                input(type='checkbox')
+                            span.close
+                                i.icon.icon-file
+                                | 审批管理
+                    li.app-item
+                        div
+                            label
+                                input(type='checkbox')
+                            span.close
+                                i.icon.icon-file
+                                | 新闻管理
+                    li.app-item
+                        div
+                            label
+                                input(type='checkbox')
+                            span.close
+                                i.icon.icon-file
+                                | 公告管理
+                    li.app-item
+                        div
+                            label
+                                input(type='checkbox')
+                            span.close
+                                i.icon.icon-file
+                                | 个人信息
+                    li.app-item
+                        div
+                            label
+                                input(type='checkbox')
+                            span.close
+                                i.icon.icon-file
+                                | 审批管理

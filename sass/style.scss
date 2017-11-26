@@ -449,7 +449,101 @@ input[type='checkbox']{
 
 .user-permission{
   display: flex;
+  .open{
+    &:before{
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-left: 4px solid transparent;
+      border-right: 4px solid $text-color;
+      border-bottom: 4px solid $text-color;
+      margin-right: 2px;
+    }
+  }
+  .close{
+    &:before{
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-left: 6px solid $text-color;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      margin-right: 2px;
+    }
+  }
+  label{
+    margin-right: 10px;
+  }
+  ul{
+    max-height: 400px;
+    overflow: auto;
+    li{
+      line-height: 2.2;
+      padding-left: 20px;
+      letter-spacing: 1px;
+      font-weight: 200;
+    }
+  }
   .user-wrapper{
     width: 190px;
+    height: 100%;
+    border-right: 1px solid $border-color;
+    .user-handle{
+      display: flex;
+      button{
+        height: 50px;
+        width: 50%;
+        background: #f19149;
+        border-radius: 0;
+        &:nth-child(1){
+          margin-right: 1px;
+        }
+      }
+    }
+    .user-list{
+      margin-top: 20px;
+      li.active{
+        color: $theme-color;
+      }
+    }
+    .manage-handle{
+      display: flex;
+      height: 100px;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
+  .permission-handle{
+    padding: 40px 115px;
+    .app-list{
+      .icon{
+        margin-right: 5px;
+        margin-left: 5px;
+        vertical-align: text-bottom;
+        &.icon-file{
+          color: $theme-color;
+          font-size: 16px;
+        }
+        &icon-tag{
+          color: $text-gray;
+        }
+      }
+      li.app-item{
+        li.child-item{
+          padding-left: 60px;
+          span{
+            color: #e2e2e2;
+          }
+          >label input[type='checkbox']:checked + span{
+            color: $text-color;
+          }
+        }
+      }
+    }
+
   }
 }
