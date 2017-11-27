@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>角色新建</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../../stylesheets/normalize.css">
+    <link rel="stylesheet" href="../../stylesheets/style.css">
+    <script src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script src="../../javascripts/common.js"></script>
+    <link rel="stylesheet" href="../../stylesheets/news.css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <style>
+          .navbar{
+              border-radius: 0;
+              margin-bottom: 0;
+          }
+        </style>
+        <header id="common-header">
+          <div class="header-left">
+            <div class="header-logo"><img src="../../images/logo.png"></div>
+            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href=""><i class="icon icon-envelope"></i>即时通讯</a><a href=""><i class="icon icon-disk"></i>网盘</a><a href=""><i class="icon icon-screen"></i>多屏幕模式</a></div>
+          </div>
+          <div class="header-right">
+            <div class="header-search">
+              <input type="text"><i class="icon icon-search"></i>
+            </div>
+            <div class="login-user">
+              <div class="img-wrapper"><img src="../../images/avatar.png"></div>
+              <!--.name   Lingyu.ZHOU-->
+            </div><a class="star"><i class="icon icon-star"></i></a><a class="login-out"><i class="icon icon-close"></i></a>
+          </div>
+        </header>
+      </div>
+      <div id="main-wrapper">
+        <div id="aside-nav">
+          <!-- breadcrumb-->
+                    <ul id="aside">
+                      <li><a href="/"><i class="icon icon-app"></i>应用</a></li>
+                      <li><a href="/"><i class="icon icon-message2"></i>消息</a></li>
+                      <li class="active"><a href="/"><i class="icon icon-setting"></i>平台管理</a></li>
+                    </ul>
+        </div>
+        <div id="main-content">
+          <!-- breadcrumb-->
+                    <ul class="inner-menu clearfix">
+                      <li class="active"><a href="/">平台自身管理</a></li>
+                      <li><a href="/">对接系统管理</a></li>
+                      <li><a href="/">数据服务管理</a></li>
+                      <li><a href="/">第三方应用系统管理</a></li>
+                    </ul>
+                    <ul class="clearfix" id="menu-list">
+                      <li><a href="/">组织机构管理</a></li>
+                      <li><a href="/">用户管理</a></li>
+                      <li class="active"><a href="/">角色权限管理</a></li>
+                      <li><a href="/">行政区划分</a></li>
+                      <li><a href="/">日志管理</a></li>
+                    </ul>
+          <div id="inner-wrapper">
+            <div class="user-permission">
+              <div class="user-wrapper">
+                <div class="user-handle">
+                  <button class="btn btn-warning btn-lg">新建</button>
+                  <button class="btn btn-warning btn-lg">编辑</button>
+                </div>
+                <ul class="user-list">
+                  <li class="open">吴江交通局
+                    <ul>
+                      <li class="close">ROOT</li>
+                      <li class="close">管理员</li>
+                      <li class="open">实名用户
+                        <ul>
+                          <li>唐僧</li>
+                          <li>孙悟空</li>
+                          <li>猪八戒</li>
+                          <li>沙悟净</li>
+                          <li>东海龙王</li>
+                          <li class="active">西海龙王</li>
+                          <li>南海龙王</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <div class="manage-handle">
+                  <button class="btn btn-sm btn-default">保存</button>
+                  <button class="btn btn-sm btn-disable">取消</button>
+                </div>
+              </div>
+              <div class="permission-handle">
+                <ul class="app-list">
+                  <li class="app-item">
+                    <div>
+                      <label>
+                        <input type="checkbox">
+                      </label><span class="open"><i class="icon icon-file"></i>系统管理</span>
+                    </div>
+                    <ul class="app-child">
+                      <li class="child-item">
+                        <label>
+                          <input type="checkbox"><span><i class="icon icon-tag"></i>组织机构管理</span>
+                        </label>
+                      </li>
+                      <li class="child-item">
+                        <label>
+                          <input type="checkbox"><span><i class="icon icon-tag"></i>统一应用管理</span>
+                        </label>
+                      </li>
+                      <li class="child-item">
+                        <label>
+                          <input type="checkbox"><span><i class="icon icon-tag"></i>用户管理</span>
+                        </label>
+                      </li>
+                      <li class="child-item">
+                        <label>
+                          <input type="checkbox"><span><i class="icon icon-tag"></i>用户权限管理</span>
+                        </label>
+                      </li>
+                      <li class="child-item">
+                        <label>
+                          <input type="checkbox"><span><i class="icon icon-tag"></i>日志管理</span>
+                        </label>
+                      </li>
+                      <li class="child-item">
+                        <label>
+                          <input type="checkbox"><span><i class="icon icon-tag"></i>流程审批管理</span>
+                        </label>
+                      </li>
+                      <li class="child-item">
+                        <label>
+                          <input type="checkbox"><span><i class="icon icon-tag"></i>会议室管理</span>
+                        </label>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="app-item">
+                    <div>
+                      <label>
+                        <input type="checkbox">
+                      </label><span class="close"><i class="icon icon-file"></i>审批管理</span>
+                    </div>
+                  </li>
+                  <li class="app-item">
+                    <div>
+                      <label>
+                        <input type="checkbox">
+                      </label><span class="close"><i class="icon icon-file"></i>新闻管理</span>
+                    </div>
+                  </li>
+                  <li class="app-item">
+                    <div>
+                      <label>
+                        <input type="checkbox">
+                      </label><span class="close"><i class="icon icon-file"></i>公告管理</span>
+                    </div>
+                  </li>
+                  <li class="app-item">
+                    <div>
+                      <label>
+                        <input type="checkbox">
+                      </label><span class="close"><i class="icon icon-file"></i>个人信息</span>
+                    </div>
+                  </li>
+                  <li class="app-item">
+                    <div>
+                      <label>
+                        <input type="checkbox">
+                      </label><span class="close"><i class="icon icon-file"></i>审批管理</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
