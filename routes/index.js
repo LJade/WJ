@@ -193,4 +193,10 @@ module.exports = function (app) {
     app.get('/start', function(req, res, next) {
         res.render('home/start', gulpConfig);
     });
+
+    /** 流程配置 */
+    app.get('/workflow/workflow_config', function(req, res, next) {
+        res.render('workflow/workflow_config', gulpConfig);
+    });
+
 };
