@@ -11,7 +11,7 @@ block main_content
     include ../components/mixin
     -var menuObj = [{link:'/',text:'平台自身管理'},{link:'/',text:'对接系统管理'},{link:'/',text:'数据服务管理'},{link:'/',text:'第三方应用系统管理'}]
     +menuLink(menuObj,0)
-    -var navObj = [{link:'/',text:'组织机构管理'},{link:'/',text:'用户管理'},{link:'/',text:'角色权限管理'},{link:'/',text:'行政区划分'},{link:'/',text:'日志管理'}]
+    -var navObj = [{link:'/setting/organization_manage',text:'组织机构管理'},{link:'/setting/user_manage',text:'用户管理'},{link:'/setting/role_manage',text:'角色权限管理'},{link:'/setting/region_manage',text:'行政区划分'},{link:'/setting/log_manage',text:'日志管理'}]
     +menuNav(navObj,0)
     +RouteNav('组织机构编辑')
     #inner-wrapper

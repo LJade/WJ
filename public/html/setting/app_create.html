@@ -10,6 +10,8 @@
     <meta name="description" content="">
     <link rel="stylesheet" href="../../stylesheets/normalize.css">
     <link rel="stylesheet" href="../../stylesheets/style.css">
+    <script src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script src="../../javascripts/common.js"></script>
     <link rel="stylesheet" href="../../stylesheets/news.css">
   </head>
   <body>
@@ -24,7 +26,7 @@
         <header id="common-header">
           <div class="header-left">
             <div class="header-logo"><img src="../../images/logo.png"></div>
-            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href=""><i class="icon icon-envelope"></i>即时通讯</a><a href=""><i class="icon icon-disk"></i>网盘</a><a href=""><i class="icon icon-screen"></i>多屏幕模式</a></div>
+            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href="/im/message"><i class="icon icon-envelope"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href=""><i class="icon icon-screen"></i>多屏幕模式</a></div>
           </div>
           <div class="header-right">
             <div class="header-search">
@@ -33,7 +35,7 @@
             <div class="login-user">
               <div class="img-wrapper"><img src="../../images/avatar.png"></div>
               <!--.name   Lingyu.ZHOU-->
-            </div><a class="star"><i class="icon icon-star"></i></a><a class="login-out"><i class="icon icon-close"></i></a>
+            </div><a class="star" href="/setting/organization_manage"><i class="icon icon-star"></i></a><a class="login-out"><i class="icon icon-close"></i></a>
           </div>
         </header>
       </div>
@@ -43,20 +45,20 @@
                     <ul id="aside">
                       <li><a href="/"><i class="icon icon-app"></i>应用</a></li>
                       <li><a href="/"><i class="icon icon-message2"></i>消息</a></li>
-                      <li class="active"><a href="/"><i class="icon icon-setting"></i>平台管理</a></li>
+                      <li class="active"><a href="/setting/organization_manage"><i class="icon icon-setting"></i>平台管理</a></li>
                     </ul>
         </div>
         <div id="main-content">
           <!-- breadcrumb-->
                     <ul class="inner-menu clearfix">
-                      <li><a href="/">平台自身管理</a></li>
-                      <li class="active"><a href="/">对接系统管理</a></li>
+                      <li><a href="/setting/organization_manage">平台自身管理</a></li>
+                      <li class="active"><a href="/setting/app_create">对接系统管理</a></li>
                       <li><a href="/">数据服务管理</a></li>
                       <li><a href="/">第三方应用系统管理</a></li>
                     </ul>
                     <ul class="clearfix" id="menu-list">
-                      <li class="active"><a href="/">应用配置</a></li>
-                      <li><a href="/">应用权限配置</a></li>
+                      <li class="active"><a href="/setting/app_create">应用配置</a></li>
+                      <li><a href="//setting/app_permission">应用权限配置</a></li>
                     </ul>
                     <div class="route-nav">
                       <h2>应用添加</h2>

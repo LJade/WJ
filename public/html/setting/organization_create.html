@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>行政区划分</title>
+    <title>组织机构新增</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
@@ -57,69 +57,39 @@
                       <li><a href="/">第三方应用系统管理</a></li>
                     </ul>
                     <ul class="clearfix" id="menu-list">
-                      <li><a href="/setting/organization_manage">组织机构管理</a></li>
+                      <li class="active"><a href="/setting/organization_manage">组织机构管理</a></li>
                       <li><a href="/setting/user_manage">用户管理</a></li>
                       <li><a href="/setting/role_manage">角色权限管理</a></li>
-                      <li class="active"><a href="/setting/region_manage">行政区划分</a></li>
+                      <li><a href="/setting/region_manage">行政区划分</a></li>
                       <li><a href="/setting/log_manage">日志管理</a></li>
                     </ul>
+                    <div class="route-nav">
+                      <h2>组织机构新增</h2>
+                    </div>
           <div id="inner-wrapper">
-            <div class="content-list section-block">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <td> 组织机构</td>
-                    <td> 行政区域</td>
-                    <td> 点</td>
-                    <td> 线</td>
-                    <td> 面</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="link"> 交通局</td>
-                    <td> 某某某区域</td>
-                    <td> 某某某点</td>
-                    <td> 某某某线</td>
-                    <td> 某某某面</td>
-                  </tr>
-                  <tr>
-                    <td class="link"> 交通局</td>
-                    <td> 某某某区域</td>
-                    <td> 某某某点</td>
-                    <td> 某某某线</td>
-                    <td> 某某某面</td>
-                  </tr>
-                  <tr>
-                    <td class="link"> 交通局</td>
-                    <td> 某某某区域</td>
-                    <td> 某某某点</td>
-                    <td> 某某某线</td>
-                    <td> 某某某面</td>
-                  </tr>
-                  <tr>
-                    <td class="link"> 交通局</td>
-                    <td> 某某某区域</td>
-                    <td> 某某某点</td>
-                    <td> 某某某线</td>
-                    <td> 某某某面</td>
-                  </tr>
-                  <tr>
-                    <td class="link"> 交通局</td>
-                    <td> 某某某区域</td>
-                    <td> 某某某点</td>
-                    <td> 某某某线</td>
-                    <td> 某某某面</td>
-                  </tr>
-                  <tr>
-                    <td class="link"> 交通局</td>
-                    <td> 某某某区域</td>
-                    <td> 某某某点</td>
-                    <td> 某某某线</td>
-                    <td> 某某某面</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="news-create">
+              <div class="form-control">
+                <label class="control-label" for="department">部门名称:</label>
+                <input class="form-control" id="department" type="text">
+              </div>
+              <div class="form-control">
+                <label class="control-label" for="depart">上级部门:</label>
+                <select class="form-control" id="depart">
+                  <option>xxx</option>
+                  <option>xxx</option>
+                  <option>xxx</option>
+                  <option>xxx</option>
+                  <option>xxx</option>
+                </select>
+              </div>
+              <div class="form-control">
+                <label class="control-label" for="order">排序:</label>
+                <input class="form-control" id="order" type="text">
+              </div>
+              <div class="form-control btn-wrapper">
+                <button class="btn btn-default btn-sm" type="button">保存</button>
+                <button class="btn btn-disable btn-sm" type="button" style="margin-left:20px;">取消</button>
+              </div>
             </div>
           </div>
         </div>
