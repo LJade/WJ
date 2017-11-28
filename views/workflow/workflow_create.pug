@@ -1,0 +1,55 @@
+extends ../components/base
+block title
+    title 流程配置
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/workflow/workflow_config',text:'流程配置'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('创建节点')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='name') 节点名称:
+                input#name.form-control(type='text')
+            .form-control
+                label.control-label(for='approver') 审批人配置:
+                input#approver.form-control(type='text' readonly)
+                i.icon.icon-add
+            .form-control
+                label.control-label 执行规则:
+                label.text-label
+                    input.form-control(type='radio' name='rule')
+                    span 所有人审批即通过
+                label.text-label
+                    input.form-control(type='radio' name='rule')
+                    span 任意一人审批即通过
+            .form-control
+                label.control-label 节点跳转设置:
+                label.text-label
+                    input.form-control(type='radio' name='link')
+                    span 允许指定跳转节点
+                label.text-label
+                    input.form-control(type='radio' name='link')
+                    span 不允许指定跳转节点
+            .form-control
+                label.control-label 执行时间配置:
+                label.text-label
+                    input.form-control(type='radio' name='link')
+                    span 不需要配置时间
+                label.text-label
+                    input.form-control(type='radio' name='link')
+                    span 需要配置时间
+                .text-vice
+                    |请在
+                    input.fixed-width-input(type='tel' name='time')
+                    |小时内完成审批
+            .form-control
+                label.control-label 节点功能配置:
+                button.btn.btn-default.btn-sm(type='button') 节点功能配置
+            .form-control.btn-wrapper.margin-top-20
+                button.btn.btn-default.btn-sm(type='button') 保存
+                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 关闭

@@ -638,17 +638,42 @@ textarea:focus {
   display: flex;
   -webkit-box-align: start;
       -ms-flex-align: start;
-          align-items: flex-start; }
+          align-items: flex-start;
+  position: relative; }
+  .form-control i.icon-add {
+    font-size: 18px;
+    color: #f78e40;
+    position: relative;
+    top: 5px;
+    left: -25px;
+    cursor: pointer; }
   .form-control label {
     display: inline-block;
     min-width: 120px; }
+  .form-control .text-label {
+    width: auto;
+    min-width: 0;
+    margin-right: 35px; }
+    .form-control .text-label input[type='radio'] {
+      width: 25px;
+      display: inline-block; }
+    .form-control .text-label span {
+      line-height: 25px;
+      display: inline-block;
+      vertical-align: bottom; }
   .form-control input, .form-control textarea {
-    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 0 10px;
     min-width: 400px;
     resize: none;
     border: 1px solid #ececec; }
   .form-control input {
     height: 25px; }
+  .form-control .fixed-width-input {
+    width: 50px;
+    min-width: 50px;
+    text-align: center; }
 
 .nav-handle {
   padding: 15px 20px;

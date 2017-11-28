@@ -198,5 +198,8 @@ module.exports = function (app) {
     app.get('/workflow/workflow_config', function(req, res, next) {
         res.render('workflow/workflow_config', gulpConfig);
     });
+    app.get('/workflow/workflow_create', function(req, res, next) {
+        res.render('workflow/workflow_create', gulpConfig);
+    });
 
 };
