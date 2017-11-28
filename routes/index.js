@@ -9,11 +9,6 @@ console.log(gulpConfig);
 
 module.exports = function (app) {
 
-
-
-    app.get('/add_application', function(req, res, next) {
-        res.render('home/add_application', gulpConfig);
-    });
     /** 登录相关路由*/
     app.get('/login', function(req, res, next) {
         res.render('login/login', gulpConfig);
@@ -44,8 +39,20 @@ module.exports = function (app) {
     app.get('/setting/organization_manage', function(req, res, next) {
         res.render('setting/organization_manage', gulpConfig);
     });
+    app.get('/setting/organization_create', function(req, res, next) {
+        res.render('setting/organization_create', gulpConfig);
+    });
+    app.get('/setting/organization_edit', function(req, res, next) {
+        res.render('setting/organization_edit', gulpConfig);
+    });
     app.get('/setting/user_manage', function(req, res, next) {
         res.render('setting/user_manage', gulpConfig);
+    });
+    app.get('/setting/role_create', function(req, res, next) {
+        res.render('setting/role_create', gulpConfig);
+    });
+    app.get('/setting/role_manage', function(req, res, next) {
+        res.render('setting/role_manage', gulpConfig);
     });
     app.get('/setting/location_manage', function(req, res, next) {
         res.render('setting/location_manage', gulpConfig);
@@ -161,8 +168,29 @@ module.exports = function (app) {
         res.render('IM/message',gulpConfig);
     });
 
+
+    /** 网盘相关 */
+    app.get('/netdisk/company_disk', function(req, res, next) {
+        res.render('netdisk/company_disk', gulpConfig);
+    });
+    app.get('/netdisk/company_disk_recycle', function(req, res, next) {
+        res.render('netdisk/company_disk_recycle', gulpConfig);
+    });
+
     /** 首页相关 */
     app.get('/', function(req, res, next) {
         res.render('home/index', gulpConfig);
+    });
+    app.get('/add_application', function(req, res, next) {
+        res.render('home/add_application', gulpConfig);
+    });
+    app.get('/version', function(req, res, next) {
+        res.render('home/version', gulpConfig);
+    });
+    app.get('/statistics', function(req, res, next) {
+        res.render('home/statistics', gulpConfig);
+    });
+    app.get('/start', function(req, res, next) {
+        res.render('home/start', gulpConfig);
     });
 };

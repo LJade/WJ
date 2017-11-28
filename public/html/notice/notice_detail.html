@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>待我审核</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../../stylesheets/normalize.css">
+    <link rel="stylesheet" href="../../stylesheets/style.css">
+    <script src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script src="../../javascripts/common.js"></script>
+    <link rel="stylesheet" href="../../stylesheets/news.css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <style>
+          .navbar{
+              border-radius: 0;
+              margin-bottom: 0;
+          }
+        </style>
+        <header id="common-header">
+          <div class="header-left">
+            <div class="header-logo"><img src="../../images/logo.png"></div>
+            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href=""><i class="icon icon-envelope"></i>即时通讯</a><a href=""><i class="icon icon-disk"></i>网盘</a><a href=""><i class="icon icon-screen"></i>多屏幕模式</a></div>
+          </div>
+          <div class="header-right">
+            <div class="header-search">
+              <input type="text"><i class="icon icon-search"></i>
+            </div>
+            <div class="login-user">
+              <div class="img-wrapper"><img src="../../images/avatar.png"></div>
+              <!--.name   Lingyu.ZHOU-->
+            </div><a class="star"><i class="icon icon-star"></i></a><a class="login-out"><i class="icon icon-close"></i></a>
+          </div>
+        </header>
+      </div>
+      <div id="main-wrapper">
+        <div id="aside-nav">
+          <!-- breadcrumb-->
+                    <ul id="aside">
+                      <li><a href="/notice/notice_list"><i class="icon"></i>公告查阅</a></li>
+                      <li><a href="/notice/notice_create"><i class="icon"></i>公告发布</a></li>
+                      <li><a href="/notice/notice_manage"><i class="icon"></i>公告管理</a></li>
+                      <li class="active"><a href="/notice/notice_approve"><i class="icon"></i>待我审批</a></li>
+                    </ul>
+        </div>
+        <div id="main-content">
+          <!-- breadcrumb-->
+                    <div class="route-nav">
+                      <h2>审批</h2>
+                    </div>
+          <div class="condition">
+            <div class="inline-group" style="margin:0;">
+              <button class="btn btn-warning btn-sm" type="button">审批流程查阅</button>
+            </div>
+          </div>
+          <div id="inner-wrapper">
+            <div class="content-list section-block">
+              <table class="table table-bordered" border="1" cellspacing="0" style="border:1px solid #ececec;width:850px;">
+                <tr>
+                  <td class="em fixed-width">工单名称</td>
+                  <td>XXX工单</td>
+                  <td class="em fixed-width">发布时间</td>
+                  <td>2017-11-08</td>
+                </tr>
+                <tr>
+                  <td class="em fixed-width">发布人</td>
+                  <td colspan="3">XXX</td>
+                </tr>
+                <tr>
+                  <td class="em multi fixed-width">发布内容</td>
+                  <td class="multi" colspan="3">XXX</td>
+                </tr>
+                <tr>
+                  <td class="em fixed-width">审批人</td>
+                  <td colspan="3">XXX</td>
+                </tr>
+                <tr>
+                  <td class="em fixed-width">审批意见</td>
+                  <td colspan="3">XXX</td>
+                </tr>
+              </table>
+              <div class="content-bottom-handle">
+                <button class="btn btn-default btn-sm" type="button">审批通过</button>
+                <button class="btn btn-primary btn-sm" type="button" style="margin-left:20px;">审批不通过</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

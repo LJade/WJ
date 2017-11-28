@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>首页</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../../stylesheets/normalize.css">
+    <link rel="stylesheet" href="../../stylesheets/style.css">
+    <script src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script src="../../javascripts/common.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <style>
+          .navbar{
+              border-radius: 0;
+              margin-bottom: 0;
+          }
+        </style>
+        <header id="common-header">
+          <div class="header-left">
+            <div class="header-logo"><img src="../../images/logo.png"></div>
+            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href=""><i class="icon icon-envelope"></i>即时通讯</a><a href=""><i class="icon icon-disk"></i>网盘</a><a href=""><i class="icon icon-screen"></i>多屏幕模式</a></div>
+          </div>
+          <div class="header-right">
+            <div class="header-search">
+              <input type="text"><i class="icon icon-search"></i>
+            </div>
+            <div class="login-user">
+              <div class="img-wrapper"><img src="../../images/avatar.png"></div>
+              <!--.name   Lingyu.ZHOU-->
+            </div><a class="star"><i class="icon icon-star"></i></a><a class="login-out"><i class="icon icon-close"></i></a>
+          </div>
+        </header>
+      </div>
+      <div id="main-wrapper">
+        <div id="aside-nav">
+          <!-- breadcrumb-->
+                    <ul id="aside">
+                      <li class="active"><a href="/"><i class="icon icon-app"></i>应用</a></li>
+                      <li><a href="/"><i class="icon icon-message2"></i>消息</a></li>
+                      <li><a href="/setting/user_manage"><i class="icon icon-setting"></i>平台管理</a></li>
+                    </ul>
+        </div>
+        <div id="main-content">
+          <div class="home" style="display:inline-block;">
+            <div class="module-nav">
+              <div class="nav-heading clearfix">
+                <h3>日常办公</h3><a class="more">更多<i class="icon-add"></i></a>
+              </div>
+              <ul class="nav-body clearfix">
+                <li><a href="/news/news_list">
+                    <div class="img-wrapper"><img src="../../images/nav.png"></div><span>新闻</span></a></li>
+                <li><a href="/notice/notice_list">
+                    <div class="img-wrapper"><img src="../../images/notice.png"></div><span> 公告</span></a></li>
+                <li><a href="/docu/docu_list">
+                    <div class="img-wrapper"><img src="../../images/document.png"></div><span>公文</span></a></li>
+                <li><a href="/mail/mail_receive">
+                    <div class="img-wrapper"><img src="../../images/mail.png"></div><span>邮箱</span></a></li>
+                <li><a href="/order/order_mine">
+                    <div class="img-wrapper"><img src="../../images/function.png"></div><span>工单</span></a></li>
+                <li><a href="/conference/con_history">
+                    <div class="img-wrapper"><img src="../../images/conference.png"></div><span>会议管理</span></a></li>
+              </ul>
+            </div>
+            <div class="module-nav">
+              <div class="nav-heading clearfix">
+                <h3>日常办公</h3><a class="more">更多<i class="icon-add"></i></a>
+              </div>
+              <ul class="nav-body clearfix">
+                <li><a href="/news/news_list">
+                    <div class="img-wrapper"><img src="../../images/nav.png"></div><span>新闻</span></a></li>
+                <li><a href="/notice/notice_list">
+                    <div class="img-wrapper"><img src="../../images/notice.png"></div><span> 公告</span></a></li>
+                <li><a href="/docu/docu_list">
+                    <div class="img-wrapper"><img src="../../images/document.png"></div><span>公文</span></a></li>
+                <li><a href="/mail/mail_receive">
+                    <div class="img-wrapper"><img src="../../images/mail.png"></div><span>邮箱</span></a></li>
+                <li><a href="/order/order_mine">
+                    <div class="img-wrapper"><img src="../../images/function.png"></div><span>工单</span></a></li>
+                <li><a href="/conference/con_history">
+                    <div class="img-wrapper"><img src="../../images/conference.png"></div><span>会议管理</span></a></li>
+              </ul>
+            </div>
+            <div class="module-nav">
+              <div class="nav-heading clearfix">
+                <h3>日常办公</h3><a class="more">更多<i class="icon-add"></i></a>
+              </div>
+              <ul class="nav-body clearfix">
+                <li><a href="/news/news_list">
+                    <div class="img-wrapper"><img src="../../images/nav.png"></div><span>新闻</span></a></li>
+                <li><a href="/notice/notice_list">
+                    <div class="img-wrapper"><img src="../../images/notice.png"></div><span> 公告</span></a></li>
+                <li><a href="/docu/docu_list">
+                    <div class="img-wrapper"><img src="../../images/document.png"></div><span>公文</span></a></li>
+                <li><a href="/mail/mail_receive">
+                    <div class="img-wrapper"><img src="../../images/mail.png"></div><span>邮箱</span></a></li>
+                <li><a href="/order/order_mine">
+                    <div class="img-wrapper"><img src="../../images/function.png"></div><span>工单</span></a></li>
+                <li><a href="/conference/con_history">
+                    <div class="img-wrapper"><img src="../../images/conference.png"></div><span>会议管理</span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div id="calendar"></div>
+          <link rel="stylesheet" href="../../stylesheets/simple-calendar.css">
+          <script src="../../javascripts/simple-calendar.js"></script>
+          <script type="text/javascript">
+            var options = {
+                width: '400px',
+                height: '400px',
+                language: 'CH', //语言
+                showLunarCalendar: false, //阴历
+                showHoliday: false, //休假
+                showFestival: false, //节日
+                showLunarFestival: false, //农历节日
+                showSolarTerm: false, //节气
+                showMark: true, //标记
+                timeRange: {
+                    startYear: 2010,
+                    endYear: 2049
+                },
+                mark: {
+                    '2017-11-25': '上学'
+                },
+                theme: {
+                    changeAble: true,
+                    weeks: {
+                        backgroundColor: '#FFFFFF',
+                        fontColor: '#000000',
+                        fontSize: '15px',
+                    },
+                    days: {
+                        backgroundColor: '#ffffff',
+                        fontColor: '#565555',
+                        fontSize: '14px'
+                    },
+                    todaycolor: '#82C2F1',
+                    activeSelectColor: '#82C2F1',
+                }
+            }
+            var myCalendar = new SimpleCalendar('#calendar',options);
+          </script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -5,30 +5,30 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/news_list',text:'工单管理',icon:'icon-order'}]
+    -var routerObj = [{link:'/order/order_mine',text:'工单管理',icon:'icon-order'}]
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
-    -var menuObj = [{link:'/',text:'工单申请'},{link:'/',text:'待我审批'},{link:'/',text:'我的申请'}]
+    -var menuObj = [{link:'/order/order_create',text:'工单申请'},{link:'/order/order_approve',text:'待我审批'},{link:'/order/order_mine',text:'我的申请'}]
     +menuLink(menuObj,2)
+    .condition
+        .inline-group
+            label(for='newsTheme') 名称:
+            input#newsTheme(type='text')
+        .inline-group
+            span(style='margin-right:10px') 工单状态:
+            input#unread(type='radio' name='read' checked style='margin-right:10px')
+            label(for='unread' style='margin-right:25px') 未审批
+            input#read(type='radio' name='read' style='margin-right:10px')
+            label(for='read') 已审批
+        .inline-group
+            label(for='newsCreate') 发布时间:
+            input#newsCreate(type='time')
+        .inline-group
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+            button.btn.btn-default.btn-sm(type='button') 新建
+            button.btn.btn-default.btn-sm(type='button') 删除
     #inner-wrapper
-        .condition
-            .inline-group
-                label(for='newsTheme') 名称:
-                input#newsTheme(type='text')
-            .inline-group
-                span(style='margin-right:10px') 工单状态:
-                input#unread(type='radio' name='read' checked style='margin-right:10px')
-                label(for='unread' style='margin-right:25px') 未审批
-                input#read(type='radio' name='read' style='margin-right:10px')
-                label(for='read') 已审批
-            .inline-group
-                label(for='newsCreate') 发布时间:
-                input#newsCreate(type='time')
-            .inline-group
-                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-                button.btn.btn-default.btn-sm(type='button') 新建
-                button.btn.btn-default.btn-sm(type='button') 删除
         .content-list.section-block
             table.table.table-bordered
                 thead

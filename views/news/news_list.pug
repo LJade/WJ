@@ -5,27 +5,27 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/news_list',text:'新闻查阅'},{link:'/news_manage',text:'新闻管理'},{link:'/news_create',text:'发布新闻'},{link:'/news_approve',text:'待我审批'}]
+    -var routerObj = [{link:'/news/news_list',text:'新闻查阅'},{link:'/news/news_manage',text:'新闻管理'},{link:'/news/news_create',text:'发布新闻'},{link:'/news/news_approve',text:'待我审批'}]
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
     +RouteNav('新闻查阅')
+    .condition
+        .inline-group
+            label(for='newsTheme') 主题:
+            input#newsTheme(type='text')
+        .inline-group
+            label(for='newsState') 新闻状态:
+            select#newsState
+                option 未审批
+                option 已审批
+        .inline-group
+            label(for='newsCreate') 发布时间:
+            input#newsCreate(type='time')
+        .inline-group
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 删除
+            button.btn.btn-default.btn-sm(type='button') 查询
     #inner-wrapper
-        .condition
-            .inline-group
-                label(for='newsTheme') 主题:
-                input#newsTheme(type='text')
-            .inline-group
-                label(for='newsState') 新闻状态:
-                select#newsState
-                    option 未审批
-                    option 已审批
-            .inline-group
-                label(for='newsCreate') 发布时间:
-                input#newsCreate(type='time')
-            .inline-group
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 删除
-                button.btn.btn-default.btn-sm(type='button') 查询
         .content-list.section-block
             table.table.table-bordered
                 thead

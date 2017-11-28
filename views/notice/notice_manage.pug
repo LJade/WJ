@@ -5,29 +5,29 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/',text:'公告查阅'},{link:'/',text:'公告发布'},{link:'/',text:'公告管理'},{link:'/',text:'待我审批'}]
+    -var routerObj = [{link:'/notice/notice_list',text:'公告查阅'},{link:'/notice/notice_create',text:'公告发布'},{link:'/notice/notice_manage',text:'公告管理'},{link:'/notice/notice_approve',text:'待我审批'}]
     +asideNav(routerObj,2)
 block main_content
     include ../components/mixin
     +RouteNav('公告')
+    .condition
+        .inline-group
+            label(for='newsTheme') 主题:
+            input#newsTheme(type='text')
+        .inline-group
+            span(style='margin-right:10px') 公文状态:
+            input#unread(type='radio' name='read' checked style='margin-right:10px')
+            label(for='unread' style='margin-right:25px') 未阅读
+            input#read(type='radio' name='read' style='margin-right:10px')
+            label(for='read') 已阅读
+        .inline-group
+            label(for='newsCreate') 发布时间:
+            input#newsCreate(type='time')
+        .inline-group
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建
+            button.btn.btn-default.btn-sm(type='button') 删除
     #inner-wrapper
-        .condition
-            .inline-group
-                label(for='newsTheme') 主题:
-                input#newsTheme(type='text')
-            .inline-group
-                span(style='margin-right:10px') 公文状态:
-                input#unread(type='radio' name='read' checked style='margin-right:10px')
-                label(for='unread' style='margin-right:25px') 未阅读
-                input#read(type='radio' name='read' style='margin-right:10px')
-                label(for='read') 已阅读
-            .inline-group
-                label(for='newsCreate') 发布时间:
-                input#newsCreate(type='time')
-            .inline-group
-                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建
-                button.btn.btn-default.btn-sm(type='button') 删除
         .content-list.section-block
             table.table.table-bordered
                 thead

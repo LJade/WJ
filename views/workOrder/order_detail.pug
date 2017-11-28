@@ -5,16 +5,16 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/news_list',text:'工单管理',icon:'icon-order'}]
+    -var routerObj = [{link:'/order/order_mine',text:'工单管理',icon:'icon-order'}]
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
-    -var menuObj = [{link:'/',text:'工单申请'},{link:'/',text:'待我审批'},{link:'/',text:'我的申请'}]
+    -var menuObj = [{link:'/order/order_create',text:'工单申请'},{link:'/order/order_approve',text:'待我审批'},{link:'/order/order_mine',text:'我的申请'}]
     +menuLink(menuObj,1)
+    .condition
+        .inline-group(style='margin:0')
+            button.btn.btn-warning.btn-sm(type='button') 审批流程查阅
     #inner-wrapper
-        .condition
-            .inline-group(style='margin:0')
-                button.btn.btn-warning.btn-sm(type='button') 审批流程查阅
         .content-list.section-block
             table.table.table-bordered(border="1" cellspacing="0" style='border:1px solid #ececec;width:850px')
                 tr

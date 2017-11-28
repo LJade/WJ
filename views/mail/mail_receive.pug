@@ -10,19 +10,19 @@ block aside_content
 block main_content
     include ../components/mixin
     +RouteNav('已收邮件')
+    .condition
+        .inline-group
+            label(for='newsCreate') 发送时间:
+            input#newsCreate(type='time')
+        .inline-group
+            label(for='newsTheme') 发送人:
+            input#newsTheme(type='text')
+        .inline-group
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 新建
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 编辑
+            button.btn.btn-warning.btn-sm(type='button') 删除
     #inner-wrapper
-        .condition
-            .inline-group
-                label(for='newsCreate') 发送时间:
-                input#newsCreate(type='time')
-            .inline-group
-                label(for='newsTheme') 发送人:
-                input#newsTheme(type='text')
-            .inline-group
-                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 新建
-                button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 编辑
-                button.btn.btn-warning.btn-sm(type='button') 删除
         .content-list.section-block
             table.table.table-bordered
                 thead

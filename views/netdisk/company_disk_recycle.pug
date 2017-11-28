@@ -1,0 +1,98 @@
+extends ../components/base
+block title
+    title 单位网盘
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'单位网盘'},{link:'/',text:'个人网盘'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('回收站')
+    .condition
+        .inline-group
+            button.btn.btn-default.btn-sm(type='button') 恢复
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 永久删除
+    #inner-wrapper
+        .content-list.section-block
+            table.table.table-bordered.disk-table
+                thead
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  文件名
+                        td  大小
+                        td  修改时间
+                        td  操作
+                tbody
+                    tr
+                        td
+                            input(type='checkbox')
+                        td
+                            i.icon.icon-folder
+                            span 交通局项目.rar
+                        td  15M
+                        td  2017-12-01
+                        td
+                            button.btn.btn-sm.btn-warning 删除
+                    tr
+                        td
+                            input(type='checkbox')
+                        td
+                            i.icon.icon-word
+                            span 交通局项目文档.doc
+                        td  12.5K
+                        td  2017-12-01
+                        td
+                            button.btn.btn-sm.btn-warning 删除
+                    tr
+                        td
+                            input(type='checkbox')
+                        td
+                            i.icon.icon-picture
+                            span 交通局项目登录设计预览图.jpg
+                        td  22K
+                        td  2017-12-01
+                        td
+                            button.btn.btn-sm.btn-warning 删除
+                    tr
+                        td
+                            input(type='checkbox')
+                        td
+                            i.icon.icon-sound
+                            span 交通音频讲解.mp3
+                        td  15M
+                        td  2017-12-01
+                        td
+                            button.btn.btn-sm.btn-warning 删除
+                    tr
+                        td
+                            input(type='checkbox')
+                        td
+                            i.icon.icon-file
+                            span 公开课培训.ppt
+                        td  15M
+                        td  2017-12-01
+                        td
+                            button.btn.btn-sm.btn-warning 删除
+                    tr
+                        td
+                            input(type='checkbox')
+                        td
+                            i.icon.icon-file
+                            span 2017-12-12日单位分配表.xls
+                        td  15M
+                        td  2017-12-01
+                        td
+                            button.btn.btn-sm.btn-warning 删除
+                    tr
+                        td
+                            input(type='checkbox')
+                        td
+                            i.icon.icon-file
+                            span 公开课培训录像1.avi
+                        td  15M
+                        td  2017-12-01
+                        td
+                            button.btn.btn-sm.btn-warning 删除

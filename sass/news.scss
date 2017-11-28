@@ -6,8 +6,9 @@
 
 .condition{
   display: flex;
-  padding: 20px;
+  padding:15px  20px;
   margin-top: 10px;
+  background: #f8f8f8;
   .inline-group{
     margin-right: 25px;
     input[type='input']{
@@ -20,6 +21,12 @@
       margin-left: 20px;
     }
     input[type='radio']{
+    }
+    &:nth-child(1){
+      button:nth-child(1){
+        margin-left: 0;
+
+      }
     }
   }
 }
@@ -49,6 +56,33 @@
   }
   input{
     height: 25px;
+  }
+}
+.nav-handle{
+  padding: 15px 20px;
+  background: $white-color;
+  border-bottom: 1px solid $border-color;
+  .nav-name{
+     float: left;
+    line-height: 30px;
+   }
+  .handle-wrapper{
+    float: right;
+  }
+}
+
+.disk-table{
+  td{
+    vertical-align: middle;
+    .icon{
+      font-size: 16px;
+      margin-right: 5px;
+      &.icon-file{  color:#f7710d;}
+      &.icon-sound{  color:#f43420;}
+      &.icon-folder{  color:#f19149;}
+      &.icon-picture{  color:#48c3a7;}
+      &.icon-word{  color:$theme-color;}
+    }
   }
 }
 

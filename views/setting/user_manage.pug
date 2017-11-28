@@ -1,47 +1,100 @@
 extends ../components/base
 block title
     title 用户管理
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/',text:'消息',icon:'icon-message2'},{link:'/',text:'平台管理',icon:'icon-setting'}]
+    +asideNav(routerObj,2)
 block main_content
     include ../components/mixin
-    +RouteNav('用户管理')
-    .user-manage.margin-top-20.margin-left-20
-        form.form-inline
-            .form-group.form-group-sm
-                label(for='username') 用户名称:&nbsp;&nbsp;
-                input#username.form-control(type='text', placeholder='')
-            .form-group.form-group-sm.margin-left-20
-                label(for='type') 用户类型:&nbsp;&nbsp;
-                select.form-control#type
-                    option 1
-                    option 2
-                    option 3
-                    option 4
-            button.btn.btn-default.btn-sm.margin-left-20(type='button') 查询
-            button.btn.btn-primary.btn-sm.margin-left-20(type='button') 新建
-            button.btn.btn-warning.btn-sm.margin-left-20(type='button') 删除
-        table.table.table-bordered.text-center.margin-top-20(style='max-width:750px')
-            theader
-                tr
-                    td
-                        input(type='checkbox')
-                    td 用户姓名
-                    td 登录账号
-                    td 用户角色
-                    td 所属部门
-                    td 创建时间
-                    td 操作
-            tbody
-                tr
-                    td
-                        input(type='checkbox')
-                    td xxx
-                    td xxx
-                    td xxx
-                    td xxx
-                    td xxx
-                    td
-                      a.link 编辑
-
-
-
-
+    -var menuObj = [{link:'/',text:'平台自身管理'},{link:'/',text:'对接系统管理'},{link:'/',text:'数据服务管理'},{link:'/',text:'第三方应用系统管理'}]
+    +menuLink(menuObj,0)
+    -var navObj = [{link:'/',text:'组织机构管理'},{link:'/',text:'用户管理'},{link:'/',text:'角色权限管理'},{link:'/',text:'行政区划分'},{link:'/',text:'日志管理'}]
+    +menuNav(navObj,1)
+    .condition
+        .inline-group
+            label(for='username') 用户名称:
+            input#username(type='text')
+        .inline-group
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 检索
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 删除
+    #inner-wrapper
+        .content-list.section-block
+            table.table.table-bordered
+                thead
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  用户名
+                        td  登录账号
+                        td  登录角色
+                        td  所属部门
+                        td  创建时间
+                        td  操作
+                tbody
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  超级管理员
+                        td  root
+                        td  超级管理员
+                        td  吴江交通局
+                        td  2017-9-18
+                        td.link 编辑
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  超级管理员
+                        td  root
+                        td  超级管理员
+                        td  吴江交通局
+                        td  2017-9-18
+                        td.link 编辑
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  超级管理员
+                        td  root
+                        td  超级管理员
+                        td  吴江交通局
+                        td  2017-9-18
+                        td.link 编辑
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  超级管理员
+                        td  root
+                        td  超级管理员
+                        td  吴江交通局
+                        td  2017-9-18
+                        td.link 编辑
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  超级管理员
+                        td  root
+                        td  超级管理员
+                        td  吴江交通局
+                        td  2017-9-18
+                        td.link 编辑
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  超级管理员
+                        td  root
+                        td  超级管理员
+                        td  吴江交通局
+                        td  2017-9-18
+                        td.link 编辑
+                    tr
+                        td
+                            input(type='checkbox')
+                        td.link  超级管理员
+                        td  root
+                        td  超级管理员
+                        td  吴江交通局
+                        td  2017-9-18
+                        td.link 编辑
