@@ -25,7 +25,7 @@ Demo.first = true;
 Demo.api = Api;
 
 // The messages cache
-/*
+
 
  Demo.chatRecord = {
  targetId: {
@@ -39,8 +39,8 @@ Demo.api = Api;
  }],
  brief: 'brief'
  }
- }
- */
+ };
+
 
 Demo.chatRecord = {};
 Demo.localChatRecord = {};

@@ -20,6 +20,21 @@ WebIM.config = {
      */
     appkey: 'easemob-demo#chatdemoui',
 
+    /**
+     * auto login in
+     */
+    autoSignIn : true,
+
+    /**
+     * auto login name
+     */
+    autoSignInName : '',
+
+    /**
+     * auto login password
+     */
+    autoSignInPwd : '',
+
     /*
      * Whether to use wss
      * @parameter {Boolean} true or false

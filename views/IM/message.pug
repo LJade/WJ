@@ -7,17 +7,19 @@ block aside_content
     -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/',text:'消息',icon:'icon-message2'},{link:'/',text:'平台管理',icon:'icon-setting'}]
     +asideNav(routerObj,1)
 block main_content
-    .home
-        .module-nav
-            .nav-heading.clearfix
+    #inner-wrapper
         section(id='main').w100
             article(id='demo')
             article(id='components')
     script(src=__JS_PATH__ + '/webim/browser-polyfill.min.js')
     script(src=__JS_PATH__ + '/webim/webim.config.js')
-    script(src=__JS_PATH__ + '/webim/strophe-1.2.8.js')
-    //script(type="text/javascript").
-    //        document.write("<script src='#{__JS_PATH__}/webim/strophe-1.2.8.min.js'><\/script>");
+    //再执行初始化之前我要先登录
+    script(type="text/javascript").
+        WebIM.config.autoSignInName = '306223558z1';
+        WebIM.config.autoSignInPwd = '123123';
+    //script(src=__JS_PATH__ + '/webim/strophe-1.2.8.js')
+    script(type="text/javascript").
+        document.write("<script src='#{__JS_PATH__}/webim/strophe-1.2.8.js'><\/script>");
     script(src=__JS_PATH__ + '/webim/websdk-1.4.13.js')
     script(type="text/javascript").
         if (WebIM.config.isWebRTC) {
