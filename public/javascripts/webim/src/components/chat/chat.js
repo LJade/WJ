@@ -268,12 +268,21 @@ module.exports = React.createClass({
                         Demo.api.NotifySuccess(text);
                         return;
                     } else {
-                        if (text == 'logout' || text == 'WEBIM_CONNCTION_SERVER_ERROR  type=8') {
+                        if (text == 'logout' ) {
                             text = Demo.lan.logoutSuc;
                             window.location.href = '#';
+                            WebIM.config.autoSignIn = false;
                             Demo.api.NotifySuccess(text);
                         } else {
-                            Demo.api.NotifyError('onError:' + text);
+                            if (text == 'WEBIM_CONNCTION_SERVER_ERROR  type=8'){
+                                text = Demo.lan.logoutMutiLogin;
+                                window.location.href = '#';
+                                WebIM.config.autoSignIn = false;
+                                Demo.api.NotifySuccess(text);
+                            }else{
+                                Demo.api.NotifyError('onError:' + text);
+                            }
+
                         }
                     }
                 }
