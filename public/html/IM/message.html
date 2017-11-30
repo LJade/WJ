@@ -59,23 +59,23 @@
         </div>
       </div>
     </div>
-    <script src="../../javascripts/webim/browser-polyfill.min.js"></script>
-    <script src="../../javascripts/webim/webim.config.js"></script>
+    <script src="../../plugins/webim/browser-polyfill.min.js"></script>
+    <script src="../../plugins/webim/webim.config.js"></script>
     <!--再执行初始化之前我要先登录-->
     <script type="text/javascript">
       WebIM.config.autoSignInName = '306223558z1';
       WebIM.config.autoSignInPwd = '123123';
     </script>
     <!--script(src=__JS_PATH__ + '/webim/strophe-1.2.8.js')-->
-    <script type="text/javascript">document.write("<script src='../../javascripts/webim/strophe-1.2.8.js'><\/script>");</script>
-    <script src="../../javascripts/webim/websdk-1.4.13.js"></script>
+    <script type="text/javascript">document.write("<script src='../../plugins/webim/strophe-1.2.8.js'><\/script>");</script>
+    <script src="../../plugins/webim/websdk-1.4.13.js"></script>
     <script type="text/javascript">
       if (WebIM.config.isWebRTC) {
           document.write("<script src='./webrtc/dist/adapter.js'><\/script>");
           document.write("<script src='./webrtc/dist/webrtc-1.4.13.js'><\/script>");
       }
     </script>
-    <script src="../../javascripts/webim/swfupload/swfupload.min.js"></script>
-    <script src="../../javascripts/webim/demo-1.4.13.js"></script>
+    <script src="../../plugins/webim/swfupload/swfupload.min.js"></script>
+    <script src="../../plugins/webim/demo-1.4.13.js"></script>
   </body>
 </html>
