@@ -34,65 +34,15 @@ var register = function(req, res, next) {
 
 
 var doLogin = function(req,res,next){
-    //接收参数获取用户填写信息,请求注册或登陆接口
-    var mobile = req.query.mobile;
-    var timeStr = req.query.timeStr;
-    var sign = req.query.sign;
-    var action = req.query.action;
-    var codeAjax = req.query.code;
-    var password = req.query.password;
-    var username = req.query.username;
+    assert.apiRequest("post","/login/test",req.body).then(function (results) {res.send(results)})
+};
 
-    assert.validateRequest(req.query,function (code,message) {
-        if(code == 1){
-            //正确的请求方式
-            /**
-             * 开始进行数据请求,根据mobile和username的参数值是否为空来确定是何种登陆方式
-             */
-            if(username){
-                //用户名不为空则默认为账号密码登陆
-                if(!password){
-                    res.send({code:101,message:"密码不能为空"});
-                    return;
-                }
-                //开始请求数据
-                assert.apiParseRequest('get','/login',{username:username,password:password}).then(function (results) {
-                    if(results.error){
-                        res.send({code:results.code,message:results.error});
-                    }else{
-                        //res.session.userId = results.objectId;
-                        res.send({code:200,message:"请求成功",data:{userId:results.objectId}});
-                    }
-                }, function (body,error) {
-                    console.log(body,error);
-                    res.send(error);
-                })
-            }else{
-                if(mobile){
-                    if(!code){
-                        res.send({code:102,message:"验证码不能为空"});
-                        return;
-                    }
-                    //请求数据
-                    assert.apiParseRequest('post','/functions/mobileFastLogin',{mobile:mobile,code:codeAjax}).then(function (results) {
-                        if(results.error){
-                            res.send({code:results.code,message:results.error});
-                        }else{
-                            //res.session.userId = results.objectId;
-                            res.send({code:200,message:"请求成功",data:{userId:results.result.objectId}});
-                        }
-                    } ,function (body,error) {
-                        console.log(body,error);
-                        res.send(error);
-                    })
-                }else{
-                    res.send({code:103,message:"提交数据错误"});
-                }
-            }
-        }else{
-            res.send({code:400,message:message});
-        }
-    })
+var do_set_pass = function (req,res,next) {
+    assert.apiRequest("post","/login/set_pass",req.body).then(function (results) {res.send(results)})
+};
+
+var sms_send = function (req,res,next) {
+    assert.apiRequest("post","/login/sms_send",req.body).then(function (results) {res.send(results)})
 };
 
 var withoutLoginCodeSend = function(req,res,next){
@@ -132,5 +82,7 @@ module.exports = {
     register:register,
     change_pass:change_pass,
     doLogin:doLogin,
-    withOutLoginCodeSend:withoutLoginCodeSend
+    withOutLoginCodeSend:withoutLoginCodeSend,
+    sms_send:sms_send,
+    do_set_pass:do_set_pass
 };

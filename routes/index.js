@@ -21,6 +21,8 @@ module.exports = function (app) {
     app.get('/admin_login', login.admin_login);
     app.get('/register', login.register);
     app.post('/doLogin',login.doLogin);
+    app.post("/set_pass",login.do_set_pass);
+    app.post("/sms_send",login.sms_send);
 
     /** 系统设置相关路由*/
     app.get('/setting/app_create', setting.app_create);

@@ -13,27 +13,22 @@ var getJADE = function () {
     return hmConfig.jade_config;
 };
 
-var apiRequest = function (url,data) {
-    if(!data){
+var apiRequest = function (method, url, data) {
+    if(method == 'get'){
         return new Promise(
             function(resolve,reject){
-                request(url,function(error,response,body){
+                request( API_HOST + url,function(error,response,body){
                     if(error){
-                        reject(error);
+                        resolve('{"msg": '+ error +',"code": 0,"dat": null')
                     }else{
-                        try{
-                            var responseJSON = JSON.parse(body);
-                        }catch(e){
-                            reject(error);
-                        }
-                        resolve(responseJSON);
+                        resolve(body);
                     }
                 });
             }
         );
     }else{
         var options = {
-            url:url,
+            url:API_HOST + url,
             method:'POST',
             form:data
         };
@@ -43,12 +38,7 @@ var apiRequest = function (url,data) {
                     if(error){
                         reject(error);
                     }else{
-                        try{
-                            var responseJSON = JSON.parse(body);
-                        }catch(e){
-                            reject(error);
-                        }
-                        resolve(responseJSON);
+                        resolve(body);
                     }
                 });
             }
