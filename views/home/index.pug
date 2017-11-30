@@ -3,7 +3,7 @@ block title
     title 首页
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/im/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
     +asideNav(routerObj,0)
 block main_content
     .home(style="display:inline-block;")

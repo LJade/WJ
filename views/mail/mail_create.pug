@@ -5,7 +5,7 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/',text:'发送邮件'},{link:'/',text:'已发邮件'},{link:'/',text:'已收邮件'}]
+    -var routerObj = [{link:'#',text:'发送邮件'},{link:'/mail/mail_send',text:'已发邮件'},{link:'/mail_receive',text:'已收邮件'}]
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
