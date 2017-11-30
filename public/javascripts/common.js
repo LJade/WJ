@@ -1,6 +1,8 @@
 window.onload = function () {
     var wrapper = document.getElementById('inner-wrapper');
-    wrapper.style.minHeight = document.body.clientHeight - wrapper.offsetHeight +'px';
+    if(wrapper){
+        wrapper.style.minHeight = document.body.clientHeight - wrapper.offsetHeight +'px';
+    }
 }
 
 layui.use('laydate', function(){

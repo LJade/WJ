@@ -5,7 +5,7 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/',text:'单位网盘'},{link:'/',text:'个人网盘'}]
+    -var routerObj = [{link:'#',text:'单位网盘'},{link:'#',text:'个人网盘'}]
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin

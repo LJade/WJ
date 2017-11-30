@@ -45,6 +45,7 @@ var hmConfig = function () {
         __CSS_PATH__:  path.relative(DEV_HTML_PATH,DEV_CSS_PATH),
         __JS_PATH__: path.relative(DEV_HTML_PATH,DEV_JS_PATH),
         __IMAGES_PATH__:  path.relative(DEV_HTML_PATH ,DEV_IMAGES_PATH),
+        __COMPRESSED_SUFFIX__:""
     };
     //提供给gulp的参数
     var gulp = {

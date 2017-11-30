@@ -1,205 +1,97 @@
-//获取运行环境
-// var env = app.get("env") !== 'development';
-var env = false;
-var hmConfig = require('../hmConfig.js');
-hmConfig.init(env);
-var gulpConfig = hmConfig.jade_config;
-console.log(gulpConfig);
-
+var login = require("./login.js");
+var setting = require("./setting.js");
+var news = require('./news.js');
+var order = require("./order.js");
+var document = require("./document.js");
+var notice = require("./notice.js");
+var mail = require("./mail.js");
+var conference = require("./conference.js");
+var user = require("./user.js");
+var netdisk = require("./netdisk.js");
+var home = require("./home.js");
+var message = require("./message.js");
 
 module.exports = function (app) {
 
     /** 登录相关路由*/
-    app.get('/login', function(req, res, next) {
-        res.render('login/login', gulpConfig);
-    });
-    app.get('/find_pass', function(req, res, next) {
-        res.render('login/find_pass', gulpConfig);
-    });
-    app.get('/change_pass', function(req, res, next) {
-        res.render('login/change_pass', gulpConfig);
-    });
-    app.get('/set_pass', function(req, res, next) {
-        res.render('login/set_pass', gulpConfig);
-    });
-    app.get('/admin_login', function(req, res, next) {
-        res.render('login/admin_login', gulpConfig);
-    });
-    app.get('/register', function(req, res, next) {
-        res.render('login/register', gulpConfig);
-    });
+    app.get('/login', login.login);
+    app.get('/find_pass', login.find_pass);
+    app.get('/change_pass', login.change_pass);
+    app.get('/set_pass', login.set_pass);
+    app.get('/admin_login', login.admin_login);
+    app.get('/register', login.register);
+    app.post('/doLogin',login.doLogin);
+    app.post("/set_pass",login.do_set_pass);
+    app.post("/sms_send",login.sms_send);
 
     /** 系统设置相关路由*/
-    app.get('/setting/app_create', function(req, res, next) {
-        res.render('setting/app_create', gulpConfig);
-    });
-    app.get('/setting/region_manage', function(req, res, next) {
-        res.render('setting/region_manage', gulpConfig);
-    });
-    app.get('/setting/organization_manage', function(req, res, next) {
-        res.render('setting/organization_manage', gulpConfig);
-    });
-    app.get('/setting/organization_create', function(req, res, next) {
-        res.render('setting/organization_create', gulpConfig);
-    });
-    app.get('/setting/organization_edit', function(req, res, next) {
-        res.render('setting/organization_edit', gulpConfig);
-    });
-    app.get('/setting/user_manage', function(req, res, next) {
-        res.render('setting/user_manage', gulpConfig);
-    });
-    app.get('/setting/role_create', function(req, res, next) {
-        res.render('setting/role_create', gulpConfig);
-    });
-    app.get('/setting/role_manage', function(req, res, next) {
-        res.render('setting/role_manage', gulpConfig);
-    });
-    app.get('/setting/location_manage', function(req, res, next) {
-        res.render('setting/location_manage', gulpConfig);
-    });
-    app.get('/setting/log_manage', function(req, res, next) {
-        res.render('setting/log_manage', gulpConfig);
-    });
+    app.get('/setting/app_create', setting.app_create);
+    app.get('/setting/region_manage', setting.region_manage);
+    app.get('/setting/organization_manage',setting.organization_manage);
+    app.get('/setting/organization_create', setting.organization_create);
+    app.get('/setting/organization_edit', setting.organization_edit);
+    app.get('/setting/user_manage', setting.user_manage);
+    app.get('/setting/role_create', setting.role_create);
+    app.get('/setting/role_manage', setting.role_manage);
+    app.get('/setting/location_manage', setting.location_manage);
+    app.get('/setting/log_manage', setting.log_manage);
+
     /** 新闻相关路由*/
-    app.get('/news/news_list', function(req, res,next) {
-        res.render('news/news_list', gulpConfig);
-    });
-    app.get('/news/news_manage', function(req, res, next) {
-        res.render('news/news_manage', gulpConfig);
-    });
-    app.get('/news/news_create', function(req, res, next) {
-        res.render('news/news_create', gulpConfig);
-    });
-    app.get('/news/news_approve', function(req, res, next) {
-        res.render('news/news_approve', gulpConfig);
-    });
+    app.get('/news/news_list', news.news_list);
+    app.get('/news/news_manage', news.news_manage);
+    app.get('/news/news_create', news.news_create);
+    app.get('/news/news_approve', news.news_approve);
+
     /** 工单申请相关路由*/
-    app.get('/order/order_create', function(req, res, next) {
-        res.render('workOrder/order_create', gulpConfig);
-    });
-    app.get('/order/order_approve', function(req, res, next) {
-        res.render('workOrder/order_approve', gulpConfig);
-    });
-    app.get('/order/order_mine', function(req, res, next) {
-        res.render('workOrder/order_mine', gulpConfig);
-    });
-    app.get('/order/order_detail', function(req, res, next) {
-        res.render('workOrder/order_detail', gulpConfig);
-    });
+    app.get('/order/order_create', order.order_create);
+    app.get('/order/order_approve', order.order_approve);
+    app.get('/order/order_mine', order.order_mine);
+    app.get('/order/order_detail', order.order_detail);
+
     /** 公文相关路由*/
-    app.get('/docu/docu_list', function(req, res, next) {
-        res.render('document/docu_list', gulpConfig);
-    });
-    app.get('/docu/docu_create', function(req, res, next) {
-        res.render('document/docu_create', gulpConfig);
-    });
-    app.get('/docu/docu_manage', function(req, res, next) {
-        res.render('document/docu_manage', gulpConfig);
-    });
-    app.get('/docu/docu_approve', function(req, res, next) {
-        res.render('document/docu_approve', gulpConfig);
-    });
-    app.get('/docu/docu_detail', function(req, res, next) {
-        res.render('document/docu_detail', gulpConfig);
-    });
+    app.get('/docu/docu_list', document.docu_list);
+    app.get('/docu/docu_create', document.docu_create);
+    app.get('/docu/docu_manage', document.docu_manage);
+    app.get('/docu/docu_approve', document.docu_approve);
+    app.get('/docu/docu_detail', document.docu_detail);
+
     /** 公告相关路由*/
-    app.get('/notice/notice_list', function(req, res, next) {
-        res.render('notice/notice_list', gulpConfig);
-    });
-    app.get('/notice/notice_create', function(req, res, next) {
-        res.render('notice/notice_create', gulpConfig);
-    });
-    app.get('/notice/notice_manage', function(req, res, next) {
-        res.render('notice/notice_manage', gulpConfig);
-    });
-    app.get('/notice/notice_approve', function(req, res, next) {
-        res.render('notice/notice_approve', gulpConfig);
-    });
-    app.get('/notice/notice_detail', function(req, res, next) {
-        res.render('notice/notice_detail', gulpConfig);
-    });
+    app.get('/notice/notice_list', notice.notice_list);
+    app.get('/notice/notice_create', notice.notice_create);
+    app.get('/notice/notice_manage', notice.notice_manage);
+    app.get('/notice/notice_approve', notice.notice_approve);
+    app.get('/notice/notice_detail', notice.notice_detail);
 
     /** 邮件相关路由*/
-    app.get('/mail/mail_create', function(req, res, next) {
-        res.render('mail/mail_create', gulpConfig);
-    });
-    app.get('/mail/mail_send', function(req, res, next) {
-        res.render('mail/mail_send', gulpConfig);
-    });
-    app.get('/mail/mail_receive', function(req, res, next) {
-        res.render('mail/mail_receive', gulpConfig);
-    });
+    app.get('/mail/mail_create', mail.mail_create);
+    app.get('/mail/mail_send', mail.mail_send);
+    app.get('/mail/mail_receive', mail.mail_receive);
 
     /** 会议相关路由 */
-    app.get('/conference/con_approve', function(req, res, next) {
-        res.render('conference/con_approve', gulpConfig);
-    });
-    app.get('/conference/con_create', function(req, res, next) {
-        res.render('conference/con_create', gulpConfig);
-    });
-    app.get('/conference/con_history', function(req, res, next) {
-        res.render('conference/con_history', gulpConfig);
-    });
-    app.get('/conference/con_summary', function(req, res, next) {
-        res.render('conference/con_summary', gulpConfig);
-    });
-    app.get('/conference/con_sign', function(req, res, next) {
-        res.render('conference/con_sign', gulpConfig);
-    });
-    app.get('/conference/con_apply', function(req, res, next) {
-        res.render('conference/con_apply', gulpConfig);
-    });
-    app.get('/conference/con_room', function(req, res, next) {
-        res.render('conference/con_room', gulpConfig);
-    });
-    app.get('/conference/con_room_resource', function(req, res, next) {
-        res.render('conference/con_room_resource', gulpConfig);
-    });
+    app.get('/conference/con_approve',conference.con_approve);
+    app.get('/conference/con_create', conference.con_create);
+    app.get('/conference/con_history', conference.con_history);
+    app.get('/conference/con_summary', conference.con_summary);
+    app.get('/conference/con_sign', conference.con_sign);
+    app.get('/conference/con_apply', conference.con_apply);
+    app.get('/conference/con_room', conference.con_room);
+    app.get('/conference/con_room_resource', conference.con_room_resource);
 
-    /* 用户相关*/
-    app.get('/user/user_center', function(req, res, next) {
-        res.render('user/user_center', gulpConfig);
-    });
-    app.get('/user/change_pass', function(req, res, next) {
-        res.render('user/change_pass', gulpConfig);
-    });
-    /* 用户聊天*/
-    app.get('/im/message',function (req, res, next) {
-        res.render('IM/message',gulpConfig);
-    });
+    /** 用户相关 **/
+    app.get('/user/user_center', user.user_center);
+    app.get('/user/change_pass', user.change_pass);
 
+    /** 用户聊天 **/
+    app.get('/im/message',message.message);
 
     /** 网盘相关 */
-    app.get('/netdisk/company_disk', function(req, res, next) {
-        res.render('netdisk/company_disk', gulpConfig);
-    });
-    app.get('/netdisk/company_disk_recycle', function(req, res, next) {
-        res.render('netdisk/company_disk_recycle', gulpConfig);
-    });
+    app.get('/netdisk/company_disk', netdisk.company_disk);
+    app.get('/netdisk/company_disk_recycle', netdisk.company_disk_recycle);
 
     /** 首页相关 */
-    app.get('/', function(req, res, next) {
-        res.render('home/index', gulpConfig);
-    });
-    app.get('/add_application', function(req, res, next) {
-        res.render('home/add_application', gulpConfig);
-    });
-    app.get('/version', function(req, res, next) {
-        res.render('home/version', gulpConfig);
-    });
-    app.get('/statistics', function(req, res, next) {
-        res.render('home/statistics', gulpConfig);
-    });
-    app.get('/start', function(req, res, next) {
-        res.render('home/start', gulpConfig);
-    });
-
-    /** 流程配置 */
-    app.get('/workflow/workflow_config', function(req, res, next) {
-        res.render('workflow/workflow_config', gulpConfig);
-    });
-    app.get('/workflow/workflow_create', function(req, res, next) {
-        res.render('workflow/workflow_create', gulpConfig);
-    });
-
+    app.get('/', home.home);
+    app.get('/add_application', home.add_application);
+    app.get('/version', home.version);
+    app.get('/statistics', home.statistics);
+    app.get('/start', home.startPage);
 };
