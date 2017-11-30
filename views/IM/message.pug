@@ -1,5 +1,4 @@
 extends ../components/base
-
 block title
     title 消息
 block aside_content
@@ -11,6 +10,7 @@ block main_content
         section(id='main').w100
             article(id='demo')
             article(id='components')
+block script
     script(src=__JS_PATH__ + '/webim/browser-polyfill.min.js')
     script(src=__JS_PATH__ + '/webim/webim.config.js')
     //再执行初始化之前我要先登录

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>消息</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../../stylesheets/normalize.css">
+    <link rel="stylesheet" href="../../stylesheets/style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css">
+    <script src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script src="../../plugins/layui/layui.js"></script>
+    <script src="../../javascripts/common.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <style>
+          .navbar{
+              border-radius: 0;
+              margin-bottom: 0;
+          }
+        </style>
+        <header id="common-header">
+          <div class="header-left">
+            <div class="header-logo"><img src="../../images/logo.png"></div>
+            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href="/im/message"><i class="icon icon-envelope"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href="#"><i class="icon icon-screen"></i>多屏幕模式</a></div>
+          </div>
+          <div class="header-right">
+            <div class="header-search">
+              <input type="text"><i class="icon icon-search"></i>
+            </div>
+            <div class="login-user">
+              <div class="img-wrapper"><img src="../../images/avatar.png"></div>
+              <!--.name   Lingyu.ZHOU-->
+            </div><a class="star"><i class="icon icon-star"></i></a><a class="login-out"><i class="icon icon-close"></i></a>
+          </div>
+        </header>
+      </div>
+      <div id="main-wrapper">
+        <div id="aside-nav">
+          <!-- breadcrumb-->
+                    <ul id="aside">
+                      <li><a href="/"><i class="icon icon-app"></i>应用</a></li>
+                      <li class="active"><a href="/im/message"><i class="icon icon-message2"></i>消息</a></li>
+                      <li><a href="/setting/user_manage"><i class="icon icon-setting"></i>平台管理</a></li>
+                    </ul>
+        </div>
+        <div id="main-content">
+          <div id="inner-wrapper">
+            <section class="w100" id="main">
+              <article id="demo"></article>
+              <article id="components"></article>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../javascripts/webim/browser-polyfill.min.js"></script>
+    <script src="../../javascripts/webim/webim.config.js"></script>
+    <!--再执行初始化之前我要先登录-->
+    <script type="text/javascript">
+      WebIM.config.autoSignInName = '306223558z1';
+      WebIM.config.autoSignInPwd = '123123';
+    </script>
+    <!--script(src=__JS_PATH__ + '/webim/strophe-1.2.8.js')-->
+    <script type="text/javascript">document.write("<script src='../../javascripts/webim/strophe-1.2.8.js'><\/script>");</script>
+    <script src="../../javascripts/webim/websdk-1.4.13.js"></script>
+    <script type="text/javascript">
+      if (WebIM.config.isWebRTC) {
+          document.write("<script src='./webrtc/dist/adapter.js'><\/script>");
+          document.write("<script src='./webrtc/dist/webrtc-1.4.13.js'><\/script>");
+      }
+    </script>
+    <script src="../../javascripts/webim/swfupload/swfupload.min.js"></script>
+    <script src="../../javascripts/webim/demo-1.4.13.js"></script>
+  </body>
+</html>
