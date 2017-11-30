@@ -5,91 +5,17 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/workflow/workflow_config',text:'流程配置'}]
+    -var routerObj = [{link:'/workflow/workflow_manage',text:'流程配置'}]
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
     +RouteNav('流程配置')
     .condition
         .inline-group
-            label(for='theme') 主题:
-            select#theme
-                option  新闻
-                option  公告
-                option  公文
-                option  工单
-                option  邮箱
-                option  会议管理
-        .inline-group
-            label(for='date') 发布时间:
-            input#date(type='text')
-        .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 编辑
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 删除
+            button.btn.btn-default.btn-sm(type='button') 新建节点
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建节点
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 编辑节点
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 删除节点
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 保存
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="window.location.href='/workflow/workflow_manage'") 返回
     #inner-wrapper
-        .content-list.section-block
-            table.table.table-bordered
-                thead
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  模块名称
-                        td  更新时间
-                        td  更新人
-                        td  排序
-                        td  操作
-                tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  新闻
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  公告
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  公文
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  工单
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  邮箱
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  会议管理
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-
-
-
-

@@ -2,123 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df786d1d-6b96-4672-b7e2-ea558d575c2b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/css/modules/layer/default/icon-ext.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/css/modules/layer/default/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/css/modules/layer/default/loading-0.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/css/modules/layer/default/loading-1.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/css/modules/layer/default/loading-2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/font/iconfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/font/iconfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/font/iconfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/0.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/1.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/10.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/11.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/12.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/13.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/14.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/15.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/16.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/17.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/18.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/19.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/20.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/21.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/22.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/23.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/25.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/26.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/27.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/28.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/29.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/3.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/30.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/31.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/32.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/33.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/34.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/35.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/36.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/37.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/38.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/39.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/4.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/40.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/41.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/42.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/43.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/44.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/45.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/46.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/47.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/48.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/49.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/5.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/50.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/51.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/52.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/53.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/54.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/55.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/56.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/57.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/58.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/59.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/6.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/60.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/61.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/62.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/63.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/64.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/65.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/66.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/67.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/68.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/69.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/7.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/70.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/71.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/8.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/images/face/9.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/css/layui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/css/layui.mobile.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/css/modules/code.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/css/modules/laydate/default/laydate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/css/modules/layer/default/layer.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/font/iconfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/carousel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/code.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/element.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/flow.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/form.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/laydate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/layedit.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/layer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/laypage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/laytpl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/mobile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/table.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/tree.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/upload.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/lay/modules/util.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/layui.all.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/layui/layui.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/workflow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/workflow/workflow_manage.pug" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/components/layout.html" afterPath="$PROJECT_DIR$/public/html/components/layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/home/index.html" afterPath="$PROJECT_DIR$/public/html/home/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/common.js" afterPath="$PROJECT_DIR$/public/javascripts/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/font.css" afterPath="$PROJECT_DIR$/public/stylesheets/font.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/news.css" afterPath="$PROJECT_DIR$/public/stylesheets/news.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/font.scss" afterPath="$PROJECT_DIR$/sass/font.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/news.scss" afterPath="$PROJECT_DIR$/sass/news.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/style.scss" afterPath="$PROJECT_DIR$/sass/style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/components/layout.pug" afterPath="$PROJECT_DIR$/views/components/layout.pug" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/home/index.pug" afterPath="$PROJECT_DIR$/views/home/index.pug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/workflow/workflow_config.pug" afterPath="$PROJECT_DIR$/views/workflow/workflow_config.pug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/workflow/workflow_create.pug" afterPath="$PROJECT_DIR$/views/workflow/workflow_create.pug" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -136,8 +25,8 @@
       <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sass/style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="138" column="12" lean-forward="false" selection-start-line="138" selection-start-column="12" selection-end-line="138" selection-end-column="12" />
+            <state relative-caret-position="441">
+              <caret line="260" column="20" lean-forward="true" selection-start-line="260" selection-start-column="20" selection-end-line="260" selection-end-column="20" />
               <folding>
                 <element signature="e#2482#3189#0" expanded="false" />
                 <element signature="e#7607#9587#0" expanded="false" />
@@ -146,60 +35,71 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hmConfig.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hmConfig.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.pug" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/home/index.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11">
-              <caret line="121" column="61" lean-forward="false" selection-start-line="121" selection-start-column="53" selection-end-line="121" selection-end-column="61" />
-              <folding>
-                <element signature="n#div#0;n#div#0;n#block#2;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#block#2;n#!!top" expanded="false" />
-                <element signature="n#div#2;n#div#0;n#block#2;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="simple-calendar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/simple-calendar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="820">
-              <caret line="311" column="20" lean-forward="true" selection-start-line="311" selection-start-column="20" selection-end-line="311" selection-end-column="20" />
-              <folding>
-                <marker date="1511444928037" expanded="true" signature="8604:8612" ph="‹" />
-                <marker date="1511444928037" expanded="true" signature="8722:8730" ph="›" />
-                <marker date="1511444928037" expanded="true" signature="8863:8871" ph="‹" />
-                <marker date="1511444928037" expanded="true" signature="8976:8984" ph="›" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.pug" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/components/layout.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <state relative-caret-position="315">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="647">
+              <caret line="96" column="15" lean-forward="true" selection-start-line="96" selection-start-column="15" selection-end-line="96" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workflow.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/workflow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="23" column="2" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workflow_config.pug" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/workflow/workflow_config.pug">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workflow_manage.pug" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/workflow/workflow_manage.pug">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="7" column="54" lean-forward="false" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workflow_create.pug" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/workflow/workflow_create.pug">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mail.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/mail.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -208,18 +108,8 @@
       <file leaf-file-name="base.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sass/base.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
+            <state relative-caret-position="-251">
               <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workflow_config.pug" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/workflow/workflow_config.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="45" column="49" lean-forward="false" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -229,7 +119,7 @@
         <entry file="file://$PROJECT_DIR$/sass/news.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="630">
-              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+              <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -282,8 +172,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/mail/mail_receive.pug" />
-        <option value="$PROJECT_DIR$/views/mail/mail_send.pug" />
         <option value="$PROJECT_DIR$/views/netdisk/company_disk.pug" />
         <option value="$PROJECT_DIR$/views/netdisk/company_disk_recycle.pug" />
         <option value="$PROJECT_DIR$/views/news/news_list.pug" />
@@ -313,8 +201,6 @@
         <option value="$PROJECT_DIR$/views/conference/con_room_resource.pug" />
         <option value="$PROJECT_DIR$/views/conference/con_sign.pug" />
         <option value="$PROJECT_DIR$/views/conference/con_summary.pug" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/views/workflow/workflow_create.pug" />
         <option value="$PROJECT_DIR$/views/setting/app_create.pug" />
         <option value="$PROJECT_DIR$/views/components/header.pug" />
         <option value="$PROJECT_DIR$/views/setting/organization_manage.pug" />
@@ -330,9 +216,13 @@
         <option value="$PROJECT_DIR$/sass/style.scss" />
         <option value="$PROJECT_DIR$/views/home/index.pug" />
         <option value="$PROJECT_DIR$/views/components/layout.pug" />
-        <option value="$PROJECT_DIR$/views/workflow/workflow_config.pug" />
         <option value="$PROJECT_DIR$/sass/news.scss" />
         <option value="$PROJECT_DIR$/public/javascripts/common.js" />
+        <option value="$PROJECT_DIR$/routes/workflow.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/views/workflow/workflow_manage.pug" />
+        <option value="$PROJECT_DIR$/views/workflow/workflow_create.pug" />
+        <option value="$PROJECT_DIR$/views/workflow/workflow_config.pug" />
       </list>
     </option>
   </component>
@@ -348,8 +238,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="398" />
-    <option name="y" value="200" />
+    <option name="x" value="641" />
+    <option name="y" value="684" />
     <option name="width" value="1742" />
     <option name="height" value="1112" />
   </component>
@@ -668,8 +558,8 @@
       <recent name="$PROJECT_DIR$/views/components" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/plugins" />
       <recent name="$PROJECT_DIR$/views/workflow" />
+      <recent name="$PROJECT_DIR$/public/plugins" />
       <recent name="$PROJECT_DIR$/public/plugins/jquery-2.1.4" />
       <recent name="$PROJECT_DIR$/public/fonts" />
       <recent name="$PROJECT_DIR$/views/netdisk" />
@@ -775,7 +665,7 @@
       <workItem from="1511605903862" duration="21653000" />
       <workItem from="1511793032974" duration="18000" />
       <workItem from="1511793455124" duration="6816000" />
-      <workItem from="1511958177861" duration="3741000" />
+      <workItem from="1511958177861" duration="5903000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1508037528260</created>
@@ -1022,14 +912,21 @@
       <option name="project" value="LOCAL" />
       <updated>1511884574025</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="添加layui">
+      <created>1511970059703</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1511970059703</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158248000" />
+    <option name="totallyTimeSpent" value="160410000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="398" y="200" width="1742" height="1112" extended-state="0" />
+    <frame x="641" y="684" width="1742" height="1112" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18303312" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1059,7 +956,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改编码方式" />
     <MESSAGE value="修改字体文件" />
     <MESSAGE value="替换字体文件 修改样式 修改icon" />
     <MESSAGE value="工单相关内容" />
@@ -1084,41 +980,14 @@
     <MESSAGE value="流程配置页面" />
     <MESSAGE value="创建节点" />
     <MESSAGE value="修改管理路由" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改管理路由" />
+    <MESSAGE value="添加layui" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加layui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/notice/notice_list.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="125" lean-forward="false" selection-start-line="7" selection-start-column="125" selection-end-line="7" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/notice/notice_manage.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="193" lean-forward="false" selection-start-line="7" selection-start-column="193" selection-end-line="7" selection-end-column="193" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/notice/notice_detail.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="193" lean-forward="false" selection-start-line="7" selection-start-column="193" selection-end-line="7" selection-end-column="193" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/document/docu_approve.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="177" lean-forward="false" selection-start-line="7" selection-start-column="177" selection-end-line="7" selection-end-column="177" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/document/docu_create.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -1252,25 +1121,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/workflow/workflow_create.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/components/header.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="38" column="41" lean-forward="false" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1393,30 +1247,27 @@
     <entry file="file://$PROJECT_DIR$/hmConfig.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
-          <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sass/style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="138" column="12" lean-forward="false" selection-start-line="138" selection-start-column="12" selection-end-line="138" selection-end-column="12" />
+          <caret line="64" column="30" lean-forward="false" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
           <folding>
-            <element signature="e#2482#3189#0" expanded="false" />
-            <element signature="e#7607#9587#0" expanded="false" />
+            <marker date="1512050842559" expanded="true" signature="79:3248" ph="{...}" />
+            <marker date="1512050842559" expanded="true" signature="1493:1809" ph="{...}" />
+            <marker date="1512050842559" expanded="true" signature="1843:2133" ph="{&quot;sassPath&quot;: SASS_PATH...}" />
+            <marker date="1512050842559" expanded="true" signature="1972:2067" ph="[...]" />
+            <marker date="1512050842559" expanded="true" signature="2176:3085" ph="{...}" />
+            <marker date="1512050842559" expanded="true" signature="2195:3079" ph="{...}" />
+            <marker date="1512050842559" expanded="true" signature="3097:3245" ph="{&quot;jade&quot;: jade...}" />
+            <marker date="1512050842559" expanded="true" signature="3126:3166" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/home/index.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="121" column="61" lean-forward="false" selection-start-line="121" selection-start-column="53" selection-end-line="121" selection-end-column="61" />
+        <state relative-caret-position="2173">
+          <caret line="121" column="61" lean-forward="false" selection-start-line="121" selection-start-column="61" selection-end-line="121" selection-end-column="61" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#block#2;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#block#2;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#block#2;n#!!top" expanded="false" />
+            <marker date="1512050924110" expanded="true" signature="57:104" ph="..." />
+            <marker date="1512050924110" expanded="true" signature="5939:5951" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1424,7 +1275,7 @@
     <entry file="file://$PROJECT_DIR$/public/javascripts/simple-calendar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="820">
-          <caret line="311" column="20" lean-forward="true" selection-start-line="311" selection-start-column="20" selection-end-line="311" selection-end-column="20" />
+          <caret line="311" column="20" lean-forward="false" selection-start-line="311" selection-start-column="20" selection-end-line="311" selection-end-column="20" />
           <folding>
             <marker date="1511444928037" expanded="true" signature="8604:8612" ph="‹" />
             <marker date="1511444928037" expanded="true" signature="8722:8730" ph="›" />
@@ -1437,31 +1288,7 @@
     <entry file="file://$PROJECT_DIR$/views/components/layout.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/workflow/workflow_config.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="45" column="49" lean-forward="false" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sass/news.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sass/base.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="20" />
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1476,8 +1303,91 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/common.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/message.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/mail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sass/news.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sass/base.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-251">
+          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sass/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="260" column="20" lean-forward="true" selection-start-line="260" selection-start-column="20" selection-end-line="260" selection-end-column="20" />
+          <folding>
+            <element signature="e#2482#3189#0" expanded="false" />
+            <element signature="e#7607#9587#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/workflow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="23" column="2" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="647">
+          <caret line="96" column="15" lean-forward="true" selection-start-line="96" selection-start-column="15" selection-end-line="96" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/workflow/workflow_manage.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="54" lean-forward="false" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/workflow/workflow_create.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/workflow/workflow_config.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
           <folding />
         </state>
       </provider>

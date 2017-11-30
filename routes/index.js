@@ -10,6 +10,7 @@ var user = require("./user.js");
 var netdisk = require("./netdisk.js");
 var home = require("./home.js");
 var message = require("./message.js");
+var workflow = require("./workflow")
 
 module.exports = function (app) {
 
@@ -87,6 +88,11 @@ module.exports = function (app) {
     /** 网盘相关 */
     app.get('/netdisk/company_disk', netdisk.company_disk);
     app.get('/netdisk/company_disk_recycle', netdisk.company_disk_recycle);
+
+    /** 流程配置相关 */
+    app.get('/workflow/workflow_config', workflow.workflow_config);
+    app.get('/workflow/workflow_create', workflow.workflow_create);
+    app.get('/workflow/workflow_manage', workflow.workflow_manage);
 
     /** 首页相关 */
     app.get('/', home.home);
