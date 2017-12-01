@@ -9,16 +9,16 @@ block box
                     span 使用手机APP扫码登录或账号密码登录
             .panel-body.clearfix
                 .binary-code
-                    img(src=__IMAGES_PATH__ + '/code.png')
-                form.login-container
+                    img(src='/login/qrCode')
+                form(action="/doLogin",method="POST").login-container
                     .form-group.form-input
                         label(for='loginUser')
                             i.icon.icon-user
-                        input#loginUser.form-control(type='text' placeholder='账号或手机号' required)
+                        input#loginUser.form-control(type='text' name='account' placeholder='账号或手机号' required)
                     .form-group.form-input
                         label(for='loginPass')
                             i.icon.icon-lock
-                        input#loginPass.form-control(type='password' placeholder='密码' required)
+                        input#loginPass.form-control(type='password' name='pwd' placeholder='密码' required)
                     .form-group.form-check
                         input#rememberPass.form-control(type='checkbox')
                         label.control-label(for='rememberPass') 记住密码

@@ -4,7 +4,17 @@ var request = require('request');
 var qs = require('querystring');
 var WJConf = require('../hmConfig');
 
-var API_HOST = 'http://localhost:3000';
+var API_HOST = 'http://jtj.yewufeifei.com/web';
+
+
+var modulesIcon = {
+    news:"news.png",
+    mail:"mail.png",
+    conference:"conference.png",
+    document:"document.png",
+    notice:"notice.png",
+    order:"function.png"
+};
 
 
 var getJADE = function () {
@@ -13,13 +23,31 @@ var getJADE = function () {
     return hmConfig.jade_config;
 };
 
-var apiRequest = function (method, url, data) {
+
+var getError = function (code,message) {
+    var errInfo = {
+        msg:message,
+        code:-1,
+        dat:null
+    };
+    return JSON.stringify(errInfo);
+};
+
+var apiRequest = function (method, url, req) {
+    var sessionId = req.session.user === undefined ? "" : req.session.user.accessToken;
     if(method == 'get'){
+        var options_get = {
+            url: API_HOST + url + "?" +qs.encode(req.query),
+            header:{
+                'WJ_Auth':sessionId
+            }
+        };
+        console.log(options_get);
         return new Promise(
             function(resolve,reject){
-                request( API_HOST + url,function(error,response,body){
+                request( options_get,function(error,response,body){
                     if(error){
-                        resolve('{"msg": '+ error +',"code": 0,"dat": null')
+                        reject('{"msg": '+ error +',"code": 0,"dat": null')
                     }else{
                         resolve(body);
                     }
@@ -30,8 +58,12 @@ var apiRequest = function (method, url, data) {
         var options = {
             url:API_HOST + url,
             method:'POST',
-            form:data
+            form:req.body,
+            header:{
+                'WJ_Auth':sessionId
+            }
         };
+        console.log(options);
         return new Promise(
             function(resolve,reject){
                 request(options,function(error,response,body){
@@ -503,6 +535,16 @@ function _utf8_encode(string) {
     return utftext;
 }
 
+var coverParams = function (req,type,paramKey,defaultValue) {
+
+    var data = type == 'query' ? req.query : req.body;
+    paramKey.forEach(function (key,index) {
+        data[key] = data[key] ? data[key] : defaultValue[index]
+    });
+    req[type] =data;
+    return req;
+};
+
 module.exports = {
 
     _utf_encode:_utf_encode,
@@ -514,5 +556,8 @@ module.exports = {
     getBMIFaceLevel:getBMIFaceLevel,
     apiRequest:apiRequest,
     base64Assert:Base64,
-    getJADE:getJADE
+    getJADE:getJADE,
+    getError:getError,
+    modulesIcon:modulesIcon,
+    coverParams:coverParams
 };
