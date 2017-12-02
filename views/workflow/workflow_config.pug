@@ -12,15 +12,14 @@ block main_content
     +RouteNav('流程配置')
     .condition
         .inline-group
-            button.btn.btn-default.btn-sm(type='button') 新建节点
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建节点
+            button.btn.btn-default.btn-sm#createNode(type='button') 新建节点
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 编辑节点
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 删除节点
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 保存
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="window.location.href='/workflow/workflow_manage'") 返回
     #inner-wrapper
         .node-wrapper
-            svg(xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="800")
+            svg(xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="800" id="svg")
                 rect(x="50" y="20" rx="20" ry="20" width="150" height="150"
                 style="fill:white;stroke:black;stroke-width:2;")
                 circle(cx="100" cy="50" r="40" stroke="black"
@@ -33,4 +32,4 @@ block main_content
                 style="fill:none;stroke:black;stroke-width:3")
                 text(x="0" y="15" fill="red") I love SVG
 block script
-
+    script(type="text/javascript" src=__JS_PATH__+"/workflow/workflow_config.js")
