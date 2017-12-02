@@ -45,7 +45,7 @@
         <div id="aside-nav">
           <!-- breadcrumb-->
                     <ul id="aside">
-                      <li class="active"><a href="/workflow/workflow_config"><i class="icon"></i>流程配置</a></li>
+                      <li class="active"><a href="/workflow/workflow_manage"><i class="icon"></i>流程配置</a></li>
                     </ul>
         </div>
         <div id="main-content">
@@ -55,104 +55,23 @@
                     </div>
           <div class="condition">
             <div class="inline-group">
-              <label for="theme">主题:</label>
-              <select id="theme">
-                <option> 新闻</option>
-                <option> 公告</option>
-                <option> 公文</option>
-                <option> 工单</option>
-                <option> 邮箱</option>
-                <option> 会议管理</option>
-              </select>
-            </div>
-            <div class="inline-group">
-              <label for="date">发布时间:</label>
-              <input id="date" type="text">
-            </div>
-            <div class="inline-group">
-              <button class="btn btn-warning btn-sm" type="button" style="margin-left:20px;">查询</button><a class="btn btn-default btn-sm" style="margin-left:20px;">新建</a>
-              <button class="btn btn-default btn-sm" type="button" style="margin-left:20px;">编辑</button>
-              <button class="btn btn-default btn-sm" type="button" style="margin-left:20px;">删除</button>
+              <button class="btn btn-default btn-sm" type="button">新建节点</button>
+              <button class="btn btn-default btn-sm" type="button" style="margin-left:20px;">新建节点</button>
+              <button class="btn btn-default btn-sm" type="button" style="margin-left:20px;">编辑节点</button>
+              <button class="btn btn-default btn-sm" type="button" style="margin-left:20px;">删除节点</button>
+              <button class="btn btn-default btn-sm" type="button" style="margin-left:20px;">保存</button>
+              <button class="btn btn-default btn-sm" type="button" style="margin-left:20px;" onclick="window.location.href='/workflow/workflow_manage'">返回</button>
             </div>
           </div>
           <div id="inner-wrapper">
-            <div class="content-list section-block">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td> 模块名称</td>
-                    <td> 更新时间</td>
-                    <td> 更新人</td>
-                    <td> 排序</td>
-                    <td> 操作</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td class="link"> 新闻</td>
-                    <td> 2017-12-01</td>
-                    <td> 管理员</td>
-                    <td> 1</td>
-                    <td class="link">流程配置</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td class="link"> 公告</td>
-                    <td> 2017-12-01</td>
-                    <td> 管理员</td>
-                    <td> 1</td>
-                    <td class="link">流程配置</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td class="link"> 公文</td>
-                    <td> 2017-12-01</td>
-                    <td> 管理员</td>
-                    <td> 1</td>
-                    <td class="link">流程配置</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td class="link"> 工单</td>
-                    <td> 2017-12-01</td>
-                    <td> 管理员</td>
-                    <td> 1</td>
-                    <td class="link">流程配置</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td class="link"> 邮箱</td>
-                    <td> 2017-12-01</td>
-                    <td> 管理员</td>
-                    <td> 1</td>
-                    <td class="link">流程配置</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td class="link"> 会议管理</td>
-                    <td> 2017-12-01</td>
-                    <td> 管理员</td>
-                    <td> 1</td>
-                    <td class="link">流程配置</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="node-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <rect x="50" y="20" rx="20" ry="20" width="150" height="150" style="fill:white;stroke:black;stroke-width:2;"></rect>
+                <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="white"></circle>
+                <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2;"></line>
+                <polygon points="200,10 250,190 160,210" style="fill:lime;stroke:purple;stroke-width:1;"></polygon>
+                <polyline points="20,20 40,25 60,40 80,120 120,140 200,180" style="fill:none;stroke:black;stroke-width:3;"></polyline>
+              </svg>
             </div>
           </div>
         </div>
