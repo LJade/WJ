@@ -20,6 +20,9 @@ module.exports = function (app) {
     app.get('/change_pass', login.change_pass);
     app.get('/set_pass', login.set_pass);
     app.get('/admin_login', login.admin_login);
+    app.get('/login/qrCode', login.qrCode);
+    app.get('/login/qrResult', login.qrResult);
+    app.get('/login/qrLogin', login.qrLogin);
     app.get('/register', login.register);
     app.post('/doLogin',login.doLogin);
     app.post("/set_pass",login.do_set_pass);
