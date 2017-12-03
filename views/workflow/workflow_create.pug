@@ -9,7 +9,9 @@ block aside_content
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
+    include ../components/user
     +RouteNav('创建节点')
+    +userSelect
     #inner-wrapper
         .news-create
             .form-control
@@ -18,7 +20,7 @@ block main_content
             .form-control
                 label.control-label(for='approver') 审批人配置:
                 input#approver.form-control(type='text' readonly)
-                i.icon.icon-add
+                i.icon.icon-add#addUser
             .form-control
                 label.control-label 执行规则:
                 label.text-label
@@ -53,3 +55,5 @@ block main_content
             .form-control.btn-wrapper.margin-top-20
                 button.btn.btn-default.btn-sm(type='button') 保存
                 button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 关闭
+block script
+    script(type="text/javascript" src=__JS_PATH__ + "/workflow/workflow_create.js")

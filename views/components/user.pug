@@ -1,0 +1,31 @@
+mixin userSelect
+    #mask
+    #userSelect
+        .condition
+            .inline-group
+                label(for='newsTheme') 姓名:
+                input#newsTheme(type='text')
+                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 搜索
+        .selected-list
+            |已选：
+        .option-list
+            table
+                thead
+                    tr
+                        td 姓名
+                        td 部门
+                        td XX
+                        td 操作
+
+                tbody
+                    tr
+                        td 孙悟空
+                        td 业务部门
+                        td XXX
+                        td
+                            button.btn.btn-warning.btn-sm 添加
+        .option-handle
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 确定
+            button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+
+
