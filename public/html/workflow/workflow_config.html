@@ -15,6 +15,7 @@
     <script src="../../plugins/layui/layui.js"></script>
     <script src="../../javascripts/common.js"></script>
     <link rel="stylesheet" href="../../stylesheets/news.css">
+    <link rel="stylesheet" href="../../plugins/jquery-UI/jquery-ui.theme.min.css">
   </head>
   <body>
     <div id="wrapper">
@@ -65,18 +66,26 @@
           <div id="inner-wrapper">
             <div class="node-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="800" id="svg">
-                <rect x="50" y="20" rx="20" ry="20" width="150" height="150" style="fill:white;stroke:black;stroke-width:2;"></rect>
-                <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="white"></circle>
-                <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2;"></line>
-                <polygon points="200,10 250,190 160,210" style="fill:lime;stroke:purple;stroke-width:1;"></polygon>
-                <polyline points="20,20 40,25 60,40 80,120 120,140 200,180" style="fill:none;stroke:black;stroke-width:3;"></polyline>
-                <text x="0" y="15" fill="red">I love SVG</text>
+                <!--
+                rect(x="50" y="20" rx="20" ry="20" width="" height="150"
+                style="fill:white;stroke:black;stroke-width:2;")
+                circle(cx="100" cy="50" r="40" stroke="black"
+                stroke-width="2" fill="white")
+                line(x1="0" y1="0" x2="200" y2="200"
+                style="stroke:rgb(255,0,0);stroke-width:2")
+                polygon(points="200,10 250,190 160,210"
+                style="fill:lime;stroke:purple;stroke-width:1")
+                polyline(points="20,20 40,25 60,40 80,120 120,140 200,180"
+                style="fill:none;stroke:black;stroke-width:3")
+                text(x="0" y="15" fill="red") I love SVG
+                -->
               </svg>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="../../plugins/jquery-UI/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../../javascripts/workflow/workflow_config.js"></script>
   </body>
 </html>
