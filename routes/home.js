@@ -5,9 +5,9 @@ var home = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
 
     //判断登陆状态
-    // if(!req.session.user){
-    //     res.redirect("/login");
-    // }
+    if(!req.session.user){
+        res.redirect("/login");
+    }
 
     //加载用户模块权限
     var getModules = assert.apiRequest("get","/user/myModule",req);

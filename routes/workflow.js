@@ -15,10 +15,17 @@ var workflow_manage = function(req, res, next) {
     res.render('workflow/workflow_manage',JADE_VAR);
 };
 
+var flowDesigner = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.render('workflow/flowDesigner',JADE_VAR);
+}
+
 
 
 module.exports = {
     workflow_config:workflow_config,
     workflow_create:workflow_create,
-    workflow_manage:workflow_manage
+    workflow_manage:workflow_manage,
+    flowDesigner:flowDesigner
 };

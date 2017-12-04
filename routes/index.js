@@ -22,7 +22,7 @@ module.exports = function (app) {
     app.get('/admin_login', login.admin_login);
     app.get('/login/qrCode', login.qrCode);
     app.get('/login/qrResult', login.qrResult);
-    app.get('/login/qrLogin', login.qrLogin);
+    app.post('/login/qrLogin', login.qrLogin);
     app.get('/register', login.register);
     app.post('/doLogin',login.doLogin);
     app.post("/set_pass",login.do_set_pass);
@@ -45,6 +45,8 @@ module.exports = function (app) {
     app.get('/news/news_manage', news.news_manage);
     app.get('/news/news_create', news.news_create);
     app.get('/news/news_approve', news.news_approve);
+    app.get('/news/news_category', news.news_category);
+    app.post('/news/news_save', news.save_news);
 
     /** 工单申请相关路由*/
     app.get('/order/order_create', order.order_create);
@@ -58,6 +60,7 @@ module.exports = function (app) {
     app.get('/docu/docu_manage', document.docu_manage);
     app.get('/docu/docu_approve', document.docu_approve);
     app.get('/docu/docu_detail', document.docu_detail);
+    app.post('/docu/docu_save', document.docu_save);
 
     /** 公告相关路由*/
     app.get('/notice/notice_list', notice.notice_list);
@@ -96,6 +99,7 @@ module.exports = function (app) {
     app.get('/workflow/workflow_config', workflow.workflow_config);
     app.get('/workflow/workflow_create', workflow.workflow_create);
     app.get('/workflow/workflow_manage', workflow.workflow_manage);
+    app.get('/flowDesigner',workflow.flowDesigner);
 
     /** 首页相关 */
     app.get('/', home.home);

@@ -46,6 +46,7 @@ var apiRequest = function (method, url, req) {
         return new Promise(
             function(resolve,reject){
                 request( options_get,function(error,response,body){
+                    console.log(body);
                     if(error){
                         reject('{"msg": '+ error +',"code": 0,"dat": null')
                     }else{
@@ -67,6 +68,7 @@ var apiRequest = function (method, url, req) {
         return new Promise(
             function(resolve,reject){
                 request(options,function(error,response,body){
+                    console.log(body);
                     if(error){
                         reject(error);
                     }else{
