@@ -61,14 +61,17 @@ var qrCodeImg = function (req, res, next) {
             var qrInfo = JSON.parse(results);
             if (qrInfo.code == 1) {
                 var img = qr.image(qrInfo.dat.qrid, {size: 10});
+                req.session.loginQRID = qrInfo.dat.qrid;
+                res.cookie('loginQRID',qrInfo.dat.qrid,'/');
                 res.writeHead(200, {'Content-Type': "image/png"});
-                img.pipe(res)
+                img.pipe(res);
             } else {
                 var img = qr.image(qrInfo.msg, {size: 10});
                 res.writeHead(200, {'Content-Type': "image/png"});
                 img.pipe(res);
             }
         } catch (e) {
+            console.log(e);
             res.writeHead(414, {'Content-Type': 'text/html'});
             res.end('<h1>404 get qrCode failed!!!</h1>');
         }
@@ -77,7 +80,8 @@ var qrCodeImg = function (req, res, next) {
 
 var qrResult = function (req, res, next) {
 
-    assert.apiRequest("get", "/user/qrResult", req.params).then(function (results) {
+    assert.apiRequest("get", "/user/qrResult", req).then(function (results) {
+        res.header("Content-Type","application/json; charset=utf-8");
         res.send(results)
     })
 };
@@ -89,7 +93,7 @@ var sms_send = function (req, res, next) {
 };
 
 var qrLogin = function (req, res, next) {
-    assert.apiRequest("get", "/user/qrLogin", req.params).then(function (results) {
+    assert.apiRequest("get", "/user/qrlogin", req).then(function (results) {
         var loginInfo = JSON.parse(results);
         if(loginInfo.code == 1){
             res.session.user = {

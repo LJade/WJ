@@ -3,7 +3,23 @@ var assert = require('./assert.js');
 
 var docu_list = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('document/docu_list',JADE_VAR);
+    //检查登陆
+    req.session.user = {accessToken:"123123"};
+    if(!req.session.user.accessToken){
+        res.redirect("/login");
+    }
+    //获取list列表信息
+    assert.apiRequest("get",'/commonalityArticle/lookUpList',req).then(function (results) {
+        var documentListInfo = JSON.parse(results);
+        if(documentListInfo.code == 1){
+            JADE_VAR.doucments = documentListInfo.dat.details;
+            JADE_VAR.documentsTotal = documentListInfo.dat.totalPage;
+        }else{
+            JADE_VAR.doucments = [];
+            JADE_VAR.documentsTotal = 0;
+        }
+        res.render('document/docu_list',JADE_VAR);
+    });
 };
 
 var docu_create = function(req, res, next) {
@@ -26,11 +42,19 @@ var docu_detail = function(req, res, next) {
     res.render('document/docu_detail',JADE_VAR);
 };
 
+var docu_save = function (req, res ,next) {
+    assert.apiRequest('post','/commonalityArticle/save',req).then(function (results) {
+        res.send(results);
+    });
+
+};
+
 
 module.exports = {
     docu_list:docu_list,
     docu_create:docu_create,
     docu_manage:docu_manage,
     docu_approve:docu_approve,
-    docu_detail:docu_detail
+    docu_detail:docu_detail,
+    docu_save:docu_save
 };

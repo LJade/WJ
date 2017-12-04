@@ -38,22 +38,15 @@ block main_content
                         td  发布时间
                         td  发布状态
                 tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  xxx
-                        td  xxx
-                        td  2017-12-01
-                        td  已读
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  xxx
-                        td  xxx
-                        td  2017-12-01
-                        td  已读
-
-
+                    if(doucments.length)
+                        each document in doucments
+                            tr
+                                td
+                                    input(type='checkbox')
+                                td  #{document.title}
+                                td  #{document.publicName}
+                                td  #{document.publicTime}
+                                td  #{document.readStatus ? '已读' : '未读'}
 
 
 

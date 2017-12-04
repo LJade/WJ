@@ -28,9 +28,10 @@ block main_content
                 label.control-label(for='detail') 发布内容:
                 textarea#detail.form-control(rows=10 )
             .form-control.btn-wrapper
-                button.btn.btn-default.btn-sm(type='button') 发布
+                button#save_document.btn.btn-default.btn-sm(type='button') 发布
                 button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
-
+block script
+    script(src=__JS_PATH__ + "/document.js",type="text/javascript")
 
 
 

@@ -1,0 +1,113 @@
+doctype html
+html
+    head
+        block title
+        meta(charset='utf-8')
+        link(rel="shortcut icon" href=__IMAGES_PATH__+"/favicon.png" type="image/x-icon")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge, chrome=1")
+        meta(name="renderer" content="webkit")
+        meta( name="keywords" content="")
+        meta( name="description" content="")
+        link(rel='stylesheet', href=__CSS_PATH__ + '/normalize.css')
+        link(rel='stylesheet', href=__CSS_PATH__ + '/style.css')
+        script(src=__JS_PATH__+'/common.js')
+        block style
+    body
+        block content
+        block script
+block title
+    title 流程配置
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/bootstrap/css/bootstrap.css?2025')
+    //link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/bootstrap/css/bootstrap-ie6.css?2025')
+    //link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/bootstrap/css/ie.css?2025')
+    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/site.css')
+    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/js/flowdesign/flowdesign.css')
+    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/js/jquery.multiselect2side/css/jquery.multiselect2side.css')
+block content
+    #wrapper
+        #header
+            include ../components/header
+        #main-wrapper
+            #aside-nav
+                block aside_content
+                    include ../components/mixin
+                    -var routerObj = [{link:'/workflow/workflow_manage',text:'流程配置'}]
+                    +asideNav(routerObj,0)
+            #main-content
+                block main_content
+                    include ../components/mixin
+                    +RouteNav('流程配置')
+                    .condition
+                        .inline-group
+                            button.btn.btn-default.btn-sm#createNode(type='button') 新建节点
+                            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 编辑节点
+                            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 删除节点
+                            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 保存
+                            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="window.location.href='/workflow/workflow_manage'") 返回
+                #inner-wrapper
+                    .node-wrapper
+                        <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3>消息提示</h3>
+                        </div>
+                        <div class="modal-body">
+                        <p>提示内容</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">我知道了</button>
+                        </div>
+                        </div>
+
+                        <!-- attributeModal -->
+                        <div id="attributeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:800px;margin-left:-350px">
+                        <div class="modal-body" style="max-height:500px;"><!-- body --></div>
+                        <div class="modal-footer" style="padding:5px;">
+                        <!--a href="#" class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-white"></i></a-->
+                        </div>
+                        </div>
+
+
+
+                        <!--contextmenu div-->
+                        <div id="processMenu" style="display:none;">
+                        <ul>
+                        <!--li id="pm_begin"><i class="icon-play"></i>&nbsp;<span class="_label">设为第一步</span></li-->
+                        <!--li id="pm_addson"><i class="icon-plus"></i>&nbsp;<span class="_label">添加子步骤</span></li-->
+                        <!--li id="pm_copy"><i class="icon-check"></i>&nbsp;<span class="_label">复制</span></li-->
+                        <li id="pmAttribute"><i class="icon-cog"></i>&nbsp;<span class="_label">属性</span></li>
+                        <li id="pmForm"><i class="icon-th"></i>&nbsp;<span class="_label">表单字段</span></li>
+                        <li id="pmJudge"><i class="icon-share-alt"></i>&nbsp;<span class="_label">转出条件</span></li>
+                        <li id="pmSetting"><i class=" icon-wrench"></i>&nbsp;<span class="_label">样式</span></li>
+                        <li id="pmDelete"><i class="icon-trash"></i>&nbsp;<span class="_label">删除</span></li>
+
+                        </ul>
+                        </div>
+                        <div id="canvasMenu" style="display:none;">
+                        <ul>
+                        <li id="cmSave"><i class="icon-ok"></i>&nbsp;<span class="_label">保存设计</span></li>
+                        <li id="cmAdd"><i class="icon-plus"></i>&nbsp;<span class="_label">添加步骤</span></li>
+                        <li id="cmRefresh"><i class="icon-refresh"></i>&nbsp;<span class="_label">刷新 F5</span></li>
+                        <!--li id="cmPaste"><i class="icon-share"></i>&nbsp;<span class="_label">粘贴</span></li-->
+                        <li id="cmHelp"><i class="icon-search"></i>&nbsp;<span class="_label">帮助</span></li>
+                        </ul>
+                        </div>
+                        <!--end div-->
+
+                        <div class="container mini-layout" id="flowdesign_canvas">
+                        <!--div class="process-step btn" style="left: 189px; top: 340px;"><span class="process-num badge badge-inverse"><i class="icon-star icon-white"></i>3</span> 步骤3</div-->
+                        </div>
+
+block script
+    script(type="text/javascript").
+        var _root='http://flowdesign.leipi.org/index.php?s=/',_controller = 'flowdesign';
+    script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/js/jquery-1.7.2.min.js?2025")
+    script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/css/bootstrap/js/bootstrap.min.js?2025")
+    script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/js/jquery-ui/jquery-ui-1.9.2-min.js?2025")
+    script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/js/jsPlumb/jquery.jsPlumb-1.3.16-all-min.js?2025")
+    script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/js/jquery.contextmenu.r2.js?2025")
+    script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/js/jquery.multiselect2side/js/jquery.multiselect2side.js?2025")
+    script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/js/flowdesign/leipi.flowdesign.v3.js?2025")
+    script(type="text/javascript" src=__JS_PATH__ + "/workflow/formDesign_my.js")
