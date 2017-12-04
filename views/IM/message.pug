@@ -18,8 +18,7 @@ block script
         WebIM.config.autoSignInName = '306223558z1';
         WebIM.config.autoSignInPwd = '123123';
     //script(src=__JS_PATH__ + '/webim/strophe-1.2.8.js')
-    script(type="text/javascript").
-        document.write("<script src='#{__PLUGINS_PATH__}/webim/strophe-1.2.8.js'><\/script>");
+    script(type="text/javascript" src= __PLUGINS_PATH__ + "/webim/strophe-1.2.8.js")
     script(src=__PLUGINS_PATH__ + '/webim/websdk-1.4.13.js')
     script(type="text/javascript").
         if (WebIM.config.isWebRTC) {
