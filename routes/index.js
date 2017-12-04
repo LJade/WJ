@@ -69,6 +69,7 @@ module.exports = function (app) {
     app.get('/notice/notice_manage', notice.notice_manage);
     app.get('/notice/notice_approve', notice.notice_approve);
     app.get('/notice/notice_detail', notice.notice_detail);
+    app.post('/notice/notice_save', notice.notice_save);
 
     /** 邮件相关路由*/
     app.get('/mail/mail_create', mail.mail_create);
