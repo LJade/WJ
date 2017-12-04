@@ -6,7 +6,7 @@ block aside_content
     -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/im/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
     +asideNav(routerObj,1)
 block main_content
-    #inner-wrapper
+    #chat-wrapper(style='min-height:800px;position:relative;')
         section(id='main').w100
             article(id='demo')
             article(id='components')
