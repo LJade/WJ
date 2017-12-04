@@ -1,15 +1,11 @@
 mixin userSelect
-    #mask
     #userSelect
-        .condition
-            .inline-group
-                label(for='newsTheme') 姓名:
-                input#newsTheme(type='text')
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 搜索
+        .search
+            input(type='text' placeholder="输入姓名")
+            button.btn.btn-default.btn-sm(type='button') 搜索
         .selected-list
-            |已选：
         .option-list
-            table
+            table.layui-table(lay-size="sm")
                 thead
                     tr
                         td 姓名
@@ -23,9 +19,53 @@ mixin userSelect
                         td 业务部门
                         td XXX
                         td
-                            button.btn.btn-warning.btn-sm 添加
+                            button.btn.btn-warning.btn-sm.add(data-user='{name:孙悟空}') 添加
+                    tr
+                        td 孙悟空
+                        td 业务部门
+                        td XXX
+                        td
+                            button.btn.btn-warning.btn-sm.add(data-user='{name:孙悟空}') 添加
+                    tr
+                        td 孙悟空
+                        td 业务部门
+                        td XXX
+                        td
+                            button.btn.btn-warning.btn-sm.add(data-user='{name:孙悟空}') 添加
+                    tr
+                        td 孙悟空
+                        td 业务部门
+                        td XXX
+                        td
+                            button.btn.btn-warning.btn-sm.add(data-user='{name:孙悟空}') 添加
+                    tr
+                        td 孙悟空
+                        td 业务部门
+                        td XXX
+                        td
+                            button.btn.btn-warning.btn-sm.add(data-user='{name:孙悟空}') 添加
+        #option-pagination
         .option-handle
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 确定
-            button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+            button.btn.btn-default.btn-sm.addConfirm(type='button' style='margin-left:20px') 确定
+            button.btn.btn-disable.btn-sm.addCancel(type='button' style='margin-left:20px') 取消
+    script.
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+            laypage.render({
+            elem: 'option-pagination',
+            count: 100,
+            theme: '#1E9FFF'
+            });
+        })
+        $('.add').on('click',function(){
+            var data = JSON.parse($(this).attr('data-user'))
+            console.log(data)
+            var children = '<div class="list-item">'+data.name+'</div>'
+            $('.selected-list').append(children)
+        })
+        $('.addCancel').on('click', function () {
+            $('#mask').hide()
+            $('#modal').hide()
+        })
 
 

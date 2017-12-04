@@ -1065,3 +1065,54 @@ input[type='checkbox'] {
         color: #e2e2e2; }
       .user-permission .permission-handle .app-list li.app-item li.child-item > label input[type='checkbox']:checked + span {
         color: #333333; }
+
+#modal {
+  width: 800px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 5px;
+  background: #ffffff;
+  padding: 15px;
+  z-index: 2; }
+
+#mask {
+  display: block;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1; }
+
+#userSelect {
+  padding: 20px;
+  background: #ffffff; }
+  #userSelect .contact-header .title {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 25px; }
+  #userSelect .search {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    #userSelect .search input[type='text'] {
+      width: 200px;
+      height: 30px;
+      padding: 0 10px;
+      margin-right: 35px; }
+  #userSelect .option-list {
+    margin: 25px auto; }
+  #userSelect .option-handle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
