@@ -10,6 +10,36 @@ block main_content
         section(id='main').w100
             article(id='demo')
             article(id='components')
+    style.
+        .webim-msg-container .webim-avatar-icon.small{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .webim-msg-container .left .webim-msg-value {
+            background-color: #eeeeee;
+            color: #666666;
+        }
+        .webim-msg-container .left .webim-msg-icon,.webim-msg-container .right .webim-msg-icon {
+            display: none;
+        }
+        .webim-msg-container .left .webim-msg-value>pre {
+            color: #666666;
+        }
+
+        .webim-msg-container .left > p ,.webim-msg-container .right > p{
+           font-size: 10px;
+        }
+        .webim-msg-container .right .webim-msg-value {
+            background-color: #2f9ff2;
+        }
+
+        .webim-msg-container .right .webim-msg-value>pre{
+            color: #ffffff;
+        }
+
 block script
     script(src=__PLUGINS_PATH__ + '/webim/browser-polyfill.min.js')
     script(src=__PLUGINS_PATH__ + '/webim/webim.config.js')
