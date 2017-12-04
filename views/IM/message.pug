@@ -6,10 +6,40 @@ block aside_content
     -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/im/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
     +asideNav(routerObj,1)
 block main_content
-    #inner-wrapper
+    #chat-wrapper(style='min-height:800px;position:relative;')
         section(id='main').w100
             article(id='demo')
             article(id='components')
+    style.
+        .webim-msg-container .webim-avatar-icon.small{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .webim-msg-container .left .webim-msg-value {
+            background-color: #eeeeee;
+            color: #666666;
+        }
+        .webim-msg-container .left .webim-msg-icon,.webim-msg-container .right .webim-msg-icon {
+            display: none;
+        }
+        .webim-msg-container .left .webim-msg-value>pre {
+            color: #666666;
+        }
+
+        .webim-msg-container .left > p ,.webim-msg-container .right > p{
+           font-size: 10px;
+        }
+        .webim-msg-container .right .webim-msg-value {
+            background-color: #2f9ff2;
+        }
+
+        .webim-msg-container .right .webim-msg-value>pre{
+            color: #ffffff;
+        }
+
 block script
     script(src=__PLUGINS_PATH__ + '/webim/browser-polyfill.min.js')
     script(src=__PLUGINS_PATH__ + '/webim/webim.config.js')

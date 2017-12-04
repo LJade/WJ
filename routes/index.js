@@ -11,6 +11,7 @@ var netdisk = require("./netdisk.js");
 var home = require("./home.js");
 var message = require("./message.js");
 var workflow = require("./workflow")
+var myMessage = require('./my_message')
 
 module.exports = function (app) {
 
@@ -100,6 +101,9 @@ module.exports = function (app) {
     app.get('/workflow/workflow_create', workflow.workflow_create);
     app.get('/workflow/workflow_manage', workflow.workflow_manage);
     app.get('/flowDesigner',workflow.flowDesigner);
+
+    /** 个人消息页面*/
+    app.get('/my_message',myMessage.message)
 
     /** 首页相关 */
     app.get('/', home.home);
