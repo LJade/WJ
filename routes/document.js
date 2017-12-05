@@ -43,6 +43,7 @@ var docu_detail = function(req, res, next) {
 };
 
 var docu_save = function (req, res ,next) {
+    req = assert.getArrPost(req,'lookUpPersonId');
     assert.apiRequest('post','/commonalityArticle/save',req).then(function (results) {
         res.send(results);
     });

@@ -6,6 +6,14 @@ var WJConf = require('../hmConfig');
 
 var API_HOST = 'http://jtj.yewufeifei.com/web';
 
+var getArrPost = function (req, key) {
+
+    req.body[key].forEach(function (id,index) {
+        req.body[key + "["+ index +"]"] = id
+    });
+    delete req.body[key];
+    return req
+};
 
 var modulesIcon = {
     news:"news.png",
@@ -560,6 +568,6 @@ module.exports = {
     base64Assert:Base64,
     getJADE:getJADE,
     getError:getError,
-    modulesIcon:modulesIcon,
-    coverParams:coverParams
+    coverParams:coverParams,
+    getArrPost:getArrPost
 };

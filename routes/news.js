@@ -102,9 +102,7 @@ var news_category = function (req, res, next) {
 var save_news = function (req, res, next) {
     req.session.user = {};
     req.session.user.accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTI0MDQyMjAsImlhdCI6MTUxMjM4MjYyMH0.TwcGOYeoLKCjV6e7n0HWGHdnBi5oTfTCwJPI_2eWPiA';
-    req.body['lookUpPersonId[0]'] = 1;
-    // req.body["lookUpPersonId[0]"] = 1;
-    console.log(req.body);
+    req = assert.getArrPost(req,'lookUpPersonId');
     assert.apiRequest('post','/journalism/save',req).then(function (results) {
         res.send(results);
     });

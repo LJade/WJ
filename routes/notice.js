@@ -25,7 +25,30 @@ var notice_list = function(req, res, next) {
 
 var notice_create = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('notice/notice_create',JADE_VAR);
+    //检查登陆
+    req.session.user = {accessToken:"123123"};
+    if(!req.session.user.accessToken){
+        res.redirect("/login");
+    }
+    req.body.announcementId = req.query.announcementId;
+    //获取list列表信息
+    assert.apiRequest("POST",'/announcement/detail',req).then(function (results) {
+        var noticeDetailInfo = JSON.parse(results);
+        if (noticeDetailInfo.code === 1) {
+            JADE_VAR.noticeDetail = noticeDetailInfo.dat;
+            JADE_VAR.announcementId = req.query.announcementId;
+        } else {
+            JADE_VAR.noticeDetail = {
+                title: "",
+                publicName: "",
+                publicTime: "",
+                userlist: "",
+                content: ''
+            };
+            JADE_VAR.announcementId = "";
+        }
+        res.render('notice/notice_create', JADE_VAR);
+    });
 };
 
 var notice_manage = function(req, res, next) {
@@ -79,11 +102,11 @@ var notice_detail = function(req, res, next) {
     if(!req.session.user.accessToken){
         res.redirect("/login");
     }
-    console.log(123123);
+
     req.body.announcementId = req.query.announcementId;
     //获取list列表信息
     assert.apiRequest("POST",'/announcement/detail',req).then(function (results) {
-        console.log(123123);
+
         var noticeDetailInfo = JSON.parse(results);
         if(noticeDetailInfo.code === 1){
             JADE_VAR.noticeDetail = noticeDetailInfo.dat;
@@ -104,6 +127,7 @@ var notice_detail = function(req, res, next) {
 };
 
 var notice_save = function (req, res, next) {
+    req = assert.getArrPost(req,'lookUpPersonId');
     assert.apiRequest('post','/announcement/save',req).then(function (results) {
         res.send(results);
     });
