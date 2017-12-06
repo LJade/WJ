@@ -104,7 +104,7 @@ var notice_detail = function(req, res, next) {
     }
 
     req.body.announcementId = req.query.announcementId;
-    //获取list列表信息
+    //获取list列表信息  
     assert.apiRequest("POST",'/announcement/detail',req).then(function (results) {
 
         var noticeDetailInfo = JSON.parse(results);
