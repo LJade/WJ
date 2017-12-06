@@ -9,7 +9,7 @@ block aside_content
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
-    include ../components/user
+    include ../components/contact
     +RouteNav('创建节点')
     #inner-wrapper
         .news-create
@@ -55,7 +55,7 @@ block main_content
                 button.btn.btn-default.btn-sm(type='button') 保存
                 button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 关闭
     #modal(style='display:none')
-        +userSelect
+        +ContactBook
     #mask(style='display:none')
 block script
     script(type="text/javascript" src=__JS_PATH__ + "/workflow/workflow_create.js")

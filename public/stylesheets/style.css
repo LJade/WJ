@@ -924,7 +924,7 @@ input[type='checkbox'] {
     width: 100%; }
 
 .structure-tree {
-  padding: 0 20px;
+  padding-left: 20px;
   line-height: 2.5; }
   .structure-tree .structure-node {
     position: relative;
@@ -941,6 +941,18 @@ input[type='checkbox'] {
       vertical-align: middle;
       margin-right: 5px;
       margin-top: 5px; }
+    .structure-tree .structure-node.close-node:before {
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-left: 10px solid #333333;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      vertical-align: middle;
+      margin-right: 5px;
+      margin-top: 0; }
 
 .version-desc {
   background: #f8f8f8;
@@ -953,7 +965,8 @@ input[type='checkbox'] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0 15px 30px; }
+  padding: 0 15px 30px;
+  height: 700px; }
   .role-control .user-list {
     width: 200px;
     border: 1px solid #ececec;
@@ -965,20 +978,25 @@ input[type='checkbox'] {
       display: none; }
     .role-control .user-list .list-title {
       background: #36a4e3;
-      padding-left: 15px;
       color: #ffffff;
       position: relative; }
+      .role-control .user-list .list-title .title-item {
+        padding-left: 15px; }
+        .role-control .user-list .list-title .title-item:active {
+          background: #d5edfe; }
       .role-control .user-list .list-title i {
         position: absolute;
         font-size: 12px;
         right: 10px;
-        top: 15px; }
+        top: 15px;
+        cursor: pointer;
+        z-index: 201; }
     .role-control .user-list .list-wrapper {
       padding: 15px 0; }
       .role-control .user-list .list-wrapper .list-item {
         padding-left: 40px;
         cursor: pointer; }
-        .role-control .user-list .list-wrapper .list-item.active {
+        .role-control .user-list .list-wrapper .list-item:hover, .role-control .user-list .list-wrapper .list-item:active, .role-control .user-list .list-wrapper .list-item:focus, .role-control .user-list .list-wrapper .list-item.active {
           background: #eaf6ff; }
   .role-control .role-handle {
     margin: 70px 30px 0; }
