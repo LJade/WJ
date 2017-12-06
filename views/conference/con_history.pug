@@ -33,62 +33,16 @@ block main_content
                         td  会议纪要
                         td  操作
                 tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  已结束
-                        td  2017-12-01
-                        td  无
-                        td.link  详情
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  已结束
-                        td  2017-12-01
-                        td  无
-                        td.link  详情
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  已结束
-                        td  2017-12-01
-                        td  无
-                        td.link  详情
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  已结束
-                        td  2017-12-01
-                        td  无
-                        td.link  详情
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  已结束
-                        td  2017-12-01
-                        td  无
-                        td.link  详情
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  已结束
-                        td  2017-12-01
-                        td  无
-                        td.link  详情
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  已结束
-                        td  2017-12-01
-                        td  无
-                        td.link  详情
+                    if(confercences.length)
+                        each conference in confercences
+                            tr
+                                td
+                                    input(type='checkbox')
+                                td.link  #{conference.title}
+                                td  已结束
+                                td  #{conference.startTime}
+                                td  #{conference.summaryContent}
+                                td.link(onclick="window.location.href='/conference/con_detail?conferenceId="+conference.meetingId + "'") 详情
 
 
 

@@ -81,17 +81,20 @@ module.exports = function (app) {
     app.get('/conference/con_create', conference.con_create);
     app.get('/conference/con_history', conference.con_history);
     app.get('/conference/con_summary', conference.con_summary);
+    app.get('/conference/con_summary_detail', conference.con_summary_detail);
     app.get('/conference/con_sign', conference.con_sign);
     app.get('/conference/con_apply', conference.con_apply);
-    app.get('/conference/con_room', conference.con_room);
+    app.get('/conference/con_room_create',conference.con_room_create);
+    app.get('/conference/con_room_edit',conference.con_room_edit);
     app.get('/conference/con_room_resource', conference.con_room_resource);
+    app.get('/conference/con_room', conference.con_room);
 
     /** 用户相关 **/
     app.get('/user/user_center', user.user_center);
     app.get('/user/change_pass', user.change_pass);
 
     /** 用户聊天 **/
-    app.get('/im/message',message.message);
+    app.get('/im',message.im);
 
     /** 网盘相关 */
     app.get('/netdisk/company_disk', netdisk.company_disk);
@@ -104,7 +107,7 @@ module.exports = function (app) {
     app.get('/flowDesigner',workflow.flowDesigner);
 
     /** 个人消息页面*/
-    app.get('/my_message',myMessage.message)
+    app.get('/message',myMessage.message);
 
     /** 首页相关 */
     app.get('/', home.home);

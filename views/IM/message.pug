@@ -1,10 +1,6 @@
 extends ../components/base
 block title
     title 消息
-block aside_content
-    include ../components/mixin
-    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/im/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
-    +asideNav(routerObj,1)
 block main_content
     #chat-wrapper(style='min-height:800px;position:relative;')
         section(id='main').w100
@@ -45,8 +41,8 @@ block script
     script(src=__PLUGINS_PATH__ + '/webim/webim.config.js')
     //再执行初始化之前我要先登录
     script(type="text/javascript").
-        WebIM.config.autoSignInName = '306223558z1';
-        WebIM.config.autoSignInPwd = '123123';
+        WebIM.config.autoSignInName = $.cookie("IMAccount");
+        WebIM.config.autoSignInPwd = $.cookie("IMPwd");
     //script(src=__JS_PATH__ + '/webim/strophe-1.2.8.js')
     script(type="text/javascript" src= __PLUGINS_PATH__ + "/webim/strophe-1.2.8.js")
     script(src=__PLUGINS_PATH__ + '/webim/websdk-1.4.13.js')

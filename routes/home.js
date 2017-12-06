@@ -11,8 +11,8 @@ var home = function(req, res, next) {
 
     //加载用户模块权限
     var getModules = assert.apiRequest("get","/user/myModule",req);
-    var getUserMeet = assert.apiRequest("get","/",req);
-    var getNoticeNum = assert.apiRequest("get","/",req);
+    // var getUserMeet = assert.apiRequest("get","/",req);
+    // var getNoticeNum = assert.apiRequest("get","/",req);
 
     //请求数据
     Promise.all([getModules]).then(function (results) {

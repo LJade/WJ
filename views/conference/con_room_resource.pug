@@ -26,23 +26,9 @@ block main_content
                             input(type='checkbox')
                         td  资源名称
                 tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  投影仪
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  话筒
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  小米电视
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  耳麦
-                    tr
-                        td
-                            input(type='checkbox')
-                        td  黑板
+                    if(resLists.length)
+                        each res in resLists
+                            tr
+                                td
+                                    input(type='checkbox')
+                                td  #{res.name}

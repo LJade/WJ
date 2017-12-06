@@ -42,7 +42,10 @@ var doLogin = function (req, res, next) {
             req.session.user = {
                 userName: req.params.account,
                 accessToken: loginInfo.dat.accessToken,
-                headIcon: loginInfo.dat.headIcon
+                headIcon: loginInfo.dat.headIcon,
+                IMAccount:loginInfo.dat.imAccount,
+                IMPwd:loginInfo.dat.imPass,
+                roleType:loginInfo.dat.roleType
             };
         }
         res.redirect("/");
