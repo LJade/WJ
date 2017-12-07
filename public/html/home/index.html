@@ -10,9 +10,13 @@
     <meta name="description" content="">
     <link rel="stylesheet" href="../../stylesheets/normalize.css">
     <link rel="stylesheet" href="../../stylesheets/style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css">
     <script src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
-    <script src="../../javascripts/common.js"></script>
+    <script src="../../plugins/jquery-2.1.4/jquery.cookie.js"></script>
   </head>
+  <script src="../../plugins/layui/layui.js">
+    <script src="../../javascripts/common.js"></script>
+  </script>
   <body>
     <div id="wrapper">
       <div id="header">
@@ -25,7 +29,7 @@
         <header id="common-header">
           <div class="header-left">
             <div class="header-logo"><img src="../../images/logo.png"></div>
-            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href="/im/message"><i class="icon icon-envelope"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href=""><i class="icon icon-screen"></i>多屏幕模式</a></div>
+            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href="/im"><i class="icon icon-envelope"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href="#"><i class="icon icon-screen"></i>多屏幕模式</a></div>
           </div>
           <div class="header-right">
             <div class="header-search">
@@ -43,71 +47,42 @@
           <!-- breadcrumb-->
                     <ul id="aside">
                       <li class="active"><a href="/"><i class="icon icon-app"></i>应用</a></li>
-                      <li><a href="/"><i class="icon icon-message2"></i>消息</a></li>
-                      <li><a href="/setting/organization_manage"><i class="icon icon-setting"></i>平台管理</a></li>
+                      <li><a href="/message"><i class="icon icon-message2"></i>消息</a></li>
+                      <li><a href="/setting/user_manage"><i class="icon icon-setting"></i>平台管理</a></li>
                     </ul>
         </div>
         <div id="main-content">
-          <div class="home" style="display:inline-block;">
-            <div class="module-nav">
-              <div class="nav-heading clearfix">
-                <h3>日常办公</h3><a class="more">更多<i class="icon-add"></i></a>
+          <div class="home">
+            <div class="module-wrapper">
+              <div class="module-nav">
+                <div class="nav-heading clearfix">
+                  <h3>日常办公</h3><a class="more">更多<i class="icon-add"></i></a>
+                </div>
+                <ul class="nav-body clearfix">
+                  <li><a href="/news/news_list">
+                      <div class="img-wrapper"><img src="../../images/nav.png"></div><span>新闻</span></a></li>
+                  <li><a href="/notice/notice_list">
+                      <div class="img-wrapper"><img src="../../images/notice.png"></div><span> 公告</span></a></li>
+                  <li><a href="/docu/docu_list">
+                      <div class="img-wrapper"><img src="../../images/document.png"></div><span>公文</span></a></li>
+                </ul>
               </div>
-              <ul class="nav-body clearfix">
-                <li><a href="/news/news_list">
-                    <div class="img-wrapper"><img src="../../images/nav.png"></div><span>新闻</span></a></li>
-                <li><a href="/notice/notice_list">
-                    <div class="img-wrapper"><img src="../../images/notice.png"></div><span> 公告</span></a></li>
-                <li><a href="/docu/docu_list">
-                    <div class="img-wrapper"><img src="../../images/document.png"></div><span>公文</span></a></li>
-                <li><a href="/mail/mail_receive">
-                    <div class="img-wrapper"><img src="../../images/mail.png"></div><span>邮箱</span></a></li>
-                <li><a href="/order/order_mine">
-                    <div class="img-wrapper"><img src="../../images/function.png"></div><span>工单</span></a></li>
-                <li><a href="/conference/con_history">
-                    <div class="img-wrapper"><img src="../../images/conference.png"></div><span>会议管理</span></a></li>
-              </ul>
-            </div>
-            <div class="module-nav">
-              <div class="nav-heading clearfix">
-                <h3>日常办公</h3><a class="more">更多<i class="icon-add"></i></a>
+              <div class="module-nav">
+                <div class="nav-heading clearfix">
+                  <h3>日常办公</h3><a class="more">更多<i class="icon-add"></i></a>
+                </div>
+                <ul class="nav-body clearfix">
+                  <li><a href="/mail/mail_receive">
+                      <div class="img-wrapper"><img src="../../images/mail.png"></div><span>邮箱</span></a></li>
+                  <li><a href="/order/order_mine">
+                      <div class="img-wrapper"><img src="../../images/function.png"></div><span>工单</span></a></li>
+                  <li><a href="/conference/con_history">
+                      <div class="img-wrapper"><img src="../../images/conference.png"></div><span>会议管理</span></a></li>
+                </ul>
               </div>
-              <ul class="nav-body clearfix">
-                <li><a href="/news/news_list">
-                    <div class="img-wrapper"><img src="../../images/nav.png"></div><span>新闻</span></a></li>
-                <li><a href="/notice/notice_list">
-                    <div class="img-wrapper"><img src="../../images/notice.png"></div><span> 公告</span></a></li>
-                <li><a href="/docu/docu_list">
-                    <div class="img-wrapper"><img src="../../images/document.png"></div><span>公文</span></a></li>
-                <li><a href="/mail/mail_receive">
-                    <div class="img-wrapper"><img src="../../images/mail.png"></div><span>邮箱</span></a></li>
-                <li><a href="/order/order_mine">
-                    <div class="img-wrapper"><img src="../../images/function.png"></div><span>工单</span></a></li>
-                <li><a href="/conference/con_history">
-                    <div class="img-wrapper"><img src="../../images/conference.png"></div><span>会议管理</span></a></li>
-              </ul>
             </div>
-            <div class="module-nav">
-              <div class="nav-heading clearfix">
-                <h3>日常办公</h3><a class="more">更多<i class="icon-add"></i></a>
-              </div>
-              <ul class="nav-body clearfix">
-                <li><a href="/news/news_list">
-                    <div class="img-wrapper"><img src="../../images/nav.png"></div><span>新闻</span></a></li>
-                <li><a href="/notice/notice_list">
-                    <div class="img-wrapper"><img src="../../images/notice.png"></div><span> 公告</span></a></li>
-                <li><a href="/docu/docu_list">
-                    <div class="img-wrapper"><img src="../../images/document.png"></div><span>公文</span></a></li>
-                <li><a href="/mail/mail_receive">
-                    <div class="img-wrapper"><img src="../../images/mail.png"></div><span>邮箱</span></a></li>
-                <li><a href="/order/order_mine">
-                    <div class="img-wrapper"><img src="../../images/function.png"></div><span>工单</span></a></li>
-                <li><a href="/conference/con_history">
-                    <div class="img-wrapper"><img src="../../images/conference.png"></div><span>会议管理</span></a></li>
-              </ul>
-            </div>
+            <div id="calendar"></div>
           </div>
-          <div id="calender"></div>
           <link rel="stylesheet" href="../../plugins/calendar/simple-calendar.css">
           <script src="../../plugins/calendar/simple-calendar.js"></script>
           <script type="text/javascript">
@@ -144,7 +119,7 @@
                     activeSelectColor: '#82C2F1',
                 }
             }
-            var myCalendar = new SimpleCalendar('#calender',options);
+            var myCalendar = new SimpleCalendar('#calendar',options);
           </script>
         </div>
       </div>

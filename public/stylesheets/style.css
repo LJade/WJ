@@ -682,8 +682,8 @@ textarea:focus {
   width: 100%;
   min-width: 1200px;
   height: 100%;
-  position: fixed;
-  background: #f2f0f0; }
+  background: #f2f0f0;
+  position: relative; }
 
 #main-wrapper {
   position: relative;

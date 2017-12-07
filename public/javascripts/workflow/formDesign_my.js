@@ -36,7 +36,7 @@ function superDialog(URL, viewField, hidField, isOnly, dialogWidth, dialogHeight
     // loc_x = document.body.scrollLeft+event.clientX-event.offsetX;
     //loc_y = document.body.scrollTop+event.clientY-event.offsetY;
     if (window.ActiveXObject) { //IE
-        var selectValue = window.showModalDialog(URL, self, "edge:raised;scroll:1;status:0;help:0;resizable:1;dialogWidth:" + dialogWidth + "px;dialogHeight:" + dialogHeight + "px;dialogTop:" + loc_y + "px;dialogLeft:" + loc_x + "px");
+        var selectValue = window.showModalDialog(URL, self, "edge:raised;scroll:1;status:0;help:0;resizable:1;dialogWidth:" + dialogWidth + "px;dialogHeight:" + dialogHeight + "påx;dialogTop:" + loc_y + "px;dialogLeft:" + loc_x + "px");
         if (selectValue) {
             callbackSuperDialog(selectValue);
         }
