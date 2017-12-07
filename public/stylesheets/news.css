@@ -394,6 +394,16 @@ template {
 [hidden] {
   display: none; }
 
+.selectDP{
+  color:#36a4e3;
+}
+
+.chooseDP{
+  padding-left: 40px;
+  color: white;
+  background-color: #36a4e3;
+}
+
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon.eot?2ysxht");

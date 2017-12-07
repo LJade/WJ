@@ -1,8 +1,8 @@
 var workflowCreate = function () {
    var addUser = function () {
         $('#addUser').on('click',function () {
-            $('#mask').show()
-            $('#modal').show()
+            $('#mask').show();
+            $('#modal').show();
         })
    }
 
@@ -20,4 +20,4 @@ var workflowCreate = function () {
         }
     }
 }()
-workflowCreate.init()
+workflowCreate.init();
