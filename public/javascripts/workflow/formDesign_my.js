@@ -52,13 +52,13 @@ $(function () {
     //消息提示
     mAlert = function (messages, s) {
         if (!messages) messages = "";
-        if (!s) s = 2000;
+        if (!s) s = 20000;
         alertModal.find(".modal-body").html(messages);
         alertModal.modal('toggle');
         setTimeout(function () {
             alertModal.modal("hide")
         }, s);
-    }
+    };
 
     //属性设置
     attributeModal.on("hidden", function () {
@@ -93,87 +93,50 @@ $(function () {
     var processData = {
         "total": 5,
         "list": [{
-            "id": "61",
-            "flow_id": "4",
-            "process_name": "\u53d1\u8d77\u7533\u8bf7",
-            "process_to": "63,64",
-            "icon": "icon-ok",
-            "style": "width:121px;height:41px;line-height:41px;color:#0e76a8;left:193px;top:132px;"
-        }, {
-            "id": "62",
-            "flow_id": "4",
-            "process_name": "\u5ba1\u62792",
-            "process_to": "65",
-            "icon": "icon-star",
-            "style": "width:120px;height:30px;line-height:30px;color:#0e76a8;left:486px;top:337px;"
-        }, {
-            "id": "63",
-            "flow_id": "4",
-            "process_name": "\u5feb\u6377\u5ba1\u6279",
-            "process_to": "65",
-            "icon": "icon-star",
-            "style": "width:120px;height:30px;line-height:30px;color:#0e76a8;left:193px;top:472px;"
-        }, {
-            "id": "64",
-            "flow_id": "4",
-            "process_name": "\u5ba1\u62791",
-            "process_to": "62,65",
-            "icon": "icon-star",
-            "style": "width:120px;height:30px;line-height:30px;color:#ff66b5;left:486px;top:137px;"
-        }, {
-            "id": "65",
-            "flow_id": "4",
-            "process_name": "\u5f52\u6863\u6574\u7406\u4eba",
+            "id": new Date().getTime(),
+            "flow_id": "1",
+            "process_name": "开始流程",
             "process_to": "",
-            "icon": "icon-star",
-            "style": "width:120px;height:30px;line-height:30px;color:#0e76a8;left:738px;top:472px;"
+            "icon": "",
+            "style": "width:130px;height:50px;line-height:50px;font-size:16px;color:#0e76a8;left:193px;top:132px;"
         }]
     };
 
     /*创建流程设计器*/
     var _canvas = $("#flowdesign_canvas").Flowdesign({
         "processData": processData
-        /*,mtAfterDrop:function(params)
-         {
-         //alert("连接："+params.sourceId +" -> "+ params.targetId);
-         }*/
         /*画面右键*/
         , canvasMenus: {
             "cmAdd": function (t) {
                 var mLeft = $("#jqContextMenu").css("left"), mTop = $("#jqContextMenu").css("top");
-
-                /*重要提示 start*/
-                alert("这里使用ajax提交，请参考官网示例，可使用Fiddler软件抓包获取返回格式");
+                mLeft = (parseInt(mLeft.split("px")[0]) - 195) + 'px';
+                mTop = (parseInt(mTop.split("px")[0]) - 80) + 'px';
                 /*重要提示 end */
-
-                var url = "http://flowdesign.leipi.org/Flowdesign/add_process.html";
-                $.post(url, {"flow_id": the_flow_id, "left": mLeft, "top": mTop}, function (data) {
-
-                    if (!data.status) {
-                        mAlert(data.msg);
-                    } else if (!_canvas.addProcess(data.info))//添加
-                    {
-                        mAlert("添加失败");
-                    }
-
-                }, 'json');
+                var data = {};
+                data.info = {
+                    "id": new Date().getTime(),
+                    "flow_id": "4",
+                    "process_name": "新建节点",
+                    "process_to": "",
+                    "icon": "icon-ok",
+                    "style": "width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
+                };
+                if (!_canvas.addProcess(data.info)){
+                    mAlert("添加失败");
+                }
 
             },
             "cmSave": function (t) {
                 var processInfo = _canvas.getProcessInfo();//连接信息
-
-                /*重要提示 start*/
-                alert("这里使用ajax提交，请参考官网示例，可使用Fiddler软件抓包获取返回格式");
-                /*重要提示 end */
-
-                var url = "/index.php?s=/Flowdesign/save_canvas.html";
+                var url = "/workflow/workflow_save";
+                console.log(processInfo);
                 $.post(url, {"flow_id": the_flow_id, "process_info": processInfo}, function (data) {
                     mAlert(data.msg);
                 }, 'json');
             },
             //刷新
             "cmRefresh": function (t) {
-                location.reload();//_canvas.refresh();
+                location.reload();
             },
             "cmPaste": function (t) {
                 var pasteId = _canvas.paste();//右键当前的ID
@@ -184,7 +147,7 @@ $(function () {
                 alert("粘贴:" + pasteId);
             },
             "cmHelp": function (t) {
-                mAlert('<ul><li><a href="http://flowdesign.leipi.org/doc.html" target="_blank">流程设计器 开发文档</a></li><li><a href="http://formdesign.leipi.org/doc.html" target="_blank">表单设计器 开发文档</a></li><li><a href="http://formdesign.leipi.org/demo.html" target="_blank">表单设计器 示例DEMO</a></li></ul>', 20000);
+                mAlert("请刷新页面");
             }
 
         }
@@ -200,44 +163,21 @@ $(function () {
                 var activeId = _canvas.getActiveId();//右键当前的ID
             },
             "pmCopy": function (t) {
-                //var activeId = _canvas.getActiveId();//右键当前的ID
-                _canvas.copy();//右键当前的ID
+                var activeId = _canvas.getActiveId();//右键当前的ID
+                _canvas.copy(activeId);//右键当前的ID
                 alert("复制成功");
             },
             "pmDelete": function (t) {
                 if (confirm("你确定删除步骤吗？")) {
                     var activeId = _canvas.getActiveId();//右键当前的ID
-
-                    /*重要提示 start*/
-                    alert("这里使用ajax提交，请参考官网示例，可使用Fiddler软件抓包获取返回格式");
-                    /*重要提示 end */
-
-                    var url = "/index.php?s=/Flowdesign/delete_process.html";
-                    $.post(url, {"flow_id": the_flow_id, "process_id": activeId}, function (data) {
-                        if (data.status == 1) {
-                            //清除步骤
-                            //_canvas.delProcess(activeId);
-                            //清除连接   暂时先保存设计 + 刷新 完成
-                            var processInfo = _canvas.getProcessInfo();//连接信息
-                            var url = "/index.php?s=/Flowdesign/save_canvas.html";
-                            $.post(url, {"flow_id": the_flow_id, "process_info": processInfo}, function (data) {
-                                location.reload();
-                            }, 'json');
-
-                        }
-                        mAlert(data.msg);
-                    }, 'json');
+                    _canvas.delProcess(activeId);
                 }
             },
             "pmAttribute": function (t) {
                 var activeId = _canvas.getActiveId();//右键当前的ID
-                /*重要提示 start*/
-                alert("这里要使用程序处理，并非简单html页面，如果无法显示，请建立虚拟站点");
-                /*重要提示 end */
-                //var url = "/index.php?s=/Flowdesign/attribute/id/"+activeId+".html";
-                var url = '/Public/js/flowdesign/attribute.html?id=' + activeId;
+                var url = '/workflow/workflow_create?';
                 ajaxModal(url, function () {
-                    //alert('加载完成执行')
+                    // alert('加载完成执行')
                 });
             },
             "pmForm": function (t) {
@@ -285,7 +225,7 @@ $(function () {
         }
         , fnClick: function () {
             var activeId = _canvas.getActiveId();
-            mAlert("查看步骤信息 " + activeId);
+            // mAlert("查看步骤信息 " + activeId);
         }
         , fnDbClick: function () {
             //和 pmAttribute 一样

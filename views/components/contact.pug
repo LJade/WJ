@@ -8,13 +8,9 @@ mixin ContactBook
                 .title-item.dep(style="display:none")
                     span.title-tab 按照部门选择
             .list-wrapper.allUserOption
-                .list-item 孙悟空
-                .list-item 唐僧
-                .list-item 白骨精
-                .list-item 猪八戒
-                .list-item 沙悟净
-                .list-item 玉皇大帝
-                .list-item 太上老君
+                if(allUsers.length)
+                    each user in allUsers
+                        .list-item(data-person-id=user.id) #{user.name}
             .list-wrapper.departmentUserOption(style="display:none")
                 .structure
                     ul.structure-tree
@@ -32,7 +28,7 @@ mixin ContactBook
                                                 li.structure-node 二级部门1
                                                 li.structure-node 二级部门2
                                         li.structure-node 一级部门3
-                                li.structure-node.close-node 汽车研究院
+                                li.structure-node.close-node.children1 汽车研究院
                                     ul.structure-tree(style="display:none")
                                         li.structure-node.close-node 一级部门1
                                             ul.structure-tree(style="display:none")
@@ -45,19 +41,14 @@ mixin ContactBook
                                         li.structure-node 一级部门3
 
         .role-handle
-            button.btn.btn-default.btn-sm#addSelectUser(type='button') 添加>
+            button.btn.btn-default.btn-sm#addSelectUser(type='button' data-type='user') 添加>
             br
-            button.btn.btn-warning.btn-sm#deleteSelectUser(type='button') <删除
+            button.btn.btn-warning.btn-sm#deleteSelectUser(type='button' data-type='user') <删除
         .user-list.select-user
             .list-title
                 .title-item
                     span 已选人员
             .list-wrapper.selectedBox
-                .list-item 观音菩萨
-                .list-item 如来佛祖
-                .list-item 红孩儿
-                .list-item 金角大王
-                .list-item 银角大王
     .form-control.btn-wrapper
         button.btn.btn-default.btn-sm.addConfirm(type='button') 保存
         button.btn.btn-disable.btn-sm.addCancel(type='button' style='margin-left:20px') 取消
@@ -71,35 +62,101 @@ mixin ContactBook
             if($(this).hasClass('all')){
                 $('.allUserOption').show()
                 $('.departmentUserOption').hide()
+                $('#addSelectUser').attr('data-type','user')
+                $('#deleteSelectUser').attr('data-type','user')
             }else{
                 $('.allUserOption').hide()
                 $('.departmentUserOption').show()
+                $('#addSelectUser').attr('data-type', 'dp')
+                $('#deleteSelectUser').attr('data-type', 'dp')
             }
         })
         $('.list-item').on('click',function(){
-            console.log($(this))
-            if(!$(this).hasClass('active')) {$(this).addClass('active')}
-        })
+            $('.list-item').removeClass("active");
+            $(this).addClass("active");
+        });
+
         $('#addSelectUser').click(function () {
-            var selectList = $('.list-item.active')
-            if(selectList.length==0){
-                layui.use('layer', function () {
-                    var layer = layui.layer;
-                    layer.alert('嗨，先选人呐');
-                });
+            if($(this).attr('data-type') == 'user'){
+                var selectList = $('.list-wrapper.allUserOption').find('.list-item.active')
+                if (selectList.length == 0) {
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+                        layer.alert('嗨，先选人呐');
+                    });
+                } else {
+                    selectList = selectList.removeClass("active");
+                    $('.selectedBox').append(selectList);
+                }
             }else{
-                $('.selectedBox').append(selectList)
+                var selectDPList = $('.departmentUserOption').find(".selectDP");
+                if(selectDPList.length == 0){
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+                        layer.alert('还没有选择部门');
+                    });
+                }else{
+                    selectDPList = selectDPList.removeClass("selectDP").addClass("chooseDP");
+                    $('.selectedBox').append(selectDPList);
+                }
+            }
+        });
+
+        $('#deleteSelectUser').click(function () {
+            if($(this).attr('data-type') == 'user'){
+                var selectedList = $('.list-wrapper.selectedBox').find(".list-item.active")
+                if (selectedList.length == 0) {
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+                        layer.alert('嗨，先选人呐');
+                    });
+                } else {
+                    selectedList = selectedList.removeClass("active");
+                    $('.list-wrapper.allUserOption').append(selectedList);
+                }
+            }else{
+                var selectDPList = $('.list-wrapper.selectedBox').find(".selectDP");
+                if (selectDPList.length == 0) {
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+                        layer.alert('还没有选择部门');
+                    });
+                } else {
+                    selectDPList = selectDPList.removeClass("chooseDP").removeClass("selectDP")
+                    $('.departmentUserOption').append(selectDPList);
+                }
             }
 
-        })
-        $('.structure-node.close-node').on('click',function () {
-            $(this).removeClass('close-node').addClass('open-node').find('ul').first().show()
-        })
-        $('.structure-node.open-node').on('click',function () {
-            console.log('12214444')
-            $(this).removeClass('open-node').addClass('close-node').find('ul').first().hide()
-        })
+        });
+
+        $('.close-node').on('click',function (e) {
+            if($(this).hasClass('open-node')){
+                $(this).removeClass('open-node').addClass('close-node').find('ul').first().hide()
+            }else{
+                $(this).removeClass('close-node').addClass('open-node').find('ul').first().show()
+            }
+            $('.structure').find('li').removeClass('selectDP');
+            $(this).addClass('selectDP');
+            e.stopPropagation();//阻止冒泡
+        });
+
+
         $('.addCancel').on('click', function () {
+            $('#mask').hide()
+            $('#modal').hide()
+        })
+
+        $('.addConfirm').on('click',function () {
+            $('input[name="choosePersonId"]').remove();
+            var personIDs = $('.selectedBox').find(".list-item");
+            appendStr = '';
+            console.log(personIDs);
+            for(var i =0; i< personIDs.length; i++){
+                console.log(personIDs[i])
+                var personID = personIDs[i].getAttribute("data-person-id");
+                appendStr += "<input type='hidden' name='choosePersonId' value='" + personID + "'>"
+            }
+            $('body').append(appendStr);
             $('#mask').hide()
             $('#modal').hide()
         })
