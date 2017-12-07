@@ -1,6 +1,8 @@
 extends ../components/base
 block title
     title 消息
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/message.css')
 block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/my_message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
@@ -8,4 +10,49 @@ block aside_content
 block main_content
     include ../components/mixin
     +RouteNav('消息')
-    #inner-wrapper
+    #message(style="margin-top:5px")
+        .aside-wrapper
+            .message-nav.active
+                .intro
+                    .avatar-wrapper
+                        img(src=__IMAGES_PATH__ + '/avatar.png')
+                    .name 沈慧云
+                    .tag 88
+                .time 21:09
+            .message-nav
+                .intro
+                    .icon-wrapper.notice
+                        i.icon.icon-sound
+                    .name 通知
+                    .tag 4
+                .time 20:59
+            .message-nav
+                .intro
+                    .icon-wrapper.document
+                        i.icon.icon-envelope
+                    .name 公告
+                .time 20:59
+        .dialog-wrapper
+            .dialog-header
+            .dialog-content
+                .dialog-time 15:30
+                .dialog-item.left
+                    .avatar-wrapper
+                        img(src=__IMAGES_PATH__ + '/avatar.png')
+                    .content-text 吃饭了吗，在吗。老铁？
+                .dialog-item.left
+                    .avatar-wrapper
+                        img(src=__IMAGES_PATH__ + '/avatar.png')
+                    .content-text 最近天气挺冷的呀，我都穿秋裤了，昨天买了羽绒服，哦，太棒！
+                .dialog-item.right
+                    .avatar-wrapper
+                        img(src=__IMAGES_PATH__ + '/avatar.png')
+                    .content-text 你这个二狗子
+                .dialog-item.right
+                    .avatar-wrapper
+                        img(src=__IMAGES_PATH__ + '/avatar.png')
+                    .content-text 秋裤是什么，你这么胖还需要秋裤，脂肪不是可以保暖吗？哈哈哈哈 死胖子
+            .dialog-bottom
+                .text-wrapper
+                    textarea
+                .send-wrapper 发送
