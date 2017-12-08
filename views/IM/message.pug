@@ -67,3 +67,6 @@ block script
             appKey: WebIM.config.appkey
         };
         Demo.conn.open(options);
+        //初始化IM上面的active
+        $('.header-nav').find("a").removeClass("active");
+        $(".header-nav").find("a").eq(1).addClass("active");
