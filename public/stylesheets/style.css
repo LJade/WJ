@@ -834,28 +834,28 @@ textarea:focus {
 .no-padding {
   padding: 0 !important; }
 
-.btn {
+.btn, .work-btn {
   border: none;
   outline: none;
   color: #ffffff;
   text-align: center;
   border-radius: 2px;
   cursor: pointer; }
-  .btn.btn-lg {
+  .btn.btn-lg, .btn.work-btn-lg, .work-btn.btn-lg, .work-btn.work-btn-lg {
     height: 40px;
     line-height: 40px;
     font-size: 16px; }
-  .btn.btn-sm {
+  .btn.btn-sm, .btn.work-btn-sm, .work-btn.btn-sm, .work-btn.work-btn-sm {
     height: 30px;
     line-height: 30px;
     padding: 0 20px; }
-  .btn.btn-default {
+  .btn.btn-default, .btn.work-btn-default, .work-btn.btn-default, .work-btn.work-btn-default {
     background: #36a4e3; }
-  .btn.btn-primary {
+  .btn.btn-primary, .btn.work-btn-primary, .work-btn.btn-primary, .work-btn.work-btn-primary {
     background: #80d4ff; }
-  .btn.btn-disable {
+  .btn.btn-disable, .btn.work-btn-disable, .work-btn.btn-disable, .work-btn.work-btn-disable {
     background: #999999; }
-  .btn.btn-warning {
+  .btn.btn-warning, .btn.work-btn-primary, .work-btn.btn-warning, .work-btn.work-btn-primary {
     background: #f8b551; }
 
 .btn-block {

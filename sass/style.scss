@@ -246,33 +246,33 @@
 .no-padding{
   padding: 0!important;
 }
-.btn{
+.btn,.work-btn{
   border: none;
   outline: none;
   color: #ffffff;
   text-align: center;
   border-radius: 2px;
   cursor: pointer;
-  &.btn-lg{
+  &.btn-lg,&.work-btn-lg{
      height: 40px;
      line-height: 40px;
     font-size: 16px;
    }
-  &.btn-sm{
+  &.btn-sm,&.work-btn-sm{
     height: 30px;
     line-height: 30px;
     padding: 0 20px;
   }
-  &.btn-default{
+  &.btn-default,&.work-btn-default{
     background: $theme-color;
   }
-  &.btn-primary{
+  &.btn-primary,&.work-btn-primary{
     background: #80d4ff;
   }
-  &.btn-disable{
+  &.btn-disable,&.work-btn-disable{
     background: $text-gray;
   }
-  &.btn-warning{
+  &.btn-warning,&.work-btn-primary{
     background: $yellow-color;
   }
 }
