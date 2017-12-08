@@ -23,12 +23,13 @@
       display: block;
       padding: 0 15px;
       font-weight: 400;
+      color: $text-color;
       i{
         font-size: 16px;
         margin-right: 3px;
         vertical-align: text-top;
       }
-      &.active,&:hover{
+      &.active,&:hover,&:active,&:focus{
         color: $theme-color;
         border-bottom: 2px solid $theme-color;
       }
@@ -67,6 +68,7 @@
         outline: none;
         box-sizing: border-box;
         padding:0 0 0 10px;
+        margin-bottom: 0;
       }
       i{
         position: absolute;

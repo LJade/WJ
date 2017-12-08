@@ -1,11 +1,12 @@
 $FRONT_PATH:'../fonts/';
+
 @font-face {
   font-family: 'icomoon';
-  src:  url($FRONT_PATH + 'icomoon.eot?tdrmcm');
-  src:  url($FRONT_PATH + 'icomoon.eot?tdrmcm#iefix') format('embedded-opentype'),
-  url($FRONT_PATH + 'icomoon.ttf?tdrmcm') format('truetype'),
-  url($FRONT_PATH + 'icomoon.woff?tdrmcm') format('woff'),
-  url($FRONT_PATH + 'icomoon.svg?tdrmcm#icomoon') format('svg');
+  src:  url($FRONT_PATH + 'icomoon.eot?kjsr9d');
+  src:  url($FRONT_PATH + 'icomoon.eot?kjsr9d#iefix') format('embedded-opentype'),
+    url($FRONT_PATH + 'icomoon.ttf?kjsr9d') format('truetype'),
+    url($FRONT_PATH + 'icomoon.woff?kjsr9d') format('woff'),
+    url($FRONT_PATH + 'icomoon.svg?kjsr9d#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -52,7 +53,7 @@ $FRONT_PATH:'../fonts/';
 .icon-home:before {
   content: "\e908";
 }
-.icon-house:before {
+.icon-home2:before {
   content: "\e92c";
 }
 .icon-stamper:before {
@@ -67,7 +68,7 @@ $FRONT_PATH:'../fonts/';
 .icon-envelope:before {
   content: "\e90c";
 }
-.icon-email:before {
+.icon-envelope2:before {
   content: "\e92d";
 }
 .icon-workflow:before {
@@ -103,7 +104,7 @@ $FRONT_PATH:'../fonts/';
 .icon-star:before {
   content: "\e917";
 }
-.icon-five-star:before {
+.icon-star2:before {
   content: "\e92e";
 }
 .icon-tag:before {

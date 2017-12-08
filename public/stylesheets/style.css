@@ -396,8 +396,8 @@ template {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?2ysxht");
-  src: url("../fonts/icomoon.eot?2ysxht#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?2ysxht") format("truetype"), url("../fonts/icomoon.woff?2ysxht") format("woff"), url("../fonts/icomoon.svg?2ysxht#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?kjsr9d");
+  src: url("../fonts/icomoon.eot?kjsr9d#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?kjsr9d") format("truetype"), url("../fonts/icomoon.woff?kjsr9d") format("woff"), url("../fonts/icomoon.svg?kjsr9d#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -441,6 +441,9 @@ template {
 .icon-home:before {
   content: "\e908"; }
 
+.icon-home2:before {
+  content: "\e92c"; }
+
 .icon-stamper:before {
   content: "\e909"; }
 
@@ -452,6 +455,9 @@ template {
 
 .icon-envelope:before {
   content: "\e90c"; }
+
+.icon-envelope2:before {
+  content: "\e92d"; }
 
 .icon-workflow:before {
   content: "\e90d"; }
@@ -485,6 +491,9 @@ template {
 
 .icon-star:before {
   content: "\e917"; }
+
+.icon-star2:before {
+  content: "\e92e"; }
 
 .icon-tag:before {
   content: "\e918"; }
@@ -568,6 +577,8 @@ a {
   color: #333333;
   text-decoration: none;
   font-weight: 200; }
+  a:hover, a:active, a:focus {
+    text-decoration: none !important; }
 
 label {
   font-weight: 200; }
@@ -623,12 +634,13 @@ textarea:focus {
     line-height: 60px;
     display: block;
     padding: 0 15px;
-    font-weight: 400; }
+    font-weight: 400;
+    color: #333333; }
     #common-header .header-left .header-nav a i {
       font-size: 16px;
       margin-right: 3px;
       vertical-align: text-top; }
-    #common-header .header-left .header-nav a.active, #common-header .header-left .header-nav a:hover {
+    #common-header .header-left .header-nav a.active, #common-header .header-left .header-nav a:hover, #common-header .header-left .header-nav a:active, #common-header .header-left .header-nav a:focus {
       color: #36a4e3;
       border-bottom: 2px solid #36a4e3; }
   #common-header .header-left .header-logo {
@@ -663,7 +675,8 @@ textarea:focus {
       outline: none;
       -webkit-box-sizing: border-box;
               box-sizing: border-box;
-      padding: 0 0 0 10px; }
+      padding: 0 0 0 10px;
+      margin-bottom: 0; }
     #common-header .header-right .header-search i {
       position: absolute;
       right: 5px;
@@ -724,7 +737,7 @@ textarea:focus {
 
 #calendar {
   position: absolute;
-  left: 835px;
+  left: 660px;
   top: 0; }
 
 /*home page style*/
@@ -733,12 +746,12 @@ textarea:focus {
 
 .module-nav {
   background: #ffffff;
-  padding-left: 30px;
-  max-width: 825px;
+  padding-left: 20px;
+  max-width: 650px;
   margin-bottom: 10px; }
   .module-nav .nav-heading {
     height: 40px;
-    padding-right: 30px; }
+    padding-right: 20px; }
     .module-nav .nav-heading h3 {
       float: left;
       font-size: 14px;
@@ -758,7 +771,7 @@ textarea:focus {
       width: 60px;
       text-align: center;
       height: 80px;
-      margin-right: 70px;
+      margin-right: 35px;
       margin-bottom: 15px; }
       .module-nav .nav-body li span {
         display: block;
@@ -965,13 +978,15 @@ input[type='checkbox'] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0 15px 30px;
-  height: 700px; }
+  padding: 0 15px 50px;
+  height: 500px;
+  width: 600px;
+  margin-left: 100px; }
   .role-control .user-list {
-    width: 200px;
+    width: 180px;
     border: 1px solid #ececec;
-    min-height: 400px;
-    max-height: 600px;
+    min-height: 300px;
+    max-height: 400px;
     line-height: 3;
     overflow: auto; }
     .role-control .user-list::-webkit-scrollbar {
