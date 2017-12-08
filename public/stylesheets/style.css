@@ -724,7 +724,7 @@ textarea:focus {
 
 #calendar {
   position: absolute;
-  left: 835px;
+  left: 660px;
   top: 0; }
 
 /*home page style*/
@@ -733,12 +733,12 @@ textarea:focus {
 
 .module-nav {
   background: #ffffff;
-  padding-left: 30px;
-  max-width: 825px;
+  padding-left: 20px;
+  max-width: 650px;
   margin-bottom: 10px; }
   .module-nav .nav-heading {
     height: 40px;
-    padding-right: 30px; }
+    padding-right: 20px; }
     .module-nav .nav-heading h3 {
       float: left;
       font-size: 14px;
@@ -758,7 +758,7 @@ textarea:focus {
       width: 60px;
       text-align: center;
       height: 80px;
-      margin-right: 70px;
+      margin-right: 35px;
       margin-bottom: 15px; }
       .module-nav .nav-body li span {
         display: block;
@@ -965,13 +965,15 @@ input[type='checkbox'] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0 15px 30px;
-  height: 700px; }
+  padding: 0 15px 50px;
+  height: 500px;
+  width: 600px;
+  margin-left: 100px; }
   .role-control .user-list {
-    width: 200px;
+    width: 180px;
     border: 1px solid #ececec;
-    min-height: 400px;
-    max-height: 600px;
+    min-height: 300px;
+    max-height: 400px;
     line-height: 3;
     overflow: auto; }
     .role-control .user-list::-webkit-scrollbar {
