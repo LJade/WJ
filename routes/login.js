@@ -138,6 +138,12 @@ var withoutLoginCodeSend = function (req, res, next) {
     })
 };
 
+var login_out = function (req, res, next) {
+    req.session.user = "";
+    req.session.modules = "";
+    res.redirect("/login");
+};
+
 module.exports = {
     login: login,
     admin_login: admin_login,
@@ -151,5 +157,6 @@ module.exports = {
     do_set_pass: do_set_pass,
     qrCode: qrCodeImg,
     qrResult: qrResult,
-    qrLogin: qrLogin
+    qrLogin: qrLogin,
+    login_out:login_out
 };

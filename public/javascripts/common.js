@@ -29,3 +29,15 @@ layui.use('laydate', function(){
         theme: '#36a4e3'
     });
 });
+
+function login_out() {
+    alert(123123123);
+    if(confirm("您是否要退出登录")){
+        $.cookie("user","");
+        $.cookie("webim_*","");
+        $.cookie("loginQRID","");
+        $.cookie("IMAccount","");
+        $.cookie("IMPwd","");
+        window.location.href = "/login/login_out";
+    }
+}

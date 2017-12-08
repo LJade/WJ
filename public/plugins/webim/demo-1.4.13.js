@@ -25927,16 +25927,21 @@
 	                success: function (resp) {
 	                    var groupData = resp.data,
 	                        groups = this.state.groups;
-	                    for (var i in groupData) {
-	                        groups.push(React.createElement(
-	                            'li',
-	                            { className: 'webim-blacklist-item',
-	                                'data-gid': groupData[i].groupid,
-	                                key: groupData[i].groupid,
-	                                onClick: this.showDetail.bind(this, groupData[i].groupid) },
-	                            groupData[i].groupname,
-	                        ));
-	                    }
+                        for (var i in groupData) {
+                            groups.push(React.createElement(
+                                'li',
+                                { className: 'webim-blacklist-item',
+                                    'data-gid': groupData[i].groupid,
+                                    key: groupData[i].groupid,
+                                    onClick: this.showDetail.bind(this, groupData[i].groupid) },
+                                groupData[i].groupname,
+                                React.createElement(
+                                    'i',
+                                    { className: 'webim-leftbar-icon font smaller' },
+                                    'F'
+                                )
+                            ));
+                        }
 	                    this.setState({
 	                        cursor: resp.cursor,
 	                        groups: groups,
