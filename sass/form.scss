@@ -1,0 +1,82 @@
+@import "./base";
+.work-create{
+  margin-top: 10px;
+  background:#ffffff;
+}
+.work-form-control{
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  i.icon-add{
+    font-size: 18px;
+    color: #f78e40;
+    position: relative;
+    top: 5px;
+    left: -25px;
+    cursor: pointer;
+  }
+  label{
+    display: inline-block;
+    min-width: 120px;
+  }
+  .text-label{
+    width: auto;
+    min-width: 0;
+    margin-right: 35px;
+    input[type='radio']{
+      width: 25px;
+      display: inline-block;
+    }
+    span{
+      line-height: 25px;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+  }
+  input,textarea{
+    box-sizing: border-box;
+    padding: 0 10px;
+    min-width: 400px;
+    resize: none;
+    border:1px solid  #ececec;
+  }
+  input{
+    height: 25px;
+  }
+  .fixed-width-input{
+    width: 50px;
+    min-width: 50px;
+    text-align: center;
+  }
+}
+.work-btn{
+  border: none;
+  outline: none;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+  &.work-btn-lg{
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+  }
+  &.work-btn-sm{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+  }
+  &.work-btn-default{
+    background: $theme-color;
+  }
+  &.work-btn-primary{
+    background: #80d4ff;
+  }
+  &.work-btn-disable{
+    background: $text-gray;
+  }
+  &.work-btn-warning{
+    background: $yellow-color;
+  }
+}
