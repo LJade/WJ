@@ -53,3 +53,11 @@ block script
         }
     script(src=__PLUGINS_PATH__ + "/webim/swfupload/swfupload.min.js")
     script(src=__PLUGINS_PATH__ + "/webim/demo-1.4.13.js")
+    script(type="text/javascript").
+        var options = {
+            apiUrl: WebIM.config.apiURL,
+            user: WebIM.config.autoSignInName,
+            pwd: WebIM.config.autoSignInPwd,
+            appKey: WebIM.config.appkey
+        };
+        Demo.conn.open(options);
