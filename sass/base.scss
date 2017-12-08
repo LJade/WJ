@@ -32,6 +32,9 @@ a{
   color: $text-color;
   text-decoration: none;
   font-weight: 200;
+  &:hover,&:active,&:focus{
+    text-decoration: none!important;
+  }
 }
 label{
   font-weight: 200;
