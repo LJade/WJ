@@ -8,12 +8,15 @@ block style
     link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/site.css')
     link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/js/flowdesign/flowdesign.css')
     link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/js/jquery.multiselect2side/css/jquery.multiselect2side.css')
+    //layer
+    script(type='text/javascript' src=__PLUGINS_PATH__ + '/layui/layui.js')
 block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/workflow/workflow_manage',text:'流程配置'}]
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
+    include ../components/contact
     +RouteNav('流程配置')
     #inner-wrapper
         .node-wrapper
@@ -25,15 +28,6 @@ block main_content
                     li#pmAttribute
                         i.icon-cog
                         span._label 属性
-                    li#pmForm
-                        i.icon-th
-                        span._label 表单字段
-                    li#pmJudge
-                        i.icon-share-alt
-                        span._label 转出条件
-                    li#pmSetting
-                        i.icon-wrench
-                        span._label 样式
                     li#pmDelete
                         i.icon-trash
                         span._label 删除
@@ -43,18 +37,18 @@ block main_content
                         i.icon-ok
                         span._label 保存设计
                     li#cmAdd
+                        i.icon-play
+                        span._label 添加开始
+                    li#cmNormal
                         i.icon-plus
                         span._label 添加步骤
+                    li#cmEnd
+                        i.icon-lock
+                        span._label 添加结束
                     li#cmRefresh
                         i.icon-refresh
                         span._label 刷新 F5
-                    // li id="cmPaste"><i class="icon-share"></i>&nbsp;<span class="_label">粘贴</span></li
-                    li#cmHelp
-                        i.icon-search
-                        span._label 帮助
-            // end div
             #flowdesign_canvas.container.mini-layout
-                // div class="process-step btn" style="left: 189px; top: 340px;"><span class="process-num badge badge-inverse"><i class="icon-star icon-white"></i>3</span> 步骤3</div
 block root
     #alertModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
         .modal-header
@@ -70,7 +64,9 @@ block root
             // body
         .modal-footer(style='padding:5px;')
             // a href="#" class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-white"></i></a
-    // contextmenu div
+    input#processData(type="hidden" value=processData)
+    input#flowID(type="hidden" value=flow_id)
+    input#flowName(type="hidden" value=flow_name)
 block script
     script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/js/jquery-1.7.2.min.js?2025")
     script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/css/bootstrap/js/bootstrap.min.js?2025")
@@ -79,4 +75,10 @@ block script
     script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/js/jquery.contextmenu.r2.js?2025")
     script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/js/jquery.multiselect2side/js/jquery.multiselect2side.js?2025")
     script(type="text/javascript" src=__PLUGINS_PATH__ + "/formDesign/js/flowdesign/leipi.flowdesign.v3.js?2025")
+    script(type="text/javascript").
+        var processData = JSON.parse($('#processData').val());
+        var flowID = #{flow_id};
+        var flowID = $('#flowID').val();
+        var flowName = $('#flowName').val();
     script(type="text/javascript" src=__JS_PATH__ + "/workflow/formDesign_my.js")
+

@@ -102,9 +102,12 @@ module.exports = function (app) {
 
     /** 流程配置相关 */
     app.get('/workflow/workflow_config', workflow.workflow_config);
-    app.get('/workflow/workflow_create', workflow.workflow_create);
+    app.get('/workflow/workflow_edit', workflow.workflow_edit);
     app.get('/workflow/workflow_manage', workflow.workflow_manage);
     app.get('/flowDesigner',workflow.flowDesigner);
+    app.post('/workflow/node_create',workflow.node_create);
+    app.post('/workflow/node_save',workflow.node_save);
+    app.post('/workflow/node_info',workflow.node_info);
 
     /** 个人消息页面*/
     app.get('/message',myMessage.message);

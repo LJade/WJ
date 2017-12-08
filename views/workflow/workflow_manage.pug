@@ -41,54 +41,16 @@ block main_content
                         td  排序
                         td  操作
                 tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  新闻
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  公告
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  公文
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  工单
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  邮箱
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  会议管理
-                        td  2017-12-01
-                        td  管理员
-                        td  1
-                        td.link 流程配置
+                    if(flowsList.length)
+                        each flow in flowsList
+                            tr
+                                td
+                                    input(type='checkbox')
+                                td.link  #{flow.name}
+                                td  #{flow.updateTime}
+                                td  #{flow.updateName}
+                                td  #{flow.sortNum}
+                                td.link(onclick='window.location.href="/workflow/workflow_config?id='+ flow.id + '"') 流程配置
 
 
 

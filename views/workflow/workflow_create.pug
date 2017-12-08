@@ -1,61 +1,102 @@
-extends ../components/base
-block title
-    title 流程配置
-block style
-    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
-block aside_content
-    include ../components/mixin
-    -var routerObj = [{link:'/workflow/workflow_manage',text:'流程配置'}]
-    +asideNav(routerObj,0)
-block main_content
-    include ../components/mixin
-    include ../components/contact
-    +RouteNav('创建节点')
-    #inner-wrapper
-        .news-create
-            .form-control
-                label.control-label(for='name') 节点名称:
-                input#name.form-control(type='text')
-            .form-control
-                label.control-label(for='approver') 审批人配置:
-                input#approver.form-control(type='text' readonly)
-                i.icon.icon-add#addUser
-            .form-control
-                label.control-label 执行规则:
-                label.text-label
-                    input.form-control(type='radio' name='rule')
-                    span 所有人审批即通过
-                label.text-label
-                    input.form-control(type='radio' name='rule')
-                    span 任意一人审批即通过
-            .form-control
-                label.control-label 节点跳转设置:
-                label.text-label
-                    input.form-control(type='radio' name='link')
-                    span 允许指定跳转节点
-                label.text-label
-                    input.form-control(type='radio' name='link')
-                    span 不允许指定跳转节点
-            .form-control
-                label.control-label 执行时间配置:
-                label.text-label
-                    input.form-control(type='radio' name='link')
-                    span 不需要配置时间
-                label.text-label
-                    input.form-control(type='radio' name='link')
-                    span 需要配置时间
-                .text-vice
-                    |请在
-                    input.fixed-width-input(type='tel' name='time')
-                    |小时内完成审批
-            .form-control
-                label.control-label 节点功能配置:
-                button.btn.btn-default.btn-sm(type='button') 节点功能配置
-            .form-control.btn-wrapper.margin-top-20
-                button.btn.btn-default.btn-sm(type='button') 保存
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 关闭
-    #modal(style='display:none')
-        +ContactBook
-    #mask(style='display:none')
+include ../components/contact
+style.
+    .form-control {
+        padding:5px;
+    }
+
+.news-create
+    .form-control
+        label.control-label(for='name') 节点名称:
+        input#name.form-control(type='text' value=nodeInfo.name)
+    .form-control
+        label.control-label(for='approver') 审批人配置:
+        input#approver.form-control(type='text' readonly value=nodeInfo.approveUsersId)
+        i.icon.icon-add#addUser
+    .form-control
+        label.control-label 执行规则:
+        label.text-label
+            if(nodeInfo.executeCond  === 'ALL')
+                input.form-control(type='radio' checked name='rule' value="ALL")
+            else
+                input.form-control(type='radio'  name='rule' value="ALL")
+            span 所有人审批即通过
+        label.text-label
+            if(nodeInfo.executeCond === 'ONE')
+                input.form-control(type='radio' checked  name='rule' value="ONE")
+            else
+                input.form-control(type='radio' name='rule' value="ONE")
+            span 任意一人审批即通过
+    .form-control
+        label.control-label 节点跳转设置:
+        label.text-label
+            if(nodeInfo.forwardCond   === 'Y')
+                input.form-control(type='radio' checked name='forwardCond' value="Y")
+            else
+                input.form-control(type='radio'  name='forwardCond' value="Y")
+            span 允许指定跳转节点
+        label.text-label
+            if(nodeInfo.forwardCond === 'N')
+                input.form-control(type='radio' checked  name='forwardCond' value="N")
+            else
+                input.form-control(type='radio' name='forwardCond' value="N")
+            span 不允许指定跳转节点
+    .form-control
+        label.control-label 执行时间配置:
+        label.text-label
+            if(nodeInfo.executeHours === 0)
+                input.form-control(type='radio' checked  name='executeTime' value='N')
+            else
+                input.form-control(type='radio'  name='executeTime' value='N')
+            span 不需要配置时间
+        label.text-label
+            if(nodeInfo.executeHours !== 0)
+                input.form-control(type='radio' checked name='executeTime' value='Y')
+            else
+                input.form-control(type='radio' name='executeTime' value='Y')
+            span 需要配置时间
+        .text-vice
+            |请在
+            input#executeTimeNum.fixed-width-input(type='tel' name='executeTimeNum' value=nodeInfo.executeHours)
+            |小时内完成审批
+        input#nodeId(type="hidden" value=nodeInfo.id)
+    .form-control
+        label.control-label 节点功能配置:
+        button.btn.btn-default.btn-sm(type='button') 节点功能配置
+    .form-control.btn-wrapper.margin-top-20
+        button#saveNode.btn.btn-default.btn-sm(type='button') 保存
+        button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 关闭
+#modal(style='display:none')
+    +ContactBook
+#mask(style='display:none')
 block script
+    script(type="text/javascript" src=__JS_PATH__ + "/common.js")
     script(type="text/javascript" src=__JS_PATH__ + "/workflow/workflow_create.js")
+    script(type="text/javascript").
+        $('#saveNode').click(function () {
+            var data = {};
+            data.name = $('#name').val();
+            data.approveUsersId = $('#choosePersonId').val();
+            data.executeCond = $('input[name="rule"]').filter(':checked').val();
+            data.forwardCond = $('input[name="forwardCond"]').filter(':checked').val();
+            data.executeHours = $('#executeTimeNum').val();
+            data.defineId = flowID;
+            data.id = $('#nodeId').val();
+
+            var checkInfo = checkValue(data);
+            console.log(data);
+
+            if (checkInfo) {
+                alert(checkInfo);
+                return;
+            }
+            // 开始提交
+            $.post('/workflow/node_save', data, function (results) {
+                if (results.code == 1) {
+                    alert("保存节点配置成功");
+                    $('#window'+data.id).innerText = data.name;
+                    //关闭遮罩层
+                }else{
+                    alert(results.msg);
+                }
+            }, 'json');
+        })

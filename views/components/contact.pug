@@ -10,7 +10,7 @@ mixin ContactBook
             .list-wrapper.allUserOption
                 if(allUsers.length)
                     each user in allUsers
-                        .list-item(data-person-id=user.id) #{user.name}
+                        .list-item(data-person-id=user.id data-person-name=user.name) #{user.name}
             .list-wrapper.departmentUserOption(style="display:none")
                 .structure
                     ul.structure-tree
@@ -149,14 +149,20 @@ mixin ContactBook
         $('.addConfirm').on('click',function () {
             $('input[name="choosePersonId"]').remove();
             var personIDs = $('.selectedBox').find(".list-item");
-            appendStr = '';
+            var personIDArr = [];
+            var chooseNameArr = [];
             console.log(personIDs);
             for(var i =0; i< personIDs.length; i++){
                 console.log(personIDs[i])
                 var personID = personIDs[i].getAttribute("data-person-id");
-                appendStr += "<input type='hidden' name='choosePersonId' value='" + personID + "'>"
+                var personName = personIDs[i].getAttribute("data-person-name");
+                personIDArr.push(personID);
+                chooseNameArr.push(personName);
             }
-            $('body').append(appendStr);
+            $('body').append('<input type="hidden" id="choosePersonId" value="' + String(personIDArr) + '"/>');
+            if($('#approver').length){
+                $('#approver').val(String(chooseNameArr));
+            }
             $('#mask').hide()
             $('#modal').hide()
         })
