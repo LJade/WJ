@@ -30,7 +30,12 @@ layui.use('laydate', function(){
     });
 });
 
+var layer = layui.layer;
+
 function login_out() {
+    layer.open({
+
+    });
     if(confirm("您是否要退出登录")){
         $.cookie("user","");
         $.cookie("webim_*","");

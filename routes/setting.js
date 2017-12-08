@@ -50,6 +50,11 @@ var log_manage = function(req, res, next) {
     res.render('setting/log_manage',JADE_VAR);
 };
 
+var app_permission = function(req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    res.render('setting/app_permission',JADE_VAR);
+};
+
 
 module.exports = {
     app_create:app_create,
@@ -61,5 +66,6 @@ module.exports = {
     role_create:role_create,
     role_manage:role_manage,
     location_manage:location_manage,
-    log_manage:log_manage
+    log_manage:log_manage,
+    app_permission:app_permission
 };

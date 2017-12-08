@@ -41,6 +41,7 @@ module.exports = function (app) {
     app.get('/setting/role_manage', setting.role_manage);
     app.get('/setting/location_manage', setting.location_manage);
     app.get('/setting/log_manage', setting.log_manage);
+    app.get('/setting/app_permission', setting.app_permission);
 
     /** 新闻相关路由*/
     app.get('/news/news_list', news.news_list);

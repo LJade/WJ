@@ -1,0 +1,43 @@
+extends ../components/base
+block title
+    title 应用权限控制
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
+    +asideNav(routerObj,2)
+block main_content
+    include ../components/mixin
+    -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/app_create',text:'对接系统管理'},{link:'#',text:'数据服务管理'},{link:'#',text:'第三方应用系统管理'}]
+    +menuLink(menuObj,1)
+    -var navObj = [{link:'/setting/app_create',text:'应用配置'},{link:'/setting/app_permission',text:'应用权限配置'}]
+    +menuNav(navObj,1)
+    +RouteNav('应用添加')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='sysName') 系统中文名称:
+                input#sysName.form-control(type='text')
+            .form-control
+                label.control-label(for='source') URL地址:
+                input#source.form-control(type='text')
+            .form-control
+                label.control-label(for='order') 应用排序:
+                input#order.form-control(type='text')
+            .form-control
+                label.control-label(for='description') 应用描述:
+                textarea#description.form-control(rows='8')
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='button') 添加
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+
+
+
+
+
+
+
+
+
+
