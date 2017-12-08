@@ -1,0 +1,162 @@
+#message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 635px;
+  height: 100%; }
+  #message .aside-wrapper {
+    width: 200px;
+    background: #ffffff;
+    -ms-flex-negative: 0;
+        flex-shrink: 0; }
+    #message .aside-wrapper .message-nav {
+      width: 100%;
+      height: 60px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      padding: 0 10px; }
+      #message .aside-wrapper .message-nav.active {
+        background: #d5edfe; }
+      #message .aside-wrapper .message-nav .intro {
+        height: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center; }
+        #message .aside-wrapper .message-nav .intro .avatar-wrapper, #message .aside-wrapper .message-nav .intro .icon-wrapper {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          overflow: hidden;
+          text-align: center;
+          margin-right: 10px; }
+        #message .aside-wrapper .message-nav .intro .avatar-wrapper img {
+          width: 100%;
+          display: inline-block;
+          vertical-align: middle; }
+        #message .aside-wrapper .message-nav .intro .icon-wrapper i {
+          line-height: 30px;
+          font-size: 16px;
+          color: #ffffff; }
+        #message .aside-wrapper .message-nav .intro .icon-wrapper.notice {
+          background: #bfd491; }
+        #message .aside-wrapper .message-nav .intro .icon-wrapper.document {
+          background: #ace4f1; }
+        #message .aside-wrapper .message-nav .intro .name {
+          margin-right: 5px; }
+        #message .aside-wrapper .message-nav .intro .tag {
+          background: #ff9000;
+          color: #ffffff;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          text-align: center;
+          font-size: 10px;
+          line-height: 20px; }
+      #message .aside-wrapper .message-nav .time {
+        font-size: 12px;
+        color: #999999; }
+  #message .dialog-wrapper {
+    width: 100%;
+    margin-left: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-negative: 1;
+        flex-shrink: 1; }
+    #message .dialog-wrapper .dialog-header {
+      width: 100%;
+      height: 60px;
+      background: #f8f8f8;
+      border-bottom: 1px solid #ececec;
+      -ms-flex-negative: 0;
+          flex-shrink: 0; }
+    #message .dialog-wrapper .dialog-content {
+      background: #ffffff;
+      height: 100%;
+      border-bottom: 1px solid #ececec;
+      overflow: auto;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+      padding: 20px 0; }
+      #message .dialog-wrapper .dialog-content .dialog-time {
+        color: #999999;
+        font-size: 10px;
+        text-align: center;
+        line-height: 3.5; }
+      #message .dialog-wrapper .dialog-content .dialog-item {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 10px 20px;
+        -webkit-box-align: start;
+            -ms-flex-align: start;
+                align-items: flex-start; }
+        #message .dialog-wrapper .dialog-content .dialog-item .avatar-wrapper {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          overflow: hidden; }
+          #message .dialog-wrapper .dialog-content .dialog-item .avatar-wrapper img {
+            width: 100%; }
+        #message .dialog-wrapper .dialog-content .dialog-item .content-text {
+          max-width: 350px;
+          border-radius: 3px;
+          word-wrap: break-word;
+          padding: 8px 20px 8px 8px;
+          margin: 0 15px; }
+        #message .dialog-wrapper .dialog-content .dialog-item.left .content-text {
+          background: #eeeeee; }
+        #message .dialog-wrapper .dialog-content .dialog-item.right {
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: reverse;
+              -ms-flex-direction: row-reverse;
+                  flex-direction: row-reverse; }
+          #message .dialog-wrapper .dialog-content .dialog-item.right .content-text {
+            background: #2f9ff2;
+            color: #ffffff; }
+    #message .dialog-wrapper .dialog-bottom {
+      height: 70px;
+      background: #f6f6f6;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-negative: 0;
+          flex-shrink: 0; }
+      #message .dialog-wrapper .dialog-bottom .text-wrapper {
+        width: 100%;
+        -ms-flex-negative: 1;
+            flex-shrink: 1; }
+        #message .dialog-wrapper .dialog-bottom .text-wrapper textarea {
+          width: 100%;
+          height: 100%;
+          resize: none;
+          -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+          padding: 5px 10px;
+          border: none;
+          background: #f6f6f6;
+          color: #666; }
+      #message .dialog-wrapper .dialog-bottom .send-wrapper {
+        width: 80px;
+        height: 70px;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+        background: #ffffff;
+        text-align: center;
+        line-height: 70px;
+        font-size: 18px; }

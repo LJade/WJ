@@ -41,17 +41,17 @@ mixin ContactBook
                                         li.structure-node 一级部门3
 
         .role-handle
-            button.btn.btn-default.btn-sm#addSelectUser(type='button' data-type='user') 添加>
+            button.work-btn.work-btn-default.work-btn-sm#addSelectUser(type='button' data-type='user') 添加>
             br
-            button.btn.btn-warning.btn-sm#deleteSelectUser(type='button' data-type='user') <删除
+            button.work-btn.work-btn-warning.work-btn-sm#deleteSelectUser(type='button' data-type='user') <删除
         .user-list.select-user
             .list-title
                 .title-item
                     span 已选人员
             .list-wrapper.selectedBox
-    .form-control.btn-wrapper
-        button.btn.btn-default.btn-sm.addConfirm(type='button') 保存
-        button.btn.btn-disable.btn-sm.addCancel(type='button' style='margin-left:20px') 取消
+    .form-control.btn-wrapper(style="text-align:center;")
+        button.work-btn.work-btn-default.work-btn-sm.addConfirm(type='button') 保存
+        button.work-btn.work-btn-disable.work-btn-sm.addCancel(type='button' style='margin-left:20px') 取消
     script.
         $('.list-title i.icon-down').on('click',function(){
             $('.title-item').show()
