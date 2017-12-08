@@ -1,19 +1,16 @@
 include ../components/contact
-style.
-    .form-control {
-        padding:5px;
-    }
 
-.news-create
-    .form-control
-        label.control-label(for='name') 节点名称:
-        input#name.form-control(type='text' value=nodeInfo.name)
-    .form-control
-        label.control-label(for='approver') 审批人配置:
+link(rel='stylesheet', href=__CSS_PATH__ + '/form.css')
+.work-create
+    .work-form-control
+        label.work-control-label(for='name') 节点名称:
+        input#name.work-form-control(type='text' value=nodeInfo.name)
+    .work-form-control
+        label.work-control-label(for='approver') 审批人配置:
         input#approver.form-control(type='text' readonly value=nodeInfo.approveUsersId)
         i.icon.icon-add#addUser
-    .form-control
-        label.control-label 执行规则:
+    .work-form-control
+        label.work-control-label 执行规则:
         label.text-label
             if(nodeInfo.executeCond  === 'ALL')
                 input.form-control(type='radio' checked name='rule' value="ALL")
@@ -26,8 +23,8 @@ style.
             else
                 input.form-control(type='radio' name='rule' value="ONE")
             span 任意一人审批即通过
-    .form-control
-        label.control-label 节点跳转设置:
+    .work-form-control
+        label.work-control-label 节点跳转设置:
         label.text-label
             if(nodeInfo.forwardCond   === 'Y')
                 input.form-control(type='radio' checked name='forwardCond' value="Y")
@@ -40,8 +37,8 @@ style.
             else
                 input.form-control(type='radio' name='forwardCond' value="N")
             span 不允许指定跳转节点
-    .form-control
-        label.control-label 执行时间配置:
+    .work-form-control
+        label.work-control-label 执行时间配置:
         label.text-label
             if(nodeInfo.executeHours === 0)
                 input.form-control(type='radio' checked  name='executeTime' value='N')
@@ -59,12 +56,12 @@ style.
             input#executeTimeNum.fixed-width-input(type='tel' name='executeTimeNum' value=nodeInfo.executeHours)
             |小时内完成审批
         input#nodeId(type="hidden" value=nodeInfo.id)
-    .form-control
-        label.control-label 节点功能配置:
-        button.btn.btn-default.btn-sm(type='button') 节点功能配置
-    .form-control.btn-wrapper.margin-top-20
-        button#saveNode.btn.btn-default.btn-sm(type='button') 保存
-        button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 关闭
+    .work-form-control
+        label.work-control-label 节点功能配置:
+        button.work-btn.work-btn-default.work-btn-sm(type='button') 节点功能配置
+    .work-form-control.btn-wrapper.margin-top-20
+        button#saveNode.work-btn.work-btn-default.work-btn-sm(type='button') 保存
+        button.work-btn.work-btn-default.work-btn-sm(type='button' style='margin-left:20px') 关闭
 #modal(style='display:none')
     +ContactBook
 #mask(style='display:none')
