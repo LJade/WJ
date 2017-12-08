@@ -1,7 +1,6 @@
 include ../components/contact
-
-link(rel='stylesheet', href=__CSS_PATH__ + '/form.css')
-
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/form.css')
 .work-create
     .work-form-control
         label.work-control-label(for='name') 节点名称:
@@ -61,9 +60,9 @@ link(rel='stylesheet', href=__CSS_PATH__ + '/form.css')
         .work-form-control
             label.work-control-label 节点功能配置:
             button.work-btn.work-btn-default.work-btn-sm(type='button') 节点功能配置
-        .work-form-control.btn-wrapper.margin-top-20
+        .work-form-control.btn-wrapper.margin-top-20(style="justify-content: center;")
             button#saveNode.work-btn.work-btn-default.work-btn-sm(type='button') 保存
-            button.work-btn.work-btn-default.work-btn-sm(type='button' style='margin-left:20px') 关闭
+            button.work-btn.work-btn-default.work-btn-sm(type='button' style='margin-left:20px' onclick="$('#attributeModal').modal('hide');") 关闭
 if(!isRead)
     #modal(style='display:none')
         +ContactBook
@@ -93,8 +92,9 @@ block script
             $.post('/workflow/node_save', data, function (results) {
                 if (results.code == 1) {
                     alert("保存节点配置成功");
-                    $('#window'+data.id).innerText = data.name;
+                    $('#window'+data.id).find(".process-name").text(data.name);
                     //关闭遮罩层
+                    $('#attributeModal').modal('hide');
                 }else{
                     alert(results.msg);
                 }

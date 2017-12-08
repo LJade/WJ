@@ -9,6 +9,7 @@ block aside_content
     +asideNav(routerObj,3)
 block main_content
     include ../components/mixin
+    include ../components/contact
     +RouteNav('新闻发布')
     #inner-wrapper
         .news-create
@@ -28,16 +29,22 @@ block main_content
                         each typeD in typeInfo
                             option(value=typeD.journalismTypeId) #{typeD.typeName}
             .form-control
-                label.control-label(for='lookUpPersonId') 查阅人员:
-                input#lookUpPersonId.form-control(type='text')
+                label.control-label(for='approver') 查阅人员:
+                input#approver.form-control(type='text')
+                i.icon.icon-add#addUser
             .form-control
                 label.control-label(for='content') 发布内容:
                 textarea#content.form-control(rows=10 )
             .form-control.btn-wrapper
                 button#save_news.btn.btn-default.btn-sm(type='button') 发布
                 button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 取消
+    #modal(style='display:none')
+        +ContactBook
+    #mask(style='display:none')
 block script
     script(type='text/javascript' src=__JS_PATH__ + '/news.js')
+
+
 
 
 

@@ -46,10 +46,16 @@ var news_manage = function (req, res, next) {
 var news_create = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     //获取分类
-    assert.apiRequest("get",'/journalism/typeList',req).then(function (results) {
-        var typeInfo = JSON.parse(results);
-        if(typeInfo.code == 1){
-            JADE_VAR.typeInfo = typeInfo.dat.details;
+    var typeList =  assert.apiRequest("get",'/journalism/typeList',req);
+    var getAllUser = assert.apiRequest("get",'/department/allDeptAndUser',req);
+    Promise.all([getAllUser,typeList]).then(function (results) {
+        if (results) {
+            var modules = JSON.parse(results[0]);
+            JADE_VAR.allUsers = modules.dat.users;
+            var typeInfo = JSON.parse(results[1]);
+            if(typeInfo.code == 1) {
+                JADE_VAR.typeInfo = typeInfo.dat.details;
+            }
         }else{
             JADE_VAR.typeInfo = [];
         }

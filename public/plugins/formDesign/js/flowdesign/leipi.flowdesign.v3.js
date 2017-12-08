@@ -59,7 +59,7 @@ Q 群：143263697
       },
       //这是连接线路的绘画样式
       connectorPaintStyle : {
-          lineWidth:3,
+          lineWidth:2,
           strokeStyle:"#49afcd",
           joinstyle:"round"
       },
@@ -144,14 +144,18 @@ Q 群：143263697
             EndpointStyle : { fillStyle:'#225588' },
             Endpoint : [ "Dot", {radius:1} ],
             ConnectionOverlays : [
-                [ "Arrow", { location:1 } ],
+                [ "Arrow", { location:1 ,width:10} ],
                 [ "Label", {
                         location:0.1,
                         id:"label",
                         cssClass:"aLabel"
                     }]
             ],
-            Anchor : 'Continuous',
+            Anchor : ['Continuous',{
+                faces: [
+                    "left","top","bottom","right"
+                ]
+            }],
             ConnectorZIndex:5,
             HoverPaintStyle:defaults.connectorHoverStyle
         });
@@ -185,7 +189,7 @@ Q 群：143263697
             .attr("process_to",row.process_to)
             .attr("process_id",row.id)
             .addClass("process-step btn btn-small")
-            .html('<span class="process-flag badge '+badge+'"><i class="'+icon+' icon-white"></i></span>&nbsp;' + row.process_name )
+            .html('<span class="process-flag badge '+badge+'"><i class="'+icon+' icon-white"></i></span>&nbsp;<span class="process-name">' + row.process_name + '</span>' )
             .mousedown(function(e){
               if( e.which == 3 ) { //右键绑定
                   _canvas.find('#leipi_active_id').val(row.id);
@@ -330,7 +334,7 @@ Q 群：143263697
                 .attr("process_to",row.process_to)
                 .attr("process_id",row.id)
                 .addClass("process-step btn btn-small")
-                .html('<span class="process-flag badge '+badge+'"><i class="'+icon+' icon-white"></i></span>&nbsp;' + row.process_name )
+                .html('<span class="process-flag badge '+badge+'"><i class="'+icon+' icon-white"></i></span>&nbsp;<span class="process-name">' + row.process_name + '</span>')
                 .mousedown(function(e){
                   if( e.which == 3 ) { //右键绑定
                       _canvas.find('#leipi_active_id').val(row.id);
