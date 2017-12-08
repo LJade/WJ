@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?2ysxht");
-  src: url("../fonts/icomoon.eot?2ysxht#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?2ysxht") format("truetype"), url("../fonts/icomoon.woff?2ysxht") format("woff"), url("../fonts/icomoon.svg?2ysxht#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?tdrmcm");
+  src: url("../fonts/icomoon.eot?tdrmcm#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?tdrmcm") format("truetype"), url("../fonts/icomoon.woff?tdrmcm") format("woff"), url("../fonts/icomoon.svg?tdrmcm#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -45,6 +45,9 @@
 .icon-home:before {
   content: "\e908"; }
 
+.icon-house:before {
+  content: "\e92c"; }
+
 .icon-stamper:before {
   content: "\e909"; }
 
@@ -56,6 +59,9 @@
 
 .icon-envelope:before {
   content: "\e90c"; }
+
+.icon-email:before {
+  content: "\e92d"; }
 
 .icon-workflow:before {
   content: "\e90d"; }
@@ -89,6 +95,9 @@
 
 .icon-star:before {
   content: "\e917"; }
+
+.icon-five-star:before {
+  content: "\e92e"; }
 
 .icon-tag:before {
   content: "\e918"; }
