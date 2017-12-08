@@ -23,7 +23,7 @@ WebIM.config = {
     /**
      * auto login in
      */
-    autoSignIn : true,
+    autoSignIn : false,
 
     /**
      * auto login name
@@ -45,11 +45,11 @@ WebIM.config = {
      * true: A visitor can sign in to multiple webpages and receive messages at all the webpages.
      * false: A visitor can sign in to only one webpage and receive messages at the webpage.
      */
-    isMultiLoginSessions: true,
+    isMultiLoginSessions: false,
     /*
      * set presence after login
      */
-    isAutoLogin: true,
+    isAutoLogin: false,
     /**
      * Whether to use window.doQuery()
      * @parameter {Boolean} true or false

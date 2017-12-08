@@ -402,7 +402,7 @@ Q 群：143263697
                   {
                     if(!aProcessData[processVal[0]])
                     {
-                        aProcessData[processVal[0]] = {"top":0,"left":0,"process_to":[]};
+                        aProcessData[processVal[0]] = {"top":0,"type":2,"name":"新建步骤","left":0,"process_to":[]};
                     }
                     aProcessData[processVal[0]]["process_to"].push(processVal[1]);
                   }
@@ -413,15 +413,18 @@ Q 群：143263697
                           var pId = $(this).attr('process_id');
                           var pLeft = parseInt($(this).css('left'));
                           var pTop = parseInt($(this).css('top'));
+                          var type = $(this).find("i").hasClass("icon-play") ?  1 : $(this).find("i").hasClass("icon-ok") ? 2 : 3;
+                          var name = $(this)[0].innerText;
                          if(!aProcessData[pId])
                           {
-                              aProcessData[pId] = {"top":0,"left":0,"process_to":[]};
+                              aProcessData[pId] = {"top":0, "type":2,"name":"新建步骤","left":0,"process_to":[]};
                           }
                           aProcessData[pId]["top"] =pTop;
                           aProcessData[pId]["left"] =pLeft;
-
+                          aProcessData[pId]["type"] = type;
+                          aProcessData[pId]["name"] = name;
                       }
-                  })
+                  });
              return JSON.stringify(aProcessData);
           }catch(e){
               return '';

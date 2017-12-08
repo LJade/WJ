@@ -47,7 +47,7 @@
 .sc-item {
   height: 20%;
   float: left;
-  font-weight: 600;
+  font-weight: 400;
   color: #565555;
   width: 14.285%;
   padding-top: 10px;
@@ -58,7 +58,7 @@
   box-sizing: border-box;
 }
 .item-nolunar {
-  padding-top: 20px;
+  padding-top: 15px;
 }
 .sc-item:nth-child(7n) .day, .sc-item:nth-child(7n+6) .day {
   color: rgba(224, 8, 8, 0.74);
@@ -142,7 +142,7 @@
 .sc-actions {
   float: left;
   width: 25%;
-  padding: 5px;
+  padding: 1px;
   height: 100%;
   box-sizing: border-box;
 }
@@ -166,7 +166,7 @@
   appearance: none;
   font-family: "Microsoft Yahei";
   color: #606060;
-  font-size: 15px ;
+  font-size: 13px ;
 }
 .sc-header input {
   border-color: rgba(0, 0, 0, 0);

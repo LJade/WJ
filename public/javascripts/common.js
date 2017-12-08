@@ -8,13 +8,17 @@ window.onload = function () {
 var checkValue = function (data) {
     var keys = Object.keys(data);
     var nullKey = '';
-    keys.forEach(function (v) {
-        if(data[v] == ""){
+    keys.forEach(function (v,index) {
+        console.log(v);
+        if(data[v] === "" || data[v] === undefined){
             nullKey = v;
-            return v + '不能为空';
         }
     });
-    return '';
+    if(nullKey){
+        return nullKey + "不能为空";
+    }else{
+        return '';
+    }
 };
 
 layui.use('laydate', function(){

@@ -71,14 +71,11 @@ $(function () {
         attributeModal.modal({
             remote: url
         });
-
         //加载完成执行
         if (fn) {
             attributeModal.on('shown', fn);
         }
-
-
-    }
+    };
     //刷新页面
     function page_reload() {
         location.reload();
@@ -89,18 +86,6 @@ $(function () {
      php 命名习惯 单词用下划线_隔开
      js 命名习惯：首字母小写 + 其它首字线大写
      */
-    /*步骤数据*/
-    var processData = {
-        "total": 5,
-        "list": [{
-            "id": new Date().getTime(),
-            "flow_id": "1",
-            "process_name": "开始流程",
-            "process_to": "",
-            "icon": "",
-            "style": "width:130px;height:50px;line-height:50px;font-size:16px;color:#0e76a8;left:193px;top:132px;"
-        }]
-    };
 
     /*创建流程设计器*/
     var _canvas = $("#flowdesign_canvas").Flowdesign({
@@ -111,28 +96,81 @@ $(function () {
                 var mLeft = $("#jqContextMenu").css("left"), mTop = $("#jqContextMenu").css("top");
                 mLeft = (parseInt(mLeft.split("px")[0]) - 195) + 'px';
                 mTop = (parseInt(mTop.split("px")[0]) - 80) + 'px';
-                /*重要提示 end */
-                var data = {};
-                data.info = {
-                    "id": new Date().getTime(),
-                    "flow_id": "4",
-                    "process_name": "新建节点",
-                    "process_to": "",
-                    "icon": "icon-ok",
-                    "style": "width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
-                };
-                if (!_canvas.addProcess(data.info)){
-                    mAlert("添加失败");
-                }
-
+                /*重要提示 这里需要去服务器去请求一个新节点 */
+                $.post('/workflow/node_create',{defineId:flowID,type:1},function (result) {
+                    if(result.code !== 1){
+                        alert(result.msg);
+                        return;
+                    }
+                    var data = {};
+                    data.info = {
+                        "id": result.dat.nodeId,
+                        "flow_id": flowID,
+                        "process_name": "开始节点",
+                        "process_to": "",
+                        "icon": "icon-play",
+                        "style": "width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
+                    };
+                    if (!_canvas.addProcess(data.info)){
+                        mAlert("添加失败");
+                    }
+                },'json');
             },
             "cmSave": function (t) {
                 var processInfo = _canvas.getProcessInfo();//连接信息
                 var url = "/workflow/workflow_save";
                 console.log(processInfo);
-                $.post(url, {"flow_id": the_flow_id, "process_info": processInfo}, function (data) {
+                $.post(url, {"flow_id": flowID, "process_info": processInfo}, function (data) {
                     mAlert(data.msg);
                 }, 'json');
+            },
+            "cmEnd":function (t) {
+                var mLeft = $("#jqContextMenu").css("left"), mTop = $("#jqContextMenu").css("top");
+                mLeft = (parseInt(mLeft.split("px")[0]) - 195) + 'px';
+                mTop = (parseInt(mTop.split("px")[0]) - 80) + 'px';
+                /*重要提示 这里需要去服务器去请求一个新节点 */
+                $.post('/workflow/node_create',{defineId:flowID,type:3},function (result) {
+                    if(result.code !== 1){
+                        alert(result.msg);
+                        return;
+                    }
+                    var data = {};
+                    data.info = {
+                        "id": result.dat.nodeId,
+                        "flow_id": flowID,
+                        "process_name": "结束节点",
+                        "process_to": "",
+                        "icon": "icon-lock",
+                        "style": "width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
+                    };
+                    if (!_canvas.addProcess(data.info)){
+                        mAlert("添加失败");
+                    }
+                },'json');
+            },
+            "cmNormal":function (t) {
+                var mLeft = $("#jqContextMenu").css("left"), mTop = $("#jqContextMenu").css("top");
+                mLeft = (parseInt(mLeft.split("px")[0]) - 195) + 'px';
+                mTop = (parseInt(mTop.split("px")[0]) - 80) + 'px';
+                /*重要提示 这里需要去服务器去请求一个新节点 */
+                $.post('/workflow/node_create',{defineId:flowID,type:2},function (result) {
+                    if(result.code !== 1){
+                        alert(result.msg);
+                        return;
+                    }
+                    var data = {};
+                    data.info = {
+                        "id": result.dat.nodeId,
+                        "flow_id": flowID,
+                        "process_name": "普通节点"+result.dat.nodeId,
+                        "process_to": "",
+                        "icon": "icon-ok",
+                        "style": "width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
+                    };
+                    if (!_canvas.addProcess(data.info)){
+                        mAlert("添加失败");
+                    }
+                },'json');
             },
             //刷新
             "cmRefresh": function (t) {
@@ -153,10 +191,8 @@ $(function () {
         }
         /*步骤右键*/
         , processMenus: {
-
             "pmBegin": function (t) {
-                var activeId = _canvas.getActiveId();//右键当前的ID
-                alert("设为第一步:" + activeId);
+                var activeId = _canvas.getActiveId();//右键当前的ID// ;
             },
             "pmAddson": function (t)//添加子步骤
             {
@@ -175,9 +211,9 @@ $(function () {
             },
             "pmAttribute": function (t) {
                 var activeId = _canvas.getActiveId();//右键当前的ID
-                var url = '/workflow/workflow_create?';
-                ajaxModal(url, function () {
-                    // alert('加载完成执行')
+                var url = '/workflow/workflow_edit?id='+flowID+'&nodeId='+activeId;
+                ajaxModal(url,function () {
+
                 });
             },
             "pmForm": function (t) {
@@ -225,20 +261,14 @@ $(function () {
         }
         , fnClick: function () {
             var activeId = _canvas.getActiveId();
-            // mAlert("查看步骤信息 " + activeId);
+            //进行数据查看弹窗
+            ajaxModal("/workflow/node_info?nodeId="+activeId,function (t) {
+
+            });
         }
         , fnDbClick: function () {
             //和 pmAttribute 一样
             var activeId = _canvas.getActiveId();//右键当前的ID
-
-            /*重要提示 start*/
-            alert("这里使用ajax提交，请参考官网示例，可使用Fiddler软件抓包获取返回格式");
-            /*重要提示 end */
-
-            var url = "/index.php?s=/Flowdesign/attribute/id/" + activeId + ".html";
-            ajaxModal(url, function () {
-                //alert('加载完成执行')
-            });
         }
     });
 
