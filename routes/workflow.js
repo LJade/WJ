@@ -120,6 +120,34 @@ var workflow_manage = function(req, res, next) {
     res.render('workflow/workflow_manage',JADE_VAR);
 };
 
+var workflow_save = function (req, res, next) {
+    var workflowInfo = JSON.parse(req.body.process_info);
+    //装扮下参数
+    req.body.id = req.body.flow_id;
+    var paramsList = [];
+    /*
+    *
+    * {"49":{"top":189,"type":1,"left":243,"process_to":["50"]},"50":{"top":55,"type":2,"left":595,"process_to":["51","52"]},"51":{"top":160,"type":2,"left":952,"process_to":["52"]},"52":{"top":344,"type":3,"left":620,"process_to":[]}}
+    * */
+    Object.keys(workflowInfo).forEach(function (data,index) {
+       var temp = {
+           "id": data,
+           "name":workflowInfo[data].name.trim(),
+           "type":workflowInfo[data].type,
+           "ext":"width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+workflowInfo[data].left+";top:"+workflowInfo[data].top+";",
+           "processTo":String(workflowInfo[data].process_to)
+       }
+       paramsList.push(temp);
+    });
+    console.log(paramsList);
+    req.body.nodeInfo = JSON.stringify(paramsList);
+    delete req.body.flow_id;
+    delete req.body.process_info;
+    assert.apiRequest("post","/flow/saveDefine",req).then(function (results) {
+        res.send(results);
+    });
+};
+
 var flowDesigner = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     res.header("Access-Control-Allow-Origin", "*");
@@ -167,5 +195,6 @@ module.exports = {
     flowDesigner:flowDesigner,
     node_create:node_create,
     node_save:node_save,
-    node_info:node_info
+    node_info:node_info,
+    workflow_save:workflow_save
 };
