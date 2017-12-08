@@ -187,7 +187,7 @@
 	    apiUrl: WebIM.config.apiURL,
 	    isHttpDNS: WebIM.config.isHttpDNS,
 	    isWindowSDK: WebIM.config.isWindowSDK,
-	    isAutoLogin: true,
+	    isAutoLogin: false,
 	    encrypt: WebIM.config.encrypt,
 	    delivery: WebIM.config.delivery,
 	    saveLocal: WebIM.config.saveLocal
@@ -22111,14 +22111,16 @@
 	                        console.log(text);
 	                        if (text == 'WEBIM_CONNCTION_SERVER_ERROR  type=8') {
 	                            text = Demo.lan.logoutSuc;
-	                            window.location.reload();
-	                            Demo.api.NotifySuccess(text);
 
+	                            Demo.api.NotifySuccess(text);
+                                setTimeout(function () {
+                                    window.location.href = '/login';
+                                },2000);
 	                        } else {
 	                            if (text == 'logout'){
                                     WebIM.config.autoSignIn = false;
                                     text = Demo.lan.logoutSuc;
-                                    window.location.href = '#';
+                                    window.location.href = '/login';
                                     Demo.api.NotifySuccess(text);
                                 } else {
                                     Demo.api.NotifyError('onError:' + text);
@@ -23160,7 +23162,7 @@
 	            React.createElement(Cate, { name: 'friend', update: this.updateFriend, cur: this.props.cur }),
 	            React.createElement(Cate, { name: 'group', update: this.updateGroup, cur: this.props.cur }),
 	            React.createElement(Cate, { name: 'chatroom', update: this.updateChatroom, cur: this.props.cur }),
-	            React.createElement(Cate, { name: 'stranger', update: this.updateStranger, cur: this.props.cur }),
+	            // React.createElement(Cate, { name: 'stranger', update: this.updateStranger, cur: this.props.cur }),
 	            React.createElement(Operations, { username: Demo.user })
 	        );
 	    }
@@ -23332,11 +23334,6 @@
 	        return React.createElement(
 	            "div",
 	            null,
-	            React.createElement(
-	                "i",
-	                { className: "webim-operations-icon font xsmaller", onClick: this.update },
-	                "M"
-	            ),
 	            React.createElement(
 	                "ul",
 	                { className: 'webim-operations' + className },
@@ -25938,11 +25935,6 @@
 	                                key: groupData[i].groupid,
 	                                onClick: this.showDetail.bind(this, groupData[i].groupid) },
 	                            groupData[i].groupname,
-	                            React.createElement(
-	                                'i',
-	                                { className: 'webim-leftbar-icon font smaller' },
-	                                'F'
-	                            )
 	                        ));
 	                    }
 	                    this.setState({
@@ -27355,12 +27347,6 @@
 	        ));
 	        roomMember.push(React.createElement(
 	            'span',
-	            { key: keyValue++, className: 'webim-audio-icon font smaller',
-	                onClick: this.sendAudio },
-	            'R'
-	        ));
-	        roomMember.push(React.createElement(
-	            'span',
 	            { key: keyValue++, className: 'webim-file-icon font smaller',
 	                onClick: this.sendFile },
 	            'S'
@@ -28340,7 +28326,7 @@
 	                    item,
 	                    React.createElement(
 	                        'i',
-	                        { className: 'webim-leftbar-icon font smaller',
+	                        { className: 'webim-leftbar-icon font smaller hide',
 	                            onClick: _this.onRemoveFromGroupBlackList.bind(_this, item) },
 	                        'd'
 	                    )
