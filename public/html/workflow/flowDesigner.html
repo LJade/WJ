@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../../stylesheets/normalize.css">
+    <link rel="stylesheet" href="../../stylesheets/style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css">
+    <script src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script src="../../plugins/jquery-2.1.4/jquery.cookie.js"></script>
+  </head>
+  <script src="../../plugins/layui/layui.js">
+    <script src="../../javascripts/common.js"></script>
+    <!--link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')-->
+    <!--link(rel='stylesheet',href=__PLUGINS_PATH__ + '/bootstrap/css/bootstrap.css?2025')-->
+    <link rel="stylesheet" href="../../plugins/formDesign/css/bootstrap/css/bootstrap.css?2025">
+    <link rel="stylesheet" href="../../plugins/formDesign/css/bootstrap/css/bootstrap-ie6.css?2025">
+    <link rel="stylesheet" href="../../plugins/formDesign/css/bootstrap/css/ie.css?2025">
+    <link rel="stylesheet" href="../../plugins/formDesign/css/site.css">
+    <link rel="stylesheet" href="../../plugins/formDesign/js/flowdesign/flowdesign.css">
+    <link rel="stylesheet" href="../../plugins/formDesign/js/jquery.multiselect2side/css/jquery.multiselect2side.css">
+    <!--layer-->
+    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+  </script>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <style>
+          .navbar{
+              border-radius: 0;
+              margin-bottom: 0;
+          }
+        </style>
+        <header id="common-header">
+          <div class="header-left">
+            <div class="header-logo"><img src="../../images/logo.png"></div>
+            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href="/im"><i class="icon icon-envelope"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href="#"><i class="icon icon-screen"></i>多屏幕模式</a></div>
+          </div>
+          <div class="header-right">
+            <div class="header-search">
+              <input type="text"><i class="icon icon-search"></i>
+            </div>
+            <div class="login-user">
+              <div class="img-wrapper"><img src="../../images/avatar.png"></div>
+              <!--.name   Lingyu.ZHOU-->
+            </div><a class="star"><i class="icon icon-star"></i></a><a class="login-out"><i class="icon icon-close"></i></a>
+          </div>
+        </header>
+      </div>
+      <div id="main-wrapper">
+        <div id="aside-nav">
+          <!-- breadcrumb-->
+                    <ul id="aside">
+                      <li class="active"><a href="/workflow/workflow_manage"><i class="icon"></i>流程配置</a></li>
+                    </ul>
+        </div>
+        <div id="main-content">
+          <!-- breadcrumb-->
+                    <div class="route-nav">
+                      <h2>流程配置</h2>
+                    </div>
+          <div id="inner-wrapper">
+            <div class="node-wrapper">
+              <div id="processMenu" style="display:none;">
+                <ul>
+                  <!-- li id="pm_begin"><i class="icon-play"></i>&nbsp;<span class="_label">设为第一步</span></li-->
+                  <!-- li id="pm_addson"><i class="icon-plus"></i>&nbsp;<span class="_label">添加子步骤</span></li-->
+                  <!-- li id="pm_copy"><i class="icon-check"></i>&nbsp;<span class="_label">复制</span></li-->
+                  <li id="pmAttribute"><i class="icon-cog"></i><span class="_label">属性</span></li>
+                  <li id="pmDelete"><i class="icon-trash"></i><span class="_label">删除</span></li>
+                </ul>
+              </div>
+              <div id="canvasMenu" style="display:none;">
+                <ul>
+                  <li id="cmSave"><i class="icon-ok"></i><span class="_label">保存设计</span></li>
+                  <li id="cmAdd"><i class="icon-play"></i><span class="_label">添加开始</span></li>
+                  <li id="cmNormal"><i class="icon-plus"></i><span class="_label">添加步骤</span></li>
+                  <li id="cmEnd"><i class="icon-lock"></i><span class="_label">添加结束</span></li>
+                  <li id="cmRefresh"><i class="icon-refresh"></i><span class="_label">刷新 F5</span></li>
+                </ul>
+              </div>
+              <div class="container mini-layout" id="flowdesign_canvas"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>消息提示</h3>
+      </div>
+      <div class="modal-body">
+        <p>提示内容</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">我知道了</button>
+      </div>
+    </div>
+    <!-- attributeModal-->
+    <div class="modal fade" id="attributeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:800px;margin-left:-350px;">
+      <div class="modal-body" style="max-height:500px;">
+        <!-- body-->
+      </div>
+      <div class="modal-footer" style="padding:5px;">
+        <!-- a href="#" class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-white"></i></a-->
+      </div>
+    </div>
+    <input id="processData" type="hidden">
+    <input id="flowID" type="hidden">
+    <input id="flowName" type="hidden">
+    <script type="text/javascript" src="../../plugins/formDesign/js/jquery-1.7.2.min.js?2025"></script>
+    <script type="text/javascript" src="../../plugins/formDesign/css/bootstrap/js/bootstrap.min.js?2025"></script>
+    <script type="text/javascript" src="../../plugins/formDesign/js/jquery-ui/jquery-ui-1.9.2-min.js?2025"></script>
+    <script type="text/javascript" src="../../plugins/formDesign/js/jsPlumb/jquery.jsPlumb-1.3.16-all-min.js?2025"></script>
+    <script type="text/javascript" src="../../plugins/formDesign/js/jquery.contextmenu.r2.js?2025"></script>
+    <script type="text/javascript" src="../../plugins/formDesign/js/jquery.multiselect2side/js/jquery.multiselect2side.js?2025"></script>
+    <script type="text/javascript" src="../../plugins/formDesign/js/flowdesign/leipi.flowdesign.v3.js?2025"></script>
+    <script type="text/javascript">
+      var processData = JSON.parse($('#processData').val());
+      var flowID = ;
+      var flowID = $('#flowID').val();
+      var flowName = $('#flowName').val();
+    </script>
+    <script type="text/javascript" src="../../javascripts/workflow/formDesign_my.js"></script>
+  </body>
+</html>
