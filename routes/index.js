@@ -107,7 +107,7 @@ module.exports = function (app) {
     app.get('/flowDesigner',workflow.flowDesigner);
     app.post('/workflow/node_create',workflow.node_create);
     app.post('/workflow/node_save',workflow.node_save);
-    app.post('/workflow/node_info',workflow.node_info);
+    app.get('/workflow/node_info',workflow.node_info);
     app.post('/workflow/workflow_save',workflow.workflow_save);
 
     /** 个人消息页面*/

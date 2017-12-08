@@ -64,6 +64,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/workflow/workflow_create.js" afterPath="$PROJECT_DIR$/public/javascripts/workflow/workflow_create.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/plugins/calendar/simple-calendar.css" afterPath="$PROJECT_DIR$/public/plugins/calendar/simple-calendar.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/plugins/formDesign/js/flowdesign/flowdesign.css" afterPath="$PROJECT_DIR$/public/plugins/formDesign/js/flowdesign/flowdesign.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/plugins/formDesign/js/flowdesign/leipi.flowdesign.v3.js" afterPath="$PROJECT_DIR$/public/plugins/formDesign/js/flowdesign/leipi.flowdesign.v3.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/plugins/webim/demo-1.4.13.js" afterPath="$PROJECT_DIR$/public/plugins/webim/demo-1.4.13.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/plugins/webim/webim.config.js" afterPath="$PROJECT_DIR$/public/plugins/webim/webim.config.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/base.css" afterPath="$PROJECT_DIR$/public/stylesheets/base.css" />
@@ -72,14 +73,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/workflow.js" afterPath="$PROJECT_DIR$/routes/workflow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/message.scss" afterPath="$PROJECT_DIR$/sass/message.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/style.scss" afterPath="$PROJECT_DIR$/sass/style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/IM/message.pug" afterPath="$PROJECT_DIR$/views/IM/message.pug" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/components/contact.pug" afterPath="$PROJECT_DIR$/views/components/contact.pug" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/home/index.pug" afterPath="$PROJECT_DIR$/views/home/index.pug" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/workflow/flowDesigner.pug" afterPath="$PROJECT_DIR$/views/workflow/flowDesigner.pug" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/workflow/workflow_create.pug" afterPath="$PROJECT_DIR$/views/workflow/workflow_create.pug" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/workflow/workflow_manage.pug" afterPath="$PROJECT_DIR$/views/workflow/workflow_manage.pug" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -93,11 +86,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="workflow.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="workflow.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/workflow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="116" column="40" lean-forward="true" selection-start-line="115" selection-start-column="36" selection-end-line="116" selection-end-column="40" />
+            <state relative-caret-position="232">
+              <caret line="89" column="48" lean-forward="true" selection-start-line="89" selection-start-column="48" selection-end-line="89" selection-end-column="48" />
               <folding>
                 <element signature="e#86#2133#0" expanded="false" />
               </folding>
@@ -108,8 +101,8 @@
       <file leaf-file-name="workflow_manage.pug" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/workflow/workflow_manage.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1581">
-              <caret line="51" column="51" lean-forward="true" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
+            <state relative-caret-position="62">
+              <caret line="2" column="14" lean-forward="true" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -128,18 +121,42 @@
       <file leaf-file-name="formDesign_my.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/workflow/formDesign_my.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="106" column="17" lean-forward="false" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
+            <state relative-caret-position="367">
+              <caret line="269" column="30" lean-forward="true" selection-start-line="269" selection-start-column="30" selection-end-line="269" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flowDesigner.pug" pinned="false" current-in-tab="true">
+      <file leaf-file-name="leipi.flowdesign.v3.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/plugins/formDesign/js/flowdesign/leipi.flowdesign.v3.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="421">
+              <caret line="411" column="45" lean-forward="true" selection-start-line="411" selection-start-column="45" selection-end-line="411" selection-end-column="45" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <marker date="1512734775102" expanded="true" signature="6226:6232" ph=" " />
+                <marker date="1512734775102" expanded="true" signature="11238:11244" ph=" " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="109" column="54" lean-forward="true" selection-start-line="109" selection-start-column="54" selection-end-line="109" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flowDesigner.pug" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/workflow/flowDesigner.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="61" column="14" lean-forward="true" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
+            <state relative-caret-position="-434">
+              <caret line="4" column="56" lean-forward="false" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -192,7 +209,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/workOrder/order_detail.pug" />
         <option value="$PROJECT_DIR$/views/workOrder/order_create.pug" />
         <option value="$PROJECT_DIR$/views/workOrder/order_approve.pug" />
         <option value="$PROJECT_DIR$/views/conference/con_create.pug" />
@@ -233,16 +249,17 @@
         <option value="$PROJECT_DIR$/sass/message.scss" />
         <option value="$PROJECT_DIR$/public/plugins/formDesign/js/flowdesign/flowdesign.css" />
         <option value="$PROJECT_DIR$/sass/style.scss" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/sass/news.scss" />
         <option value="$PROJECT_DIR$/public/javascripts/workflow/workflow_create.js" />
         <option value="$PROJECT_DIR$/public/javascripts/common.js" />
         <option value="$PROJECT_DIR$/views/components/contact.pug" />
         <option value="$PROJECT_DIR$/views/workflow/workflow_create.pug" />
-        <option value="$PROJECT_DIR$/public/javascripts/workflow/formDesign_my.js" />
-        <option value="$PROJECT_DIR$/routes/workflow.js" />
         <option value="$PROJECT_DIR$/views/workflow/workflow_manage.pug" />
         <option value="$PROJECT_DIR$/views/workflow/flowDesigner.pug" />
+        <option value="$PROJECT_DIR$/public/plugins/formDesign/js/flowdesign/leipi.flowdesign.v3.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/workflow/formDesign_my.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/routes/workflow.js" />
       </list>
     </option>
   </component>
@@ -258,10 +275,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="23" />
-    <option name="y" value="44" />
+    <option name="x" value="193" />
+    <option name="y" value="1" />
     <option name="width" value="1666" />
-    <option name="height" value="988" />
+    <option name="height" value="985" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -294,59 +311,7 @@
               <item name="WJ" type="b2602c69:ProjectViewProjectNode" />
               <item name="WJ" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WJ" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
-              <item name="workflow" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WJ" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WJ" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WJ" type="462c0819:PsiDirectoryNode" />
-              <item name="sass" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WJ" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WJ" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WJ" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WJ" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="IM" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WJ" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="workflow" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -483,21 +448,7 @@
       <workItem from="1511793455124" duration="6816000" />
       <workItem from="1511958177861" duration="18891000" />
       <workItem from="1512300118293" duration="37270000" />
-      <workItem from="1512699194690" duration="27388000" />
-    </task>
-    <task id="LOCAL-00002" summary="搭建项目骨架1">
-      <created>1508040794825</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1508040794825</updated>
-    </task>
-    <task id="LOCAL-00003" summary="首页  登录页">
-      <created>1508066051694</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1508066051694</updated>
+      <workItem from="1512699194690" duration="31630000" />
     </task>
     <task id="LOCAL-00004" summary="页面元素基本布局">
       <created>1508156199910</created>
@@ -828,14 +779,29 @@
       <option name="project" value="LOCAL" />
       <updated>1512700715092</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="修改流程逻辑">
+      <created>1512732992541</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1512732992542</updated>
+    </task>
+    <task id="LOCAL-00052" summary="加入流程保存">
+      <created>1512735729703</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1512735729703</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238056000" />
+    <option name="totallyTimeSpent" value="242298000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="23" y="44" width="1666" height="988" extended-state="0" />
+    <frame x="193" y="1" width="1666" height="985" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19103195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -844,7 +810,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977098" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3372503" sideWeight="0.48469672" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3384434" sideWeight="0.48469672" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -886,9 +852,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="系统设置一部分" />
-    <MESSAGE value="添加favicon  添加html头部信息  添加页面" />
-    <MESSAGE value="网盘页面 调整icon 类别" />
     <MESSAGE value="修改图片名称" />
     <MESSAGE value="js动态获得高度  添加页面" />
     <MESSAGE value="路由查找" />
@@ -911,7 +874,10 @@
     <MESSAGE value="修改样式" />
     <MESSAGE value="通讯录" />
     <MESSAGE value="修改为单点登录 关闭自动登录" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改为单点登录 关闭自动登录" />
+    <MESSAGE value="修改流程逻辑" />
+    <MESSAGE value="加入流程保存" />
+    <MESSAGE value="接入nodeDetail接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="接入nodeDetail接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1228,18 +1194,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/plugins/formDesign/js/flowdesign/leipi.flowdesign.v3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="45" column="20" lean-forward="true" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1512413696110" expanded="true" signature="6226:6232" ph=" " />
-            <marker date="1512413696110" expanded="true" signature="11238:11244" ph=" " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/workflow/workflow_create.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1272,10 +1226,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/views/workflow/flowDesigner.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="104" column="63" lean-forward="true" selection-start-line="104" selection-start-column="63" selection-end-line="104" selection-end-column="63" />
+        <state relative-caret-position="-434">
+          <caret line="4" column="56" lean-forward="false" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -1288,37 +1242,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/workflow.js">
+    <entry file="file://$PROJECT_DIR$/views/workflow/workflow_manage.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="116" column="40" lean-forward="true" selection-start-line="115" selection-start-column="36" selection-end-line="116" selection-end-column="40" />
+        <state relative-caret-position="62">
+          <caret line="2" column="14" lean-forward="true" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/plugins/formDesign/js/flowdesign/leipi.flowdesign.v3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="411" column="45" lean-forward="true" selection-start-line="411" selection-start-column="45" selection-end-line="411" selection-end-column="45" />
           <folding>
-            <element signature="e#86#2133#0" expanded="false" />
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1512734775102" expanded="true" signature="6226:6232" ph=" " />
+            <marker date="1512734775102" expanded="true" signature="11238:11244" ph=" " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/workflow/formDesign_my.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="106" column="17" lean-forward="false" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
+        <state relative-caret-position="367">
+          <caret line="269" column="30" lean-forward="true" selection-start-line="269" selection-start-column="30" selection-end-line="269" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/workflow/workflow_manage.pug">
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1581">
-          <caret line="51" column="51" lean-forward="true" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
+        <state relative-caret-position="238">
+          <caret line="109" column="54" lean-forward="true" selection-start-line="109" selection-start-column="54" selection-end-line="109" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/workflow/flowDesigner.pug">
+    <entry file="file://$PROJECT_DIR$/routes/workflow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="61" column="14" lean-forward="true" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
-          <folding />
+        <state relative-caret-position="232">
+          <caret line="89" column="48" lean-forward="true" selection-start-line="89" selection-start-column="48" selection-end-line="89" selection-end-column="48" />
+          <folding>
+            <element signature="e#86#2133#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
