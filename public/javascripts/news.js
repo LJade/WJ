@@ -35,7 +35,6 @@ var doCreateNews = function () {
     data.content = getElementValue('content');
     var checkInfo = checkValue(data);
     if(checkInfo){
-        alert(checkInfo);
         return;
     }
     // 开始提交
@@ -47,7 +46,7 @@ var doCreateNews = function () {
         dataType:'json',
         success:function (data) {
         if(data.code == 1){
-            alert("发布成功");
+            layerAlert("发布成功");
             window.location.reload();
         }},
         error:function (err) {

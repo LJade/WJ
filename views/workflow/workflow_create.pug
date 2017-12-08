@@ -85,18 +85,18 @@ block script
             console.log(data);
 
             if (checkInfo) {
-                alert(checkInfo);
+                layerAlert(checkInfo);
                 return;
             }
             // 开始提交
             $.post('/workflow/node_save', data, function (results) {
                 if (results.code == 1) {
-                    alert("保存节点配置成功");
+                    layerAlert("保存节点配置成功");
                     $('#window'+data.id).find(".process-name").text(data.name);
                     //关闭遮罩层
                     $('#attributeModal').modal('hide');
                 }else{
-                    alert(results.msg);
+                    layerAlert(results.msg);
                 }
             }, 'json');
         })

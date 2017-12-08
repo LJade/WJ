@@ -99,7 +99,7 @@ $(function () {
                 /*重要提示 这里需要去服务器去请求一个新节点 */
                 $.post('/workflow/node_create',{defineId:flowID,type:1},function (result) {
                     if(result.code !== 1){
-                        alert(result.msg);
+                        layerAlert(result.msg);
                         return;
                     }
                     var data = {};
@@ -131,7 +131,7 @@ $(function () {
                 /*重要提示 这里需要去服务器去请求一个新节点 */
                 $.post('/workflow/node_create',{defineId:flowID,type:3},function (result) {
                     if(result.code !== 1){
-                        alert(result.msg);
+                        layerAlert(result.msg);
                         return;
                     }
                     var data = {};
@@ -155,7 +155,7 @@ $(function () {
                 /*重要提示 这里需要去服务器去请求一个新节点 */
                 $.post('/workflow/node_create',{defineId:flowID,type:2},function (result) {
                     if(result.code !== 1){
-                        alert(result.msg);
+                        layerAlert(result.msg);
                         return;
                     }
                     var data = {};
@@ -201,7 +201,7 @@ $(function () {
             "pmCopy": function (t) {
                 var activeId = _canvas.getActiveId();//右键当前的ID
                 _canvas.copy(activeId);//右键当前的ID
-                alert("复制成功");
+                mAlert("复制成功");
             },
             "pmDelete": function (t) {
                 if (confirm("你确定删除步骤吗？")) {
