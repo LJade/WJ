@@ -1,6 +1,7 @@
 include ../components/contact
 
 link(rel='stylesheet', href=__CSS_PATH__ + '/form.css')
+
 .work-create
     .work-form-control
         label.work-control-label(for='name') 节点名称:
@@ -56,15 +57,17 @@ link(rel='stylesheet', href=__CSS_PATH__ + '/form.css')
             input#executeTimeNum.fixed-width-input(type='tel' name='executeTimeNum' value=nodeInfo.executeHours)
             |小时内完成审批
         input#nodeId(type="hidden" value=nodeInfo.id)
-    .work-form-control
-        label.work-control-label 节点功能配置:
-        button.work-btn.work-btn-default.work-btn-sm(type='button') 节点功能配置
-    .work-form-control.btn-wrapper.margin-top-20
-        button#saveNode.work-btn.work-btn-default.work-btn-sm(type='button') 保存
-        button.work-btn.work-btn-default.work-btn-sm(type='button' style='margin-left:20px') 关闭
-#modal(style='display:none')
-    +ContactBook
-#mask(style='display:none')
+    if(!isRead)
+        .work-form-control
+            label.work-control-label 节点功能配置:
+            button.work-btn.work-btn-default.work-btn-sm(type='button') 节点功能配置
+        .work-form-control.btn-wrapper.margin-top-20
+            button#saveNode.work-btn.work-btn-default.work-btn-sm(type='button') 保存
+            button.work-btn.work-btn-default.work-btn-sm(type='button' style='margin-left:20px') 关闭
+if(!isRead)
+    #modal(style='display:none')
+        +ContactBook
+    #mask(style='display:none')
 block script
     script(type="text/javascript" src=__JS_PATH__ + "/common.js")
     script(type="text/javascript" src=__JS_PATH__ + "/workflow/workflow_create.js")

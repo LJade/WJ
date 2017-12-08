@@ -22,7 +22,7 @@ var workflow_config = function(req, res, next) {
                     var tempNode = {};
                     tempNode.id = nodeInfo.id;
                     tempNode.process_name = nodeInfo.name;
-                    tempNode.flow_id = nodeInfo.defineId
+                    tempNode.flow_id = workflowInfo.dat.id;
                     tempNode.process_to =nodeInfo.processTo;
                     if(nodeInfo.type === 1 ){
                         tempNode.icon = "icon-play";
@@ -36,6 +36,7 @@ var workflow_config = function(req, res, next) {
                     tempNode.style = nodeInfo.ext;
                     parseProcessData.push(tempNode);
                 });
+                console.log(parseProcessData);
                 var processData = {};
                 processData.total = parseProcessData.length;
                 processData.list = parseProcessData;
@@ -67,6 +68,7 @@ var workflow_edit = function(req, res, next) {
             //获取单个节点得配置信息
             var nodeInfoJSON = JSON.parse(results[1]);
             if(nodeInfoJSON.code === 1){
+                JADE_VAR.isRead = false;
                 JADE_VAR.nodeInfo = nodeInfoJSON.dat;
                 res.render('workflow/workflow_create',JADE_VAR);
             }else{
@@ -116,7 +118,7 @@ var workflow_save = function (req, res, next) {
            "id": data,
            "name":workflowInfo[data].name.trim(),
            "type":workflowInfo[data].type,
-           "ext":"width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+workflowInfo[data].left+";top:"+workflowInfo[data].top+";",
+           "ext":"width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+workflowInfo[data].left+"px;top:"+workflowInfo[data].top+"px;",
            "processTo":String(workflowInfo[data].process_to)
        }
        paramsList.push(temp);
@@ -149,6 +151,7 @@ var node_info = function (req,res,next) {
         var nodeInfoJSON = JSON.parse(results);
         if(nodeInfoJSON.code === 1){
             JADE_VAR.nodeInfo = nodeInfoJSON.dat;
+            JADE_VAR.isRead = true;
             //渲染页面
             res.render('workflow/workflow_create',JADE_VAR);
         }else{
