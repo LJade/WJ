@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="../../stylesheets/normalize.css">
     <link rel="stylesheet" href="../../stylesheets/style.css">
     <link rel="stylesheet" href="../../plugins/layui/css/layui.css">
-    <script src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
-    <script src="../../plugins/jquery-2.1.4/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../../plugins/jquery-2.1.4/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="../../javascripts/common.js"></script>
   </head>
-  <script src="../../plugins/layui/layui.js">
-    <script src="../../javascripts/common.js"></script>
-  </script>
   <body>
     <div id="wrapper">
       <div id="header">
@@ -29,7 +28,7 @@
         <header id="common-header">
           <div class="header-left">
             <div class="header-logo"><img src="../../images/logo.png"></div>
-            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href="/im"><i class="icon icon-envelope"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href="#"><i class="icon icon-screen"></i>多屏幕模式</a></div>
+            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home2"></i>工作台</a><a href="/im"><i class="icon icon-envelope2"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href="#"><i class="icon icon-screen"></i>多屏幕模式</a></div>
           </div>
           <div class="header-right">
             <div class="header-search">
@@ -38,7 +37,7 @@
             <div class="login-user">
               <div class="img-wrapper"><img src="../../images/avatar.png"></div>
               <!--.name   Lingyu.ZHOU-->
-            </div><a class="star"><i class="icon icon-star"></i></a><a class="login-out"><i class="icon icon-close"></i></a>
+            </div><a class="star"><i class="icon icon-star2"></i></a><a class="login-out" onclick="login_out();"><i class="icon icon-close"></i></a>
           </div>
         </header>
       </div>
@@ -56,27 +55,29 @@
             <div class="module-wrapper">
               <div class="module-nav">
                 <div class="nav-heading clearfix">
-                  <h3>日常办公</h3><a class="more">更多<i class="icon-add"></i></a>
+                  <h3>智慧港航</h3><a class="more">更多<i class="icon-add"></i></a>
                 </div>
                 <ul class="nav-body clearfix">
-                  <li><a href="/news/news_list">
+                  <li><a href="/news/news_list" target="_blank">
                       <div class="img-wrapper"><img src="../../images/nav.png"></div><span>新闻</span></a></li>
-                  <li><a href="/notice/notice_list">
+                  <li><a href="/notice/notice_list" target="_blank">
                       <div class="img-wrapper"><img src="../../images/notice.png"></div><span> 公告</span></a></li>
-                  <li><a href="/docu/docu_list">
+                  <li><a href="/docu/docu_list" target="_blank">
                       <div class="img-wrapper"><img src="../../images/document.png"></div><span>公文</span></a></li>
+                  <li><a href="/workflow/workflow_manage" target="_blank">
+                      <div class="img-wrapper"><img src="../../images/nav.png"></div><span>流程</span></a></li>
                 </ul>
               </div>
               <div class="module-nav">
                 <div class="nav-heading clearfix">
-                  <h3>日常办公</h3><a class="more">更多<i class="icon-add"></i></a>
+                  <h3>综合执法</h3><a class="more">更多<i class="icon-add"></i></a>
                 </div>
                 <ul class="nav-body clearfix">
-                  <li><a href="/mail/mail_receive">
+                  <li><a href="/mail/mail_receive" target="_blank">
                       <div class="img-wrapper"><img src="../../images/mail.png"></div><span>邮箱</span></a></li>
-                  <li><a href="/order/order_mine">
+                  <li><a href="/order/order_mine" target="_blank">
                       <div class="img-wrapper"><img src="../../images/function.png"></div><span>工单</span></a></li>
-                  <li><a href="/conference/con_history">
+                  <li><a href="/conference/con_history" target="_blank">
                       <div class="img-wrapper"><img src="../../images/conference.png"></div><span>会议管理</span></a></li>
                 </ul>
               </div>
@@ -87,13 +88,13 @@
           <script src="../../plugins/calendar/simple-calendar.js"></script>
           <script type="text/javascript">
             var options = {
-                width: '400px',
-                height: '400px',
+                width: '320px',
+                height: '320px',
                 language: 'CH', //语言
                 showLunarCalendar: false, //阴历
                 showHoliday: false, //休假
                 showFestival: false, //节日
-                showLunarFestival: false, //农历节日
+                showLunarFestival: true, //农历节日
                 showSolarTerm: false, //节气
                 showMark: true, //标记
                 timeRange: {

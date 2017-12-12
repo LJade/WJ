@@ -21,7 +21,7 @@ block main_content
                     input#creator.form-control(type='text' value=noticeDetail.publicName)
                 .form-control
                     label.control-label(for='publicTime') 发布时间:
-                    input#publicTime.form-control(type='date' value=noticeDetail.publicTime)
+                    input#date.form-control(type='text' value=noticeDetail.publicTime)
                 .form-control
                     label.control-label(for='lookUpPersonId') 查阅人员:
                     input#lookUpPersonId.form-control(type='text' readonly value=noticeDetail.userlist)
@@ -50,6 +50,8 @@ block main_content
                 button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
 block script
     script(src=__JS_PATH__ + "/notice.js" type="text/javascript")
+    script(type='text/javascript' src=__JS_PATH__ + '/notice/notice_create.js')
+
 
 
 
