@@ -734,19 +734,25 @@ textarea:focus {
   background: #36a4e3;
   color: #ffffff; }
 
-#calendar {
-  position: absolute;
-  left: 660px;
-  top: 0; }
-
 /*home page style*/
 .home {
-  position: relative; }
+  position: relative;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .home .module-wrapper {
+    width: 100%; }
+  .home #calendar {
+    width: 320px;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    margin: 0 15px; }
 
 .module-nav {
   background: #ffffff;
   padding-left: 20px;
-  max-width: 650px;
+  min-width: 450px;
   margin-bottom: 10px; }
   .module-nav .nav-heading {
     height: 40px;
@@ -767,11 +773,14 @@ textarea:focus {
     padding: 10px 0 20px; }
     .module-nav .nav-body li {
       float: left;
-      width: 60px;
+      width: 20%;
+      min-width: 60px;
       text-align: center;
-      height: 80px;
-      margin-right: 35px;
-      margin-bottom: 15px; }
+      height: 80px; }
+      .module-nav .nav-body li a {
+        display: block;
+        width: 60px;
+        height: 80px; }
       .module-nav .nav-body li span {
         display: block;
         line-height: 2; }

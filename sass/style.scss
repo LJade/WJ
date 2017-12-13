@@ -135,20 +135,26 @@
 }
 
 
-#calendar{
-  position: absolute;
-  left: 660px;
-  top:0;
-}
 
 /*home page style*/
 .home{
   position: relative;
+  width: 100%;
+  display: flex;
+  .module-wrapper{
+    width: 100%;
+  }
+  #calendar{
+    width: 320px;
+    flex-shrink: 0;
+    margin: 0 15px;
+  }
 }
+
 .module-nav{
   background: #ffffff;
   padding-left: 20px;
-  max-width: 650px;
+  min-width: 450px;
   margin-bottom: 10px;
   .nav-heading{
     height: 40px;
@@ -173,11 +179,15 @@
     padding: 10px 0 20px;
     li{
       float: left;
-      width: 60px;
+      width: 20%;
+      min-width: 60px;
       text-align: center;
       height: 80px;
-      margin-right: 35px;
-      margin-bottom: 15px;
+      a{
+        display: block;
+        width: 60px;
+        height: 80px;
+      }
       span{
         display: block;
         line-height: 2;
@@ -377,7 +387,7 @@ input[type='checkbox']{
   padding-left:20px;
   line-height: 2.5;
 
-  .structure-node{
+.structure-node{
     position: relative;
     cursor: pointer;
     &.open-node{
