@@ -1,6 +1,8 @@
 extends ../components/base
 block title
     title 消息
+block style
+    link(rel='stylesheet', href=__PLUGINS_PATH__ + '/webim/webim_style.css')
 block main_content
     #chat-wrapper(style='min-height:800px;position:relative;')
         section(id='main').w100
@@ -9,6 +11,9 @@ block main_content
     style.
         #wrapper{
             position: fixed !important;
+        }
+        #main-wrapper {
+            margin-top: 0 !important;
         }
         #main-content{
             margin-left: auto !important;
@@ -67,6 +72,3 @@ block script
             appKey: WebIM.config.appkey
         };
         Demo.conn.open(options);
-        //初始化IM上面的active
-        $('.header-nav').find("a").removeClass("active");
-        $(".header-nav").find("a").eq(1).addClass("active");

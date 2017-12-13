@@ -3,6 +3,19 @@ window.onload = function () {
     if(wrapper){
         wrapper.style.minHeight = document.body.clientHeight - wrapper.offsetHeight +'px';
     }
+
+    if($('#date').length){
+        console.log(12313123);
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#date',
+                theme: '#36a4e3'
+            });
+        });
+    }
+
 };
 
 var checkValue = function (data) {
@@ -21,16 +34,9 @@ var checkValue = function (data) {
     }
 };
 
-// layui.use('laydate', function(){
-//     var laydate = layui.laydate;
-//     //执行一个laydate实例
-//     laydate.render({
-//         elem: '#date',
-//         theme: '#36a4e3'
-//     });
-// });
 
-var layer = layui.layer;
+
+
 
 function login_out() {
     layui.use('layer', function() { //独立版的layer无需执行这一句
