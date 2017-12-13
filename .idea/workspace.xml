@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="df786d1d-6b96-4672-b7e2-ea558d575c2b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/home/index.html" afterPath="$PROJECT_DIR$/public/html/home/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/login.css" afterPath="$PROJECT_DIR$/public/stylesheets/login.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/login.scss" afterPath="$PROJECT_DIR$/sass/login.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/style.scss" afterPath="$PROJECT_DIR$/sass/style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/home/index.pug" afterPath="$PROJECT_DIR$/views/home/index.pug" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/login/loginLayout.pug" afterPath="$PROJECT_DIR$/views/login/loginLayout.pug" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,7 +21,7 @@
       <file leaf-file-name="index.pug" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/home/index.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-715">
+            <state relative-caret-position="168">
               <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
               <folding />
             </state>
@@ -37,17 +31,17 @@
       <file leaf-file-name="style.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sass/style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="722">
-              <caret line="200" column="11" lean-forward="true" selection-start-line="200" selection-start-column="11" selection-end-line="200" selection-end-column="11" />
+            <state relative-caret-position="330">
+              <caret line="173" column="27" lean-forward="true" selection-start-line="173" selection-start-column="27" selection-end-line="173" selection-end-column="27" />
               <folding>
                 <element signature="e#351#901#0" expanded="false" />
                 <element signature="e#918#1760#0" expanded="false" />
-                <element signature="e#4320#4898#0" expanded="false" />
-                <element signature="e#5098#5722#0" expanded="false" />
-                <element signature="e#5965#6267#0" expanded="false" />
-                <element signature="e#6548#7392#0" expanded="false" />
-                <element signature="e#7529#8568#0" expanded="false" />
-                <element signature="e#8587#10567#0" expanded="false" />
+                <element signature="e#4355#4933#0" expanded="false" />
+                <element signature="e#5133#5757#0" expanded="false" />
+                <element signature="e#6000#6302#0" expanded="false" />
+                <element signature="e#6583#7427#0" expanded="false" />
+                <element signature="e#7564#8603#0" expanded="false" />
+                <element signature="e#8622#10602#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -168,8 +162,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="882" />
-    <option name="y" value="160" />
+    <option name="x" value="570" />
+    <option name="y" value="135" />
     <option name="width" value="1624" />
     <option name="height" value="1159" />
   </component>
@@ -519,14 +513,8 @@
       <workItem from="1512300118293" duration="37270000" />
       <workItem from="1512699194690" duration="31630000" />
       <workItem from="1512739241920" duration="6200000" />
-      <workItem from="1513172886830" duration="1715000" />
-    </task>
-    <task id="LOCAL-00006" summary="修改按钮样式">
-      <created>1510757006464</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1510757006464</updated>
+      <workItem from="1513172886830" duration="2034000" />
+      <workItem from="1513178172979" duration="106000" />
     </task>
     <task id="LOCAL-00007" summary="新增新闻模块  修改登录模块  修改首页样式">
       <created>1510846100329</created>
@@ -864,14 +852,21 @@
       <option name="project" value="LOCAL" />
       <updated>1513093940951</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="修改登录 首页样式问题">
+      <created>1513174955294</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1513174955295</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255111000" />
+    <option name="totallyTimeSpent" value="255536000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="882" y="160" width="1624" height="1159" extended-state="0" />
+    <frame x="570" y="135" width="1624" height="1159" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1709295" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -923,7 +918,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="路由查找" />
     <MESSAGE value="角色" />
     <MESSAGE value="权限" />
     <MESSAGE value="流程配置页面" />
@@ -948,7 +942,8 @@
     <MESSAGE value="接入nodeDetail接口" />
     <MESSAGE value="create_news 加入人员选择" />
     <MESSAGE value="新加 新闻  公告的js 日期  修改首页跳转新窗口打开 修改最大宽度" />
-    <option name="LAST_COMMIT_MESSAGE" value="新加 新闻  公告的js 日期  修改首页跳转新窗口打开 修改最大宽度" />
+    <MESSAGE value="修改登录 首页样式问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改登录 首页样式问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -976,7 +971,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1155">
           <caret line="55" column="9" lean-forward="false" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1278,13 +1272,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
           <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <element signature="e#619#701#0" expanded="false" />
-            <element signature="e#714#765#0" expanded="false" />
-            <element signature="e#779#1586#0" expanded="false" />
-            <element signature="e#1598#1793#0" expanded="false" />
-            <element signature="e#1806#2103#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1299,7 +1286,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
           <caret line="33" column="17" lean-forward="false" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1307,13 +1293,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/home/index.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-715">
+        <state relative-caret-position="168">
           <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
           <folding />
         </state>
@@ -1321,17 +1306,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sass/style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="200" column="11" lean-forward="true" selection-start-line="200" selection-start-column="11" selection-end-line="200" selection-end-column="11" />
+        <state relative-caret-position="330">
+          <caret line="173" column="27" lean-forward="true" selection-start-line="173" selection-start-column="27" selection-end-line="173" selection-end-column="27" />
           <folding>
             <element signature="e#351#901#0" expanded="false" />
             <element signature="e#918#1760#0" expanded="false" />
-            <element signature="e#4320#4898#0" expanded="false" />
-            <element signature="e#5098#5722#0" expanded="false" />
-            <element signature="e#5965#6267#0" expanded="false" />
-            <element signature="e#6548#7392#0" expanded="false" />
-            <element signature="e#7529#8568#0" expanded="false" />
-            <element signature="e#8587#10567#0" expanded="false" />
+            <element signature="e#4355#4933#0" expanded="false" />
+            <element signature="e#5133#5757#0" expanded="false" />
+            <element signature="e#6000#6302#0" expanded="false" />
+            <element signature="e#6583#7427#0" expanded="false" />
+            <element signature="e#7564#8603#0" expanded="false" />
+            <element signature="e#8622#10602#0" expanded="false" />
           </folding>
         </state>
       </provider>

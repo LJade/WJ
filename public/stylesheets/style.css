@@ -773,10 +773,11 @@ textarea:focus {
     padding: 10px 0 20px; }
     .module-nav .nav-body li {
       float: left;
-      width: 20%;
       min-width: 60px;
       text-align: center;
-      height: 80px; }
+      height: 80px;
+      margin-right: 35px;
+      margin-bottom: 15px; }
       .module-nav .nav-body li a {
         display: block;
         width: 60px;
