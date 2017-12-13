@@ -606,7 +606,7 @@ textarea:focus {
 /*header*/
 #common-header {
   width: 100%;
-  min-width: 1200px;
+  min-width: 1000px;
   height: 60px;
   background: #ffffff;
   display: -webkit-box;
@@ -630,7 +630,6 @@ textarea:focus {
             align-items: center; }
   #common-header .header-left .header-nav a {
     float: left;
-    margin-right: 30px;
     line-height: 60px;
     display: block;
     padding: 0 15px;
@@ -693,7 +692,7 @@ textarea:focus {
 /* main layout*/
 #wrapper {
   width: 100%;
-  min-width: 1200px;
+  min-width: 1000px;
   height: 100%;
   background: #f2f0f0;
   position: relative; }
@@ -817,7 +816,7 @@ textarea:focus {
 #inner-content {
   margin-left: 150px;
   padding: 15px;
-  max-width: 1200px; }
+  max-width: 1000px; }
 
 .link {
   color: #36a4e3; }
@@ -867,8 +866,8 @@ textarea:focus {
   vertical-align: middle; }
 
 input[type='checkbox'] {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 0; }
 
 .section-block {

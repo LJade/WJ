@@ -12,11 +12,16 @@
   align-items: center;
   .inline-group{
     margin-right: 25px;
-    input[type='input']{
-      width: 100px;
+    input[type='text']{
+      box-sizing: border-box;
+      width: 90px;
+      color: #666;
+      font-size: 12px;
+      line-height: 2;
+      padding: 0 10px;
     }
     label{
-      margin-right: 5px;
+      margin-right: 3px;
     }
     button{
       margin-left: 20px;
