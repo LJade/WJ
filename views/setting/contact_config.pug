@@ -1,6 +1,6 @@
 extends ../components/base
 block title
-    title 组织机构编辑
+    title 应用添加
 block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
@@ -10,29 +10,30 @@ block aside_content
 block main_content
     include ../components/mixin
     -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_addpage',text:'对接系统管理'},{link:'#',text:'第三方应用系统管理'}]
-    +menuLink(menuObj,0)
-    -var navObj = [{link:'#',text:'组织机构管理'},{link:'/setting/user_manage',text:'用户管理'},{link:'/setting/role_manage',text:'角色权限管理'},{link:'/setting/region_manage',text:'行政区划分'},{link:'/setting/log_manage',text:'日志管理'}]
-    +menuNav(navObj,0)
-    +RouteNav('组织机构编辑')
+    +menuLink(menuObj,1)
+    -var navObj = [{link:'/setting/contact_addpage',text:'应用配置'},{link:'/setting/contact_config',text:'应用权限配置'}]
+    +menuNav(navObj,1)
+    +RouteNav('权限配置')
     #inner-wrapper
         .news-create
             .form-control
-                label.control-label(for='department') 部门名称:
-                input#department.form-control(type='text')
+                label.control-label(for='sysName') 系统中文名称:
+                input#sysName.form-control(type='text')
             .form-control
-                label.control-label(for='depart') 上级部门:
-                select#depart.form-control
-                    option xxx
-                    option xxx
-                    option xxx
-                    option xxx
-                    option xxx
+                label.control-label(for='source') URL地址:
+                input#source.form-control(type='text')
             .form-control
-                label.control-label(for='order') 排序:
+                label.control-label(for='order') 应用排序:
                 input#order.form-control(type='text')
+            .form-control
+                label.control-label(for='description') 应用描述:
+                textarea#description.form-control(rows='8')
             .form-control.btn-wrapper
-                button.btn.btn-default.btn-sm(type='button') 保存
+                button.btn.btn-default.btn-sm(type='button') 添加
                 button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+
+
+
 
 
 

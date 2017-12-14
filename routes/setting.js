@@ -55,6 +55,15 @@ var app_permission = function(req, res, next) {
     res.render('setting/app_permission',JADE_VAR);
 };
 
+var contact_addpage = function (req,res,next) {
+    var JADE_VAR = assert.getJADE();
+    res.render('setting/contact_addpage',JADE_VAR);
+};
+
+var contact_config = function (req,res,next) {
+    var JADE_VAR = assert.getJADE();
+    res.render('setting/contact_config',JADE_VAR);
+};
 
 module.exports = {
     app_create:app_create,
@@ -67,5 +76,7 @@ module.exports = {
     role_manage:role_manage,
     location_manage:location_manage,
     log_manage:log_manage,
-    app_permission:app_permission
+    app_permission:app_permission,
+    contact_addpage:contact_addpage,
+    contact_config:contact_config
 };

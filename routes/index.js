@@ -42,6 +42,9 @@ module.exports = function (app) {
     app.get('/setting/location_manage', setting.location_manage);
     app.get('/setting/log_manage', setting.log_manage);
     app.get('/setting/app_permission', setting.app_permission);
+    app.get('/setting/contact_addpage', setting.contact_addpage);
+    app.get('/setting/contact_config', setting.contact_config);
+
 
     /** 新闻相关路由*/
     app.get('/news/news_list', news.news_list);
