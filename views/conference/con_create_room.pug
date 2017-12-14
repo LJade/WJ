@@ -1,0 +1,30 @@
+extends ../components/base
+block title
+    title  会议室维护
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/conference/con_room',text:'会议室维护'},{link:'/conference/con_apply',text:'会议申请'},{link:'/conference/con_approve',text:'待我审批'},{link:'/conference/con_summary',text:'会议纪要'},{link:'/conference/con_history',text:'历史会议'},{link:'/conference/con_sign',text:'会议签到情况'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('会议室维护')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='name') 会议室名称:
+                input#name.form-control(type='text' value=roomDetail.name)
+            .form-control
+                label.control-label(for='accommodatePeopleNumber') 容纳人数:
+                input#accommodatePeopleNumber.form-control(type='text' value=roomDetail.accommodatePeopleNumber)
+            .form-control
+                label.control-label(for='meetingRoomResource') 会议室资源:
+                input#meetingRoomResource.form-control(type='text' value=roomDetail.meetingRoomResource)
+            if(isEdit)
+                .form-control.btn-wrapper
+                    input#roomId(type="hidden" value=roomDetail.id)
+                    button#save_room.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 保存
+                    button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+block script
+    script(src=__JS_PATH__ + "/conference.js" type="text/javascript")

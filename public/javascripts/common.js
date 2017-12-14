@@ -40,6 +40,17 @@ window.onload = function () {
     }
 };
 
+function layerDate(id) {
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#'+id,
+            theme: '#36a4e3'
+        });
+    });
+}
+
 var checkValue = function (data) {
     var keys = Object.keys(data);
     var nullKey = '';
@@ -109,6 +120,26 @@ function deleteSomething(modules,typeThing) {
         case 'document_document':
             delOption.url = '/docu/docu_delete';
             delOption.data.CommonalityArticleIdList = deleleIDs;
+            break;
+        case 'mail_send':
+            delOption.url = '/mail/send_delete';
+            delOption.data.sendMailIdList = deleleIDs;
+            break;
+        case 'mail_receive':
+            delOption.url = '/mail/receive_delete';
+            delOption.data.receivedMailIdList = deleleIDs;
+            break;
+        case 'order_order':
+            delOption.url = '/order/order_delete';
+            delOption.data.workOrderApplyIdList = deleleIDs;
+            break;
+        case 'conference_conference':
+            delOption.url = '/conference/con_delete';
+            delOption.data.meetingIdList = deleleIDs;
+            break;
+        case 'conference_meetingRoom':
+            delOption.url = '/conference/con_room_delete';
+            delOption.data.idList = deleleIDs;
             break;
         default:
             layerAlert("没有要找到待删除的模块",'error');

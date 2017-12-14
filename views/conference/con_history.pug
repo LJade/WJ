@@ -15,11 +15,11 @@ block main_content
             label(for='newsTheme') 会议主题:
             input#newsTheme(type='text')
         .inline-group
-            label(for='newsCreate') 发布时间:
-            input#newsCreate(type='time')
+            label(for='date') 发布时间:
+            input#date(type='text')
         .inline-group
             button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-            button.btn.btn-warning.btn-sm(type='button') 删除
+            button.btn.btn-warning.btn-sm(type='button' onclick='deleteSomething("conference","conference")') 删除
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -37,7 +37,7 @@ block main_content
                         each conference in confercences
                             tr
                                 td
-                                    input(type='checkbox')
+                                    input(type='checkbox' data-id=conference.meetingId)
                                 td.link  #{conference.title}
                                 td  已结束
                                 td  #{conference.startTime}

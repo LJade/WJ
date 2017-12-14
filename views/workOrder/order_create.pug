@@ -14,37 +14,39 @@ block main_content
     #inner-wrapper
         .news-create
             .form-control
-                label.control-label(for='title') 索引号:
-                input#title.form-control(type='text')
+                label.control-label(for='indexNumber') 索引号:
+                input#indexNumber.form-control(type='text' value=orderDetail.indexNumber)
             .form-control
-                label.control-label(for='type') 信息分类:
-                select#type.form-control
-                    option xxx
-                    option xxx
-                    option xxx
-                    option xxx
-                    option xxx
+                label.control-label(for='informationType') 信息分类:
+                select#informationType.form-control
+                    option 请假
+                    option 入职
+                    option 签到
+                    option 补录
             .form-control
                 label.control-label(for='creator') 发布机构:
-                input#creator.form-control(type='text' readonly placeholder='默认当前部门')
+                input#creator.form-control(type='text' placeholder='默认当前部门')
             .form-control
-                label.control-label(for='time') 生成日期:
-                input#time.form-control(type='date' readonly)
+                label.control-label(for='businessCreateTime') 生成日期:
+                input#businessCreateTime.form-control(type='text' readonly value=orderDetail.businessCreateTime)
             .form-control
-                label.control-label(for='time') 生效日期:
-                input#start.form-control(type='date' readonly)
+                label.control-label(for='takeEffectTime') 生效日期:
+                input#takeEffectTime.form-control(type='text' readonly value=orderDetail.takeEffectTime)
             .form-control
-                label.control-label(for='time') 废止日期:
-                input#end.form-control(type='date' readonly)
+                label.control-label(for='abolishTime') 废止日期:
+                input#abolishTime.form-control(type='text' readonly value=orderDetail.abolishTime)
             .form-control
-                label.control-label(for='review') 信息名称:
-                input#review.form-control(type='text')
+                label.control-label(for='informationName') 信息名称:
+                input#informationName.form-control(type='text' value=orderDetail.informationName)
             .form-control
                 label.control-label(for='detail') 内容概览:
-                textarea#detail.form-control(rows=10 )
-            .form-control.btn-wrapper
-                button.btn.btn-default.btn-sm(type='button') 发布
-                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+                textarea#detail.form-control(rows=10 ) #{orderDetail.content}
+            if(isEdit)
+                .form-control.btn-wrapper
+                    button#save_order.btn.btn-default.btn-sm(type='button') 发布
+                    button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+block script
+    script(type='text/javascript' src=__JS_PATH__ + '/order.js')
 
 
 

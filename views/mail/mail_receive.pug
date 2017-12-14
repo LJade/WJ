@@ -5,23 +5,22 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/mail/mail_create',text:'发送邮件'},{link:'#',text:'已发邮件'},{link:'#',text:'已收邮件'}]
+    -var routerObj = [{link:'/mail/mail_create',text:'发送邮件'},{link:'/mail/mail_send',text:'已发邮件'},{link:'#',text:'已收邮件'}]
     +asideNav(routerObj,2)
 block main_content
     include ../components/mixin
     +RouteNav('已收邮件')
     .condition
         .inline-group
-            label(for='newsCreate') 发送时间:
-            input#newsCreate(type='time')
+            label(for='date') 发送时间:
+            input#date(type='text')
         .inline-group
             label(for='newsTheme') 发送人:
             input#newsTheme(type='text')
         .inline-group
             button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 新建
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 编辑
-            button.btn.btn-warning.btn-sm(type='button') 删除
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/mail/mail_create"') 新建
+            button.btn.btn-warning.btn-sm(type='button' onclick='deleteSomething("mail","receive")') 删除
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -31,32 +30,21 @@ block main_content
                             input(type='checkbox')
                         td  标题
                         td  发布时间
-                        td  发布人
+                        td  发送人
+                        td  操作
                 tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  2017-12-01
-                        td  管理员
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  2017-12-01
-                        td  管理员
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  2017-12-01
-                        td  管理员
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  2017-12-01
-                        td  管理员
+                    if(mails.length)
+                        each mail in mails
+                            tr
+                                td
+                                    input(type='checkbox' data-id=mail.sendMailId)
+                                td.link  #{mail.title}
+                                td  #{mail.sendTime}
+                                td  #{mail.sendName}
+                                td
+                                    a.link(href='/mail/mail_detail?edit=false&sendMailId=' + mail.sendMailId) 查看
+                                    a.link(style='margin-left:20px;' href='/mail/mail_detail?edit=true&sendMailId=' + mail.sendMailId) 编辑
+
 
 
 

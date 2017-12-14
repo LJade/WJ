@@ -11,26 +11,27 @@ block main_content
     include ../components/mixin
     -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/app_create',text:'对接系统管理'},{link:'#',text:'第三方应用系统管理'}]
     +menuLink(menuObj,1)
-    -var navObj = [{link:'/setting/app_create',text:'应用配置'},{link:'/setting/app_permission',text:'应用权限配置'}]
+    -var navObj = [{link:'/setting/app_create',text:'应用管理'},{link:'/setting/app_permission',text:'应用查看'}]
     +menuNav(navObj,0)
-    +RouteNav('应用添加')
+    +RouteNav('应用管理')
     #inner-wrapper
         .news-create
-            .form-control
-                label.control-label(for='sysName') 系统中文名称:
-                input#sysName.form-control(type='text')
-            .form-control
-                label.control-label(for='source') URL地址:
-                input#source.form-control(type='text')
-            .form-control
-                label.control-label(for='order') 应用排序:
-                input#order.form-control(type='text')
-            .form-control
-                label.control-label(for='description') 应用描述:
-                textarea#description.form-control(rows='8')
-            .form-control.btn-wrapper
-                button.btn.btn-default.btn-sm(type='button') 添加
-                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+            img(style='max-width:800px;' src=__IMAGES_PATH__ + '/app_manage.png')
+            //.form-control
+            //    label.control-label(for='sysName') 系统中文名称:
+            //    input#sysName.form-control(type='text')
+            //.form-control
+            //    label.control-label(for='source') URL地址:
+            //    input#source.form-control(type='text')
+            //.form-control
+            //    label.control-label(for='order') 应用排序:
+            //    input#order.form-control(type='text')
+            //.form-control
+            //    label.control-label(for='description') 应用描述:
+            //    textarea#description.form-control(rows='8')
+            //.form-control.btn-wrapper
+            //    button.btn.btn-default.btn-sm(type='button') 添加
+            //    button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
 
 
 

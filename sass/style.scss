@@ -374,11 +374,13 @@ input[type='checkbox']{
 }
 .container-wrapper{
   display: flex;
+  min-height: 500px;
   .structure{
     background: $white-color;
     border-right: 1px solid $border-color;
     padding: 10px 0;
     width: 320px;
+    overflow-y: auto;
   }
   .content-list{
    width: 100%;

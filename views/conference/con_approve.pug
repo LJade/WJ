@@ -15,8 +15,8 @@ block main_content
             label(for='newsTheme') 主题:
             input#newsTheme(type='text')
         .inline-group
-            label(for='newsCreate') 发布时间:
-            input#newsCreate(type='time')
+            label(for='date') 发布时间:
+            input#date(type='text')
         .inline-group
             button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
             button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 会议新建
@@ -35,62 +35,17 @@ block main_content
                         td  会议纪要
                         td  操作
                 tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  未开始
-                        td  2017-12-01
-                        td  无
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  未开始
-                        td  2017-12-01
-                        td  无
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  未开始
-                        td  2017-12-01
-                        td  无
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  未开始
-                        td  2017-12-01
-                        td  无
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  未开始
-                        td  2017-12-01
-                        td  无
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  未开始
-                        td  2017-12-01
-                        td  无
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  未开始
-                        td  2017-12-01
-                        td  无
-                        td.link  审核
+                    if(confercences.length)
+                        each conference in confercences
+                            tr
+                                td
+                                    input(type='checkbox' data-id=conference.meetingId)
+                                td.link  #{conference.title}
+                                td  #{conference.approveStatus === 0 ? "未审批" : conference.approveStatus === 1 ? '审批通过' : conference.approveStatus === 2 ? '审批不通过' : '他人已审批'}
+                                td  #{conference.startTime}
+                                td  #{conference.summaryContent}
+                                td.link  审核
+
             .content-bottom-handle
                 button.btn.btn-default.btn-sm(type='button') 审批通过
                 button.btn.btn-primary.btn-sm(type='button' style='margin-left:20px') 审批不通过

@@ -15,13 +15,13 @@ block main_content
             label(for='newsTheme') 会议主题:
             input#newsTheme(type='text')
         .inline-group
-            label(for='newsCreate') 开会日期:
-            input#newsCreate(type='time')
+            label(for='date') 开会日期:
+            input#date(type='text')
         .inline-group
             button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
             button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/conference/con_create"') 会议发起
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 取消会议
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 会议纪要
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("conference","conference")') 取消会议
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/conference/con_summary_detail"') 会议纪要
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -32,15 +32,18 @@ block main_content
                         td  会议议题
                         td  会议时间
                         td  会议纪要
+                        td  查看
                 tbody
                     if(confercences.length)
                         each conference in confercences
                             tr
                                 td
-                                    input(type='checkbox')
+                                    input(type='checkbox' data-id=conference.meetingId)
                                 td.link  #{conference.title}
                                 td  #{conference.startTime}
                                 td  #{conference.summaryContent}
+                                td
+                                    a.link(href='/conference/con_detail?edit=false&meetingId='+conference.meetingId) 查看
 
 
 

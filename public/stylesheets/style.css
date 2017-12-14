@@ -936,12 +936,14 @@ input[type='checkbox'] {
 .container-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  min-height: 500px; }
   .container-wrapper .structure {
     background: #ffffff;
     border-right: 1px solid #ececec;
     padding: 10px 0;
-    width: 320px; }
+    width: 320px;
+    overflow-y: auto; }
   .container-wrapper .content-list {
     width: 100%; }
 

@@ -22,8 +22,8 @@ block main_content
             input#read(type='radio' name='read' style='margin-right:10px')
             label(for='read') 已审批
         .inline-group
-            label(for='newsCreate') 发布时间:
-            input#newsCreate(type='time')
+            label(for='date') 发布时间:
+            input#date(type='text')
         .inline-group
             button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
     #inner-wrapper
@@ -40,96 +40,19 @@ block main_content
                         td  发布状态
                         td  操作
                 tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
+                    if(orders.length)
+                        each order in orders
+                            tr
+                                td
+                                    input(type='checkbox' data-id=order.workOrderApplyId)
+                                td.link  #{order.informationName}
+                                td  #{order.userId}
+                                td  #{order.informationType}
+                                td  #{order.businessCreateTime}
+                                td  #{order.approveStatus === 0 ? "未审批" : order.approveStatus === 1 ? '审批通过' : order.approveStatus === 2 ? '审批不通过' : '他人已审批'}
+                                td
+                                    a.link(href='/order/approve_detail?edit=false&workOrderApplyId=' + order.workOrderApplyId) 查看
+                                    a.link(style='margin-left:20px;' href='/order/approve_detail?edit=true&workOrderApplyId=' + order.workOrderApplyId) 编辑
             .content-bottom-handle
                 button.btn.btn-default.btn-sm(type='button') 审批通过
                 button.btn.btn-primary.btn-sm(type='button' style='margin-left:20px') 审批不通过

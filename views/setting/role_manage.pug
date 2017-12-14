@@ -20,19 +20,22 @@ block main_content
                     button.btn.btn-warning.btn-lg 新建
                     button.btn.btn-warning.btn-lg 编辑
                 ul.user-list
-                    li.open 吴江交通局
-                        ul
-                            li.close ROOT
-                            li.close 管理员
-                            li.open 实名用户
-                                ul
-                                    li 唐僧
-                                    li 孙悟空
-                                    li 猪八戒
-                                    li 沙悟净
-                                    li 东海龙王
-                                    li.active 西海龙王
-                                    li 南海龙王
+                    li.structure-node.open-node 吴江交通局
+                        ul.structure-tree
+                            li.structure-node.close-node ROOT
+                                ul.structure-tree
+                                    li 小王
+                            li.structure-node.close-node 管理员
+                                ul.structure-tree
+                                    li 小王
+                                    li 老张
+                            li.structure-node.open-node 实名用户
+                                ul.structure-tree
+                                    li 小王
+                                    li.active 芦苇
+                                    li 王哥
+                                    li 小赵
+                                    li 吴姐
                 .manage-handle
                     button.btn.btn-sm.btn-default 保存
                     button.btn.btn-sm.btn-disable 取消
@@ -123,3 +126,22 @@ block main_content
                             span.close
                                 i.icon.icon-file
                                 | 审批管理
+block script
+    script(type='text/javascript').
+        $('.close-node').on('click', function (e) {
+            if ($(this).hasClass('open-node')) {
+                $(this).removeClass('open-node').addClass('close-node').find('ul').first().hide()
+            } else {
+                $(this).removeClass('close-node').addClass('open-node').find('ul').first().show()
+            }
+            e.stopPropagation();//阻止冒泡
+        });
+
+        $('.open-node').on('click', function (e) {
+            if ($(this).hasClass('close-node')) {
+                $(this).removeClass('close-node').addClass('open-node').find('ul').first().show()
+            } else {
+                $(this).removeClass('open-node').addClass('close-node').find('ul').first().hide()
+            }
+            e.stopPropagation();//阻止冒泡
+        });

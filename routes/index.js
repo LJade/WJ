@@ -62,7 +62,10 @@ module.exports = function (app) {
     app.get('/order/order_create', order.order_create);
     app.get('/order/order_approve', order.order_approve);
     app.get('/order/order_mine', order.order_mine);
-    app.get('/order/order_detail', order.order_detail);
+    app.get('/order/approve_detail', order.approve_detail);
+    app.post('/order/save_order',order.save_order);
+    app.post('/order/order_delete',order.order_delete);
+    app.get('/order/order_detail',order.order_detail);
 
     /** 公文相关路由*/
     app.get('/docu/docu_list', document.docu_list);
@@ -87,6 +90,10 @@ module.exports = function (app) {
     app.get('/mail/mail_create', mail.mail_create);
     app.get('/mail/mail_send', mail.mail_send);
     app.get('/mail/mail_receive', mail.mail_receive);
+    app.post('/mail/send_mail',mail.send_mail);
+    app.get('/mail/mail_detail',mail.mail_detail);
+    app.post('/mail/send_delete',mail.send_delete);
+    app.post('/mail/receive_delete',mail.receive_delete);
 
     /** 会议相关路由 */
     app.get('/conference/con_approve',conference.con_approve);
@@ -100,6 +107,12 @@ module.exports = function (app) {
     app.get('/conference/con_room_edit',conference.con_room_edit);
     app.get('/conference/con_room_resource', conference.con_room_resource);
     app.get('/conference/con_room', conference.con_room);
+    app.post('/conference/con_save',conference.con_save);
+    app.post('/conference/con_delete',conference.con_delete);
+    app.get('/conference/con_detail',conference.con_detail);
+    app.post('/conference/con_room_delete',conference.con_room_delete);
+    app.post('/conference/con_room_save',conference.con_room_save);
+    app.get('/conference/con_room_detail',conference.con_room_detail);
 
     /** 用户相关 **/
     app.get('/user/user_center', user.user_center);

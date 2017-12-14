@@ -9,39 +9,55 @@ block aside_content
     +asideNav(routerObj,1)
 block main_content
     include ../components/mixin
+    include ../components/contact
     +RouteNav('会议发起')
     #inner-wrapper
         .news-create
             .form-control
-                label.control-label(for='topic') 会议主题:
-                input#topic.form-control(type='text')
+                label.control-label(for='title') 会议主题:
+                input#title.form-control(type='text' value=conferenceDetail.title)
             .form-control
-                label.control-label(for='start') 开始时间:
-                input#start.form-control(type='date')
+                label.control-label(for='startTimeString') 开始时间:
+                input#startTimeString.form-control(type='text' value=conferenceDetail.startTime)
             .form-control
-                label.control-label(for='end') 结束时间:
-                input#end.form-control(type='date')
+                label.control-label(for='endTimeString') 结束时间:
+                input#endTimeString.form-control(type='text' value=conferenceDetail.endTime)
             .form-control
-                label.control-label(for='creator') 会议发起人:
-                input#creator.form-control(type='text')
+                label.control-label(for='meetingCreateUserId') 会议发起人:
+                input#meetingCreateUserId.form-control(type='text' value=conferenceDetail.meetingCreateUserId)
             .form-control
-                label.control-label(for='participation') 与会人员:
-                input#participation.form-control(type='text')
+                label.control-label(for='approver') 与会人员:
+                input#approver.form-control(type='text' readonly value=conferenceDetail.withConferencePeopleId)
+                if(isEdit)
+                    i.icon.icon-add#addUser
             .form-control
-                label.control-label(for='room') 会议室:
-                input#room.form-control(type='text')
+                label.control-label(for='meetingRoomId') 会议室:
+                select#meetingRoomId
+                    if(meetingRooms.length)
+                        each room in meetingRooms
+                            if(room.name === conferenceDetail.meetingRoomName)
+                                option(value=room.id selected) #{room.name}
+                            else
+                                option(value=room.id) #{room.name}
             .form-control
                 label.control-label(for='resource') 会议室资源:
-                textarea#resource.form-control(rows=4)
+                textarea#resource.form-control(rows=4) #{conferenceDetail.meetingRoomResource}
             .form-control
                 label.control-label(for='summary') 会议纪要人员:
-                input#summary.form-control(type='text' readonly)
+                input#summary.form-control(type='text' value=conferenceDetail.summaryPeopleId)
             .form-control
                 label.control-label(for='detail') 会议内容:
-                textarea#detail.form-control(rows=10)
-            .form-control.btn-wrapper
-                button.btn.btn-default.btn-sm(type='button') 发起会议
-                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+                textarea#detail.form-control(rows=10) #{conferenceDetail.meetingContent}
+            if(isEdit)
+                .form-control.btn-wrapper
+                    input#meetingId(type="hidden" value=conferenceDetail.meetingId)
+                    button#save_con.btn.btn-default.btn-sm(type='button') 发起会议
+                    button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+    if(isEdit)
+        #modal(style='display:none')
+            +ContactBook
+block script
+    script(src=__JS_PATH__ + "/conference.js" type="text/javascript")
 
 
 

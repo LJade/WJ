@@ -15,24 +15,31 @@ block main_content
             label(for='newsTheme') 会议室名称:
             input#newsTheme(type='text')
         .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='"window.location.href=/conference/con_room_create"') 新建
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='"window.location.href=/conference/con_room_edit"') 编辑
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 删除
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/conference/con_room_create"') 新建
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("conference","meetingRoom")') 删除
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
                 thead
                     tr
+                        td
+                            input(type='checkbox')
                         td  会议室名称
                         td  容纳人数
                         td  会议室资源
+                        td  操作
                 tbody
                     if(confercences.length)
                         each conference in confercences
                             tr
+                                td
+                                    input(type='checkbox' data-id=conference.id)
                                 td.link  #{conference.name}
                                 td  #{conference.accommodatePeopleNumber}
                                 td  #{conference.conferenceRoomResource}
+                                td
+                                    a.link(href="/conference/con_room_detail?edit=false&id="+conference.id) 查看
+                                    a.link(style='margin-left:20px' href="/conference/con_room_detail?edit=true&id="+conference.id) 编辑
 
 
 
