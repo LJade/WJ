@@ -50,6 +50,13 @@ module.exports = function (app) {
     app.get('/news/news_approve', news.news_approve);
     app.get('/news/news_category', news.news_category);
     app.post('/news/news_save', news.save_news);
+    app.post('/news/news_delete',news.news_delete);
+    app.post('/news/category_delete',news.category_delete);
+    app.get('/news/category_create',news.category_create);
+    app.post('/news/category_save',news.category_save);
+    app.get('/news/category_edit',news.category_edit);
+    app.post('/news/category_edit',news.category_update);
+    app.get('/news/news_detail',news.news_detail);
 
     /** 工单申请相关路由*/
     app.get('/order/order_create', order.order_create);
@@ -72,6 +79,7 @@ module.exports = function (app) {
     app.get('/notice/notice_approve', notice.notice_approve);
     app.get('/notice/notice_detail', notice.notice_detail);
     app.post('/notice/notice_save', notice.notice_save);
+    app.post('/notice/notice_delete',notice.notice_delete);
 
     /** 邮件相关路由*/
     app.get('/mail/mail_create', mail.mail_create);

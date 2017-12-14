@@ -5,11 +5,11 @@ var getElementValue = function(id){
 var doCreateDocument = function () {
     var data = {};
     data.title = getElementValue('title');
-    data.creator = getElementValue('creator');
-    data.lookUpPersonId = [1,2,3];
+    data.lookUpPersonId = getElementValue('choosePersonId').split(",");
     data.content = getElementValue('detail');
     var checkInfo = checkValue(data);
     if(checkInfo){
+        layerAlert(checkInfo,'error');
         return;
     }
     // 开始提交

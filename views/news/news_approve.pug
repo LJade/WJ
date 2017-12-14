@@ -53,5 +53,3 @@ block main_content
                                 td  #{news.approveStatus == 1 ? '已审核' : '未审核'}
                                 if(news.approveStatus == 0)
                                     td.link  审核
-block script
-    script(type='text/javascript' src=__JS_PATH__ + '/news/notice_approve.js')

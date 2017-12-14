@@ -12,10 +12,9 @@ block main_content
     +RouteNav('新闻管理')
     #inner-wrapper
         header.head-block
-            .title 分类管理
             .handle
-                button.btn.btn-sm.btn-default(type='button' style='margin-right:20px') 新建
-                button.btn.btn-sm.btn-default(type='button' style='margin-left:20px') 删除
+                button.btn.btn-sm.btn-default(type='button' style='margin-right:20px' onclick="window.location.href='/news/news_create'") 新建
+                button.btn.btn-sm.btn-default(type='button' style='margin-left:20px' onclick='deleteSomething("news","news")') 删除
         div.section-block
             table.table.table-bordered
                 thead
@@ -26,16 +25,19 @@ block main_content
                         td  发布人
                         td  发布时间
                         td  新闻状态
+                        td  操作
                 tbody
                     if(newsList.length)
                         each news in newsList
                             tr
                                 td
-                                    input(type='checkbox')
+                                    input(type='checkbox' data-id=news.journalismId)
                                 td  #{news.title}
                                 td  #{news.publicName}
                                 td  #{news.publicTime}
                                 td  #{news.readStatus ? '已阅读' : '未阅读'}
+                                td
+                                    a.link(href='/news/news_detail?edit=true&journalismId=' + news.journalismId) 编辑
 
 
 

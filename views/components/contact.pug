@@ -43,41 +43,68 @@ mixin ContactBook
         .role-handle
             button.work-btn.work-btn-default.work-btn-sm#addSelectUser(type='button' data-type='user') 添加>
             br
-            button.work-btn.work-btn-warning.work-btn-sm#deleteSelectUser(type='button' data-type='user') <删除
+            button.work-btn.work-btn-default.work-btn-sm#deleteSelectUser(type='button' data-type='user') <删除
         .user-list.select-user
             .list-title
                 .title-item
                     span 已选人员
             .list-wrapper.selectedBox
+    if(lookUpPersonIds)
+        input(type='hidden' id='choosePersonId' value=lookUpPersonIds)
     .form-control.btn-wrapper(style="text-align:center;")
         button.work-btn.work-btn-default.work-btn-sm.addConfirm(type='button') 保存
         button.work-btn.work-btn-disable.work-btn-sm.addCancel(type='button' style='margin-left:20px') 取消
     script.
-        $('.list-title i.icon-down').on('click',function(){
+        //初始化数据
+        $(document).ready(function () {
+            var choosePersonId = $('#choosePersonId');
+            if (choosePersonId.length) {
+                var chooseArr = choosePersonId.val().split(",");
+                //先去掉在左边的人
+                var chooseNames = [];
+                chooseArr.forEach(function (data, index) {
+                    var chooseItem = $('.list-wrapper.allUserOption').find("div[data-person-id=" + data + "]");
+                    $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click',clickItem));
+                    chooseNames.push(chooseItem.attr("data-person-name"))
+                    chooseItem.remove();
+                });
+                if ($('#approver').length) {
+                    $('#approver').val(String(chooseNames));
+                } else {
+                    console.log("没找到啊")
+                }
+            }
+        });
+
+        $('.list-title i.icon-down').on('click', function () {
             $('.title-item').show()
         })
-        $('.title-item').on('click',function(){
+        $('.title-item').on('click', function () {
             console.log($('.title-item'))
             $(this).siblings('.title-item').hide()
-            if($(this).hasClass('all')){
+            if ($(this).hasClass('all')) {
                 $('.allUserOption').show()
                 $('.departmentUserOption').hide()
-                $('#addSelectUser').attr('data-type','user')
-                $('#deleteSelectUser').attr('data-type','user')
-            }else{
+                $('#addSelectUser').attr('data-type', 'user')
+                $('#deleteSelectUser').attr('data-type', 'user')
+            } else {
                 $('.allUserOption').hide()
                 $('.departmentUserOption').show()
                 $('#addSelectUser').attr('data-type', 'dp')
                 $('#deleteSelectUser').attr('data-type', 'dp')
             }
         })
-        $('.list-item').on('click',function(){
-            $('.list-item').removeClass("active");
-            $(this).addClass("active");
-        });
+        var clickItem = function () {
+            $('.list-item').on('click', function () {
+                $('.list-item').removeClass("active");
+                $(this).addClass("active");
+            });
+        }
+
+        clickItem();
 
         $('#addSelectUser').click(function () {
-            if($(this).attr('data-type') == 'user'){
+            if ($(this).attr('data-type') == 'user') {
                 var selectList = $('.list-wrapper.allUserOption').find('.list-item.active')
                 if (selectList.length == 0) {
                     layui.use('layer', function () {
@@ -88,14 +115,14 @@ mixin ContactBook
                     selectList = selectList.removeClass("active");
                     $('.selectedBox').append(selectList);
                 }
-            }else{
+            } else {
                 var selectDPList = $('.departmentUserOption').find(".selectDP");
-                if(selectDPList.length == 0){
+                if (selectDPList.length == 0) {
                     layui.use('layer', function () {
                         var layer = layui.layer;
                         layer.alert('还没有选择部门');
                     });
-                }else{
+                } else {
                     selectDPList = selectDPList.removeClass("selectDP").addClass("chooseDP");
                     $('.selectedBox').append(selectDPList);
                 }
@@ -103,7 +130,7 @@ mixin ContactBook
         });
 
         $('#deleteSelectUser').click(function () {
-            if($(this).attr('data-type') == 'user'){
+            if ($(this).attr('data-type') == 'user') {
                 var selectedList = $('.list-wrapper.selectedBox').find(".list-item.active")
                 if (selectedList.length == 0) {
                     layui.use('layer', function () {
@@ -114,7 +141,7 @@ mixin ContactBook
                     selectedList = selectedList.removeClass("active");
                     $('.list-wrapper.allUserOption').append(selectedList);
                 }
-            }else{
+            } else {
                 var selectDPList = $('.list-wrapper.selectedBox').find(".selectDP");
                 if (selectDPList.length == 0) {
                     layui.use('layer', function () {
@@ -129,10 +156,10 @@ mixin ContactBook
 
         });
 
-        $('.close-node').on('click',function (e) {
-            if($(this).hasClass('open-node')){
+        $('.close-node').on('click', function (e) {
+            if ($(this).hasClass('open-node')) {
                 $(this).removeClass('open-node').addClass('close-node').find('ul').first().hide()
-            }else{
+            } else {
                 $(this).removeClass('close-node').addClass('open-node').find('ul').first().show()
             }
             $('.structure').find('li').removeClass('selectDP');
@@ -142,27 +169,32 @@ mixin ContactBook
 
 
         $('.addCancel').on('click', function () {
-            $('#mask').hide()
-            $('#modal').hide()
+            layerCloseAll();
         })
 
-        $('.addConfirm').on('click',function () {
+        $('.addConfirm').on('click', function () {
             $('input[name="choosePersonId"]').remove();
             var personIDs = $('.selectedBox').find(".list-item");
             var personIDArr = [];
             var chooseNameArr = [];
             console.log(personIDs);
-            for(var i =0; i< personIDs.length; i++){
+            for (var i = 0; i < personIDs.length; i++) {
                 console.log(personIDs[i])
                 var personID = personIDs[i].getAttribute("data-person-id");
                 var personName = personIDs[i].getAttribute("data-person-name");
                 personIDArr.push(personID);
                 chooseNameArr.push(personName);
             }
-            $('body').append('<input type="hidden" id="choosePersonId" value="' + String(personIDArr) + '"/>');
-            if($('#approver').length){
-                $('#approver').val(String(chooseNameArr));
+            var choosePersonId = $('#choosePersonId');
+            if (choosePersonId.length) {
+                choosePersonId.val(String(personIDArr));
+            } else {
+                $('body').append('<input type="hidden" id="choosePersonId" value="' + String(personIDArr) + '"/>');
             }
-            $('#mask').hide()
-            $('#modal').hide()
+            if ($('#approver').length) {
+                $('#approver').val(String(chooseNameArr));
+            } else {
+                console.log("没找到啊")
+            }
+            layerCloseAll();
         })

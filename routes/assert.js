@@ -7,10 +7,15 @@ var WJConf = require('../hmConfig');
 var API_HOST = 'http://jtj.yewufeifei.com/web';
 
 var getArrPost = function (req, key) {
-
-    req.body[key].forEach(function (id,index) {
-        req.body[key + "["+ index +"]"] = id
-    });
+    if(typeof req.body[key] === 'string'){
+        req.body[key + "[0]"] = req.body[key];
+    }else{
+        if(typeof req.body[key] === 'object'){
+            req.body[key].forEach(function (id,index) {
+                req.body[key + "["+ index +"]"] = id
+            });
+        }
+    }
     delete req.body[key];
     return req
 };

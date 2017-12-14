@@ -30,14 +30,33 @@ var notice_create = function(req, res, next) {
     if(!req.session.user.accessToken){
         res.redirect("/login");
     }
-    req.body.announcementId = req.query.announcementId;
-    //获取list列表信息
-    assert.apiRequest("POST",'/announcement/detail',req).then(function (results) {
-        var noticeDetailInfo = JSON.parse(results);
-        if (noticeDetailInfo.code === 1) {
-            JADE_VAR.noticeDetail = noticeDetailInfo.dat;
-            JADE_VAR.announcementId = req.query.announcementId;
-        } else {
+    if(req.query.announcementId){
+        //获取列表信息
+        var getAnnouncement = assert.apiRequest("get",'/announcement/detail',req);
+        var getAllUser = assert.apiRequest("get",'/department/allDeptAndUser',req);
+        Promise.all([getAnnouncement,getAllUser]).then(function (results) {
+            var noticeDetailInfo = JSON.parse(results[0]);
+            var allUsers = JSON.parse(results[1]);
+            if (noticeDetailInfo.code === 1) {
+                JADE_VAR.noticeDetail = noticeDetailInfo.dat;
+                JADE_VAR.announcementId = req.query.announcementId;
+                JADE_VAR.lookUpPersonIds = noticeDetailInfo.dat.announcementLookUpPersonId  === null ? '' : noticeDetailInfo.dat.announcementLookUpPersonId;
+            } else {
+                JADE_VAR.noticeDetail = {
+                    title: "",
+                    publicName: "",
+                    publicTime: "",
+                    userlist: "",
+                    content: ''
+                };
+                JADE_VAR.announcementId = "";
+            }
+            JADE_VAR.allUsers = allUsers.dat.users;
+            res.render('notice/notice_create', JADE_VAR);
+        });
+    }else{
+        assert.apiRequest("get",'/department/allDeptAndUser',req).then(function (results) {
+            JADE_VAR.allUsers = JSON.parse(results).dat.users;
             JADE_VAR.noticeDetail = {
                 title: "",
                 publicName: "",
@@ -46,9 +65,9 @@ var notice_create = function(req, res, next) {
                 content: ''
             };
             JADE_VAR.announcementId = "";
-        }
-        res.render('notice/notice_create', JADE_VAR);
-    });
+            res.render('notice/notice_create', JADE_VAR);
+        })
+    }
 };
 
 var notice_manage = function(req, res, next) {
@@ -95,40 +114,16 @@ var notice_approve = function(req, res, next) {
 
 };
 
-var notice_detail = function(req, res, next) {
-    var JADE_VAR = assert.getJADE();
-    //检查登陆
-    req.session.user = {accessToken:"123123"};
-    if(!req.session.user.accessToken){
-        res.redirect("/login");
-    }
-
-    req.body.announcementId = req.query.announcementId;
-    //获取list列表信息  
-    assert.apiRequest("POST",'/announcement/detail',req).then(function (results) {
-
-        var noticeDetailInfo = JSON.parse(results);
-        if(noticeDetailInfo.code === 1){
-            JADE_VAR.noticeDetail = noticeDetailInfo.dat;
-            JADE_VAR.announcementId = req.query.announcementId;
-        }else{
-            JADE_VAR.noticeDetail = {
-                title:"",
-                publicName:"",
-                publicTime:"",
-                userlist:"",
-                content:''
-            };
-            JADE_VAR.announcementId = req.query.announcementId;
-        }
-        console.log(JADE_VAR);
-        res.render('notice/notice_create',JADE_VAR);
-    });
-};
-
 var notice_save = function (req, res, next) {
     req = assert.getArrPost(req,'lookUpPersonId');
     assert.apiRequest('post','/announcement/save',req).then(function (results) {
+        res.send(results);
+    });
+};
+
+var notice_delete = function (req, res, next) {
+    req = assert.getArrPost(req,'announcementIdList');
+    assert.apiRequest('post','/announcement/delete',req).then(function (results) {
         res.send(results);
     });
 };
@@ -139,6 +134,7 @@ module.exports = {
     notice_create:notice_create,
     notice_manage:notice_manage,
     notice_approve:notice_approve,
-    notice_detail:notice_detail,
-    notice_save:notice_save
+    notice_detail:notice_create,
+    notice_save:notice_save,
+    notice_delete:notice_delete
 };

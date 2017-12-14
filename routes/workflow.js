@@ -93,15 +93,15 @@ var workflow_manage = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     assert.apiRequest("post","/flow/list",req).then(function (results) {
         var flowsListInfo = JSON.parse(results);
-        if(flowsListInfo.code == 1){
+        if(flowsListInfo.code === 1){
             JADE_VAR.flowsList = flowsListInfo.dat.details;
             JADE_VAR.flowsListTotal = flowsListInfo.dat.totalPage;
         }else{
             JADE_VAR.flowsList = [];
             JADE_VAR.flowsListTotal = 0;
         }
+        res.render('workflow/workflow_manage',JADE_VAR);
     });
-    res.render('workflow/workflow_manage',JADE_VAR);
 };
 
 var workflow_save = function (req, res, next) {
@@ -120,7 +120,7 @@ var workflow_save = function (req, res, next) {
            "type":workflowInfo[data].type,
            "ext":"width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+workflowInfo[data].left+"px;top:"+workflowInfo[data].top+"px;",
            "processTo":String(workflowInfo[data].process_to)
-       }
+       };
        paramsList.push(temp);
     });
     console.log(paramsList);

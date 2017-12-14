@@ -5,7 +5,7 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'#',text:'新闻查阅'},{link:'/news/news_manage',text:'新闻管理'},{link:'#',text:'分类管理'},{link:'/news/news_create',text:'发布新闻'},{link:'/news/news_approve',text:'待我审批'}]
+    -var routerObj = [{link:'/news/news_list',text:'新闻查阅'},{link:'/news/news_manage',text:'新闻管理'},{link:'#',text:'分类管理'},{link:'/news/news_create',text:'发布新闻'},{link:'/news/news_approve',text:'待我审批'}]
     +asideNav(routerObj,2)
 block main_content
     include ../components/mixin
@@ -15,8 +15,9 @@ block main_content
             label(for='newsTheme') 主题:
             input#newsTheme(type='text')
         .inline-group
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 删除
             button.btn.btn-default.btn-sm(type='button') 查询
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/news/category_create"') 新建
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("news","category")') 删除
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -27,15 +28,18 @@ block main_content
                         td  分类名
                         td  发布人
                         td  发布时间
+                        td  操作
                 tbody
                     if(typeList.length)
                         each typeInfo in typeList
                             tr
                                 td
-                                    input(type='checkbox')
+                                    input(type='checkbox' data-id=typeInfo.journalismTypeId)
                                 td  #{typeInfo.typeName}
                                 td  #{typeInfo.createName}
                                 td  #{typeInfo.createTime}
+                                td
+                                    a.link(href='/news/category_edit?journalismTypeId='+typeInfo.journalismTypeId) 修改
 
 
 

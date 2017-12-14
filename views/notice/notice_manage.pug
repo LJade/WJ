@@ -26,7 +26,7 @@ block main_content
         .inline-group
             button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建
-            button.btn.btn-default.btn-sm(type='button') 删除
+            button.btn.btn-default.btn-sm(type='button' onclick='deleteSomething("notice","notice")') 删除
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -44,15 +44,15 @@ block main_content
                         each notice in noticesList
                             tr
                                 td
-                                    input(type='checkbox')
+                                    input(type='checkbox' data-id=notice.announcementId)
                                 td.link  #{notice.title}
                                 td  #{notice.publicName}
                                 td  #{notice.publicTime}
                                 td  #{notice.approveStatus ? '是' : '否' }
                                 if(!notice.approveStatus)
-                                    td.link  审核
-block script
-    script(type='text/javascript' src=__JS_PATH__ + '/notice/notice_manage.js')
+                                    td
+                                        a.link  审核
+                                        a.link(style='margin-left:20px;' href='/notice/notice_detail?announcementId='+notice.announcementId) 查看
 
 
 

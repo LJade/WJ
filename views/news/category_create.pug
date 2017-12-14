@@ -1,0 +1,35 @@
+extends ../components/base
+block title
+    title 新建新闻分类
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/news/news_list',text:'新闻查阅'},{link:'/news/news_manage',text:'新闻管理'},{link:'#',text:'分类管理'},{link:'/news/news_create',text:'发布新闻'},{link:'/news/news_approve',text:'待我审批'}]
+    +asideNav(routerObj,2)
+block main_content
+    include ../components/mixin
+    include ../components/contact
+    +RouteNav('新闻分类新建')
+    #inner-wrapper
+        .news-create
+            .form-control
+                label.control-label(for='title') 分类名:
+                if(isRead)
+                    input#title.form-control(type='text')
+                else
+                    input#title.form-control(type='text' value=title)
+                    input#journalismTypeId(type='hidden' value=journalismTypeId)
+            .form-control.btn-wrapper
+                button#save_news_category.btn.btn-default.btn-sm(type='button') 发布
+                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 取消
+block script
+    script(type='text/javascript' src=__JS_PATH__ + '/news.js')
+
+
+
+
+
+
+
+

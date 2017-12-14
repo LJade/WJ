@@ -1,49 +1,95 @@
 extends ../components/base
 block title
-    title 发布新闻
+    if(isRead)
+        title 发布新闻
+    else
+        if(isEdit)
+            title 新闻编辑
+        else
+            title 新闻查阅
 block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/news/news_list',text:'新闻查阅'},{link:'/news/news_manage',text:'新闻管理'},{link:'/news/news_category',text:'分类管理'},{link:'#',text:'发布新闻'},{link:'/news/news_approve',text:'待我审批'}]
-    +asideNav(routerObj,3)
+    -var routerObj = [{link:'/news/news_list',text:'新闻查阅'},{link:'/news/news_manage',text:'新闻管理'},{link:'/news/news_category',text:'分类管理'},{link:'/news/news_create',text:'发布新闻'},{link:'/news/news_approve',text:'待我审批'}]
+    if(isRead)
+        +asideNav(routerObj,3)
+    else
+        if(isEdit)
+            +asideNav(routerObj,3)
+        else
+            +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
     include ../components/contact
-    +RouteNav('新闻发布')
+    if(isRead)
+        +RouteNav('新闻发布')
+    else
+        if(isEdit)
+            +RouteNav('新闻编辑')
+        else
+            +RouteNav('新闻查阅')
     #inner-wrapper
         .news-create
-            .form-control
-                label.control-label(for='title') 标题:
-                input#title.form-control(type='text')
-            .form-control
-                label.control-label(for='creator') 发布人:
-                input#creator.form-control(type='text')
-            .form-control
-                label.control-label(for='date') 发布时间:
-                input#date.form-control(type='text')
-            .form-control
-                label.control-label(for='journalismTypeId') 新闻类别:
-                select#journalismTypeId.form-control
-                    if(typeInfo.length)
-                        each typeD in typeInfo
-                            option(value=typeD.journalismTypeId) #{typeD.typeName}
-            .form-control
-                label.control-label(for='approver') 查阅人员:
-                input#approver.form-control(type='text')
-                i.icon.icon-add#addUser
-            .form-control
-                label.control-label(for='content') 发布内容:
-                textarea#content.form-control(rows=10 )
-            .form-control.btn-wrapper
-                button#save_news.btn.btn-default.btn-sm(type='button') 发布
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 取消
+            if(isRead)
+                .form-control
+                    label.control-label(for='title') 标题:
+                    input#title.form-control(type='text')
+                .form-control
+                    label.control-label(for='creator') 发布人:
+                    input#creator.form-control(type='text')
+                .form-control
+                    label.control-label(for='date') 发布时间:
+                    input#date.form-control(type='text')
+                .form-control
+                    label.control-label(for='journalismTypeId') 新闻类别:
+                    select#journalismTypeId.form-control
+                        if(typeInfo.length)
+                            each typeD in typeInfo
+                                option(value=typeD.journalismTypeId) #{typeD.typeName}
+                .form-control
+                    label.control-label(for='approver') 查阅人员:
+                    input#approver.form-control(type='text')
+                    i.icon.icon-add#addUser
+                .form-control
+                    label.control-label(for='content') 发布内容:
+                    textarea#content.form-control(rows=10 )
+            else
+                .form-control
+                    label.control-label(for='title') 标题:
+                    input#title.form-control(type='text' value=newsInfo.title)
+                .form-control
+                    label.control-label(for='creator') 发布人:
+                    input#creator.form-control(type='text' value=newsInfo.publicName)
+                .form-control
+                    label.control-label(for='date') 发布时间:
+                    input#date.form-control(type='text' value=newsInfo.publicTime)
+                .form-control
+                    label.control-label(for='journalismTypeId') 新闻类别:
+                    select#journalismTypeId.form-control
+                        if(typeInfo.length)
+                            each typeD in typeInfo
+                                if typeD.journalismTypeId === newsInfo.journalismTypeId
+                                    option(value=typeD.journalismTypeId selected) #{typeD.typeName}
+                                else
+                                    option(value=typeD.journalismTypeId) #{typeD.typeName}
+                .form-control
+                    label.control-label(for='approver') 查阅人员:
+                    input#approver.form-control(type='text')
+                    if(isEdit)
+                        i.icon.icon-add#addUser
+                .form-control
+                    label.control-label(for='content') 发布内容:
+                    textarea#content.form-control(rows=10 ) #{newsInfo.content}
+            if(isEdit)
+                input#journalismId(type='hidden' value=journalismId)
+                .form-control.btn-wrapper
+                    button#save_news.btn.btn-default.btn-sm(type='button') 发布
+                    button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 取消
     #modal(style='display:none')
         +ContactBook
-    #mask(style='display:none')
 block script
     script(type='text/javascript' src=__JS_PATH__ + '/news.js')
-    script(type='text/javascript' src=__JS_PATH__ + '/news/notice_create.js')
 
 
 

@@ -24,7 +24,19 @@ var docu_list = function(req, res, next) {
 
 var docu_create = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('document/docu_create',JADE_VAR);
+
+    assert.apiRequest("get",'/department/allDeptAndUser',req).then(function (results) {
+        JADE_VAR.allUsers = JSON.parse(results).dat.users;
+        JADE_VAR.noticeDetail = {
+            title: "",
+            publicName: "",
+            publicTime: "",
+            userlist: "",
+            content: ''
+        };
+        JADE_VAR.announcementId = "";
+        res.render('document/docu_create', JADE_VAR);
+    });
 };
 
 var docu_manage = function(req, res, next) {
