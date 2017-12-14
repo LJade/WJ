@@ -9,9 +9,9 @@
 }
 #box-intro{
   color: $white-color;
-  position: absolute;
-  left: 200px;
-  top: 240px;
+  float: left;
+  margin-top:240px;
+  margin-left: 8%;
   h1{
     font-size: 40px;
     font-family: 'STKaitiSC-Regular';
@@ -29,9 +29,9 @@
 #box-center{
   //width:335px;
   height: 405px;
-  position: absolute;
-  right: 200px;
-  top:145px;
+  float: right;
+  margin-top:145px;
+  margin-right: 8%;
   background: rgba(255,255,255,0.7);
   overflow: hidden;
 }
