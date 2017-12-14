@@ -24,7 +24,7 @@ block main_content
             label(for='newsCreate') 发布时间:
             input#newsCreate(type='time')
         .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 删除
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("document","document")') 删除
             button.btn.btn-warning.btn-sm(type='button') 查询
     #inner-wrapper
         .content-list.section-block
@@ -37,16 +37,19 @@ block main_content
                         td  发布人
                         td  发布时间
                         td  发布状态
+                        td  操作
                 tbody
                     if(doucments.length)
                         each document in doucments
                             tr
                                 td
-                                    input(type='checkbox')
+                                    input(type='checkbox' data-id=document.commonalityArticleId)
                                 td  #{document.title}
                                 td  #{document.publicName}
                                 td  #{document.publicTime}
                                 td  #{document.readStatus ? '已读' : '未读'}
+                                td
+                                    a.link(href='/docu/docu_detail?edit=false&commonalityArticleId='+ document.commonalityArticleId ) 查看
 
 
 

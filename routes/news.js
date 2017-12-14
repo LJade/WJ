@@ -61,6 +61,7 @@ var news_create = function (req, res, next) {
         }
         JADE_VAR.isRead = true;
         JADE_VAR.isEdit = true;
+        JADE_VAR.journalismId = '';
         res.render('news/news_create', JADE_VAR);
     });
 };
@@ -144,8 +145,8 @@ var news_category = function (req, res, next) {
 
 var save_news = function (req, res, next) {
     req = assert.getArrPost(req,'lookUpPersonId');
-    var journalismId = req.query.journalismId;
-    if(!journalismId){
+    var journalismId = req.body.journalismId;
+    if(journalismId){
         //表示是修改
         assert.apiRequest('post','/journalism/update',req).then(function (results) {
             res.send(results);

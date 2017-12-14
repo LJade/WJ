@@ -41,96 +41,17 @@ block main_content
                         td  发布状态
                         td  操作
                 tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
-                    tr
-                        td
-                            input(type='checkbox')
-                        td.link  关于江苏省苏州市吴江交通局技术人才培训
-                        td  管理员
-                        td  XXX
-                        td  2017-12-01
-                        td  已审批
-                        td.link  审核
+                    if(doucments.length)
+                        each document in doucments
+                            tr
+                                td
+                                    input(type='checkbox' data-id=document.commonalityArticleId)
+                                td.link  #{document.title}
+                                td  #{document.publicName}
+                                td  #{document.publicTime}
+                                td  #{document.approveStatus === 0 ? "未审批" : document.approveStatus === 1 ? '审批通过' : document.approveStatus === 2 ? '审批不通过' : '他人已审批'}
+                                td
+                                    a.link(href='/docu/docu_detail?edit=true&commonalityArticleId=' + document.commonalityArticleId) 审核
 
 
 

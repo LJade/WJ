@@ -160,6 +160,11 @@ var node_info = function (req,res,next) {
     });
 };
 
+var workflow_detail = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    res.render('workflow/workflow_config',JADE_VAR);
+}
+
 
 
 module.exports = {
@@ -170,5 +175,6 @@ module.exports = {
     node_create:node_create,
     node_save:node_save,
     node_info:node_info,
-    workflow_save:workflow_save
+    workflow_save:workflow_save,
+    workflow_detail:workflow_detail
 };

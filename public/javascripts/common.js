@@ -106,14 +106,17 @@ function deleteSomething(modules,typeThing) {
             delOption.url = '/notice/notice_delete';
             delOption.data.announcementIdList = deleleIDs;
             break;
+        case 'document_document':
+            delOption.url = '/docu/docu_delete';
+            delOption.data.CommonalityArticleIdList = deleleIDs;
+            break;
         default:
             layerAlert("没有要找到待删除的模块",'error');
             break;
     }
     //执行删除请求
-    $.ajax(delOption);
+    layerComfirm("是否删除选中的内容？", function(){$.ajax(delOption)});
 }
-
 
 function login_out() {
     layui.use('layer', function() { //独立版的layer无需执行这一句
@@ -152,6 +155,20 @@ function layerAlert(message,messageType) {
         }
         layer.msg(message, option , function(){
             //do something
+        });
+    })
+}
+
+function layerComfirm(message,fn) {
+    layui.use('layer', function() { //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+        layer.confirm(message, {
+            btn: ['确定', '取消'], //可以无限个按钮
+            time: 99999
+        }, function (index, layero) {
+            fn();
+        }, function (index) {
+            layerCloseAll();
         });
     })
 }

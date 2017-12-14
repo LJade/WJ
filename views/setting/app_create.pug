@@ -9,7 +9,7 @@ block aside_content
     +asideNav(routerObj,2)
 block main_content
     include ../components/mixin
-    -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/app_create',text:'对接系统管理'},{link:'#',text:'数据服务管理'},{link:'#',text:'第三方应用系统管理'}]
+    -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/app_create',text:'对接系统管理'},{link:'#',text:'第三方应用系统管理'}]
     +menuLink(menuObj,1)
     -var navObj = [{link:'/setting/app_create',text:'应用配置'},{link:'/setting/app_permission',text:'应用权限配置'}]
     +menuNav(navObj,0)

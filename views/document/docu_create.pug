@@ -1,6 +1,9 @@
 extends ../components/base
 block title
-    title 公文发布
+    if(isEdit)
+        title 公文发布
+    else
+        title 公文查看
 block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
@@ -10,30 +13,37 @@ block aside_content
 block main_content
     include ../components/mixin
     include ../components/contact
-    +RouteNav('公文发布')
+    if(isEdit)
+        +RouteNav('公文发布')
+    else
+        +RouteNav('公文查看')
     #inner-wrapper
         .news-create
             .form-control
                 label.control-label(for='title') 标题:
-                input#title.form-control(type='text')
+                input#title.form-control(type='text' value=documentDetail.title)
             .form-control
-                label.control-label(for='approver') 发布人:
-                input#approver.form-control(type='text')
+                label.control-label(for='creator') 发布人:
+                input#creator.form-control(type='text' value=documentDetail.publicName)
             .form-control
                 label.control-label(for='date') 发布时间:
-                input#date.form-control(type='text')
+                input#date.form-control(type='text' value=documentDetail.publicTime)
             .form-control
-                label.control-label(for='review') 查阅人员:
-                input#review.form-control(type='text' readonly)
-                i.icon.icon-add#addUser
+                label.control-label(for='approver') 查阅人员:
+                input#approver.form-control(type='text' readonly)
+                if(isEdit)
+                    i.icon.icon-add#addUser
             .form-control
                 label.control-label(for='detail') 发布内容:
-                textarea#detail.form-control(rows=10 )
-            .form-control.btn-wrapper
-                button#save_document.btn.btn-default.btn-sm(type='button') 发布
-                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
-    #modal(style='display:none')
-        +ContactBook
+                textarea#detail.form-control(rows=10 ) #{documentDetail.content}
+            if(isEdit)
+                .form-control.btn-wrapper
+                    input#commonalityArticleId(type="hidden" value=documentDetail.commonalityArticleId)
+                    button#save_document.btn.btn-default.btn-sm(type='button') 发布
+                    button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+    if(isEdit)
+        #modal(style='display:none')
+            +ContactBook
 block script
     script(src=__JS_PATH__ + "/document.js",type="text/javascript")
 

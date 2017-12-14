@@ -37,15 +37,18 @@ block main_content
                         td  发布人
                         td  发布时间
                         td  发布状态
+                        td  操作
                 tbody
                     if(noticesList.length)
                         each notice in noticesList
                             tr
                                 td
-                                    input(type='checkbox' data-id=announcementId)
+                                    input(type='checkbox' data-id=notice.announcementId)
                                 td  #{notice.title}
                                 td  #{notice.publicName}
                                 td  #{notice.publicTime}
                                 td  #{notice.readStatus ? '已阅读' : '未阅读'}
+                                td
+                                    a.link(href='/notice/notice_detail?edit=false&announcementId='+ notice.announcementId) 查看
 
 

@@ -13,7 +13,8 @@ var doCreateNews = function () {
     }
     // 开始提交
     var journalismId = $('#journalismId');
-    if(journalismId.length){
+    console.log(journalismId.val() !== '');
+    if(journalismId.val() !== ''){
         data.journalismId = journalismId.val();
     }
     $.ajax({

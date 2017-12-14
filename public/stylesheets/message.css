@@ -87,7 +87,7 @@
     #message .dialog-wrapper .dialog-content {
       background: #ffffff;
       height: 75%;
-      min-height: 465px;
+      min-height: 500px;
       border-bottom: 1px solid #ececec;
       overflow: auto;
       -ms-flex-negative: 1;

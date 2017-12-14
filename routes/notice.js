@@ -31,7 +31,7 @@ var notice_create = function(req, res, next) {
         res.redirect("/login");
     }
     if(req.query.announcementId){
-        //获取列表信息
+        //获取信息
         var getAnnouncement = assert.apiRequest("get",'/announcement/detail',req);
         var getAllUser = assert.apiRequest("get",'/department/allDeptAndUser',req);
         Promise.all([getAnnouncement,getAllUser]).then(function (results) {
@@ -52,6 +52,11 @@ var notice_create = function(req, res, next) {
                 JADE_VAR.announcementId = "";
             }
             JADE_VAR.allUsers = allUsers.dat.users;
+            if(req.query.edit && req.query.edit === 'true'){
+                JADE_VAR.isEdit = true;
+            }else{
+                JADE_VAR.isEdit = false;
+            }
             res.render('notice/notice_create', JADE_VAR);
         });
     }else{
@@ -65,6 +70,7 @@ var notice_create = function(req, res, next) {
                 content: ''
             };
             JADE_VAR.announcementId = "";
+            JADE_VAR.isEdit = true;
             res.render('notice/notice_create', JADE_VAR);
         })
     }

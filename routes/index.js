@@ -69,8 +69,10 @@ module.exports = function (app) {
     app.get('/docu/docu_create', document.docu_create);
     app.get('/docu/docu_manage', document.docu_manage);
     app.get('/docu/docu_approve', document.docu_approve);
-    app.get('/docu/docu_detail', document.docu_detail);
+    app.get('/docu/approve_detail', document.approve_detail);
     app.post('/docu/docu_save', document.docu_save);
+    app.post('/docu/docu_delete', document.docu_delete);
+    app.get('/docu/docu_detail',document.docu_detail);
 
     /** 公告相关路由*/
     app.get('/notice/notice_list', notice.notice_list);
@@ -119,6 +121,7 @@ module.exports = function (app) {
     app.post('/workflow/node_save',workflow.node_save);
     app.get('/workflow/node_info',workflow.node_info);
     app.post('/workflow/workflow_save',workflow.workflow_save);
+    app.get('/workflow/workflow_detail',workflow.workflow_detail);
 
     /** 个人消息页面*/
     app.get('/message',myMessage.message);

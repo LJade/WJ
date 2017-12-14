@@ -1,6 +1,9 @@
 extends ../components/base
 block title
-    title 公告发布
+    if(isEdit)
+        title 公告查看
+    else
+        title 公告发布
 block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
@@ -10,7 +13,10 @@ block aside_content
 block main_content
     include ../components/mixin
     include ../components/contact
-    +RouteNav('公告发布')
+    if(isEdit)
+        +RouteNav('公告查看')
+    else
+        +RouteNav('公告发布')
     #inner-wrapper
         .news-create
             if(noticeDetail.title)
@@ -26,7 +32,8 @@ block main_content
                 .form-control
                     label.control-label(for='lookUpPersonId') 查阅人员:
                     input#approver.form-control(type='text' readonly value=noticeDetail.userlist)
-                    i.icon.icon-add#addUser
+                    if(isEdit)
+                        i.icon.icon-add#addUser
                 .form-control
                     label.control-label(for='content') 发布内容:
                     textarea#content.form-control(rows=10) #{noticeDetail.content}
@@ -44,13 +51,15 @@ block main_content
                 .form-control
                     label.control-label(for='lookUpPersonId') 查阅人员:
                     input#approver.form-control(type='text' readonly)
-                    i.icon.icon-add#addUser
+                    if(isEdit)
+                        i.icon.icon-add#addUser
                 .form-control
                     label.control-label(for='content') 发布内容:
                     textarea#content.form-control(rows=10)
-            .form-control.btn-wrapper
-                button#notice_save.btn.btn-default.btn-sm(type='button') 发布
-                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+            if(isEdit)
+                .form-control.btn-wrapper
+                    button#notice_save.btn.btn-default.btn-sm(type='button') 发布
+                    button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
     #modal(style='display:none')
         +ContactBook
 block script
