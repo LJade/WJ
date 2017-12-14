@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="../../stylesheets/normalize.css">
     <link rel="stylesheet" href="../../stylesheets/style.css">
     <link rel="stylesheet" href="../../plugins/layui/css/layui.css">
-    <script src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
-    <script src="../../plugins/layui/layui.js"></script>
-    <script src="../../javascripts/common.js"></script>
+    <script type="text/javascript" src="../../plugins/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../../plugins/jquery-2.1.4/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="../../javascripts/common.js"></script>
+    <link rel="stylesheet" href="../../plugins/webim/webim_style.css">
   </head>
   <body>
     <div id="wrapper">
@@ -27,7 +29,7 @@
         <header id="common-header">
           <div class="header-left">
             <div class="header-logo"><img src="../../images/logo.png"></div>
-            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home"></i>工作台</a><a href="/im/message"><i class="icon icon-envelope"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href="#"><i class="icon icon-screen"></i>多屏幕模式</a></div>
+            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home2"></i>工作台</a><a href="/im"><i class="icon icon-envelope2"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href="#"><i class="icon icon-screen"></i>多屏幕模式</a></div>
           </div>
           <div class="header-right">
             <div class="header-search">
@@ -36,38 +38,104 @@
             <div class="login-user">
               <div class="img-wrapper"><img src="../../images/avatar.png"></div>
               <!--.name   Lingyu.ZHOU-->
-            </div><a class="star"><i class="icon icon-star"></i></a><a class="login-out"><i class="icon icon-close"></i></a>
+            </div><a class="star"><i class="icon icon-star2"></i></a><a class="login-out" onclick="login_out();"><i class="icon icon-close"></i></a>
           </div>
         </header>
       </div>
       <div id="main-wrapper">
-        <div id="aside-nav">
-          <!-- breadcrumb-->
-                    <ul id="aside">
-                      <li><a href="/"><i class="icon icon-app"></i>应用</a></li>
-                      <li class="active"><a href="/im/message"><i class="icon icon-message2"></i>消息</a></li>
-                      <li><a href="/setting/user_manage"><i class="icon icon-setting"></i>平台管理</a></li>
-                    </ul>
-        </div>
-        <div id="main-content">
-          <div id="inner-wrapper">
-            <section class="w100" id="main">
-              <article id="demo"></article>
-              <article id="components"></article>
-            </section>
-          </div>
+        <div id="chat-wrapper" style="min-height:800px;position:relative;margin-top:10px;">
+          <section class="w100" id="main">
+            <article id="demo"></article>
+            <article id="components"></article>
+          </section>
         </div>
       </div>
     </div>
+    <style>
+      #wrapper{
+          position: fixed !important;
+      }
+      #main-wrapper {
+          margin-top: 0 !important;
+      }
+      #main-content{
+          margin-left: auto !important;
+      }
+      .webim{
+          position: absolute;
+           right: 0;
+           left: 0;
+           margin: auto;
+           top: 0;
+           bottom: 0;
+      }
+      .webim-chat{
+          max-width: 100%;
+          margin: auto;
+      }
+      .webim-leftbar{
+              width: 200px;
+          background: #f2f0f0;
+      }
+      
+      .webim-contact-item.selected{
+          background-color: #d5edfe;
+      }
+      .webim-contact-wrapper{
+          width: 185px;
+      }
+      .webim-profile-avatar{
+          /*display: none;*/
+      }
+      .webim-avatar-icon{
+          width: 30px;
+          height: 30px;
+      }
+      
+      .webim-chatwindow {
+          width: calc(100% - 390px);
+      }
+      .webim-msg-container .webim-avatar-icon.small{
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          overflow: hidden;
+      }
+      .webim-contact-item .webim-contact-info{
+          line-height: 35px;
+      }
+      .webim-msg-container .left .webim-msg-value {
+          background-color: #eeeeee;
+          color: #666666;
+      }
+      .webim-msg-container .left .webim-msg-icon,.webim-msg-container .right .webim-msg-icon {
+          display: none;
+      }
+      .webim-msg-container .left .webim-msg-value>pre {
+          color: #666666;
+      }
+      
+      .webim-msg-container .left > p ,.webim-msg-container .right > p{
+         font-size: 10px;
+      }
+      .webim-msg-container .right .webim-msg-value {
+          background-color: #2f9ff2;
+      }
+      
+      .webim-msg-container .right .webim-msg-value>pre{
+          color: #ffffff;
+      }
+      
+    </style>
     <script src="../../plugins/webim/browser-polyfill.min.js"></script>
     <script src="../../plugins/webim/webim.config.js"></script>
     <!--再执行初始化之前我要先登录-->
     <script type="text/javascript">
-      WebIM.config.autoSignInName = '306223558z1';
-      WebIM.config.autoSignInPwd = '123123';
+      WebIM.config.autoSignInName = $.cookie("IMAccount");
+      WebIM.config.autoSignInPwd = $.cookie("IMPwd");
     </script>
     <!--script(src=__JS_PATH__ + '/webim/strophe-1.2.8.js')-->
-    <script type="text/javascript">document.write("<script src='../../plugins/webim/strophe-1.2.8.js'><\/script>");</script>
+    <script type="text/javascript" src="../../plugins/webim/strophe-1.2.8.js"></script>
     <script src="../../plugins/webim/websdk-1.4.13.js"></script>
     <script type="text/javascript">
       if (WebIM.config.isWebRTC) {
@@ -77,5 +145,14 @@
     </script>
     <script src="../../plugins/webim/swfupload/swfupload.min.js"></script>
     <script src="../../plugins/webim/demo-1.4.13.js"></script>
+    <script type="text/javascript">
+      var options = {
+          apiUrl: WebIM.config.apiURL,
+          user: WebIM.config.autoSignInName,
+          pwd: WebIM.config.autoSignInPwd,
+          appKey: WebIM.config.appkey
+      };
+      Demo.conn.open(options);
+    </script>
   </body>
 </html>

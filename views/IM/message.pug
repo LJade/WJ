@@ -1,13 +1,17 @@
-extends ../components/base
+extends ../components/layout
 block title
     title 消息
 block style
     link(rel='stylesheet', href=__PLUGINS_PATH__ + '/webim/webim_style.css')
-block main_content
-    #chat-wrapper(style='min-height:800px;position:relative;')
-        section(id='main').w100
-            article(id='demo')
-            article(id='components')
+block content
+    #wrapper
+        #header
+            include ../components/header
+        #main-wrapper
+            #chat-wrapper(style='min-height:800px;position:relative;margin-top:10px')
+                section(id='main').w100
+                    article(id='demo')
+                    article(id='components')
     style.
         #wrapper{
             position: fixed !important;
@@ -18,13 +22,49 @@ block main_content
         #main-content{
             margin-left: auto !important;
         }
+        .webim{
+            position: absolute;
+             right: 0;
+             left: 0;
+             margin: auto;
+             top: 0;
+             bottom: 0;
+        }
+        .webim-chat{
+            max-width: 100%;
+            margin: auto;
+        }
+        .webim-leftbar{
+                width: 200px;
+            background: #f2f0f0;
+        }
+
+        .webim-contact-item.selected{
+            background-color: #d5edfe;
+        }
+        .webim-contact-wrapper{
+            width: 185px;
+        }
+        .webim-profile-avatar{
+            /*display: none;*/
+        }
+        .webim-avatar-icon{
+            width: 30px;
+            height: 30px;
+        }
+
+        .webim-chatwindow {
+            width: calc(100% - 390px);
+        }
         .webim-msg-container .webim-avatar-icon.small{
             width: 30px;
             height: 30px;
             border-radius: 50%;
             overflow: hidden;
         }
-
+        .webim-contact-item .webim-contact-info{
+            line-height: 35px;
+        }
         .webim-msg-container .left .webim-msg-value {
             background-color: #eeeeee;
             color: #666666;
