@@ -350,8 +350,8 @@ object {
     width: calc(100% - 100px);
     position: absolute;
     margin: auto;
-    left: 30px;
-    top: 30px;
+    left: 10px;
+    top: 40px;
     right: 10px;
     color: #999999;
     font-style: normal;
