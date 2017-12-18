@@ -201,7 +201,7 @@ module.exports = {
     node_save:node_save,
     node_info:node_info,
     workflow_save:workflow_save,
-    workflow_new:workflow_new
+    workflow_new:workflow_new,
     workflow_save:workflow_save,
     workflow_detail:workflow_detail
 };
