@@ -54,6 +54,31 @@ var workflow_config = function(req, res, next) {
     });
 };
 
+var workflow_new = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    //判断是否是post
+    var flow_id = req.query.flow_id;
+    if(req.method === 'POST'){
+        //表示是保存
+        assert.apiRequest('post','/flow/save',req).then(function (results) {
+            var resOBJ = JSON.parse(results);
+            if(resOBJ.code === 1){
+                res.redirect('/workflow/workflow_manage');
+            }else{
+                res.render('error/error',{message:resOBJ.msg});
+            }
+        });
+    }else{
+        if(!flow_id){
+            //表示是新增
+            JADE_VAR.id = 0;
+        }else{
+            JADE_VAR.id = flow_id;
+        }
+        res.render('workflow/workflow_new',JADE_VAR);
+    }
+};
+
 var workflow_edit = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     req.body = req.query;
@@ -91,7 +116,7 @@ var node_create = function (req,res,next) {
 
 var workflow_manage = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    assert.apiRequest("post","/flow/list",req).then(function (results) {
+    assert.apiRequest("get","/flow/list",req).then(function (results) {
         var flowsListInfo = JSON.parse(results);
         if(flowsListInfo.code === 1){
             JADE_VAR.flowsList = flowsListInfo.dat.details;
@@ -175,6 +200,8 @@ module.exports = {
     node_create:node_create,
     node_save:node_save,
     node_info:node_info,
+    workflow_save:workflow_save,
+    workflow_new:workflow_new
     workflow_save:workflow_save,
     workflow_detail:workflow_detail
 };

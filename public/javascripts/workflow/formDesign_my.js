@@ -204,10 +204,11 @@ $(function () {
                 mAlert("复制成功");
             },
             "pmDelete": function (t) {
-                if (confirm("你确定删除步骤吗？")) {
+                var delProcess = function () {
                     var activeId = _canvas.getActiveId();//右键当前的ID
                     _canvas.delProcess(activeId);
-                }
+                };
+                layerAlert("你确定删除步骤吗？",'confirm',delProcess);
             },
             "pmAttribute": function (t) {
                 var activeId = _canvas.getActiveId();//右键当前的ID

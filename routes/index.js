@@ -138,6 +138,8 @@ module.exports = function (app) {
     app.get('/workflow/node_info',workflow.node_info);
     app.post('/workflow/workflow_save',workflow.workflow_save);
     app.get('/workflow/workflow_detail',workflow.workflow_detail);
+    app.get('/workflow/workflow_new',workflow.workflow_new);
+    app.post('/workflow/workflow_new',workflow.workflow_new);
 
     /** 个人消息页面*/
     app.get('/message',myMessage.message);

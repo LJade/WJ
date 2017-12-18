@@ -66,7 +66,7 @@ var notice_create = function(req, res, next) {
                 title: "",
                 publicName: "",
                 publicTime: "",
-                userlist: "",
+                userList: "",
                 content: ''
             };
             JADE_VAR.announcementId = "";

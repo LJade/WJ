@@ -136,28 +136,24 @@ Q 群：143263697
           menuStyle : defaults.menuStyle,
           itemStyle : defaults.itemStyle,
           itemHoverStyle : defaults.itemHoverStyle
-        }
+        };
         $(this).contextMenu('canvasMenu',contextmenu);
 
         jsPlumb.importDefaults({
             DragOptions : { cursor: 'pointer'},
             EndpointStyle : { fillStyle:'#225588' },
-            Endpoint : [ "Dot", {radius:1} ],
+            Endpoint : [ "Dot", {radius:11} ],
             ConnectionOverlays : [
-                [ "Arrow", { location:1 ,width:10} ],
+                [ "Arrow", { location:1 ,width:8, length:8}],
                 [ "Label", {
                         location:0.1,
                         id:"label",
                         cssClass:"aLabel"
                     }]
             ],
-            Anchor : ['Continuous',{
-                faces: [
-                    "left","top","bottom","right"
-                ]
-            }],
+            Anchor : 'Continuous',
             ConnectorZIndex:5,
-            HoverPaintStyle:defaults.connectorHoverStyle
+            HoverPaintStyle:defaults.connectorHoverStyle,
         });
         if( /msie/.test(navigator.userAgent.toLowerCase()) && $.browser.version < '9.0' ){ //ie9以下，用VML画图
             jsPlumb.setRenderMode(jsPlumb.VML);
@@ -230,8 +226,16 @@ Q 群：143263697
     });
     //绑定删除确认操作
     jsPlumb.bind("click", function(c) {
-      if(confirm("你确定取消连接吗?"))
-        jsPlumb.detach(c);
+        // jsPlumb.detach(c);
+        var layer = getLayerUI();
+        layer.confirm("你确定取消连接吗?",{
+            btn:['确定','取消']
+        },function () {
+            jsPlumb.detach(c);
+            layer.closeAll();
+        },function () {
+            layer.closeAll();
+        });
     });
     
     //连接成功回调函数
@@ -244,11 +248,12 @@ Q 群：143263697
     
     jsPlumb.makeTarget(jsPlumb.getSelector(".process-step"), {
         dropOptions:{ hoverClass:"hover", activeClass:"active" },
-        anchor:"Continuous",
+        anchor:'Continuous',
         maxConnections:-1,
         endpoint:[ "Dot", { radius:1 } ],
         paintStyle:{ fillStyle:"#ec912a",radius:1 },
         hoverPaintStyle:this.connectorHoverStyle,
+        connectorOverlays:[ "Arrow", { width:10, length:30, location:1, id:"arrow" }],
         beforeDrop:function(params){
             if(params.sourceId == params.targetId) return false;/*不能链接自己*/
             var j = 0;
@@ -258,7 +263,7 @@ Q 群：143263697
                     j++;
                     return;
                 }
-            })
+            });
             if( j > 0 ){
                 defaults.fnRepeat();
                 return false;
@@ -350,7 +355,7 @@ Q 群：143263697
                 //使可以连接线
                 jsPlumb.makeTarget(jsPlumb.getSelector(".process-step"), {
                     dropOptions:{ hoverClass:"hover", activeClass:"active" },
-                    anchor:"Continuous",
+                    anchor:'Continuous',
                     maxConnections:-1,
                     endpoint:[ "Dot", { radius:1 } ],
                     paintStyle:{ fillStyle:"#ec912a",radius:1 },
@@ -377,8 +382,8 @@ Q 群：143263697
         },
         delProcess:function(activeId){
             if(activeId<=0) return false;
-            
             $("#window"+activeId).remove();
+
             return true;
         },
         getActiveId:function()
@@ -397,7 +402,6 @@ Q 群：143263697
         },
         getProcessInfo:function()
         {
-            try{
               /*连接关系*/
               var aProcessData = {};
               $("#leipi_process_info input[type=hidden]").each(function(i){
@@ -410,8 +414,9 @@ Q 群：143263697
                     }
                     aProcessData[processVal[0]]["process_to"].push(processVal[1]);
                   }
-              })
+              });
               /*位置*/
+              var resultsProcessData = {};
               _canvas.find("div.process-step").each(function(i){ //生成Json字符串，发送到服务器解析
                       if($(this).attr('id')){
                           var pId = $(this).attr('process_id');
@@ -419,21 +424,19 @@ Q 群：143263697
                           var pTop = parseInt($(this).css('top'));
                           var type = $(this).find("i").hasClass("icon-play") ?  1 : $(this).find("i").hasClass("icon-ok") ? 2 : 3;
                           var name = $(this)[0].innerText;
-                         if(!aProcessData[pId])
+                          if(!aProcessData[pId])
                           {
                               aProcessData[pId] = {"top":0, "type":2,"name":"新建步骤","left":0,"process_to":[]};
                           }
-                          aProcessData[pId]["top"] =pTop;
-                          aProcessData[pId]["left"] =pLeft;
-                          aProcessData[pId]["type"] = type;
-                          aProcessData[pId]["name"] = name;
+                          resultsProcessData[pId] = {};
+                          resultsProcessData[pId]["top"] =pTop;
+                          resultsProcessData[pId]["left"] =pLeft;
+                          resultsProcessData[pId]["type"] = type;
+                          resultsProcessData[pId]["name"] = name;
+                          resultsProcessData[pId]['process_to'] = aProcessData[pId]['process_to'];
                       }
                   });
-             return JSON.stringify(aProcessData);
-          }catch(e){
-              return '';
-          }
-
+             return JSON.stringify(resultsProcessData);
         },
         clear:function()
         {

@@ -1,0 +1,32 @@
+extends ../components/base
+block title
+    title 流程配置
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/workflow/workflow_manage',text:'流程配置'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('新建流程')
+    #inner-wrapper
+        form(action="/workflow/workflow_new" method="post").news-create
+            .form-control
+                label.control-label(for='name') 流程名:
+                input#name.form-control(type='text' name='name')
+            .form-control
+                label.control-label(for='sortNum') 流程序号:
+                input#sortNum.form-control(type='text' name='sortNum')
+                input#flowId(type='hidden' name='id' value=id)
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='submit') 发布
+                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 取消
+
+
+
+
+
+
+
+

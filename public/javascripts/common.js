@@ -167,7 +167,7 @@ function login_out() {
     })
 }
 
-function layerAlert(message,messageType) {
+function layerAlert(message,messageType,fn,params) {
     if(!messageType){
         messageType = 'ok';
     }
@@ -180,13 +180,32 @@ function layerAlert(message,messageType) {
         switch (messageType){
             case 'error':
                 option.icon = 2;
+                layer.msg(message, option , function(){
+                    //do something
+                });
                 break;
             case 'ok':
                 option.icon = 1;
+                layer.msg(message, option , function(){
+                    //do something
+                });
+                break;
+            case 'confirm':
+                layer.confirm(message, {
+                    btn: ['确定', '取消']
+                }, function (index, layero) {
+                    if(params){
+                        fn(params);
+                    }else{
+                        fn();
+                    }
+
+                    layerCloseAll();
+                }, function (index) {
+                    layerCloseAll();
+                });
+                break;
         }
-        layer.msg(message, option , function(){
-            //do something
-        });
     })
 }
 
@@ -227,5 +246,13 @@ function getElementValue(id){
     }else{
         return "";
     }
+}
 
+function getLayerUI() {
+    var layerInstence = null;
+    layui.use('layer', function() { //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+        layerInstence = layer;
+    });
+    return layerInstence;
 }
