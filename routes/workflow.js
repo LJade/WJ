@@ -60,6 +60,9 @@ var workflow_new = function (req, res, next) {
     var flow_id = req.query.flow_id;
     if(req.method === 'POST'){
         //表示是保存
+        if(req.body.id === ''){
+            delete req.body.id
+        }
         assert.apiRequest('post','/flow/save',req).then(function (results) {
             var resOBJ = JSON.parse(results);
             if(resOBJ.code === 1){
@@ -71,9 +74,15 @@ var workflow_new = function (req, res, next) {
     }else{
         if(!flow_id){
             //表示是新增
-            JADE_VAR.id = 0;
+            JADE_VAR.id = '';
+            JADE_VAR.flowInfo = {
+                name:"",
+                sortNum:"",
+                id:""
+            }
         }else{
             JADE_VAR.id = flow_id;
+            //TODO 获取流程定义信息
         }
         res.render('workflow/workflow_new',JADE_VAR);
     }
@@ -188,7 +197,14 @@ var node_info = function (req,res,next) {
 var workflow_detail = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     res.render('workflow/workflow_config',JADE_VAR);
-}
+};
+
+var workflow_delete =  function (req, res, next) {
+    console.log(req.body);
+    assert.apiRequest('post','/flow/delete',req).then(function (results) {
+        res.send(results);
+    })
+};
 
 
 
@@ -202,6 +218,7 @@ module.exports = {
     node_info:node_info,
     workflow_save:workflow_save,
     workflow_new:workflow_new,
-    workflow_save:workflow_save,
-    workflow_detail:workflow_detail
+    workflow_detail:workflow_detail,
+    workflow_delete:workflow_delete
+
 };

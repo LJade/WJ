@@ -44,6 +44,7 @@ module.exports = function (app) {
     app.get('/setting/app_permission', setting.app_permission);
     app.get('/setting/contact_addpage', setting.contact_addpage);
     app.get('/setting/contact_config', setting.contact_config);
+    app.post('/setting/organization_save',setting.organization_save);
 
 
     /** 新闻相关路由*/
@@ -140,6 +141,7 @@ module.exports = function (app) {
     app.get('/workflow/workflow_detail',workflow.workflow_detail);
     app.get('/workflow/workflow_new',workflow.workflow_new);
     app.post('/workflow/workflow_new',workflow.workflow_new);
+    app.post('/workflow/flow_delete',workflow.workflow_delete);
 
     /** 个人消息页面*/
     app.get('/message',myMessage.message);

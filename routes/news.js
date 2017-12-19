@@ -116,7 +116,7 @@ var news_approve = function (req, res, next) {
     //获取list列表信息
     assert.apiRequest("get",'/journalism/myApproveList',req).then(function (results) {
         var documentListInfo = JSON.parse(results);
-        if(documentListInfo.code == 1){
+        if(documentListInfo.code === 1){
             JADE_VAR.newsList = documentListInfo.dat.details;
             JADE_VAR.newsTotal = documentListInfo.dat.totalPage;
         }else{
@@ -132,7 +132,7 @@ var news_category = function (req, res, next) {
     //获取list列表信息
     assert.apiRequest("get", "/journalism/typeList", req).then(function (results) {
         var newsList = JSON.parse(results);
-        if (newsList.code != 1) {
+        if (newsList.code !== 1) {
             JADE_VAR.typeList = [];
         } else {
             JADE_VAR.typeList = newsList.dat.details;

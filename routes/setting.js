@@ -17,6 +17,36 @@ var organization_manage = function(req, res, next) {
 
 var organization_create = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
+    var depAll = assert.apiRequest('get','/department/allDept',req);
+    if(req.query.deptId){
+        //这里为编辑
+        var depDetail = assert.apiRequest('get','/department/detail',req);
+        Promise.all([depAll,depDetail]).then(function (results) {
+            var depInfo = JSON.parse(results[1]);
+            var allDep = JSON.parse(results[0]);
+            if(depInfo.code === 1){
+                JADE_VAR.depInfo = depInfo.dat;
+                JADE_VAR.allDep = allDep.dat;
+            }else{
+                res.render('error/error',{"message":depInfo.msg});
+            }
+        });
+    }else{
+        depAll.then(function (results) {
+            JADE_VAR.depId = '';
+            JADE_VAR.depInfo = {
+                name:"",
+                parentId:"",
+                sortNum:""
+            };
+            JADE_VAR.allDep = JSON.parse(results).dat;
+            res.render('setting/organization_create',JADE_VAR);
+        })
+    }
+};
+
+var organization_save = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
     res.render('setting/organization_create',JADE_VAR);
 };
 
@@ -27,7 +57,17 @@ var organization_edit = function(req, res, next) {
 
 var user_manage = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('setting/user_manage',JADE_VAR);
+    //获取所有用户
+    var getAllUser = assert.apiRequest("get",'/department/allDeptAndUser',req);
+    Promise.all([getAllUser]).then(function (results) {
+       var userInfo = JSON.parse(results[0]);
+       if(userInfo.code === 1){
+           JADE_VAR.users = userInfo.dat.users;
+           res.render('setting/user_manage',JADE_VAR);
+       }else{
+           res.render('error/error',{"message":userInfo.msg});
+       }
+    });
 };
 
 var role_create = function(req, res, next) {
@@ -78,5 +118,6 @@ module.exports = {
     log_manage:log_manage,
     app_permission:app_permission,
     contact_addpage:contact_addpage,
-    contact_config:contact_config
+    contact_config:contact_config,
+    organization_save:organization_save,
 };

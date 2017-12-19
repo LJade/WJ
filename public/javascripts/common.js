@@ -141,6 +141,10 @@ function deleteSomething(modules,typeThing) {
             delOption.url = '/conference/con_room_delete';
             delOption.data.idList = deleleIDs;
             break;
+        case 'workflow_workflow':
+            delOption.url = '/workflow/flow_delete';
+            delOption.data.id = deleleIDs;
+            break;
         default:
             layerAlert("没有要找到待删除的模块",'error');
             break;
@@ -187,7 +191,7 @@ function layerAlert(message,messageType,fn,params) {
             case 'ok':
                 option.icon = 1;
                 layer.msg(message, option , function(){
-                    //do something
+
                 });
                 break;
             case 'confirm':
