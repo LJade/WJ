@@ -1,9 +1,6 @@
 extends ../components/base
 block title
     title 流程配置
-block style
-    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
-    link(rel='stylesheet', href=__PLUGINS_PATH__ + '/jquery-UI/jquery-ui.theme.min.css')
 block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/workflow/workflow_manage',text:'流程配置'}]
@@ -12,6 +9,8 @@ block common_header
     include ../components/header
     +commonheader(0)
 block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+    link(rel='stylesheet', href=__PLUGINS_PATH__ + '/jquery-UI/jquery-ui.theme.min.css')
     style.
         #main-wrapper {
             margin-top: 10px;

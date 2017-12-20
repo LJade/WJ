@@ -1,13 +1,12 @@
 extends ../components/base
 block title
     title 组织机构管理
-block style
-    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
-    link(rel="stylesheet", href=__PLUGINS_PATH__ + "/ztree/zTreeStyle.css")
 block common_header
     include ../components/header
     +commonheader(0)
 block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+    link(rel="stylesheet", href=__PLUGINS_PATH__ + "/ztree/zTreeStyle.css")
     style.
         #main-wrapper {
             margin-top: 10px;

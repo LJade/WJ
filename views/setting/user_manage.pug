@@ -1,12 +1,11 @@
 extends ../components/base
 block title
     title 用户管理
-block style
-    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block common_header
     include ../components/header
     +commonheader(0)
 block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
     style.
         #main-wrapper {
             margin-top: 10px;
