@@ -45,6 +45,9 @@ module.exports = function (app) {
     app.get('/setting/contact_addpage', setting.contact_addpage);
     app.get('/setting/contact_config', setting.contact_config);
     app.post('/setting/organization_save',setting.organization_save);
+    app.post('/setting/user_delete',setting.user_delete);
+    app.post('/setting/user_save',setting.user_save);
+    app.get('/setting/user_edit',setting.user_edit);
 
 
     /** 新闻相关路由*/

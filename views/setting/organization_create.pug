@@ -11,25 +11,22 @@ block main_content
     include ../components/mixin
     -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_addpage',text:'对接系统管理'},{link:'/setting/app_create',text:'第三方应用系统管理'}]
     +menuLink(menuObj,0)
-    -var navObj = [{link:'#',text:'组织机构管理'},{link:'/setting/user_manage',text:'用户管理'},{link:'/setting/role_manage',text:'角色权限管理'},{link:'/setting/region_manage',text:'行政区划分'},{link:'/setting/log_manage',text:'日志管理'}]
+    -var navObj = [{link:'/setting/organization_manage',text:'组织机构管理'},{link:'/setting/user_manage',text:'用户管理'},{link:'/setting/role_manage',text:'角色权限管理'},{link:'/setting/region_manage',text:'行政区划分'},{link:'/setting/log_manage',text:'日志管理'}]
     +menuNav(navObj,0)
     +RouteNav('组织机构新增')
     #inner-wrapper
-        .news-create
+        form.news-create(action="/setting/organization_save" method="post")
             .form-control
                 label.control-label(for='name') 部门名称:
-                input#name.form-control(type='text' name="name")
+                input#name.form-control(type='text' name="name" value=depInfo.label)
             .form-control
                 label.control-label(for='parentId') 上级部门:
-                select#parentId.form-control(name="parentId")
-                    option xxx
-                    option xxx
-                    option xxx
-                    option xxx
-                    option xxx
+                input#parent.form-control(type='text' name="parent" readonly value=depName)
             .form-control
-                label.control-label(for='order') 排序:
-                input#order.form-control(type='text')
+                label.control-label(for='sortNum') 排序:
+                input#sortNum.form-control(type='text' name="sortNum" value=depInfo.sortNum)
+                input#parentId(type='hidden' name='parentId' value=pId)
+                input#id(type='hidden' name='id' value=curId)
             .form-control.btn-wrapper
-                button.btn.btn-default.btn-sm(type='button') 保存
-                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+                button.btn.btn-default.btn-sm(type='submit') 保存
+                button.btn.btn-disable.btn-sm(type='button' onclick="window.location.href='/setting/organization_manage'" style='margin-left:20px') 取消

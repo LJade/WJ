@@ -200,7 +200,6 @@ var workflow_detail = function (req, res, next) {
 };
 
 var workflow_delete =  function (req, res, next) {
-    console.log(req.body);
     assert.apiRequest('post','/flow/delete',req).then(function (results) {
         res.send(results);
     })

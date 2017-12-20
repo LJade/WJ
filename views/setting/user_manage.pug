@@ -19,8 +19,8 @@ block main_content
             input#username(type='text')
         .inline-group
             button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick="searchList();") 检索
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/setting/user_create"') 新建
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomeThing("setting","user");') 删除
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/setting/user_edit"') 新建
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("setting","user");') 删除
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -30,7 +30,7 @@ block main_content
                             input(type='checkbox')
                         td  用户名
                         td  登录账号
-                        td  登录角色
+                        td  用户角色
                         td  所属部门
                         td  创建时间
                         td  操作
@@ -41,8 +41,9 @@ block main_content
                                 td
                                     input(type='checkbox' data-id=user.id)
                                 td.link  #{user.name}
-                                td  root
-                                td  超级管理员
-                                td  吴江交通局
-                                td  2017-9-18
-                                td.link 编辑
+                                td  #{user.loginAccount}
+                                td  #{user.roleNames}
+                                td  #{user.deptNames}
+                                td  #{user.createTime}
+                                td
+                                    a.link(href='/setting/user_edit?edit=true&userId='+user.id) 编辑

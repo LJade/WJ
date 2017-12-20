@@ -145,6 +145,10 @@ function deleteSomething(modules,typeThing) {
             delOption.url = '/workflow/flow_delete';
             delOption.data.id = deleleIDs;
             break;
+        case 'setting_user':
+            delOption.url = '/setting/user_delete';
+            delOption.data.userIds = deleleIDs;
+            break;
         default:
             layerAlert("没有要找到待删除的模块",'error');
             break;
