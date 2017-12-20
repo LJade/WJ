@@ -7,7 +7,8 @@ block content
     #wrapper
         #header
             include ../components/header
-        #main-wrapper
+            +commonheader(1)
+        #main-wrapper(style='margin-top:10px')
             #chat-wrapper(style='min-height:800px;position:relative;margin-top:10px')
                 section(id='main').w100
                     article(id='demo')

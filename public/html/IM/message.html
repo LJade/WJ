@@ -20,29 +20,29 @@
   <body>
     <div id="wrapper">
       <div id="header">
-        <style>
-          .navbar{
-              border-radius: 0;
-              margin-bottom: 0;
-          }
-        </style>
-        <header id="common-header">
-          <div class="header-left">
-            <div class="header-logo"><img src="../../images/logo.png"></div>
-            <div class="header-nav clearfix"><a class="active" href="/"><i class="icon icon-home2"></i>工作台</a><a href="/im"><i class="icon icon-envelope2"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href="#"><i class="icon icon-screen"></i>多屏幕模式</a></div>
-          </div>
-          <div class="header-right">
-            <div class="header-search">
-              <input type="text"><i class="icon icon-search"></i>
-            </div>
-            <div class="login-user">
-              <div class="img-wrapper"><img src="../../images/avatar.png"></div>
-              <!--.name   Lingyu.ZHOU-->
-            </div><a class="star"><i class="icon icon-star2"></i></a><a class="login-out" onclick="login_out();"><i class="icon icon-close"></i></a>
-          </div>
-        </header>
+                <header id="common-header">
+                  <div class="header-left">
+                    <div class="header-logo"><img src="../../images/logo.png"></div>
+                    <div class="header-nav clearfix"><a href="/"><i class="icon icon-home2"></i>工作台</a><a class="active" href="/im"><i class="icon icon-envelope2"></i>即时通讯</a><a href="/netdisk/company_disk"><i class="icon icon-disk"></i>网盘</a><a href="#"><i class="icon icon-screen"></i>多屏幕模式</a></div>
+                  </div>
+                  <div class="header-right">
+                    <div class="header-search">
+                      <input type="text"><i class="icon icon-search"></i>
+                    </div>
+                    <div class="login-user">
+                      <div class="img-wrapper"><img src="../../images/avatar.png"></div>
+                      <!--.name   Lingyu.ZHOU-->
+                    </div><a class="star"><i class="icon icon-star2"></i></a><a class="login-out" onclick="login_out();"><i class="icon icon-close"></i></a>
+                  </div>
+                </header>
+                <style>
+                  .navbar{
+                      border-radius: 0;
+                      margin-bottom: 0;
+                  }
+                </style>
       </div>
-      <div id="main-wrapper">
+      <div id="main-wrapper" style="margin-top:10px;">
         <div id="chat-wrapper" style="min-height:800px;position:relative;margin-top:10px;">
           <section class="w100" id="main">
             <article id="demo"></article>
@@ -74,7 +74,7 @@
           margin: auto;
       }
       .webim-leftbar{
-              width: 200px;
+          width: 120px;
           background: #f2f0f0;
       }
       
@@ -93,7 +93,7 @@
       }
       
       .webim-chatwindow {
-          width: calc(100% - 390px);
+          width: calc(100% - 310px);
       }
       .webim-msg-container .webim-avatar-icon.small{
           width: 30px;

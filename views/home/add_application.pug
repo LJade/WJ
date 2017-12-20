@@ -1,6 +1,14 @@
 extends ../components/base
 block title
     title 添加桌面应用
+block common_header
+    include ../components/header
+    +commonheader(0)
+block style
+    style.
+        #main-wrapper {
+            margin-top: 10px;
+        }
 block main_content
     include ../components/mixin
     +RouteNav('桌面应用添加')
