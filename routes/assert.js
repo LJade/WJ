@@ -50,7 +50,7 @@ var getError = function (code,message) {
 var apiRequest = function (method, url, req) {
     var sessionId = req.session.user === undefined ? "" : req.session.user.accessToken;
     if(!sessionId){
-        sessionId = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTM3Njk5NTAsImlhdCI6MTUxMzc2Mjc1MH0.XsjDw4uVCWclPhJQcPJt2Y61vpq7H4FgMLnLrrc8LdY';
+        sessionId = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTQwNDUyMDcsImlhdCI6MTUxMzc4NjAwN30._XoWDoJ_FWJJUpGheh54XJcNbrPV9MWb4HhPJVZw04w';
     }
     if(method == 'get'){
         var options_get = {

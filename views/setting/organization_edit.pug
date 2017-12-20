@@ -3,6 +3,14 @@ block title
     title 组织机构编辑
 block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block common_header
+    include ../components/header
+    +commonheader(0)
+block style
+    style.
+        #main-wrapper {
+            margin-top: 10px;
+        }
 block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]

@@ -15,6 +15,14 @@ block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/workflow/workflow_manage',text:'流程配置'}]
     +asideNav(routerObj,0)
+block common_header
+    include ../components/header
+    +commonheader(0)
+block style
+    style.
+        #main-wrapper {
+            margin-top: 10px;
+        }
 block main_content
     include ../components/mixin
     include ../components/contact

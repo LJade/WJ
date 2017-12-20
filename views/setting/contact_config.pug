@@ -7,6 +7,14 @@ block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
     +asideNav(routerObj,2)
+block common_header
+    include ../components/header
+    +commonheader(0)
+block style
+    style.
+        #main-wrapper {
+            margin-top: 10px;
+        }
 block main_content
     include ../components/mixin
     -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_addpage',text:'对接系统管理'},{link:'/setting/app_create',text:'第三方应用系统管理'}]

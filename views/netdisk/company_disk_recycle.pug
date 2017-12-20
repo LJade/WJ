@@ -7,6 +7,14 @@ block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/netdisk/company_disk',text:'单位网盘'},{link:'/netdisk/company_disk',text:'个人网盘'}]
     +asideNav(routerObj,0)
+block common_header
+    include ../components/header
+    +commonheader(2)
+block style
+    style.
+        #main-wrapper {
+            margin-top: 10px;
+        }
 block main_content
     include ../components/mixin
     +RouteNav('回收站')

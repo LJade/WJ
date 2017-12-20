@@ -1,34 +1,36 @@
-style.
-    .navbar{
-        border-radius: 0;
-        margin-bottom: 0;
-    }
-header#common-header
-    .header-left
-        .header-logo
-            img(src=__IMAGES_PATH__ + '/logo.png')
-        .header-nav.clearfix
-            a.active(href='/')
-                i.icon.icon-home2
-                |工作台
-            a(href='/im')
-                i.icon.icon-envelope2
-                |即时通讯
-            a(href='/netdisk/company_disk')
-                i.icon.icon-disk
-                |网盘
-            a(href='#')
-                i.icon.icon-screen
-                |多屏幕模式
-    .header-right
-        .header-search
-            input(type='text')
-            i.icon.icon-search
-        .login-user
-            .img-wrapper
-                img(src=__IMAGES_PATH__ + '/avatar.png')
-            //.name   Lingyu.ZHOU
-        a.star
-            i.icon.icon-star2
-        a.login-out(onclick="login_out();")
-            i.icon.icon-close
+
+mixin commonheader(activeIndex)
+    header#common-header
+        .header-left
+            .header-logo
+                img(src=__IMAGES_PATH__ + '/logo.png')
+            .header-nav.clearfix
+                a(href='/' class=(activeIndex==0)?'active':'')
+                    i.icon.icon-home2
+                    |工作台
+                a(href='/im' class=(activeIndex==1)?'active':'')
+                    i.icon.icon-envelope2
+                    |即时通讯
+                a(href='/netdisk/company_disk' class=(activeIndex==2)?'active':'')
+                    i.icon.icon-disk
+                    |网盘
+                a(href='#' class=(activeIndex==3)?'active':'')
+                    i.icon.icon-screen
+                    |多屏幕模式
+        .header-right
+            .header-search
+                input(type='text')
+                i.icon.icon-search
+            .login-user
+                .img-wrapper
+                    img(src=__IMAGES_PATH__ + '/avatar.png')
+                //.name   Lingyu.ZHOU
+            a.star
+                i.icon.icon-star2
+            a.login-out(onclick="login_out();")
+                i.icon.icon-close
+    style.
+        .navbar{
+            border-radius: 0;
+            margin-bottom: 0;
+        }

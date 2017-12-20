@@ -3,6 +3,14 @@ block title
     title 统计报表
 block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block common_header
+    include ../components/header
+    +commonheader(0)
+block style
+    style.
+        #main-wrapper {
+            margin-top: 10px;
+        }
 block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/statistics',text:'统计报表'}]
