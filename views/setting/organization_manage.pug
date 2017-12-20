@@ -17,13 +17,16 @@ block main_content
     div.nav-handle.clearfix
         .nav-name 组织机构管理
         .handle-wrapper
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/setting/organization_create"') 新增
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 删除
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='createNewDep();') 新增
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='editNewDep();') 编辑
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='deleteDep();') 删除
     #inner-wrapper
         .container-wrapper
-            ul#tree.ztree
+            ul#tree.ztree(data-node=depAll)
+
 include ../components/tree
     +treeShow()
+
 
 
 

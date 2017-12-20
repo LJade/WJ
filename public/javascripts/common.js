@@ -260,3 +260,7 @@ function getLayerUI() {
     });
     return layerInstence;
 }
+
+function escapeJSON(str) {
+    return str.replaceAll('&quot;','"');
+}

@@ -3,8 +3,7 @@ var assert = require('./assert.js');
 var news_list = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken: "123123"};
-    if (!req.session.user.accessToken) {
+    if (!req.session.user) {
         res.redirect("/login");
     }
     //获取list列表信息
@@ -25,8 +24,7 @@ var news_list = function (req, res, next) {
 var news_manage = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken: "123123"};
-    if (!req.session.user.accessToken) {
+    if (!req.session.user) {
         res.redirect("/login");
     }
     //获取list列表信息

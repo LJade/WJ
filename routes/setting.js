@@ -12,19 +12,28 @@ var region_manage = function(req, res, next) {
 
 var organization_manage = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('setting/organization_manage',JADE_VAR);
+    var depAll = assert.apiRequest('get','/department/allDept',req);
+    depAll.then(function (results) {
+        var depAllInfo = JSON.parse(results);
+        if(depAllInfo.code !== 1){
+            res.render('error/error',{message:depAllInfo.msg});
+        }else{
+            JADE_VAR.depAll = JSON.stringify(depAllInfo.dat);
+            res.render('setting/organization_manage',JADE_VAR);
+        }
+    });
+
 };
 
 var organization_create = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    var depAll = assert.apiRequest('get','/department/allDept',req);
-    if(req.query.deptId){
+    if(req.query.curId){
         //这里为编辑
-        var depDetail = assert.apiRequest('get','/department/detail',req);
-        Promise.all([depAll,depDetail]).then(function (results) {
-            var depInfo = JSON.parse(results[1]);
-            var allDep = JSON.parse(results[0]);
+        var depDetail = assert.apiRequest('get','/department/allDept',req);
+        Promise.all([depDetail]).then(function (results) {
+            var depInfo = JSON.parse(results[0]);
             if(depInfo.code === 1){
+                //从所有的列表中获取到
                 JADE_VAR.depInfo = depInfo.dat;
                 JADE_VAR.allDep = allDep.dat;
             }else{
@@ -69,6 +78,11 @@ var user_manage = function(req, res, next) {
        }
     });
 };
+
+var user_create = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    res.render("setting/user_create",JADE_VAR);
+}
 
 var role_create = function(req, res, next) {
     var JADE_VAR = assert.getJADE();

@@ -3,8 +3,8 @@ var assert = require('./assert.js');
 
 var con_approve = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
+
     //检查登陆
-    req.session.user = {accessToken:"123123"};
     if(!req.session.user.accessToken){
         res.redirect("/login");
     }
@@ -70,7 +70,6 @@ var con_create = function(req, res, next) {
 var con_history = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken:"123123"};
     if(!req.session.user.accessToken){
         res.redirect("/login");
     }
@@ -91,7 +90,7 @@ var con_history = function(req, res, next) {
 var con_summary = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken:"123123"};
+
     if(!req.session.user.accessToken){
         res.redirect("/login");
     }
@@ -112,7 +111,6 @@ var con_summary = function(req, res, next) {
 var con_summary_detail = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken:"123123"};
     if(!req.session.user.accessToken){
         res.redirect("/login");
     }
@@ -134,7 +132,6 @@ var con_summary_detail = function(req, res, next) {
 var con_sign = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken:"123123"};
     if(!req.session.user.accessToken){
         res.redirect("/login");
     }
@@ -155,7 +152,6 @@ var con_sign = function(req, res, next) {
 
 var con_apply = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    req.session.user = {accessToken:"123123"};
     if(!req.session.user.accessToken){
         res.redirect("/login");
     }
@@ -178,7 +174,6 @@ var con_apply = function(req, res, next) {
 var con_room = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken:"123123"};
     if(!req.session.user.accessToken){
         res.redirect("/login");
     }
@@ -223,8 +218,8 @@ var con_room_edit = function (req, res, next) {
 var con_room_resource = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken:"123123"};
-    if(!req.session.user.accessToken){
+
+    if(!req.session.user){
         res.redirect("/login");
     }
     //获取list列表信息

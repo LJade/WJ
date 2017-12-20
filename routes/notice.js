@@ -26,8 +26,7 @@ var notice_list = function(req, res, next) {
 var notice_create = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken:"123123"};
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     if(req.query.announcementId){
@@ -79,8 +78,7 @@ var notice_create = function(req, res, next) {
 var notice_manage = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken:"123123"};
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     req.query.ifJurisdiction = 1;
@@ -101,8 +99,7 @@ var notice_manage = function(req, res, next) {
 var notice_approve = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken:"123123"};
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     //获取list列表信息

@@ -2,8 +2,8 @@ var assert = require('./assert.js');
 var request  = require('request');
 
 var home = function(req, res, next) {
-    var JADE_VAR = assert.getJADE();
 
+    var JADE_VAR = assert.getJADE();
     //判断登陆状态
     if(!req.session.user){
         res.redirect("/login");

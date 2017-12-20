@@ -46,13 +46,17 @@ var getError = function (code,message) {
     return JSON.stringify(errInfo);
 };
 
+
 var apiRequest = function (method, url, req) {
     var sessionId = req.session.user === undefined ? "" : req.session.user.accessToken;
+    if(!sessionId){
+        sessionId = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTM3Njk5NTAsImlhdCI6MTUxMzc2Mjc1MH0.XsjDw4uVCWclPhJQcPJt2Y61vpq7H4FgMLnLrrc8LdY';
+    }
     if(method == 'get'){
         var options_get = {
             url: API_HOST + url + "?" +qs.encode(req.query),
-            header:{
-                'WJ_Auth':sessionId
+            headers:{
+                'WJ-AUTH':sessionId
             }
         };
         console.log(options_get);
@@ -73,8 +77,8 @@ var apiRequest = function (method, url, req) {
             url:API_HOST + url,
             method:'POST',
             form:req.body,
-            header:{
-                'WJ_Auth':sessionId
+            headers:{
+                'WJ-AUTH':sessionId
             }
         };
         console.log(options);

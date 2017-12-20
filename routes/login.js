@@ -1,6 +1,7 @@
 var assert = require('./assert.js');
 var request = require('request');
 var qr = require('qr-image');
+var md5 = require('md5');
 
 var login = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
@@ -35,9 +36,10 @@ var register = function (req, res, next) {
 var doLogin = function (req, res, next) {
 
     req = assert.coverParams(req,"body",['account','pwd']);
-
+    req.body.pwd = md5(req.body.pwd);
     assert.apiRequest("post", "/user/ptlogin", req).then(function (results) {
         var loginInfo = JSON.parse(results);
+        console.log(loginInfo.dat.accessToken);
         if (loginInfo.code == 1) {
             req.session.user = {
                 userName: req.params.account,
