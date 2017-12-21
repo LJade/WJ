@@ -53,7 +53,6 @@ mixin treeShowCheck(moduleType)
                     var stringChecked = $('#deptIds').val();
                     var checkedIds = stringChecked === "" ? [] : stringChecked.split(",");
                     var index = $.inArray(String(treeNode.id), checkedIds)
-                    console.log(treeNode, checkedIds, index);
                     if (treeNode.checked === false) {
                         if (index !== -1) {
                             checkedIds.splice(index, 1);
@@ -93,6 +92,28 @@ mixin treeShowCheck(moduleType)
                 });
             }
             zTreeLoad();
+            //权限保存逻辑
+            if($("#permissionSave").length){
+                $("#permissionSave").on("click",function () {
+                    var chooseRole = $('#chooseRole');
+                    var roleId = chooseRole.val();
+                    var modulesId = $('#deptIds').val();
+                    var roleName = chooseRole.attr("data-name");
+                    var roleUsers = chooseRole.attr("data-users");
+                    var goBack = function () {
+                        window.location.href = '/setting/role_manage';
+                    }
+                    $.post("/setting/role_save",{id:roleId,name:roleName,usersId:roleUsers,moduleIds:modulesId},function (data) {
+                        if (data.code === 1) {
+                            layerAlert("操作成功！！", 'ok', goBack);
+                        } else {
+                            layerAlert(data.msg, 'error');
+                        }
+                    },'json');
+                });
+            }
+
+
 
 
 

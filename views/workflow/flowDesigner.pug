@@ -1,15 +1,5 @@
 extends ../components/base
-block style
-    //link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
-    //link(rel='stylesheet',href=__PLUGINS_PATH__ + '/bootstrap/css/bootstrap.css?2025')
-
-    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/bootstrap/css/bootstrap.css?2025')
-    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/bootstrap/css/bootstrap-ie6.css?2025')
-    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/bootstrap/css/ie.css?2025')
-    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/site.css')
-    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/js/flowdesign/flowdesign.css')
-    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/js/jquery.multiselect2side/css/jquery.multiselect2side.css')
-    //layer
+block script
     script(type='text/javascript' src=__PLUGINS_PATH__ + '/layui/layui.js')
 block aside_content
     include ../components/mixin
@@ -19,6 +9,12 @@ block common_header
     include ../components/header
     +commonheader(0)
 block style
+    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/bootstrap/css/bootstrap.css?2025')
+    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/bootstrap/css/bootstrap-ie6.css?2025')
+    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/bootstrap/css/ie.css?2025')
+    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/css/site.css')
+    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/js/flowdesign/flowdesign.css')
+    link(rel='stylesheet',href=__PLUGINS_PATH__ + '/formDesign/js/jquery.multiselect2side/css/jquery.multiselect2side.css')
     style.
         #main-wrapper {
             margin-top: 10px;

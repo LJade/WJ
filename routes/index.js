@@ -50,6 +50,7 @@ module.exports = function (app) {
     app.get('/setting/user_edit',setting.user_edit);
     app.get('/setting/role_permission',setting.role_permission);
     app.get('/setting/role_edit',setting.role_edit);
+    app.post("/setting/role_save",setting.role_save);
 
 
     /** 新闻相关路由*/

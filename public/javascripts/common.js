@@ -189,13 +189,13 @@ function layerAlert(message,messageType,fn,params) {
             case 'error':
                 option.icon = 2;
                 layer.msg(message, option , function(){
-                    //do something
+                    fn();
                 });
                 break;
             case 'ok':
                 option.icon = 1;
                 layer.msg(message, option , function(){
-
+                    fn();
                 });
                 break;
             case 'confirm':

@@ -155,20 +155,20 @@ var role_edit = function (req, res, next) {
         name:"",
         modulesId:""
     };
-    var modulesList = assert.apiRequest('get','/privilege/module/list',req);
-    if(!userId){
+    var usersList = assert.apiRequest('get','/privilege/user/list',req);
+    if(!roleId){
         //表示是新增
         JADE_VAR.roleInfo = roleInfo;
         JADE_VAR.roleId = roleId;
         JADE_VAR.edit = true;
         //获取角色列表
-        Promise.all([modulesList]).then(function(results){
-            var modulesList = JSON.parse(results[0]);
-            if( modulesList.code !== 1 ){
-                res.render("error/error",{message:modulesList.msg})
+        Promise.all([usersList]).then(function(results){
+            var usersList = JSON.parse(results[0]);
+            if( usersList.code !== 1 ){
+                res.render("error/error",{message:usersList.msg})
             }else{
                 //获取部门树和角色list
-                JADE_VAR.modulesList = JSON.stringify(modulesList.dat);
+                JADE_VAR.usersList = usersList.dat;
                 res.render('setting/role_create',JADE_VAR);
             }
         });
@@ -196,10 +196,20 @@ var role_edit = function (req, res, next) {
         });
 
     }
-}
+};
 
 var role_permission = function (req, res, next) {
     assert.apiRequest('get','/privilege/role/detail',req).then(function (results) {
+        res.send(results);
+    })
+};
+
+var role_save = function (req, res, next) {
+    var moduleIds = req.body.moduleIds;
+    if(!moduleIds){
+        req.body.moduleIds = "1";
+    }
+    assert.apiRequest("post",'/privilege/role/save',req).then(function (results) {
         res.send(results);
     })
 };
@@ -329,5 +339,6 @@ module.exports = {
     user_save:user_save,
     user_edit:user_edit,
     role_permission:role_permission,
-    role_edit:role_edit
+    role_edit:role_edit,
+    role_save:role_save
 };

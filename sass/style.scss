@@ -439,14 +439,13 @@ input[type='checkbox']{
   display: -ms-flexbox;
   display: flex;
   padding: 0 15px 50px;
-  height: 500px;
   width: 600px;
   margin-left: 100px;
   .user-list{
     width: 180px;
     border: 1px solid $border-color;
     min-height: 300px;
-    max-height: 400px;
+    max-height: 350px;
     line-height: 3;
     overflow: auto;
     &::-webkit-scrollbar{

@@ -56,6 +56,8 @@ $('.user-list li').on('click', function (e) {
         $('.user-list li').removeClass("active");
         $('#chooseRole').val($(this).attr("data-role-id"));
         $('#chooseRole').attr("data-type",$(this).attr("data-type"));
+        $('#chooseRole').attr("data-users",$(this).attr("data-users"));
+        $('#chooseRole').attr("data-name",$(this).attr("data-name"));
         $(this).addClass('active');
         //刷新右侧权限
         refershTree($(this).attr("data-role-id"));

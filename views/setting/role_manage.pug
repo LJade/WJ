@@ -31,9 +31,9 @@ block main_content
                 ul.user-list
                     if(rolesList.length)
                         each role in rolesList
-                            li.structure-node(data-role-id=role.id data-type=role.roleType) #{role.name}
+                            li.structure-node(data-role-id=role.id data-name=role.name data-users=role.users data-type=role.roleType) #{role.name}
             .manage-handle(style="position: absolute;margin-left: 200px;margin-top: 10px;")
-                button.btn.btn-sm.btn-default 保存
+                button#permissionSave.btn.btn-sm.btn-default 保存
                 button.btn.btn-sm.btn-disable(style="margin-left:20px;") 取消
             .permission-handle
                 input#deptIds(type='hidden' value="" name='deptIds')
