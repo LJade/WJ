@@ -49,9 +49,7 @@ var getError = function (code,message) {
 
 var apiRequest = function (method, url, req) {
     var sessionId = req.session.user === undefined ? "" : req.session.user.accessToken;
-    if(!sessionId){
-        sessionId = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTQwNDUyMDcsImlhdCI6MTUxMzc4NjAwN30._XoWDoJ_FWJJUpGheh54XJcNbrPV9MWb4HhPJVZw04w';
-    }
+    sessionId = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTQxMDUwNTIsImlhdCI6MTUxMzg0NTg1Mn0.62xaSrEbeAkb3gP45rda6hroZ3bS4AMPy-cClpJRi-c';
     if(method === 'get'){
         var options_get = {
             url: API_HOST + url + "?" +qs.encode(req.query),

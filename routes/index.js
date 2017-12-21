@@ -48,6 +48,8 @@ module.exports = function (app) {
     app.post('/setting/user_delete',setting.user_delete);
     app.post('/setting/user_save',setting.user_save);
     app.get('/setting/user_edit',setting.user_edit);
+    app.get('/setting/role_permission',setting.role_permission);
+    app.get('/setting/role_edit',setting.role_edit);
 
 
     /** 新闻相关路由*/

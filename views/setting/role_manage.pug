@@ -6,6 +6,7 @@ block common_header
     +commonheader(0)
 block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+    link(rel="stylesheet", href=__PLUGINS_PATH__ + "/ztree/zTreeStyle.css")
     style.
         #main-wrapper {
             margin-top: 10px;
@@ -24,131 +25,20 @@ block main_content
         .user-permission
             .user-wrapper
                 .user-handle
-                    button.btn.btn-warning.btn-lg 新建
-                    button.btn.btn-warning.btn-lg 编辑
+                    button#createRole.btn.btn-warning.btn-lg(onclick="window.location.href='/setting/role_edit'") 新建
+                    button#editRole.btn.btn-warning.btn-lg 编辑
+                    input#chooseRole(type='hidden' value="")
                 ul.user-list
-                    li.structure-node.open-node 吴江交通局
-                        ul.structure-tree
-                            li.structure-node.close-node ROOT
-                                ul.structure-tree
-                                    li 小王
-                            li.structure-node.close-node 管理员
-                                ul.structure-tree
-                                    li 小王
-                                    li 老张
-                            li.structure-node.open-node 实名用户
-                                ul.structure-tree
-                                    li 小王
-                                    li.active 芦苇
-                                    li 王哥
-                                    li 小赵
-                                    li 吴姐
-                .manage-handle
-                    button.btn.btn-sm.btn-default 保存
-                    button.btn.btn-sm.btn-disable 取消
+                    if(rolesList.length)
+                        each role in rolesList
+                            li.structure-node(data-role-id=role.id data-type=role.roleType) #{role.name}
+            .manage-handle(style="position: absolute;margin-left: 200px;margin-top: 10px;")
+                button.btn.btn-sm.btn-default 保存
+                button.btn.btn-sm.btn-disable(style="margin-left:20px;") 取消
             .permission-handle
-                ul.app-list
-                    li.app-item
-                        div
-                            label
-                                input(type='checkbox')
-                            span.open
-                                i.icon.icon-file
-                                | 系统管理
-                        ul.app-child
-                            li.child-item
-                                label
-                                    input(type='checkbox')
-                                    span
-                                        i.icon.icon-tag
-                                        | 组织机构管理
-                            li.child-item
-                                label
-                                    input(type='checkbox')
-                                    span
-                                        i.icon.icon-tag
-                                        | 统一应用管理
-                            li.child-item
-                                label
-                                    input(type='checkbox')
-                                    span
-                                        i.icon.icon-tag
-                                        | 用户管理
-                            li.child-item
-                                label
-                                    input(type='checkbox')
-                                    span
-                                        i.icon.icon-tag
-                                        | 用户权限管理
-                            li.child-item
-                                label
-                                    input(type='checkbox')
-                                    span
-                                        i.icon.icon-tag
-                                        | 日志管理
-                            li.child-item
-                                label
-                                    input(type='checkbox')
-                                    span
-                                        i.icon.icon-tag
-                                        | 流程审批管理
-                            li.child-item
-                                label
-                                    input(type='checkbox')
-                                    span
-                                        i.icon.icon-tag
-                                        | 会议室管理
-                    li.app-item
-                        div
-                            label
-                                input(type='checkbox')
-                            span.close
-                                i.icon.icon-file
-                                | 审批管理
-                    li.app-item
-                        div
-                            label
-                                input(type='checkbox')
-                            span.close
-                                i.icon.icon-file
-                                | 新闻管理
-                    li.app-item
-                        div
-                            label
-                                input(type='checkbox')
-                            span.close
-                                i.icon.icon-file
-                                | 公告管理
-                    li.app-item
-                        div
-                            label
-                                input(type='checkbox')
-                            span.close
-                                i.icon.icon-file
-                                | 个人信息
-                    li.app-item
-                        div
-                            label
-                                input(type='checkbox')
-                            span.close
-                                i.icon.icon-file
-                                | 审批管理
-block script
-    script(type='text/javascript').
-        $('.close-node').on('click', function (e) {
-            if ($(this).hasClass('open-node')) {
-                $(this).removeClass('open-node').addClass('close-node').find('ul').first().hide()
-            } else {
-                $(this).removeClass('close-node').addClass('open-node').find('ul').first().show()
-            }
-            e.stopPropagation();//阻止冒泡
-        });
+                input#deptIds(type='hidden' value="" name='deptIds')
+                ul#tree.ztree(data-node=modulesList)
+include ../components/checkTree
+    +treeShow()
 
-        $('.open-node').on('click', function (e) {
-            if ($(this).hasClass('close-node')) {
-                $(this).removeClass('close-node').addClass('open-node').find('ul').first().show()
-            } else {
-                $(this).removeClass('open-node').addClass('close-node').find('ul').first().hide()
-            }
-            e.stopPropagation();//阻止冒泡
-        });
+

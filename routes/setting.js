@@ -128,7 +128,80 @@ var role_create = function(req, res, next) {
 
 var role_manage = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('setting/role_manage',JADE_VAR);
+    //获取角色的list
+    var roleList = assert.apiRequest('get','/privilege/role/list',req);
+    var modulesList = assert.apiRequest('get','/privilege/module/list',req);
+    Promise.all([roleList,modulesList]).then(function (results) {
+        var rolesList = JSON.parse(results[0]);
+        var modulesList = JSON.parse(results[1]);
+        if(rolesList.code === 1 && modulesList.code === 1){
+            JADE_VAR.rolesList = rolesList.dat;
+            console.log(modulesList.dat);
+            JADE_VAR.modulesList = JSON.stringify(modulesList.dat);
+            res.render('setting/role_manage',JADE_VAR);
+        }else{
+            res.render('error/error',{message:rolesList.msg + "   " + modulesList.msg});
+        }
+    })
+};
+
+
+var role_edit = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    var roleId = req.query.roleId ? req.query.roleId : "";
+    var edit = !!req.query.edit;
+    var roleInfo = {
+        id:"",
+        name:"",
+        modulesId:""
+    };
+    var modulesList = assert.apiRequest('get','/privilege/module/list',req);
+    if(!userId){
+        //表示是新增
+        JADE_VAR.roleInfo = roleInfo;
+        JADE_VAR.roleId = roleId;
+        JADE_VAR.edit = true;
+        //获取角色列表
+        Promise.all([modulesList]).then(function(results){
+            var modulesList = JSON.parse(results[0]);
+            if( modulesList.code !== 1 ){
+                res.render("error/error",{message:modulesList.msg})
+            }else{
+                //获取部门树和角色list
+                JADE_VAR.modulesList = JSON.stringify(modulesList.dat);
+                res.render('setting/role_create',JADE_VAR);
+            }
+        });
+    }else{
+        //表示是编辑
+        JADE_VAR.userInfo = userInfo;
+        JADE_VAR.userId = userId;
+        JADE_VAR.edit = edit;
+        //获取用户详情
+        var getUserDetail = assert.apiRequest('get','/privilege/user/detail',req);
+        //获取角色列表
+        Promise.all([roleList,depAll,getUserDetail]).then(function(results){
+            var roleList = JSON.parse(results[0]);
+            var depList = JSON.parse(results[1]);
+            var userInfoAPI = JSON.parse(results[2]);
+            if(roleList.code !== 1 || depList.code !== 1 || userInfoAPI.code !== 1){
+                res.render("error/error",{message:roleList.msg})
+            }else{
+                //获取部门树和角色list
+                JADE_VAR.rolesList = roleList.dat;
+                JADE_VAR.depAll = JSON.stringify(depList.dat);
+                JADE_VAR.userInfo = userInfoAPI.dat;
+                res.render('setting/user_create',JADE_VAR);
+            }
+        });
+
+    }
+}
+
+var role_permission = function (req, res, next) {
+    assert.apiRequest('get','/privilege/role/detail',req).then(function (results) {
+        res.send(results);
+    })
 };
 
 var location_manage = function(req, res, next) {
@@ -234,6 +307,9 @@ var user_edit = function (req, res, next) {
     }
 };
 
+
+
+
 module.exports = {
     app_create:app_create,
     region_manage:region_manage,
@@ -251,5 +327,7 @@ module.exports = {
     organization_save:organization_save,
     user_delete:user_delete,
     user_save:user_save,
-    user_edit:user_edit
+    user_edit:user_edit,
+    role_permission:role_permission,
+    role_edit:role_edit
 };

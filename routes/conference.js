@@ -5,7 +5,7 @@ var con_approve = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
 
     //检查登陆
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     //获取list列表信息
@@ -70,7 +70,7 @@ var con_create = function(req, res, next) {
 var con_history = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     //获取list列表信息
@@ -91,7 +91,7 @@ var con_summary = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
 
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     //获取list列表信息
@@ -111,7 +111,7 @@ var con_summary = function(req, res, next) {
 var con_summary_detail = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     //获取list列表信息
@@ -132,7 +132,7 @@ var con_summary_detail = function(req, res, next) {
 var con_sign = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     //获取list列表信息
@@ -152,7 +152,7 @@ var con_sign = function(req, res, next) {
 
 var con_apply = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     //传入管理员信息
@@ -174,7 +174,7 @@ var con_apply = function(req, res, next) {
 var con_room = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     //获取list列表信息
