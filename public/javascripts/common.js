@@ -15,6 +15,32 @@ window.onload = function () {
         });
     }
 
+    if($('#pageInfo').length){
+        layui.use('laypage', function(){
+            var layerPage = layui.laypage;
+            //执行一个laydate实例
+            layerPage.render({
+                elem: 'pageInfo',
+                theme: '#36a4e3',
+                limit:10,
+                curr:location.hash.replace('#!fenye=', ''),
+                count: $('#pageInfo').attr("data-count"),
+                hash:'fenye',
+                jump:function (obj,first) {
+                    if(!first){
+                        window.location.href = skipUrl('page',obj.curr) + "#!fenye="+obj.curr;
+                    }
+                }
+            });
+        });
+    }
+
+    //人物头像
+    if($('#headIcon').length){
+        $('#headIcon').attr("src",$.cookie("headIcon") ? $.cookie("headIcon") : '/images/avatar.png');
+        $('#headName').text($.cookie("headName"));
+    }
+
     if($('#addUser').length) {
         var workflowCreate = function () {
             var addUser = function () {
@@ -39,6 +65,23 @@ window.onload = function () {
         workflowCreate.init();
     }
 };
+
+function skipUrl(param, val) {
+    var url = window.location.href;
+    url = url.split("#")[0];
+    if (url.indexOf('?') != -1) {
+        if (url.indexOf(param) != -1) {
+            var reg = eval('/(' + param + '=)([^&]*)/gi');
+            url = url.replace(reg, param + '=' + val);
+        } else {
+            url = url + "&" + param + '=' + val;
+        }
+    } else {
+        url = url + '?' + param + '=' + val;
+    }
+    return url
+}
+
 
 function layerDate(id) {
     layui.use('laydate', function(){
@@ -156,6 +199,10 @@ function deleteSomething(modules,typeThing) {
     //执行删除请求
     layerComfirm("是否删除选中的内容？", function(){$.ajax(delOption)});
 }
+
+
+
+
 
 function login_out() {
     layui.use('layer', function() { //独立版的layer无需执行这一句

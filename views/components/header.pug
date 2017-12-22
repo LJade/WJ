@@ -22,9 +22,10 @@ mixin commonheader(activeIndex)
                 input(type='text')
                 i.icon.icon-search
             .login-user
-                .img-wrapper
-                    img(src=__IMAGES_PATH__ + '/avatar.png')
-                //.name   Lingyu.ZHOU
+                a(href="/user/user_center")
+                    .img-wrapper
+                        img#headIcon(src=__IMAGES_PATH__ + '/avatar.png')
+                    #headName.name
             a.star
                 i.icon.icon-star2
             a.login-out(onclick="login_out();")

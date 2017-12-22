@@ -42,7 +42,7 @@ var doLogin = function (req, res, next) {
         console.log(loginInfo.dat.accessToken);
         if (loginInfo.code == 1) {
             req.session.user = {
-                userName: req.params.account,
+                userName: loginInfo.dat.name,
                 accessToken: loginInfo.dat.accessToken,
                 headIcon: loginInfo.dat.headIcon,
                 IMAccount:loginInfo.dat.imAccount,

@@ -49,8 +49,15 @@ var getError = function (code,message) {
 
 var apiRequest = function (method, url, req) {
     var sessionId = req.session.user === undefined ? "" : req.session.user.accessToken;
-    sessionId = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTQxMDUwNTIsImlhdCI6MTUxMzg0NTg1Mn0.62xaSrEbeAkb3gP45rda6hroZ3bS4AMPy-cClpJRi-c';
+    if(!sessionId){
+        sessionId = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTQxNzAzNzcsImlhdCI6MTUxMzkxMTE3N30.7WlZnktj5N03bPZdIEPIlCD5It3MxgtKOP4CFI8u6nQ';
+    }
     if(method === 'get'){
+        //这里对分页做统一处理
+        if(req.query.page){
+            req.query.page = parseInt(req.query.page)-1;
+        }
+        req.query.pageSize=10;
         var options_get = {
             url: API_HOST + url + "?" +qs.encode(req.query),
             headers:{

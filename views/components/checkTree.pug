@@ -98,11 +98,15 @@ mixin treeShowCheck(moduleType)
                     var chooseRole = $('#chooseRole');
                     var roleId = chooseRole.val();
                     var modulesId = $('#deptIds').val();
+                    if(!roleId){
+                        layerAlert("请选择一个角色后进行权限修改","error");
+                        return;
+                    }
                     var roleName = chooseRole.attr("data-name");
                     var roleUsers = chooseRole.attr("data-users");
                     var goBack = function () {
                         window.location.href = '/setting/role_manage';
-                    }
+                    };
                     $.post("/setting/role_save",{id:roleId,name:roleName,usersId:roleUsers,moduleIds:modulesId},function (data) {
                         if (data.code === 1) {
                             layerAlert("操作成功！！", 'ok', goBack);

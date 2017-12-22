@@ -16,55 +16,25 @@ block aside_content
 block main_content
     .home.clearfix
         .module-wrapper
-            .module-nav
-                .nav-heading.clearfix
-                    h3 智慧港航
-                    a.more
-                        | 更多
-                        i.icon-add
-                ul.nav-body.clearfix
-                    li
-                        a(href='/news/news_list' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/nav.png')
-                            span 新闻
-                    li
-                        a(href='/notice/notice_list' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/notice.png')
-                            span  公告
-                    li
-                        a(href='/docu/docu_list' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/document.png')
-                            span 公文
-                    li
-                        a(href='/workflow/workflow_manage' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/nav.png')
-                            span 流程
-            .module-nav
-                .nav-heading.clearfix
-                    h3 综合执法
-                    a.more
-                        | 更多
-                        i.icon-add
-                ul.nav-body.clearfix
-                    li
-                        a(href='/mail/mail_receive' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/mail.png')
-                            span 邮箱
-                    li
-                        a(href='/order/order_mine' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/function.png')
-                            span 工单
-                    li
-                        a(href='/conference/con_history' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/conference.png')
-                            span 会议管理
+            if(moduleGroups.length)
+                each group in moduleGroups
+                    .module-nav
+                        .nav-heading.clearfix
+                            h3 #{group}
+                            a.more
+                                | 更多
+                                i.icon-add
+                        ul.nav-body.clearfix
+                            each module in modulesInfo
+                                if(module.groupName === group)
+                                    li
+                                        if(module.openType === 1)
+                                            a(href=module.url data-id=module.id)
+                                        else
+                                            a(href=module.url target="_blank" data-id=module.id)
+                                                .img-wrapper
+                                                    img(style="width:60px;" src = module.icon === "default-icon" ? __IMAGES_PATH__ + '/nav.png' : module.icon)
+                                                span #{module.name}
         #calendar
     link(rel='stylesheet', href=__PLUGINS_PATH__ + '/calendar/simple-calendar.css')
     script(src=__PLUGINS_PATH__ + "/calendar/simple-calendar.js")
