@@ -123,6 +123,10 @@ module.exports = function (app) {
     app.post('/conference/con_room_delete',conference.con_room_delete);
     app.post('/conference/con_room_save',conference.con_room_save);
     app.get('/conference/con_room_detail',conference.con_room_detail);
+    app.get("/conference/con_room_resource_create",conference.con_room_resource_create);
+    app.get("/conference/con_room_resource_edit",conference.con_room_resource_create);
+    app.post("/conference/con_room_resource_save",conference.con_room_resource_save);
+
 
     /** 用户相关 **/
     app.get('/user/user_center', user.user_center);

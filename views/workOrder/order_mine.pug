@@ -13,16 +13,21 @@ block main_content
     +menuLink(menuObj,2)
     .condition
         .inline-group
-            span(style='margin-right:10px') 工单状态:
-            input#unread(type='radio' name='read' checked style='margin-right:10px')
-            label(for='unread' style='margin-right:25px') 未审批
-            input#read(type='radio' name='read' style='margin-right:10px')
-            label(for='read') 已审批
+            label(for='informationName') 名称:
+            input#informationName(type='text')
+        .inline-group
+            label(for='approveStatus') 工单状态:
+            select#approveStatus
+                option(value) 请选择
+                option(value="0") 未审批
+                option(value="1") 审批通过
+                option(value="1") 审批不通过
+                option(value="1") 他人已审批
         .inline-group
             label(for='date') 发布时间:
             input#date(type='text')
         .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="searchSomething();") 查询
             button.btn.btn-default.btn-sm(type='button' onclick='window.location.href="/order/order_create"') 新建
             button.btn.btn-default.btn-sm(type='button' onclick='deleteSomething("order","order");') 删除
     #inner-wrapper
@@ -52,7 +57,11 @@ block main_content
                                 td
                                     a.link(href='/order/order_detail?edit=false&workOrderApplyId='+order.workOrderApplyId) 查看
                                     a.link(style='margin-left:20px;' href='/order/order_detail?edit=true&workOrderApplyId='+order.workOrderApplyId) 编辑
-
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
+block script
+    script(type="text/javascript").
+        initSearchInfo();
 
 
 

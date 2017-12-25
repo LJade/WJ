@@ -22,10 +22,17 @@ block main_content
     +menuNav(navObj,1)
     .condition
         .inline-group
-            label(for='username') 用户名称:
-            input#username(type='text')
+            label(for='name') 用户名称:
+            input#name(type='text')
         .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick="searchList();") 检索
+            label(for='roleId') 角色名称:
+            select#roleId
+                option(value="") 请选择
+                if(roleList.length)
+                    each role in roleList
+                        option(value=role.id) #{role.name}
+        .inline-group
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="searchSomething();") 检索
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/setting/user_edit"') 新建
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("setting","user");') 删除
     #inner-wrapper
@@ -54,3 +61,8 @@ block main_content
                                 td  #{user.createTime}
                                 td
                                     a.link(href='/setting/user_edit?edit=true&userId='+user.id) 编辑
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
+block script
+    script(type="text/javascript").
+        initSearchInfo();

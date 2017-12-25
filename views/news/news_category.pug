@@ -40,8 +40,8 @@ block main_content
                                 td  #{typeInfo.createTime}
                                 td
                                     a.link(href='/news/category_edit?journalismTypeId='+typeInfo.journalismTypeId) 修改
-
-
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 
 
 

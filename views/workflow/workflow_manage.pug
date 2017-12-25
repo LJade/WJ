@@ -19,19 +19,13 @@ block main_content
     +RouteNav('流程配置')
     .condition
         .inline-group
-            label(for='theme') 主题:
-            select#theme
-                option  新闻
-                option  公告
-                option  公文
-                option  工单
-                option  邮箱
-                option  会议管理
+            label(for='name') 流程名:
+            input#name(type='text')
         .inline-group
             label(for='date') 发布时间:
             input#date(type='text')
         .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='searchSomething();') 查询
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="window.location.href='/workflow/workflow_new'") 新建
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 编辑
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("workflow","workflow")') 删除
@@ -42,7 +36,7 @@ block main_content
                     tr
                         td
                             input(type='checkbox')
-                        td  模块名称
+                        td  流程名称
                         td  更新时间
                         td  更新人
                         td  排序
@@ -60,7 +54,11 @@ block main_content
                                 td
                                     a.link(href='/workflow/workflow_new?flow_id='+flow.id) 编辑
                                     a.link(style='margin-left:20px;' href='/workflow/workflow_detail?id='+ flow.id + '"') 流程配置
-
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
+block script
+    script(type="text/javascript").
+        initSearchInfo();
 
 
 

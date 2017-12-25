@@ -12,19 +12,19 @@ block main_content
     +RouteNav('公文管理')
     .condition
         .inline-group
-            label(for='newsTheme') 主题:
-            input#newsTheme(type='text')
+            label(for='title') 主题:
+            input#title(type='text')
         .inline-group
-            span(style='margin-right:10px') 公文状态:
-            input#unread(type='radio' name='read' checked style='margin-right:10px')
-            label(for='unread' style='margin-right:25px') 未阅读
-            input#read(type='radio' name='read' style='margin-right:10px')
-            label(for='read') 已阅读
+            label(for='readStatus') 公文状态:
+            select#readStatus
+                option(value) 请选择
+                option(value="0") 未阅读
+                option(value="1") 已阅读
         .inline-group
-            label(for='newsCreate') 发布时间:
-            input#newsCreate(type='time')
+            label(for='date') 发布时间:
+            input#date(type='text')
         .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
+            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='searchSomething();') 查询
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/docu/docu_create"') 新建
             button.btn.btn-default.btn-sm(type='button' onclick='deleteSomething("document","document");') 删除
     #inner-wrapper
@@ -51,7 +51,11 @@ block main_content
                                 td  #{document.approveStatus === 0 ? "未审批" : document.approveStatus === 1 ? '审批通过' : document.approveStatus === 2 ? '审批不通过' : '他人已审批'}
                                 td
                                     a.link(href='/docu/docu_detail?edit=true&commonalityArticleId='+document.commonalityArticleId) 编辑
-
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
+block script
+    script(type="text/javascript").
+        initSearchInfo();
 
 
 

@@ -12,11 +12,11 @@ block main_content
     +RouteNav('会议室维护')
     .condition
         .inline-group
-            label(for='newsTheme') 资源名称:
-            input#newsTheme(type='text')
+            label(for='name') 资源名称:
+            input#name(type='text')
         .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 新建
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='searchSomething();') 查询
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/conference/con_"') 新建
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -32,3 +32,8 @@ block main_content
                                 td
                                     input(type='checkbox')
                                 td  #{res.name}
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
+block script
+    script(type="text/javascript").
+        initSearchInfo();

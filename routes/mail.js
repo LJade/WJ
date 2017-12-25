@@ -30,14 +30,20 @@ var mail_send = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     assert.apiRequest("get",'/mail/sendMailList',req).then(function (results) {
         JADE_VAR.mails = JSON.parse(results).dat.details;
+        JADE_VAR.rowsCount = JSON.parse(results).dat.rowsCount;
         res.render('mail/mail_send',JADE_VAR);
     });
 };
 
 var mail_receive = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
+    if(req.query.date){
+        req.query.sendTime = req.query.date;
+        delete req.query.date;
+    }
     assert.apiRequest("get",'/mail/receivedMailList',req).then(function (results) {
         JADE_VAR.mails = JSON.parse(results).dat.details;
+        JADE_VAR.rowsCount = JSON.parse(results).dat.rowsCount;
         res.render('mail/mail_receive',JADE_VAR);
     });
 };
@@ -74,14 +80,14 @@ var receive_delete = function (req, res, next) {
         res.send(results);
     });
 
-}
+};
 
 var send_delete = function (req, res, next) {
     req = assert.getArrPost(req, 'sendMailIdList');
     assert.apiRequest('post','/mail/deleteSendMail',req).then(function (results) {
         res.send(results);
     });
-}
+};
 
 
 

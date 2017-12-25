@@ -38,13 +38,16 @@ block main_content
                 label.control-label 角色分配:
                 if(rolesList.length)
                     each role in rolesList
-                        if(userInfo.roleIds.indexOf(role.id) !== -1)
-                            input(type='checkbox' checked name="roleIds" value=role.id)
+                        if(userInfo.roleIds)
+                            if(userInfo.roleIds.indexOf(role.id) !== -1)
+                                input(type='checkbox' checked name="roleIds" value=role.id)
+                            else
+                                input(type='checkbox' name="roleIds" value=role.id)
                         else
                             input(type='checkbox' name="roleIds" value=role.id)
                         span #{role.name}
             .work-form-control
-                label.control-label(for='sortNum') 部门分配:
+                label.control-label(for='deptIds') 部门分配:
                 input#deptIds(type='hidden' name="deptIds" value=userInfo.deptIds)
                 ul#tree.ztree(data-node=depAll)
                 input#userId(type='hidden' name='userId' value=userId)

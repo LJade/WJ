@@ -4,9 +4,12 @@ var assert = require('./assert.js');
 var notice_list = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    req.session.user = {accessToken:"123123"};
-    if(!req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
+    }
+    if(req.query.date){
+        req.query.publiceTime = req.query.date;
+        delete req.query.date;
     }
     //获取list列表信息
     assert.apiRequest("get",'/announcement/lookUpList',req).then(function (results) {
@@ -14,9 +17,11 @@ var notice_list = function(req, res, next) {
         if(noticeListInfo.code === 1){
             JADE_VAR.noticesList = noticeListInfo.dat.details;
             JADE_VAR.noticeTotal = noticeListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = noticeListInfo.dat.rowsCount;
         }else{
             JADE_VAR.noticesList = [];
             JADE_VAR.noticeTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('notice/notice_list',JADE_VAR);
     });
@@ -81,16 +86,22 @@ var notice_manage = function(req, res, next) {
     if(!req.session.user){
         res.redirect("/login");
     }
-    req.query.ifJurisdiction = 1;
+    if(req.query.date){
+        req.query.publiceTime = req.query.date;
+        delete req.query.date;
+    }
+    req.query.ifJurisdiction = req.session.user.roleType;
     //获取list列表信息
     assert.apiRequest("get",'/announcement/manageList',req).then(function (results) {
         var noticeListInfo = JSON.parse(results);
         if(noticeListInfo.code === 1){
             JADE_VAR.noticesList = noticeListInfo.dat.details;
             JADE_VAR.noticeTotal = noticeListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = noticeListInfo.dat.rowsCount;
         }else{
             JADE_VAR.noticesList = [];
             JADE_VAR.noticeTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('notice/notice_manage',JADE_VAR);
     });
@@ -102,15 +113,21 @@ var notice_approve = function(req, res, next) {
     if(!req.session.user){
         res.redirect("/login");
     }
+    if(req.query.date){
+        req.query.publiceTime = req.query.date;
+        delete req.query.date;
+    }
     //获取list列表信息
     assert.apiRequest("get",'/announcement/myApproveList',req).then(function (results) {
         var noticeListInfo = JSON.parse(results);
         if(noticeListInfo.code === 1){
             JADE_VAR.noticesList = noticeListInfo.dat.details;
             JADE_VAR.noticeTotal = noticeListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = noticeListInfo.dat.rowsCount;
         }else{
             JADE_VAR.noticesList = [];
             JADE_VAR.noticeTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('notice/notice_approve',JADE_VAR);
     });

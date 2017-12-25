@@ -6,6 +6,10 @@ var news_list = function (req, res, next) {
     if (!req.session.user) {
         res.redirect("/login");
     }
+    if(req.query.date){
+        req.query.publiceTime = req.query.date;
+        delete req.query.date;
+    }
     //获取list列表信息
     assert.apiRequest("get", "/journalism/lookUpList", req).then(function (results) {
         var newsList = JSON.parse(results);
@@ -27,6 +31,7 @@ var news_manage = function (req, res, next) {
     if (!req.session.user) {
         res.redirect("/login");
     }
+    req.query.ifJurisdiction = req.session.user.roleType;
     //获取list列表信息
     assert.apiRequest("get", "/journalism/list", req).then(function (results) {
         var newsList = JSON.parse(results);
@@ -116,10 +121,12 @@ var news_approve = function (req, res, next) {
         var documentListInfo = JSON.parse(results);
         if(documentListInfo.code === 1){
             JADE_VAR.newsList = documentListInfo.dat.details;
-            JADE_VAR.newsTotal = documentListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = documentListInfo.dat.rowsCount;
+            JADE_VAR.totalPage = documentListInfo.dat.totalPage;
         }else{
             JADE_VAR.newsList = [];
-            JADE_VAR.newsTotal = 0;
+            JADE_VAR.rowsCount = 0;
+            JADE_VAR.totalPage = 0;
         }
         res.render('news/news_approve', JADE_VAR);
     });

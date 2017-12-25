@@ -7,15 +7,21 @@ var docu_list = function(req, res, next) {
     if(!req.session.user){
         res.redirect("/login");
     }
+    if(req.query.date){
+        req.query.publiceTime = req.query.date;
+        delete req.query.date;
+    }
     //获取list列表信息
     assert.apiRequest("get",'/commonalityArticle/lookUpList',req).then(function (results) {
         var documentListInfo = JSON.parse(results);
         if(documentListInfo.code == 1){
             JADE_VAR.doucments = documentListInfo.dat.details;
             JADE_VAR.documentsTotal = documentListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = documentListInfo.dat.rowsCount;
         }else{
             JADE_VAR.doucments = [];
             JADE_VAR.documentsTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('document/docu_list',JADE_VAR);
     });
@@ -44,17 +50,23 @@ var docu_manage = function(req, res, next) {
     if(!req.session.user){
         res.redirect("/login");
     }
+    if(req.query.date){
+        req.query.publiceTime = req.query.date;
+        delete req.query.date;
+    }
     //加入权限判断
-    req.query.ifJurisdiction = 1;
+    req.query.ifJurisdiction = req.session.user.ifJurisdiction;
     //获取list列表信息
     assert.apiRequest("get",'/commonalityArticle/manageList',req).then(function (results) {
         var documentListInfo = JSON.parse(results);
         if(documentListInfo.code == 1){
             JADE_VAR.doucments = documentListInfo.dat.details;
             JADE_VAR.documentsTotal = documentListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = documentListInfo.dat.rowsCount;
         }else{
             JADE_VAR.doucments = [];
             JADE_VAR.documentsTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('document/docu_manage',JADE_VAR);
     });
@@ -66,15 +78,21 @@ var docu_approve = function(req, res, next) {
     if(!req.session.user){
         res.redirect("/login");
     }
+    if(req.query.date){
+        req.query.publiceTime = req.query.date;
+        delete req.query.date;
+    }
     //获取list列表信息
     assert.apiRequest("get",'/commonalityArticle/myApproveList',req).then(function (results) {
         var documentListInfo = JSON.parse(results);
         if(documentListInfo.code == 1){
             JADE_VAR.doucments = documentListInfo.dat.details;
             JADE_VAR.documentsTotal = documentListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = documentListInfo.dat.rowsCount;
         }else{
             JADE_VAR.doucments = [];
             JADE_VAR.documentsTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('document/docu_approve',JADE_VAR);
     });

@@ -8,11 +8,16 @@ var con_approve = function(req, res, next) {
     if(!req.session.user){
         res.redirect("/login");
     }
+    if(req.query.date){
+        req.query.startTime = req.query.date;
+        delete req.query.date;
+    }
     //获取list列表信息
     assert.apiRequest("get",'/meeting/myApproveList',req).then(function (results) {
         var conferenceListInfo = JSON.parse(results);
         if(conferenceListInfo.code == 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
+            JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
             if(JADE_VAR.confercences.length === 0) {
                 JADE_VAR.confercences = [{
                     "meetingId": "12",
@@ -23,11 +28,13 @@ var con_approve = function(req, res, next) {
                     "approveStatus": "1",
                     "flowApproveUserId": "0"
                 }];
+                JADE_VAR.rowsCount = 0;
             }
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
         }else{
             JADE_VAR.confercences = [];
             JADE_VAR.confercenceTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_approve',JADE_VAR);
     });
@@ -73,15 +80,21 @@ var con_history = function(req, res, next) {
     if(!req.session.user){
         res.redirect("/login");
     }
+    if(req.query.date){
+        req.query.startTime = req.query.date;
+        delete req.query.date;
+    }
     //获取list列表信息
     assert.apiRequest("get",'/meeting/historyMeetingList',req).then(function (results) {
         var conferenceListInfo = JSON.parse(results);
         if(conferenceListInfo.code == 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
         }else{
             JADE_VAR.confercences = [];
             JADE_VAR.confercenceTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_history',JADE_VAR);
     });
@@ -90,9 +103,12 @@ var con_history = function(req, res, next) {
 var con_summary = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-
     if(!req.session.user){
         res.redirect("/login");
+    }
+    if(req.query.date){
+        req.query.startTime = req.query.date;
+        delete req.query.date;
     }
     //获取list列表信息
     assert.apiRequest("get",'/meeting/summaryList',req).then(function (results) {
@@ -100,9 +116,11 @@ var con_summary = function(req, res, next) {
         if(conferenceListInfo.code == 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
         }else{
             JADE_VAR.confercences = [];
             JADE_VAR.confercenceTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_summary',JADE_VAR);
     });
@@ -141,9 +159,11 @@ var con_sign = function(req, res, next) {
         if(conferenceListInfo.code == 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
         }else{
             JADE_VAR.confercences = [];
             JADE_VAR.confercenceTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_sign',JADE_VAR);
     });
@@ -155,17 +175,23 @@ var con_apply = function(req, res, next) {
     if(!req.session.user){
         res.redirect("/login");
     }
+    if(req.query.date){
+        req.query.startTime = req.query.date;
+        delete req.query.date;
+    }
     //传入管理员信息
-    req.query['ifJurisdiction'] = 1;
+    req.query['ifJurisdiction'] = req.session.user.roleType;
     //获取list列表信息
     assert.apiRequest("get",'/meeting/meetingList',req).then(function (results) {
         var conferenceListInfo = JSON.parse(results);
         if(conferenceListInfo.code == 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
         }else{
             JADE_VAR.confercences = [];
             JADE_VAR.confercenceTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_apply',JADE_VAR);
     });
@@ -183,6 +209,7 @@ var con_room = function(req, res, next) {
         if(conferenceListInfo.code == 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
             res.render('conference/con_room',JADE_VAR);
         }else{
             res.render("error/error",{message:conferenceListInfo.msg})
@@ -228,9 +255,11 @@ var con_room_resource = function(req, res, next) {
         if(conferenceListInfo.code == 1){
             JADE_VAR.resLists = conferenceListInfo.dat.details;
             JADE_VAR.resTotal = conferenceListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
         }else{
             JADE_VAR.resLists = [];
             JADE_VAR.resTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_room_resource',JADE_VAR);
     });
@@ -316,7 +345,23 @@ var con_room_detail = function (req, res, next) {
             res.render("error/error",{message:roomInfo.msg})
         }
     });
-}
+};
+
+var con_room_resource_create = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    res.render("conference/con_room_resource_create",JADE_VAR);
+};
+
+var con_room_resource_save = function (req, res, next) {
+    assert.apiRequest('post',"/meeting/saveResource",req).then(function (results) {
+        var resOBj = JSON.parse(results);
+        if(resOBj.code === 1){
+            res.redirect("/conference/con_room_resource");
+        }else{
+            res.render("error/error",{message:resOBj.msg});
+        }
+    })
+};
 
 module.exports = {
     con_approve:con_approve,
@@ -327,6 +372,9 @@ module.exports = {
     con_apply:con_apply,
     con_room:con_room,
     con_room_resource:con_room_resource,
+    con_room_resource_create:con_room_resource_create,
+    con_room_resource_edit:con_room_resource_create,
+    con_room_resource_save:con_room_resource_save,
     con_summary_detail:con_summary_detail,
     con_room_create:con_room_create,
     con_room_edit:con_room_edit,

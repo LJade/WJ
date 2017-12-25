@@ -18,6 +18,7 @@ window.onload = function () {
     if($('#pageInfo').length){
         layui.use('laypage', function(){
             var layerPage = layui.laypage;
+            var url = window.location.href;
             //执行一个laydate实例
             layerPage.render({
                 elem: 'pageInfo',
@@ -28,7 +29,7 @@ window.onload = function () {
                 hash:'fenye',
                 jump:function (obj,first) {
                     if(!first){
-                        window.location.href = skipUrl('page',obj.curr) + "#!fenye="+obj.curr;
+                        window.location.href = skipUrl(url,'page',obj.curr) + "#!fenye="+obj.curr;
                     }
                 }
             });
@@ -66,20 +67,24 @@ window.onload = function () {
     }
 };
 
-function skipUrl(param, val) {
-    var url = window.location.href;
+function skipUrl(url,param, val) {
     url = url.split("#")[0];
     if (url.indexOf('?') != -1) {
         if (url.indexOf(param) != -1) {
             var reg = eval('/(' + param + '=)([^&]*)/gi');
-            url = url.replace(reg, param + '=' + val);
+            if(val){
+                url = url.replace(reg, param + '=' + val);
+            }else{
+                url = url.replace(reg, "");
+            }
+
         } else {
             url = url + "&" + param + '=' + val;
         }
     } else {
         url = url + '?' + param + '=' + val;
     }
-    return url
+    return url.replace("?&","?").replace("&&","&")
 }
 
 
@@ -200,10 +205,6 @@ function deleteSomething(modules,typeThing) {
     layerComfirm("是否删除选中的内容？", function(){$.ajax(delOption)});
 }
 
-
-
-
-
 function login_out() {
     layui.use('layer', function() { //独立版的layer无需执行这一句
         var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
@@ -312,6 +313,74 @@ function getLayerUI() {
     return layerInstence;
 }
 
-function escapeJSON(str) {
-    return str.replaceAll('&quot;','"');
+function searchSomething() {
+    var url = window.location.href;
+    var inputs = $('.inline-group input');
+    var selects = $('.inline-group select');
+    var params = [];
+    inputs.each(function (index,data) {
+        var temp = [];
+        var key = $(data).attr('id');
+        var value = $(data).val();
+        if(value){
+            temp.push(key);
+            temp.push(value);
+            params.push(temp);
+        }else{
+            //没有的时候,如果url中存在该key需要把key去除
+            if(url.indexOf(key) != -1){
+                url = skipUrl(url,key,"");
+            }
+        }
+    });
+    //selects
+    selects.each(function (index,select) {
+        var temp = [];
+        var key = $(select).attr('id');
+        var value = $(select).val();
+        if(value){
+            temp.push(key);
+            temp.push(value);
+            params.push(temp);
+        }else{
+            //没有的时候,如果url中存在该key需要把key去除
+            if(url.indexOf(key) != -1){
+                url = skipUrl(url,key,"");
+            }
+        }
+    });
+    //最终结果,组装url
+    params.forEach(function (param) {
+        url = skipUrl(url,param[0],param[1]);
+    });
+    window.location.href = url;
+}
+
+function initSearchInfo(){
+    var href = window.location.href;
+    var param = href.split('#')[0].split("?");
+    if(param.length == 2){
+        var params = param[1].split("&");
+        if(params.length > 1){
+            params.forEach(function (data) {
+                var id = data.split("=")[0];
+                var value = data.split("=")[1];
+                var querySelect = $('#'+id);
+                console.log(id,value);
+                if(querySelect.length){
+                    querySelect.val(decodeURI(value));
+                }
+            });
+        }else{
+            //表示是有一个参数的
+            var info = param[1].split("=");
+            var id = info[0];
+            var value = info[1];
+            var querySelect = $('#'+id);
+            if(querySelect.length){
+                querySelect.val(decodeURI(value));
+            }
+        }
+    }
+
 }

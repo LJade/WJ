@@ -1,0 +1,20 @@
+extends ../components/base
+block title
+    title  会议室资源添加
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/conference/con_room',text:'会议室维护'},{link:'/conference/con_apply',text:'会议申请'},{link:'/conference/con_approve',text:'待我审批'},{link:'/conference/con_summary',text:'会议纪要'},{link:'/conference/con_history',text:'历史会议'},{link:'/conference/con_sign',text:'会议签到情况'}]
+    +asideNav(routerObj,0)
+block main_content
+    include ../components/mixin
+    +RouteNav('会议室维护')
+    #inner-wrapper
+        form(action='/conference/con_room_resource_save' method='post').news-create
+            .form-control
+                label.control-label(for='name') 资源名称:
+                input#name.form-control(type='text' name='name' value="")
+            .form-control.btn-wrapper
+                button.btn.btn-default.btn-sm(type='submit' style='margin-left:20px') 保存
+                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消

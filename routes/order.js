@@ -21,8 +21,13 @@ var order_create = function(req, res, next) {
 
 var order_approve = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
+    if(req.query.date){
+        req.query.businessCreateTime = req.query.date;
+        delete req.query.date;
+    }
     assert.apiRequest("get",'/workOrderApply/myApproveList',req).then(function (results) {
         JADE_VAR.orders = JSON.parse(results).dat.details;
+        JADE_VAR.rowsCount = JSON.parse(results).dat.rowsCount;
         if(JADE_VAR.orders.length === 0){
             JADE_VAR.orders = [{
                 "workOrderApplyId": "98",
@@ -39,7 +44,8 @@ var order_approve = function(req, res, next) {
                 "approveStatus": "1",
                 "userId": null,
                 "departmentList": null
-            }]
+            }];
+            JADE_VAR.rowsCount = 1;
         }
         res.render('workOrder/order_approve',JADE_VAR);
     });
@@ -48,8 +54,13 @@ var order_approve = function(req, res, next) {
 
 var order_mine = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
+    if(req.query.date){
+        req.query.businessCreateTime = req.query.date;
+        delete req.query.date;
+    }
     assert.apiRequest("get",'/workOrderApply/list',req).then(function (results) {
         JADE_VAR.orders = JSON.parse(results).dat.details;
+        JADE_VAR.rowsCount = JSON.parse(results).dat.rowsCount;
         res.render('workOrder/order_mine',JADE_VAR);
     });
 };

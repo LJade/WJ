@@ -130,9 +130,11 @@ var workflow_manage = function(req, res, next) {
         if(flowsListInfo.code === 1){
             JADE_VAR.flowsList = flowsListInfo.dat.details;
             JADE_VAR.flowsListTotal = flowsListInfo.dat.totalPage;
+            JADE_VAR.rowsCount = flowsListInfo.dat.rowsCount;
         }else{
             JADE_VAR.flowsList = [];
             JADE_VAR.flowsListTotal = 0;
+            JADE_VAR.rowsCount = 0;
         }
         res.render('workflow/workflow_manage',JADE_VAR);
     });

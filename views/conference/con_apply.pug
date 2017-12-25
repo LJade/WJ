@@ -12,16 +12,23 @@ block main_content
     +RouteNav('会议申请')
     .condition
         .inline-group
-            label(for='newsTheme') 会议主题:
-            input#newsTheme(type='text')
+            label(for='title') 主题:
+            input#title(type='text')
         .inline-group
-            label(for='date') 开会日期:
+            label(for='approveStatus') 状态:
+            select#approveStatus
+                option(value) 请选择
+                option(value="0") 未审批
+                option(value="1") 审批通过
+                option(value="1") 审批不通过
+                option(value="1") 他人已审批
+        .inline-group
+            label(for='date') 日期:
             input#date(type='text')
         .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/conference/con_create"') 会议发起
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("conference","conference")') 取消会议
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/conference/con_summary_detail"') 会议纪要
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='searchSomething();') 查询
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/conference/con_create"') 发起
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("conference","conference")') 取消
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -44,7 +51,11 @@ block main_content
                                 td  #{conference.summaryContent}
                                 td
                                     a.link(href='/conference/con_detail?edit=false&meetingId='+conference.meetingId) 查看
-
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
+block script
+    script(type="text/javascript").
+        initSearchInfo();
 
 
 

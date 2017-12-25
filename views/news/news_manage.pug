@@ -38,7 +38,8 @@ block main_content
                                 td  #{news.readStatus ? '已阅读' : '未阅读'}
                                 td
                                     a.link(href='/news/news_detail?edit=true&journalismId=' + news.journalismId) 编辑
-
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 
 
 

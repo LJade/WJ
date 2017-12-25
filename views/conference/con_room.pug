@@ -12,11 +12,12 @@ block main_content
     +RouteNav('会议室维护')
     .condition
         .inline-group
-            label(for='newsTheme') 会议室名称:
-            input#newsTheme(type='text')
+            label(for='name') 会议室名称:
+            input#name(type='text')
         .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/conference/con_room_create"') 新建
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("conference","meetingRoom")') 删除
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='searchSomething();') 查询
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/conference/con_room_create"') 新建
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("conference","meetingRoom")') 删除
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -40,7 +41,11 @@ block main_content
                                 td
                                     a.link(href="/conference/con_room_detail?edit=false&id="+conference.id) 查看
                                     a.link(style='margin-left:20px' href="/conference/con_room_detail?edit=true&id="+conference.id) 编辑
-
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
+block script
+    script(type="text/javascript").
+        initSearchInfo();
 
 
 

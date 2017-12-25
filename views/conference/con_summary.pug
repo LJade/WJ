@@ -12,14 +12,14 @@ block main_content
     +RouteNav('会议纪要')
     .condition
         .inline-group
-            label(for='newsTheme') 会议主题:
-            input#newsTheme(type='text')
+            label(for='title') 会议主题:
+            input#title(type='text')
         .inline-group
             label(for='date') 发布时间:
             input#date(type='text')
         .inline-group
-            button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px') 查询
-            button.btn.btn-warning.btn-sm(type='button') 删除
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='searchSomething();') 查询
+            button.btn.btn-default.btn-sm(type='button') 删除
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -45,7 +45,11 @@ block main_content
                                 td  #{conference.summaryContent}
                                 td  #{conference.summaryPeople[0].name}
                                 td.link(onclick="window.location.href='/conference/con_summary_detail?conferenceId="+conference.meetingId + "'") 详情
-
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
+block script
+    script(type="text/javascript").
+        initSearchInfo();
 
 
 
