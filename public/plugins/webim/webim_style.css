@@ -351,7 +351,7 @@ object {
     position: absolute;
     margin: auto;
     left: 10px;
-    top: 40px;
+    top: 35px;
     right: 10px;
     color: #999999;
     font-style: normal;
@@ -376,8 +376,8 @@ object {
     -webkit-filter: contrast(1.2);
     -webkit-tap-highlight-color: transparent; }
 .webim-avatar-icon.small {
-    width: 30px;
-    height: 30px; }
+    width: 50px;
+    height: 50px; }
 
 .webim-operations-icon,
 .webim-leftbar-icon {

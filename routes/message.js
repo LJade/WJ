@@ -17,8 +17,17 @@ var im = function(req, res, next) {
     }
 };
 
+var getIMAccountIcon = function (req, res, next) {
+    req.query = req.body;
+    assert.apiRequest("get",'/user/contacts',req).then(function (results) {
+        res.header('Content-Type',"application/json");
+        res.send(results);
+    })
+};
+
 
 
 module.exports = {
-    im:im
+    im:im,
+    getIMAccountIcon:getIMAccountIcon
 };

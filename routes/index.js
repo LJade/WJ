@@ -134,6 +134,7 @@ module.exports = function (app) {
 
     /** 用户聊天 **/
     app.get('/im',message.im);
+    app.post("/im/getIMAccountIcon",message.getIMAccountIcon);
 
     /** 网盘相关 */
     app.get('/netdisk/company_disk', netdisk.company_disk);

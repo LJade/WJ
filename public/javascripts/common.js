@@ -384,3 +384,12 @@ function initSearchInfo(){
     }
 
 }
+
+function getIcon(isMe,name) {
+    if(isMe){
+        return $.cookie("headIcon");
+    }else{
+        return false;
+    }
+
+}

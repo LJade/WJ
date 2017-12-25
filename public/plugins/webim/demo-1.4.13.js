@@ -22565,6 +22565,15 @@
 	            conn.getRoster({
 	                success: function success(roster) {
 	                    var flag = false;
+                        //在这里获取所有好友的头像
+                        var localIDs = {};
+                        for (var j in roster) {
+                            var fid = roster[j];
+                            var key = fid.jid.split("@")[0].split("_")[1];
+                            localIDs[key] = {jid:fid.jid};
+                        }
+                        Demo.friendsIcon = localIDs;
+
 	                    for (var i in roster) {
 	                        var ros = roster[i];
 	                        if (ros.subscription === 'both' || ros.subscription === 'from' || ros.subscription === 'to') {
@@ -22625,6 +22634,7 @@
 	                }.bind(this),
 	                error: function error(e) {
 	                    console.log('Ajax error');
+                        console.log(e);
 	                }
 	            };
 	            Demo.conn.getGroup(options);
@@ -26481,12 +26491,13 @@
 	    },
 
 	    render: function render() {
-	        var className = this.props.cur === this.props.id ? ' selected' : '';
 
-	        return React.createElement(
+	        var className = this.props.cur === this.props.id ? ' selected' : '';
+            var src = this.props.src;
+            return React.createElement(
 	            'div',
 	            { id: this.props.id, className: 'webim-contact-item' + className, onClick: this.update },
-	            React.createElement(Avatar, { src: this.props.src }),
+	            React.createElement(Avatar, { src: src }),
 	            React.createElement(
 	                'div',
 	                { className: 'webim-contact-info' },
@@ -29533,11 +29544,6 @@
 	                { className: 'clearfix' },
 	                React.createElement(
 	                    'div',
-	                    { className: "webim-msg-delivered " + statusClass, id: id, name: nid },
-	                    status
-	                ),
-	                React.createElement(
-	                    'div',
 	                    { className: 'webim-msg-value' },
 	                    React.createElement(
 	                        'span',
@@ -29572,6 +29578,12 @@
 	        status: options.status || 'Undelivered',
 	        nid: options.nid || ''
 	    };
+
+	    //获取src
+        var src = getIcon(sentByMe,props)
+        if(src){
+           props.src = src;
+        }
 
 	    var node = document.createElement('div');
 	    node.className = 'webim-msg-container rel';
@@ -29672,11 +29684,6 @@
 	            React.createElement(
 	                'div',
 	                { className: 'clearfix' },
-	                React.createElement(
-	                    'div',
-	                    { className: "webim-msg-delivered " + statusClass, id: id, name: nid },
-	                    status
-	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'webim-msg-value webim-img-msg-wrapper' },
@@ -29836,11 +29843,6 @@
 	            React.createElement(
 	                'div',
 	                { className: 'clearfix', style: { minWidth: '280px' } },
-	                React.createElement(
-	                    'div',
-	                    { className: "webim-msg-delivered " + statusClass, id: id, name: nid },
-	                    status
-	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'webim-msg-value', style: { minWidth: '200px' } },
