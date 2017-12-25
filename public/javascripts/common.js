@@ -382,14 +382,26 @@ function initSearchInfo(){
             }
         }
     }
-
 }
+
 
 function getIcon(isMe,name) {
     if(isMe){
         return $.cookie("headIcon");
     }else{
-        return false;
+        var iconInfo = JSON.parse(window.localStorage.getItem("iconInfo"));
+        var src = '';
+        if(iconInfo.length){
+            iconInfo.forEach(function (data) {
+                if(data.imAccount === name.name){
+                    src = data.headIcon;
+                }
+            })
+        }
+        if(src){
+            return src;
+        }else{
+            return false;
+        }
     }
-
 }

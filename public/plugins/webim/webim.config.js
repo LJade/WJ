@@ -49,7 +49,7 @@ WebIM.config = {
     /*
      * set presence after login
      */
-    isAutoLogin: false,
+    isAutoLogin: true,
     /**
      * Whether to use window.doQuery()
      * @parameter {Boolean} true or false
