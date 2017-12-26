@@ -110,7 +110,7 @@ var user_manage = function (req, res, next) {
         var userInfo = JSON.parse(results[0]);
         var roleList = JSON.parse(results[1]);
         if (userInfo.code === 1 && roleList.code === 1) {
-            JADE_VAR.users = userInfo.dat;
+            JADE_VAR.users = userInfo.dat.details;
             JADE_VAR.roleList = roleList.dat;
             JADE_VAR.rowsCount = userInfo.dat.rowsCount;
             res.render('setting/user_manage', JADE_VAR);
@@ -236,6 +236,26 @@ var app_permission = function (req, res, next) {
 
 var contact_addpage = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
+    var id = req.query.id;
+    //表示新增
+    JADE_VAR.webInfo = {
+        "id": "",
+        "name": "",
+        "sortNum": "",
+        "descText": "",
+        "indexUrl": ""
+    };
+    if(id){
+        assert.apiRequest('get','/thirdPart/webDetail',req).then(function (results) {
+            var webInfoRes = JSON.parse(results);
+            if(webInfoRes.code === 1){
+                JADE_VAR.webInfo = webInfoRes.dat;
+            }else{
+                res.render('error/error',{message:webInfoRes.msg});
+                return;
+            }
+        })
+    }
     res.render('setting/contact_addpage', JADE_VAR);
 };
 
@@ -322,6 +342,37 @@ var user_edit = function (req, res, next) {
     }
 };
 
+var contact_manage = function (req, res, next){
+    var JADE_VAR = assert.getJADE();
+    assert.apiRequest('get',"/thirdPart/webList",req).then(function (results) {
+        var webList = JSON.parse(results);
+        if(webList.code === 1){
+            JADE_VAR.webLists = webList.dat;
+            JADE_VAR.rowsCount = webList.dat.length;
+            res.render("setting/contact_manage",JADE_VAR);
+        }else{
+            res.render('error/error',{message:webList.msg});
+        }
+    });
+};
+
+var contact_delete = function (req, res,next) {
+    assert.apiRequest('post','/thirdPart/delete',req).then(function (results) {
+        res.send(results);
+    })
+};
+
+var contact_save = function (req, res, next) {
+    assert.apiRequest('post','/thirdPart/save',req).then(function (results) {
+        var saveRes = JSON.parse(results);
+        if(saveRes.code === 1){
+            res.redirect('/setting/contact_manage');
+        }else{
+            res.render("error/error",{message:saveRes.msg})
+        }
+    })
+};
+
 
 module.exports = {
     app_create: app_create,
@@ -336,6 +387,7 @@ module.exports = {
     log_manage: log_manage,
     app_permission: app_permission,
     contact_addpage: contact_addpage,
+    contact_edit:contact_addpage,
     contact_config: contact_config,
     organization_save: organization_save,
     user_delete: user_delete,
@@ -343,5 +395,10 @@ module.exports = {
     user_edit: user_edit,
     role_permission: role_permission,
     role_edit: role_edit,
-    role_save: role_save
+    role_save: role_save,
+    contact_manage:contact_manage,
+    contact_delete:contact_delete,
+    contact_save:contact_save
+
+
 };

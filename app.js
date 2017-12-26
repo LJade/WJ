@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-
+var debug = true;
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +21,15 @@ app.use(session({
     saveUninitialized:true
 }));
 
+if(debug){
+    app.use(function(req,res,next){
+        // console.log('[' + new Date().toString() + ']: ' + req.method + ' ' + req.url + ' body:' + req.body);
+        req.session.user = {};
+        req.session.user.accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTQ1MzU1MDMsImlhdCI6MTUxNDI3NjMwM30.kUABk54DADPxHg54r4TRuyszKTpVaouAc-c8BsEnXPk';
+        req.session.user.roleType = 1;
+        next();
+    });
+}
 
 routes(app);
 

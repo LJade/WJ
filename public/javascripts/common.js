@@ -197,6 +197,10 @@ function deleteSomething(modules,typeThing) {
             delOption.url = '/setting/user_delete';
             delOption.data.userIds = deleleIDs;
             break;
+        case 'setting_app':
+            delOption.url = '/setting/app_delete';
+            delOption.data.ids = deleleIDs;
+            break;
         default:
             layerAlert("没有要找到待删除的模块",'error');
             break;
@@ -383,7 +387,6 @@ function initSearchInfo(){
         }
     }
 }
-
 
 function getIcon(isMe,name) {
     if(isMe){

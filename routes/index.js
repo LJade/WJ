@@ -51,6 +51,10 @@ module.exports = function (app) {
     app.get('/setting/role_permission',setting.role_permission);
     app.get('/setting/role_edit',setting.role_edit);
     app.post("/setting/role_save",setting.role_save);
+    app.get("/setting/contact_manage",setting.contact_manage);
+    app.get("/setting/contact_edit",setting.contact_edit);
+    app.post("/setting/contact_save",setting.contact_save);
+    app.post("/setting/contact_delete",setting.contact_delete);
 
 
     /** 新闻相关路由*/

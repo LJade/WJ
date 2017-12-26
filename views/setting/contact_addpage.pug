@@ -22,21 +22,22 @@ block main_content
     +menuNav(navObj,0)
     +RouteNav('页面添加')
     #inner-wrapper
-        .news-create
+        form.news-create(action='/setting/contact_save' method='post')
             .form-control
-                label.control-label(for='sysName') 系统中文名称:
-                input#sysName.form-control(type='text')
+                label.control-label(for='sysName') 中文名称:
+                input#sysName.form-control(type='text' name='name' value=webInfo.name)
             .form-control
                 label.control-label(for='source') URL地址:
-                input#source.form-control(type='text')
+                input#source.form-control(type='text' name='indexUrl' value=webInfo.indexUrl)
             .form-control
                 label.control-label(for='order') 应用排序:
-                input#order.form-control(type='text')
+                input#order.form-control(type='text' name='sortNum' value=webInfo.sortNum)
             .form-control
                 label.control-label(for='description') 应用描述:
-                textarea#description.form-control(rows='8')
+                textarea#description.form-control(rows='8' name='descText') #{webInfo.descText}
             .form-control.btn-wrapper
-                button.btn.btn-default.btn-sm(type='button') 添加
+                input#id.form-control(type='hidden' name='id' value=webInfo.id)
+                button.btn.btn-default.btn-sm(type='submit') 添加
                 button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
 
 

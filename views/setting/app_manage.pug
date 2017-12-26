@@ -1,0 +1,56 @@
+extends ../components/base
+block title
+    title 第三方应用管理
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
+    +asideNav(routerObj,2)
+block common_header
+    include ../components/header
+    +commonheader(0)
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+    style.
+        #main-wrapper {
+            margin-top: 10px;
+        }
+block main_content
+    include ../components/mixin
+    -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_manage',text:'对接系统管理'},{link:'/setting/app_create',text:'第三方应用系统管理'}]
+    +menuLink(menuObj,2)
+    -var navObj = [{link:'/setting/app_create',text:'应用管理'},{link:'/setting/app_permission',text:'应用查看'}]
+    +menuNav(navObj,0)
+    +RouteNav('第三方应用列表')
+    .condition
+        .inline-group
+            label(for='title') 应用名称:
+            input#title(type='text')
+        .inline-group
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("app","app")') 删除
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/setting/app_create"') 新建
+            button.btn.btn-default.btn-sm(type='button' onclick='searchSomething();') 查询
+    #inner-wrapper
+        .content-list.section-block
+            table.table.table-bordered
+                thead
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  应用名称
+                        td  上传人
+                        td  所属部门
+                        td  上传时间
+                        td  操作
+                tbody
+                    if(apps.length)
+                        each app in apps
+                            tr
+                                td
+                                    input(type='checkbox' data-id=app.id)
+                                td.link  #{app.name}
+                                td  #{app.loginAccount}
+                                td  #{user.roleNames}
+                                td  #{user.deptNames}
+                                td  #{user.createTime}
+                                td
+                                    a.link(href='/setting/user_edit?edit=true&userId=' + user.id) 编辑
