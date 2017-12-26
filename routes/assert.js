@@ -569,6 +569,29 @@ var coverParams = function (req,type,paramKey,defaultValue) {
     return req;
 };
 
+var makeZTreeData = function (depInfo,resultsData) {
+    var resultsData = resultsData;
+    depInfo.forEach(function (data1) {
+        var temp = {};
+        temp.id = 'dep_' + data1.id;
+        temp.label = data1.name;
+        temp.parentId = 'dep_' + data1.parentId;
+        resultsData.push(temp);
+        //加载本层的用户
+        data1.users.forEach(function (user1) {
+            var userTemp = {};
+            userTemp.id = 'user_' + user1.id;
+            userTemp.label = user1.name;
+            userTemp.parentId = 'dep_' + data1.id;
+            resultsData.push(userTemp);
+        });
+        if(data1.children.length > 0){
+            makeZTreeData(data1.children,resultsData);
+        }
+    });
+    return resultsData;
+};
+
 module.exports = {
 
     _utf_encode:_utf_encode,
@@ -583,5 +606,6 @@ module.exports = {
     getJADE:getJADE,
     getError:getError,
     coverParams:coverParams,
-    getArrPost:getArrPost
+    getArrPost:getArrPost,
+    makeZTreeData:makeZTreeData
 };

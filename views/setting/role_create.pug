@@ -5,10 +5,14 @@ block common_header
     include ../components/header
     +commonheader(0)
 block style
+    link(rel="stylesheet", href=__PLUGINS_PATH__ + "/ztree/zTreeStyle.css")
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
     style.
         #main-wrapper {
             margin-top: 10px;
+        }
+        .ztree{
+            margin-left: 0;
         }
 block aside_content
     include ../components/mixin
@@ -25,7 +29,7 @@ block main_content
         .news-create
             .form-control
                 label.control-label(for='role') 角色名称:
-                input#role.form-control(type='text')
+                input#role.form-control(type='text' name='role' value=roleInfo.name)
             .form-control
                 label.control-label 人员选择:
             .role-control(style="margin-top: -40px;")
@@ -37,9 +41,12 @@ block main_content
                         .title-item.dep(style="display:none")
                             span.title-tab 按照部门选择
                     .list-wrapper.allUserOption
-                        if(usersList.length)
-                            each user in usersList
+                        if(userList.length)
+                            each user in userList
                                 .list-item(data-person-id=user.id data-person-name=user.name) #{user.name}
+                    .list-wrapper.departmentUserOption(style="display:none")
+                        .structure
+                            ul#tree.ztree(data-node=depAll)
                 .role-handle
                     button.work-btn.work-btn-default.work-btn-sm#addSelectUser(type='button' data-type='user') 添加>
                     br
@@ -49,23 +56,28 @@ block main_content
                         .title-item
                             span 已选人员
                     .list-wrapper.selectedBox
-            input#choosePersonId(type="hidden" value="1,2,3" name="choosePersonId")
+            input#choosePersonId(type="hidden" value="0" name="choosePersonId")
+            input#deptIds(type="hidden" value="user_0" name="deptIds")
             input#roleId(type='hidden' value=userId name="roleId")
             .form-control.btn-wrapper
                 button#addConfirm.btn.btn-default.btn-sm(type='button') 保存
                 button.btn.btn-disable.btn-sm(type='button' onclick="window.location.href='/setting/role_manage'" style='margin-left:20px') 取消
 block script
+    script(type='text/javascript' src=__PLUGINS_PATH__ + '/ztree/jquery.ztree.all.min.js')
     script(type="text/javascript").
         $(document).ready(function () {
+            //zTree
+            zTreeLoad();
+            //初始化选择
             var choosePersonId = $('#choosePersonId');
             if (choosePersonId.length) {
                 var chooseArr = choosePersonId.val().split(",");
                 //先去掉在左边的人
                 var chooseNames = [];
                 chooseArr.forEach(function (data, index) {
-                    var chooseItem = $('.list-wrapper.allUserOption').find("div[data-person-id=" + data + "]");
+                    var chooseItem = $('.list-wrapper').find('.list-item[data-person-id=' + data + ']');
                     $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click',clickItem));
-                    chooseNames.push(chooseItem.attr("data-person-name"))
+                    chooseNames.push(chooseItem.attr("data-person-name"));
                     chooseItem.remove();
                 });
                 if ($('#approver').length) {
@@ -80,18 +92,19 @@ block script
             $('.title-item').show()
         })
         $('.title-item').on('click', function () {
-            console.log($('.title-item'))
-            $(this).siblings('.title-item').hide()
+            $(this).siblings('.title-item').hide();
             if ($(this).hasClass('all')) {
-                $('.allUserOption').show()
-                $('.departmentUserOption').hide()
-                $('#addSelectUser').attr('data-type', 'user')
-                $('#deleteSelectUser').attr('data-type', 'user')
+                $('.allUserOption').show();
+                $('.departmentUserOption').hide();
+                $('#addSelectUser').attr('data-type', 'user');
+                $('#deleteSelectUser').attr('data-type', 'user');
             } else {
-                $('.allUserOption').hide()
-                $('.departmentUserOption').show()
-                $('#addSelectUser').attr('data-type', 'dp')
-                $('#deleteSelectUser').attr('data-type', 'dp')
+                $('.allUserOption').hide();
+                $('.departmentUserOption').show();
+                $('#addSelectUser').attr('data-type', 'dp');
+                $('#deleteSelectUser').attr('data-type', 'dp');
+                console.log('异步刷新数');
+                zTreeLoad();
             }
         });
         var clickItem = function () {
@@ -99,58 +112,74 @@ block script
                 $('.list-item').removeClass("active");
                 $(this).addClass("active");
             });
-        }
+        };
 
         clickItem();
 
+        function changeIdTo(id,changeType) {
+            var deptIds = $('#deptIds').val().split(',');
+            var index  = $.inArray('user_'+id,deptIds);
+            if(changeType === 'add'){
+                if(index === -1){
+                    deptIds.push('user_'+id);
+                }
+            }else{
+                if(index !== -1){
+                    deptIds.splice(index, 1);
+                }
+            }
+            $('#deptIds').val(String(deptIds));
+        }
+
+        function changeSelectByTree() {
+            var selectIds = $('#deptIds').val().split(",");
+            selectIds.forEach(function (data, index) {
+                var sid = data.split("user_")[1];
+                var chooseItem = $('.list-wrapper').find(".list-item[data-person-id=" + sid + "]");
+                if(!chooseItem.parent().hasClass('selectedBox')){
+                    $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click', clickItem));
+                    chooseItem.remove();
+                }
+            });
+        }
+        
         $('#addSelectUser').click(function () {
             if ($(this).attr('data-type') == 'user') {
-                var selectList = $('.list-wrapper.allUserOption').find('.list-item.active')
+                var selectList = $('.list-wrapper.allUserOption').find('.list-item.active');
                 if (selectList.length == 0) {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.alert('嗨，先选人呐');
-                    });
+                    layerAlert('请选选择要添加的人','error');
                 } else {
                     selectList = selectList.removeClass("active");
+                    changeIdTo(selectList.attr('data-person-id'),'add');
                     $('.selectedBox').append(selectList);
                 }
             } else {
-                var selectDPList = $('.departmentUserOption').find(".selectDP");
-                if (selectDPList.length == 0) {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.alert('还没有选择部门');
-                    });
-                } else {
-                    selectDPList = selectDPList.removeClass("selectDP").addClass("chooseDP");
-                    $('.selectedBox').append(selectDPList);
+                var selectDPUsers = $('#deptIds').val();
+                if(selectDPUsers === ""){
+                    layerAlert('请选选择要添加的人','error');
+                }else{
+                    console.log("从树添加人");
+                    changeSelectByTree();
                 }
             }
         });
 
         $('#deleteSelectUser').click(function () {
             if ($(this).attr('data-type') == 'user') {
-                var selectedList = $('.list-wrapper.selectedBox').find(".list-item.active")
+                var selectedList = $('.list-wrapper.selectedBox').find(".list-item.active");
                 if (selectedList.length == 0) {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.alert('嗨，先选人呐');
-                    });
+                    layerAlert('请选选择要删除的人','error');
                 } else {
                     selectedList = selectedList.removeClass("active");
+                    changeIdTo(selectedList.attr('data-person-id'),'add');
                     $('.list-wrapper.allUserOption').append(selectedList);
                 }
             } else {
                 var selectDPList = $('.list-wrapper.selectedBox').find(".selectDP");
-                if (selectDPList.length == 0) {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.alert('还没有选择部门');
-                    });
+                if (selectDPList.length === 0) {
+                    layerAlert('请选选择要删除的人','error');
                 } else {
-                    selectDPList = selectDPList.removeClass("chooseDP").removeClass("selectDP")
-                    $('.departmentUserOption').append(selectDPList);
+                    changeSelectByTree();
                 }
             }
 

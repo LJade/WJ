@@ -408,3 +408,102 @@ function getIcon(isMe,name) {
         }
     }
 }
+
+function zTreeLoad() {
+    var setting = {
+        check: {
+            enable: true
+        },
+        view: {
+            dblClickExpand: false,
+            showLine: true,
+            selectedMulti: false
+        },
+        data: {
+            key: {
+                name: "label"
+            },
+            simpleData: {
+                enable: true,
+                name: "label",
+                title: "label",
+                idKey: "id",
+                pIdKey: "parentId",
+                rootPId: ""
+            }
+        },
+        callback: {
+            beforeDblClick: beforeMouseDoubleClick,
+            onClick: beforeMouseDown,
+            onCheck: checkEvent
+        }
+    };
+
+    var zNodes = JSON.parse($('#tree').attr('data-node'));
+    var stringChecked = $('#deptIds').val();
+    var checkedIds = stringChecked === "" ? [] : stringChecked.split(",");
+    zNodes.forEach(function (node) {
+        node.open = true;
+        var index = $.inArray(String(node.id), checkedIds);
+        if (index !== -1) {
+            node.checked = true
+        }
+    });
+
+    function checkEvent(e, treeId, treeNode) {
+        var stringChecked = $('#deptIds').val();
+        var checkedIds = stringChecked === "" ? [] : stringChecked.split(",");
+        var index = $.inArray(String(treeNode.id), checkedIds);
+        //如果存在相同id的子节点,我们也把他们都选上
+        var zTree = $.fn.zTree.getZTreeObj("tree");
+        var sameNodes = zTree.getNodesByParam("id",treeNode.id);
+        if (treeNode.checked === false) {
+            if (index !== -1) {
+                checkedIds.splice(index, 1);
+                if(sameNodes.length > 1){
+                    sameNodes.forEach(function (data) {
+                        data.checked = false;
+                        zTree.updateNode(data);
+                    })
+                }
+            }
+        } else {
+            if (index === -1) {
+                checkedIds.push(String(treeNode.id));
+                if(sameNodes.length > 1){
+                    sameNodes.forEach(function (data) {
+                        data.checked = true;
+                        zTree.updateNode(data);
+                    })
+                }
+            }
+        }
+        $("#deptIds").val(String(checkedIds));
+    }
+
+    function setCheck() {
+        var zTree = $.fn.zTree.getZTreeObj('tree');
+        type = {"Y": "sp", "N": "sp"};
+        zTree.setting.check.chkboxType = type;
+    }
+
+    function beforeMouseDown(e, treeId, treeNode) {
+        $('#tree').attr('data-cur-id', treeNode.id).attr('data-cur-pid', treeNode.parentId);
+    }
+
+    function beforeMouseDoubleClick(treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj("tree");
+        if (treeNode.isParent) {
+            zTree.expandNode(treeNode);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $(document).ready(function () {
+        var t = $("#tree");
+        t = $.fn.zTree.init(t, setting, zNodes);
+        setCheck();
+    });
+}

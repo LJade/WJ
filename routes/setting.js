@@ -160,43 +160,43 @@ var role_edit = function (req, res, next) {
         name: "",
         modulesId: ""
     };
-    var usersList = assert.apiRequest('get', '/privilege/user/list', req);
+    var getAllUser = assert.apiRequest("get",'/department/allDeptAndUser',req);
     if (!roleId) {
         //表示是新增
         JADE_VAR.roleInfo = roleInfo;
         JADE_VAR.roleId = roleId;
         JADE_VAR.edit = true;
         //获取角色列表
-        Promise.all([usersList]).then(function (results) {
+        Promise.all([getAllUser]).then(function (results) {
             var usersList = JSON.parse(results[0]);
             if (usersList.code !== 1) {
                 res.render("error/error", {message: usersList.msg})
             } else {
                 //获取部门树和角色list
-                JADE_VAR.usersList = usersList.dat;
+                JADE_VAR.usersList = usersList.dat.users;
+                JADE_VAR.depAll = JSON.stringify(assert.makeZTreeData([usersList.dat],[]));
                 res.render('setting/role_create', JADE_VAR);
             }
         });
     } else {
         //表示是编辑
-        JADE_VAR.userInfo = userInfo;
-        JADE_VAR.userId = userId;
+        JADE_VAR.roleInfo = roleInfo;
+        JADE_VAR.roleId = roleId;
         JADE_VAR.edit = edit;
-        //获取用户详情
-        var getUserDetail = assert.apiRequest('get', '/privilege/user/detail', req);
+        //获取角色详情
+        var getRoleDetail = assert.apiRequest('get', '/privilege/role/detail', req);
         //获取角色列表
-        Promise.all([roleList, depAll, getUserDetail]).then(function (results) {
-            var roleList = JSON.parse(results[0]);
-            var depList = JSON.parse(results[1]);
-            var userInfoAPI = JSON.parse(results[2]);
-            if (roleList.code !== 1 || depList.code !== 1 || userInfoAPI.code !== 1) {
+        Promise.all([getAllUser, getRoleDetail]).then(function (results) {
+            var userList = JSON.parse(results[0]);
+            var roleInfo = JSON.parse(results[1]);
+            if (userList.code !== 1 || roleInfo.code !== 1) {
                 res.render("error/error", {message: roleList.msg})
             } else {
                 //获取部门树和角色list
-                JADE_VAR.rolesList = roleList.dat;
-                JADE_VAR.depAll = JSON.stringify(depList.dat);
-                JADE_VAR.userInfo = userInfoAPI.dat;
-                res.render('setting/user_create', JADE_VAR);
+                JADE_VAR.userList = userList.dat.users;
+                JADE_VAR.depAll = JSON.stringify(assert.makeZTreeData([userList.dat],[]));
+                JADE_VAR.roleInfo = roleInfo.dat;
+                res.render('setting/role_create', JADE_VAR);
             }
         });
 
@@ -368,7 +368,7 @@ var contact_save = function (req, res, next) {
         if(saveRes.code === 1){
             res.redirect('/setting/contact_manage');
         }else{
-            res.render("error/error",{message:saveRes.msg})
+            res.render("error/error",{message:saveRes.m})
         }
     })
 };

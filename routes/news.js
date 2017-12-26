@@ -54,7 +54,9 @@ var news_create = function (req, res, next) {
     Promise.all([getAllUser,typeList]).then(function (results) {
         if (results) {
             var modules = JSON.parse(results[0]);
-            JADE_VAR.allUsers = modules.dat.users;
+            JADE_VAR.allUsers = modules.dat.list;
+            JADE_VAR.depAll = JSON.stringify(assert.makeZTreeData([modules.dat.tree],[]));
+            JADE_VAR.lookUpPersonIds = "";
             var typeInfo = JSON.parse(results[1]);
             if(typeInfo.code == 1) {
                 JADE_VAR.typeInfo = typeInfo.dat.details;
@@ -66,6 +68,8 @@ var news_create = function (req, res, next) {
         JADE_VAR.isEdit = true;
         JADE_VAR.journalismId = '';
         res.render('news/news_create', JADE_VAR);
+    },function (err,error) {
+        console.log(err,error);
     });
 };
 

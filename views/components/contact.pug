@@ -13,33 +13,7 @@ mixin ContactBook
                         .list-item(data-person-id=user.id data-person-name=user.name) #{user.name}
             .list-wrapper.departmentUserOption(style="display:none")
                 .structure
-                    ul.structure-tree
-                        li.structure-node.close-node 组织架构信息
-                            ul.structure-tree(style="display:none")
-                                li.structure-node.close-node
-                                    span.active 吴江交通运输局
-                                    ul.structure-tree(style="display:none")
-                                        li.structure-node.close-node 一级部门1
-                                            ul.structure-tree(style="display:none")
-                                                li.structure-node 二级部门1
-                                                li.structure-node 二级部门2
-                                        li.structure-node.close-node 一级部门2
-                                            ul.structure-tree
-                                                li.structure-node 二级部门1
-                                                li.structure-node 二级部门2
-                                        li.structure-node 一级部门3
-                                li.structure-node.close-node.children1 汽车研究院
-                                    ul.structure-tree(style="display:none")
-                                        li.structure-node.close-node 一级部门1
-                                            ul.structure-tree(style="display:none")
-                                                li.structure-node 二级部门1
-                                                li.structure-node 二级部门2
-                                        li.structure-node.close-node 一级部门2
-                                            ul.structure-tree(style="display:none")
-                                                li.structure-node 二级部门1
-                                                li.structure-node 二级部门2
-                                        li.structure-node 一级部门3
-
+                    ul#tree.ztree(data-node=depAll)
         .role-handle
             button.work-btn.work-btn-default.work-btn-sm#addSelectUser(type='button' data-type='user') 添加>
             br
@@ -49,12 +23,16 @@ mixin ContactBook
                 .title-item
                     span 已选人员
             .list-wrapper.selectedBox
-    if(lookUpPersonIds)
-        input(type='hidden' id='choosePersonId' value=lookUpPersonIds)
+        if(lookUpPersonIds)
+            input(type='hidden' id='choosePersonId' value=lookUpPersonIds)
+        input#deptIds(type="hidden" value="user_" name="deptIds")
     .form-control.btn-wrapper(style="text-align:center;")
         button.work-btn.work-btn-default.work-btn-sm.addConfirm(type='button') 保存
         button.work-btn.work-btn-disable.work-btn-sm.addCancel(type='button' style='margin-left:20px') 取消
-    script.
+    script(type='text/javascript' src=__PLUGINS_PATH__ + '/ztree/jquery.ztree.all.min.js')
+    script(type='text/javascript').
+        //初始化ztree
+        zTreeLoad();
         //初始化数据
         $(document).ready(function () {
             var choosePersonId = $('#choosePersonId');
@@ -92,8 +70,10 @@ mixin ContactBook
                 $('.departmentUserOption').show()
                 $('#addSelectUser').attr('data-type', 'dp')
                 $('#deleteSelectUser').attr('data-type', 'dp')
+                console.log('异步刷新数');
+                zTreeLoad();
             }
-        })
+        });
         var clickItem = function () {
             $('.list-item').on('click', function () {
                 $('.list-item').removeClass("active");
@@ -103,54 +83,70 @@ mixin ContactBook
 
         clickItem();
 
+        function changeIdTo(id, changeType) {
+            var deptIds = $('#deptIds').val().split(',');
+            var index = $.inArray('user_' + id, deptIds);
+            if (changeType === 'add') {
+                if (index === -1) {
+                    deptIds.push('user_' + id);
+                }
+            } else {
+                if (index !== -1) {
+                    deptIds.splice(index, 1);
+                }
+            }
+            $('#deptIds').val(String(deptIds));
+        }
+
+        function changeSelectByTree() {
+            var selectIds = $('#deptIds').val().split(",");
+            selectIds.forEach(function (data, index) {
+                var sid = data.split("user_")[1];
+                var chooseItem = $('.list-wrapper').find(".list-item[data-person-id=" + sid + "]");
+                if (!chooseItem.parent().hasClass('selectedBox')) {
+                    $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click', clickItem));
+                    chooseItem.remove();
+                }
+            });
+        }
+
         $('#addSelectUser').click(function () {
             if ($(this).attr('data-type') == 'user') {
-                var selectList = $('.list-wrapper.allUserOption').find('.list-item.active')
+                var selectList = $('.list-wrapper.allUserOption').find('.list-item.active');
                 if (selectList.length == 0) {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.alert('嗨，先选人呐');
-                    });
+                    layerAlert('请选选择要添加的人', 'error');
                 } else {
                     selectList = selectList.removeClass("active");
+                    changeIdTo(selectList.attr('data-person-id'), 'add');
                     $('.selectedBox').append(selectList);
                 }
             } else {
-                var selectDPList = $('.departmentUserOption').find(".selectDP");
-                if (selectDPList.length == 0) {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.alert('还没有选择部门');
-                    });
+                var selectDPUsers = $('#deptIds').val();
+                if (selectDPUsers === "") {
+                    layerAlert('请选选择要添加的人', 'error');
                 } else {
-                    selectDPList = selectDPList.removeClass("selectDP").addClass("chooseDP");
-                    $('.selectedBox').append(selectDPList);
+                    console.log("从树添加人");
+                    changeSelectByTree();
                 }
             }
         });
 
         $('#deleteSelectUser').click(function () {
             if ($(this).attr('data-type') == 'user') {
-                var selectedList = $('.list-wrapper.selectedBox').find(".list-item.active")
+                var selectedList = $('.list-wrapper.selectedBox').find(".list-item.active");
                 if (selectedList.length == 0) {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.alert('嗨，先选人呐');
-                    });
+                    layerAlert('请选选择要删除的人', 'error');
                 } else {
                     selectedList = selectedList.removeClass("active");
+                    changeIdTo(selectedList.attr('data-person-id'), 'add');
                     $('.list-wrapper.allUserOption').append(selectedList);
                 }
             } else {
                 var selectDPList = $('.list-wrapper.selectedBox').find(".selectDP");
-                if (selectDPList.length == 0) {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.alert('还没有选择部门');
-                    });
+                if (selectDPList.length === 0) {
+                    layerAlert('请选选择要删除的人', 'error');
                 } else {
-                    selectDPList = selectDPList.removeClass("chooseDP").removeClass("selectDP")
-                    $('.departmentUserOption').append(selectDPList);
+                    changeSelectByTree();
                 }
             }
 

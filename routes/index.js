@@ -161,6 +161,9 @@ module.exports = function (app) {
     /** 个人消息页面*/
     app.get('/message',myMessage.message);
 
+    /** ceshi **/
+    app.get('/test/tree',myMessage.test);
+
     /** 首页相关 */
     app.get('/', home.home);
     app.get('/add_application', home.add_application);

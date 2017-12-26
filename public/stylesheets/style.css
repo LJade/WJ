@@ -995,8 +995,8 @@ input[type='checkbox'] {
   .role-control .user-list {
     width: 180px;
     border: 1px solid #ececec;
-    min-height: 300px;
-    max-height: 350px;
+    min-height: 400px;
+    max-height: 400px;
     line-height: 3;
     overflow: auto; }
     .role-control .user-list::-webkit-scrollbar {
@@ -1017,7 +1017,7 @@ input[type='checkbox'] {
         cursor: pointer;
         z-index: 201; }
     .role-control .user-list .list-wrapper {
-      padding: 15px 0; }
+      padding: 5px 0; }
       .role-control .user-list .list-wrapper .list-item {
         padding-left: 40px;
         cursor: pointer; }
