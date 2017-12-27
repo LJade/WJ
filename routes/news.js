@@ -55,7 +55,7 @@ var news_create = function (req, res, next) {
         if (results) {
             var modules = JSON.parse(results[0]);
             JADE_VAR.allUsers = modules.dat.list;
-            JADE_VAR.depAll = JSON.stringify(assert.makeZTreeData([modules.dat.tree],[]));
+            JADE_VAR.depAll = assert.makeZTreeData([modules.dat.tree],[]);
             JADE_VAR.lookUpPersonIds = "";
             var typeInfo = JSON.parse(results[1]);
             if(typeInfo.code == 1) {
@@ -94,7 +94,8 @@ var news_detail = function (req, res, next) {
     Promise.all([getAllUser,detailInfo,typeList]).then(function (results) {
         if (results) {
             var modules = JSON.parse(results[0]);
-            JADE_VAR.allUsers = modules.dat.users;
+            JADE_VAR.allUsers = modules.dat.list;
+            JADE_VAR.depAll = assert.makeZTreeData([modules.dat.tree],[]);
             var newsInfo = JSON.parse(results[1]);
             var typeInfo = JSON.parse(results[2]);
             JADE_VAR.typeInfo = typeInfo.dat.details;

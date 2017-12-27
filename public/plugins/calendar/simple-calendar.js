@@ -631,7 +631,24 @@ var SimpleCalendar = function () {
           calendar.selectDay = v;
           var pre = container.querySelector('.sc-selected');
           if (pre) pre.classList.remove('sc-selected');
-          this.classList.add('sc-selected');
+          if($.inArray('sc-mark',this.classList) === -1){
+            this.classList.add('sc-selected');
+          }else{
+
+            var openwin = function(url) {
+              var a = document.createElement("a");
+              a.setAttribute("href", url);
+              a.setAttribute("target", "_blank");
+              a.setAttribute("id", "camnpr");
+              document.body.appendChild(a);
+              a.click();
+            };
+            var dayNum = this.getElementsByClassName("day")[0].innerHTML;
+            var selectYear = $('.sc-select-year').val();
+            var selectMonth = $('.sc-select-month').val();
+            openwin('/news/news_list?date=' + selectYear + "-" + selectMonth + "-" + dayNum);
+          }
+
         };
       });
 

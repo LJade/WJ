@@ -16,9 +16,9 @@ block style
         }
 block main_content
     include ../components/mixin
-    -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_manage',text:'对接系统管理'},{link:'/setting/app_create',text:'第三方应用系统管理'}]
+    -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_manage',text:'对接系统管理'},{link:'/setting/app_manage',text:'第三方应用系统管理'}]
     +menuLink(menuObj,2)
-    -var navObj = [{link:'/setting/app_create',text:'应用管理'},{link:'/setting/app_permission',text:'应用查看'}]
+    -var navObj = [{link:'/setting/app_manage',text:'应用管理'},{link:'/setting/app_permission',text:'应用查看'}]
     +menuNav(navObj,0)
     +RouteNav('第三方应用列表')
     .condition

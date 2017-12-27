@@ -2,6 +2,13 @@ var assert = require('./assert.js');
 
 var app_create = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
+    JADE_VAR.appInfo = {
+        "id":"",
+        "name":"",
+        "uploaderName":"",
+        "uploadTime":""
+    };
+    JADE_VAR.edit = false;
     res.render('setting/app_create', JADE_VAR);
 };
 
@@ -173,8 +180,8 @@ var role_edit = function (req, res, next) {
                 res.render("error/error", {message: usersList.msg})
             } else {
                 //获取部门树和角色list
-                JADE_VAR.usersList = usersList.dat.users;
-                JADE_VAR.depAll = JSON.stringify(assert.makeZTreeData([usersList.dat],[]));
+                JADE_VAR.userList = usersList.dat.list;
+                JADE_VAR.depAll = assert.makeZTreeData([usersList.dat.tree],[]);
                 res.render('setting/role_create', JADE_VAR);
             }
         });
@@ -193,8 +200,8 @@ var role_edit = function (req, res, next) {
                 res.render("error/error", {message: roleList.msg})
             } else {
                 //获取部门树和角色list
-                JADE_VAR.userList = userList.dat.users;
-                JADE_VAR.depAll = JSON.stringify(assert.makeZTreeData([userList.dat],[]));
+                JADE_VAR.userList = userList.dat.list;
+                JADE_VAR.depAll = JSON.stringify(assert.makeZTreeData([userList.dat.tree],[]));
                 JADE_VAR.roleInfo = roleInfo.dat;
                 res.render('setting/role_create', JADE_VAR);
             }
@@ -211,10 +218,11 @@ var role_permission = function (req, res, next) {
 
 var role_save = function (req, res, next) {
     var moduleIds = req.body.moduleIds;
-    if (!moduleIds) {
-        req.body.moduleIds = "1";
+    var urlPath = '/privilege/role/save';
+    if(moduleIds){
+        urlPath = '/privilege/role/saveModule';
     }
-    assert.apiRequest("post", '/privilege/role/save', req).then(function (results) {
+    assert.apiRequest("post", urlPath, req).then(function (results) {
         res.send(results);
     })
 };
@@ -231,7 +239,15 @@ var log_manage = function (req, res, next) {
 
 var app_permission = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('setting/app_permission', JADE_VAR);
+    assert.apiRequest('get','/clientExe/iconList',req).then(function (results) {
+        var appListRes = JSON.parse(results);
+        if(appListRes.code === 1){
+            JADE_VAR.apps = appListRes.dat;
+            res.render('setting/app_permission',JADE_VAR);
+        }else{
+            res.render('error/error',{message:appListRes.msg});
+        }
+    });
 };
 
 var contact_addpage = function (req, res, next) {
@@ -245,18 +261,22 @@ var contact_addpage = function (req, res, next) {
         "descText": "",
         "indexUrl": ""
     };
+    JADE_VAR.edit = false;
     if(id){
-        assert.apiRequest('get','/thirdPart/webDetail',req).then(function (results) {
+        assert.apiRequest('get','/thirdPart/detail',req).then(function (results) {
             var webInfoRes = JSON.parse(results);
             if(webInfoRes.code === 1){
                 JADE_VAR.webInfo = webInfoRes.dat;
+                JADE_VAR.edit = true;
+                res.render('setting/contact_addpage', JADE_VAR);
             }else{
                 res.render('error/error',{message:webInfoRes.msg});
                 return;
             }
         })
+    }else{
+        res.render('setting/contact_addpage', JADE_VAR);
     }
-    res.render('setting/contact_addpage', JADE_VAR);
 };
 
 var contact_config = function (req, res, next) {
@@ -344,7 +364,7 @@ var user_edit = function (req, res, next) {
 
 var contact_manage = function (req, res, next){
     var JADE_VAR = assert.getJADE();
-    assert.apiRequest('get',"/thirdPart/webList",req).then(function (results) {
+    assert.apiRequest('get',"/thirdPart/list",req).then(function (results) {
         var webList = JSON.parse(results);
         if(webList.code === 1){
             JADE_VAR.webLists = webList.dat;
@@ -374,6 +394,19 @@ var contact_save = function (req, res, next) {
 };
 
 
+var app_manage = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    assert.apiRequest('get','/clientExe/list',req).then(function (results) {
+        var appListRes = JSON.parse(results);
+        if(appListRes.code === 1){
+            JADE_VAR.apps = appListRes.dat;
+            res.render('setting/app_manage',JADE_VAR);
+        }else{
+            res.render('error/error',{message:appListRes.msg});
+        }
+    })
+};
+
 module.exports = {
     app_create: app_create,
     region_manage: region_manage,
@@ -398,7 +431,7 @@ module.exports = {
     role_save: role_save,
     contact_manage:contact_manage,
     contact_delete:contact_delete,
-    contact_save:contact_save
-
+    contact_save:contact_save,
+    app_manage:app_manage
 
 };

@@ -16,9 +16,9 @@ block style
         }
 block main_content
     include ../components/mixin
-    -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_addpage',text:'对接系统管理'},{link:'/setting/app_create',text:'第三方应用系统管理'}]
+    -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_manage',text:'对接系统管理'},{link:'/setting/app_manage',text:'第三方应用系统管理'}]
     +menuLink(menuObj,1)
-    -var navObj = [{link:'/setting/contact_addpage',text:'应用配置'},{link:'/setting/contact_config',text:'应用权限配置'}]
+    -var navObj = [{link:'/setting/contact_manage',text:'应用配置'},{link:'/setting/contact_config',text:'应用权限配置'}]
     +menuNav(navObj,0)
     +RouteNav('页面添加')
     #inner-wrapper
@@ -37,7 +37,7 @@ block main_content
                 textarea#description.form-control(rows='8' name='descText') #{webInfo.descText}
             .form-control.btn-wrapper
                 input#id.form-control(type='hidden' name='id' value=webInfo.id)
-                button.btn.btn-default.btn-sm(type='submit') 添加
+                button.btn.btn-default.btn-sm(type='submit') #{edit ? '保存' : '添加'}
                 button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
 
 

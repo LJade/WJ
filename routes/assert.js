@@ -576,6 +576,7 @@ var makeZTreeData = function (depInfo,resultsData) {
         temp.id = 'dep_' + data1.id;
         temp.label = data1.name;
         temp.parentId = 'dep_' + data1.parentId;
+        temp.nocheck = true;
         resultsData.push(temp);
         //加载本层的用户
         data1.users.forEach(function (user1) {
@@ -589,7 +590,7 @@ var makeZTreeData = function (depInfo,resultsData) {
             makeZTreeData(data1.children,resultsData);
         }
     });
-    return resultsData;
+    return JSON.stringify(resultsData);
 };
 
 module.exports = {

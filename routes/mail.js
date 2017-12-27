@@ -4,7 +4,8 @@ var assert = require('./assert.js');
 var mail_create = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     assert.apiRequest("get",'/department/allDeptAndUser',req).then(function (results) {
-        JADE_VAR.allUsers = JSON.parse(results).dat.users;
+        JADE_VAR.allUsers = JSON.parse(results).dat.list;
+        JADE_VAR.depAll = assert.makeZTreeData([JSON.parse(results).dat.tree],[]);
         JADE_VAR.mailDetail = {
             sendMailId:"",
             receivedUserIdList:"",
@@ -60,12 +61,13 @@ var mail_detail = function (req, res, next) {
     var getAllUser = assert.apiRequest("get",'/department/allDeptAndUser',req);
     Promise.all([mailsInfo,getAllUser]).then(function (results) {
         var mailInfo = JSON.parse(results[0]);
-        var allUsers = JSON.parse(results[1]);
+        var allUsers = JSON.parse(results[1]).dat.list;
         if (mailInfo.code === 1) {
             JADE_VAR.mailDetail = mailInfo.dat;
             JADE_VAR.sendMailId =mailInfo.dat.sendMailId;
             JADE_VAR.lookUpPersonIds = mailInfo.dat.receivedUserIdList  === null ? '' : mailInfo.dat.receivedUserIdList;
-            JADE_VAR.allUsers = allUsers.dat.users;
+            JADE_VAR.allUsers = allUsers.dat.list;
+            JADE_VAR.depAll = assert.makeZTreeData([allUsers.dat.tree],[]);
             JADE_VAR.isEdit = isEdit;
             res.render('mail/mail_create', JADE_VAR);
         } else {

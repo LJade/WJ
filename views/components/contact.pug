@@ -13,7 +13,7 @@ mixin ContactBook
                         .list-item(data-person-id=user.id data-person-name=user.name) #{user.name}
             .list-wrapper.departmentUserOption(style="display:none")
                 .structure
-                    ul#tree.ztree(data-node=depAll)
+                    ul#tree.ztree(data-node=depAll style="margin-left:0;")
         .role-handle
             button.work-btn.work-btn-default.work-btn-sm#addSelectUser(type='button' data-type='user') 添加>
             br
@@ -25,7 +25,7 @@ mixin ContactBook
             .list-wrapper.selectedBox
         if(lookUpPersonIds)
             input(type='hidden' id='choosePersonId' value=lookUpPersonIds)
-        input#deptIds(type="hidden" value="user_" name="deptIds")
+        input#deptIds(type="hidden" value="" name="deptIds")
     .form-control.btn-wrapper(style="text-align:center;")
         button.work-btn.work-btn-default.work-btn-sm.addConfirm(type='button') 保存
         button.work-btn.work-btn-disable.work-btn-sm.addCancel(type='button' style='margin-left:20px') 取消
@@ -58,7 +58,6 @@ mixin ContactBook
             $('.title-item').show()
         })
         $('.title-item').on('click', function () {
-            console.log($('.title-item'))
             $(this).siblings('.title-item').hide()
             if ($(this).hasClass('all')) {
                 $('.allUserOption').show()
@@ -79,7 +78,7 @@ mixin ContactBook
                 $('.list-item').removeClass("active");
                 $(this).addClass("active");
             });
-        }
+        };
 
         clickItem();
 
@@ -98,16 +97,32 @@ mixin ContactBook
             $('#deptIds').val(String(deptIds));
         }
 
-        function changeSelectByTree() {
+        function changeSelectByTree(changeType) {
             var selectIds = $('#deptIds').val().split(",");
-            selectIds.forEach(function (data, index) {
-                var sid = data.split("user_")[1];
-                var chooseItem = $('.list-wrapper').find(".list-item[data-person-id=" + sid + "]");
-                if (!chooseItem.parent().hasClass('selectedBox')) {
-                    $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click', clickItem));
-                    chooseItem.remove();
+            console.log(selectIds);
+            if (changeType === 'add') {
+                selectIds.forEach(function (data, index) {
+                    var sid = data.split("user_")[1];
+                    var chooseItem = $('.list-wrapper').find(".list-item[data-person-id=" + sid + "]");
+                    if (!chooseItem.parent().hasClass('selectedBox')) {
+                        $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click', clickItem));
+                        chooseItem.remove();
+                    }
+                });
+            } else {
+                //删除掉改ID的人员,将人员填会到allUserOption,同时修改deptIds,刷新树
+                var selectedList = $('.list-wrapper.selectedBox').find(".list-item.active");
+                var selectId = selectedList.attr("data-person-id");
+                if (selectId) {
+                    changeIdTo(selectId, 'remove');
+                    zTreeLoad();
+                    //将选中的返回去
+                    $('.list-wrapper.allUserOption').append(selectedList.clone().bind('click', clickItem));
+                    selectedList.remove();
+                } else {
+                    layerAlert('获取选中人员失败', 'error');
                 }
-            });
+            }
         }
 
         $('#addSelectUser').click(function () {
@@ -126,7 +141,7 @@ mixin ContactBook
                     layerAlert('请选选择要添加的人', 'error');
                 } else {
                     console.log("从树添加人");
-                    changeSelectByTree();
+                    changeSelectByTree('add');
                 }
             }
         });
@@ -138,15 +153,15 @@ mixin ContactBook
                     layerAlert('请选选择要删除的人', 'error');
                 } else {
                     selectedList = selectedList.removeClass("active");
-                    changeIdTo(selectedList.attr('data-person-id'), 'add');
+                    changeIdTo(selectedList.attr('data-person-id'), 'remove');
                     $('.list-wrapper.allUserOption').append(selectedList);
                 }
             } else {
-                var selectDPList = $('.list-wrapper.selectedBox').find(".selectDP");
-                if (selectDPList.length === 0) {
+                var selectedList = $('.list-wrapper.selectedBox').find(".list-item.active");
+                if (selectedList.length === 0) {
                     layerAlert('请选选择要删除的人', 'error');
                 } else {
-                    changeSelectByTree();
+                    changeSelectByTree('remove');
                 }
             }
 

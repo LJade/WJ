@@ -11,11 +11,15 @@ var home = function(req, res, next) {
 
     //加载用户模块权限
     var getModules = assert.apiRequest("get","/user/myapps",req);
-    // var getUserMeet = assert.apiRequest("get","/",req);
+    //awaitList返回的请求信息
+    req.query.ifJurisdiction = req.session.user.roleType;
+    var nowDate = new Date();
+    req.query.date = nowDate.getFullYear() + "-" + nowDate.getMonth();
+    var getUserMeet = assert.apiRequest("get","/meeting/awaitList",req);
     // var getNoticeNum = assert.apiRequest("get","/",req);
 
     //请求数据
-    Promise.all([getModules]).then(function (results) {
+    Promise.all([getModules,getUserMeet]).then(function (results) {
         if (results) {
             var modules = JSON.parse(results[0]);
             //组装数据
@@ -83,10 +87,21 @@ var home = function(req, res, next) {
             });
             JADE_VAR.moduleGroups = modulesInfo;
             JADE_VAR.modulesInfo = modules.dat.apps;
-            //人物头像
+            //日历上的会议信息
+            var calendarRes = JSON.parse(results[1]);
+            if(calendarRes === 1){
+                var calendarList = {};
+                calendarRes.dat.forEach(function (data) {
+                    var meetingDay = data.startTime.split(" ")[0];
+                    calendarList[meetingDay] = "会议召开";
+                });
+                JADE_VAR.mark = JSON.stringify({"2017-12-19":"会议召开"});
+            }else{
+                JADE_VAR.mark = JSON.stringify({"2017-12-19":"会议召开"});
+            }
             //将权限信息写入session
             req.session.accessManage = JSON.stringify(modules.dat.apps);
-            //渲染页面
+            //人物头像
             res.cookie('headIcon',req.session.user.headIcon);
             res.cookie("headName",req.session.user.userName);
             res.render('home/index', JADE_VAR);

@@ -5,7 +5,6 @@
   font-family: "Microsoft Yahei";
   color: #4A4A4A;
   background-color: white;
-  box-shadow: 2px 4px 5px #bdbdbd;
   border-width: 1px 0 0 1px;
   border-color: #E6E4E0;
   border-style: solid;
@@ -31,7 +30,6 @@
 .sc-body {
   height: 93%;
   clear: both;
-  box-shadow: 2px 4px 5px #bdbdbd;
   background-color: white;
 }
 .sc-week {
@@ -202,4 +200,11 @@
   display: block;
   margin-top: 3px;
   font-size: 0.8em;
+}
+
+.calendarNotice {
+  position: relative;
+  left: -320px;
+  top: 380px;
+  background-color: white;
 }

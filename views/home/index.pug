@@ -36,6 +36,7 @@ block main_content
                                                     img(style="width:60px;" src = module.icon === "default-icon" ? __IMAGES_PATH__ + '/nav.png' : module.icon)
                                                 span #{module.name}
         #calendar
+        input#calendarMark(type="hidden" value=mark)
     link(rel='stylesheet', href=__PLUGINS_PATH__ + '/calendar/simple-calendar.css')
     script(src=__PLUGINS_PATH__ + "/calendar/simple-calendar.js")
     script(type="text/javascript").
@@ -53,9 +54,7 @@ block main_content
                 startYear: 2010,
                 endYear: 2049
             },
-            mark: {
-                '2017-11-25': '上学'
-            },
+            mark: JSON.parse($('#calendarMark').val()),
             theme: {
                 changeAble: true,
                 weeks: {
@@ -71,6 +70,6 @@ block main_content
                 todaycolor: '#82C2F1',
                 activeSelectColor: '#82C2F1',
             }
-        }
+        };
         var myCalendar = new SimpleCalendar('#calendar',options);
 

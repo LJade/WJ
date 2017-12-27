@@ -20,7 +20,7 @@ block aside_content
     +asideNav(routerObj,2)
 block main_content
     include ../components/mixin
-    -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_addpage',text:'对接系统管理'},{link:'/setting/app_create',text:'第三方应用系统管理'}]
+    -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_manage',text:'对接系统管理'},{link:'/setting/app_manage',text:'第三方应用系统管理'}]
     +menuLink(menuObj,0)
     -var navObj = [{link:'/setting/organization_manage',text:'组织机构管理'},{link:'/setting/user_manage',text:'用户管理'},{link:'#',text:'角色权限管理'},{link:'/setting/region_manage',text:'行政区划分'},{link:'/setting/log_manage',text:'日志管理'}]
     +menuNav(navObj,2)
@@ -58,7 +58,7 @@ block main_content
                     .list-wrapper.selectedBox
             input#choosePersonId(type="hidden" value="0" name="choosePersonId")
             input#deptIds(type="hidden" value="user_0" name="deptIds")
-            input#roleId(type='hidden' value=userId name="roleId")
+            input#roleId(type='hidden' value=roleId name="roleId")
             .form-control.btn-wrapper
                 button#addConfirm.btn.btn-default.btn-sm(type='button') 保存
                 button.btn.btn-disable.btn-sm(type='button' onclick="window.location.href='/setting/role_manage'" style='margin-left:20px') 取消
@@ -131,16 +131,31 @@ block script
             $('#deptIds').val(String(deptIds));
         }
 
-        function changeSelectByTree() {
+        function changeSelectByTree(changeType) {
             var selectIds = $('#deptIds').val().split(",");
-            selectIds.forEach(function (data, index) {
-                var sid = data.split("user_")[1];
-                var chooseItem = $('.list-wrapper').find(".list-item[data-person-id=" + sid + "]");
-                if(!chooseItem.parent().hasClass('selectedBox')){
-                    $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click', clickItem));
-                    chooseItem.remove();
+            if(changeType === 'add'){
+                selectIds.forEach(function (data, index) {
+                    var sid = data.split("user_")[1];
+                    var chooseItem = $('.list-wrapper').find(".list-item[data-person-id=" + sid + "]");
+                    if (!chooseItem.parent().hasClass('selectedBox')) {
+                        $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click', clickItem));
+                        chooseItem.remove();
+                    }
+                });
+            }else{
+                //删除掉改ID的人员,将人员填会到allUserOption,同时修改deptIds,刷新树
+                var selectedList = $('.list-wrapper.selectedBox').find(".list-item.active");
+                var selectId = selectedList.attr("data-person-id");
+                if(selectId){
+                    changeIdTo(selectId,'remove');
+                    zTreeLoad();
+                    //将选中的返回去
+                    $('.list-wrapper.allUserOption').append(selectedList.clone().bind('click', clickItem));
+                    selectedList.remove();
+                }else{
+                    layerAlert('获取选中人员失败','error');
                 }
-            });
+            }
         }
         
         $('#addSelectUser').click(function () {
@@ -159,7 +174,7 @@ block script
                     layerAlert('请选选择要添加的人','error');
                 }else{
                     console.log("从树添加人");
-                    changeSelectByTree();
+                    changeSelectByTree('add');
                 }
             }
         });
@@ -171,15 +186,15 @@ block script
                     layerAlert('请选选择要删除的人','error');
                 } else {
                     selectedList = selectedList.removeClass("active");
-                    changeIdTo(selectedList.attr('data-person-id'),'add');
+                    changeIdTo(selectedList.attr('data-person-id'),'remove');
                     $('.list-wrapper.allUserOption').append(selectedList);
                 }
             } else {
-                var selectDPList = $('.list-wrapper.selectedBox').find(".selectDP");
-                if (selectDPList.length === 0) {
+                var selectedList = $('.list-wrapper.selectedBox').find(".list-item.active");
+                if (selectedList.length === 0) {
                     layerAlert('请选选择要删除的人','error');
                 } else {
-                    changeSelectByTree();
+                    changeSelectByTree('remove');
                 }
             }
 
@@ -220,7 +235,7 @@ block script
             function goBack() {
                 window.location.href = "/setting/role_manage";
             }
-            $.post("/setting/role_save",{id:roleId,name:name,usersId:usersId},function (data) {
+            $.post("/setting/role_save",{id:roleId,name:name,userIds:usersId},function (data) {
                 if(data.code === 1){
                     layerAlert("操作成功！！",'ok',goBack);
                 }else{

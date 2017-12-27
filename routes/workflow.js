@@ -98,7 +98,8 @@ var workflow_edit = function(req, res, next) {
     Promise.all([getAllUser,getFlowDetail]).then(function (results) {
         if (results) {
             var modules = JSON.parse(results[0]);
-            JADE_VAR.allUsers = modules.dat.users;
+            JADE_VAR.allUsers = modules.dat.list;
+            JADE_VAR.depAll = assert.makeZTreeData([modules.dat.tree],[]);
             //获取单个节点得配置信息
             var nodeInfoJSON = JSON.parse(results[1]);
             if(nodeInfoJSON.code === 1){

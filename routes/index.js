@@ -32,6 +32,7 @@ module.exports = function (app) {
 
     /** 系统设置相关路由*/
     app.get('/setting/app_create', setting.app_create);
+    app.get('/setting/app_manage', setting.app_manage);
     app.get('/setting/region_manage', setting.region_manage);
     app.get('/setting/organization_manage',setting.organization_manage);
     app.get('/setting/organization_create', setting.organization_create);
@@ -135,6 +136,7 @@ module.exports = function (app) {
     /** 用户相关 **/
     app.get('/user/user_center', user.user_center);
     app.get('/user/change_pass', user.change_pass);
+    app.post('/user/user_save', user.user_save);
 
     /** 用户聊天 **/
     app.get('/im',message.im);

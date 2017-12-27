@@ -47,7 +47,8 @@ var con_create = function(req, res, next) {
     var getAllUser = assert.apiRequest("get",'/department/allDeptAndUser',req);
     Promise.all([getAllUser,meetingRoom]).then(function (results) {
         var modules = JSON.parse(results[0]);
-        JADE_VAR.allUsers = modules.dat.users;
+        JADE_VAR.allUsers = modules.dat.list;
+        JADE_VAR.depAll = assert.makeZTreeData([modules.dat.tree],[]);
         var meetingRoom = JSON.parse(results[1]);
         if(meetingRoom.code == 1) {
             JADE_VAR.meetingRooms = meetingRoom.dat.details;
@@ -297,7 +298,8 @@ var con_detail = function (req, res, next) {
             JADE_VAR.conferenceDetail = conferenceInfo.dat;
             JADE_VAR.meetingId =conferenceInfo.dat.meetingId;
             JADE_VAR.lookUpPersonIds = conferenceInfo.dat.receivedUserIdList  === null ? '' : conferenceInfo.dat.receivedUserIdList;
-            JADE_VAR.allUsers = allUsers.dat.users;
+            JADE_VAR.allUsers = allUsers.dat.list;
+            JADE_VAR.depAll = assert.makeZTreeData([allUsers.dat.tree],[]);
             JADE_VAR.meetingRooms = meetingRooms.dat.details;
             JADE_VAR.isEdit = isEdit;
             res.render('conference/con_create', JADE_VAR);

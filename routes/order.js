@@ -102,7 +102,8 @@ var order_detail = function (req, res, next) {
             JADE_VAR.orderDetail = orderInfo.dat;
             JADE_VAR.flowApproveUserId =orderInfo.dat.flowApproveUserId;
             JADE_VAR.lookUpPersonIds = orderInfo.dat.departmentId  === null ? '' : orderInfo.dat.departmentId;
-            JADE_VAR.allUsers = allUsers.dat.users;
+            JADE_VAR.allUsers = allUsers.dat.list;
+            JADE_VAR.depAll = assert.makeZTreeData([allUsers.dat.tree],[]);
             JADE_VAR.isEdit = isEdit;
             res.render('workOrder/order_create', JADE_VAR);
         } else {

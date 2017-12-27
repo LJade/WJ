@@ -40,7 +40,6 @@ var notice_create = function(req, res, next) {
         var getAllUser = assert.apiRequest("get",'/department/allDeptAndUser',req);
         Promise.all([getAnnouncement,getAllUser]).then(function (results) {
             var noticeDetailInfo = JSON.parse(results[0]);
-            var allUsers = JSON.parse(results[1]);
             if (noticeDetailInfo.code === 1) {
                 JADE_VAR.noticeDetail = noticeDetailInfo.dat;
                 JADE_VAR.announcementId = req.query.announcementId;
@@ -55,7 +54,9 @@ var notice_create = function(req, res, next) {
                 };
                 JADE_VAR.announcementId = "";
             }
-            JADE_VAR.allUsers = allUsers.dat.users;
+            var allUsers = JSON.parse(results[1]);
+            JADE_VAR.allUsers = allUsers.dat.list;
+            JADE_VAR.depAll = assert.makeZTreeData([allUsers.dat.tree],[]);
             if(req.query.edit && req.query.edit === 'true'){
                 JADE_VAR.isEdit = true;
             }else{
@@ -65,7 +66,8 @@ var notice_create = function(req, res, next) {
         });
     }else{
         assert.apiRequest("get",'/department/allDeptAndUser',req).then(function (results) {
-            JADE_VAR.allUsers = JSON.parse(results).dat.users;
+            JADE_VAR.allUsers = JSON.parse(results).dat.list;
+            JADE_VAR.depAll = assert.makeZTreeData([JSON.parse(results).dat.tree],[]);
             JADE_VAR.noticeDetail = {
                 title: "",
                 publicName: "",

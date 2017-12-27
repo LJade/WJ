@@ -25,7 +25,9 @@ if(debug){
     app.use(function(req,res,next){
         // console.log('[' + new Date().toString() + ']: ' + req.method + ' ' + req.url + ' body:' + req.body);
         req.session.user = {};
-        req.session.user.accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTQ1MzU1MDMsImlhdCI6MTUxNDI3NjMwM30.kUABk54DADPxHg54r4TRuyszKTpVaouAc-c8BsEnXPk';
+        res.cookie('headIcon',"http://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epqmKVPg9RrCTia56xA0mC2ia1t82IdOFib2G2fdXSA9l4Q7QdcqWv5Qc0RSSia2jZMiaCXHQVfGF2VzrQ/0");
+        res.cookie("headName","哈哈哈");
+        req.session.user.accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTQ2Mjk2MTcsImlhdCI6MTUxNDM3MDQxN30.skGC7kTJ3t3l_Mw3rJrtc4wg2cPFGyRevG-yrXVBW9U';
         req.session.user.roleType = 1;
         next();
     });

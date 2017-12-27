@@ -12,37 +12,28 @@ block style
         }
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'#',text:'个人中心',icon:'icon-user'},{link:'/user/user_center',text:'修改密码',icon:'icon-lock'}]
+    -var routerObj = [{link:'#',text:'个人中心',icon:'icon-user'},{link:'/user/change_pass',text:'修改密码',icon:'icon-lock'}]
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
     +RouteNav('个人中心')
     #inner-wrapper
-        .news-create
+        form(action="/user/user_save" method="post").news-create
             .form-control
                 label.control-label(for='name') 姓名:
-                input#name.form-control(type='text')
+                input#name.form-control(type='text' name="name" value=user.name)
             .form-control
-                label.control-label(for='nickname') 昵称:
-                input#nickname.form-control(type='text')
-            .form-control
-                label.control-label(for='main') 邮箱:
-                input#main.form-control(type='text')
+                label.control-label(for='email') 邮箱:
+                input#email.form-control(type='text' name="email" value=user.email)
             .form-control
                 label.control-label(for='phone') 联系方式:
-                input#phone.form-control(type='text')
+                input#phone.form-control(type='text' name="phone" value=user.phone)
             .form-control
-                label.control-label(for='depart') 所属部门:
-                select#depart
-                    option 部门1
-                    option 部门2
-                    option 部门3
-                    option 部门4
-                    option 部门5
-                    option 部门6
+                label.control-label(for='detpName') 所属部门:
+                input#detpName.form-control(type='text' name="detpName" value=user.detpName)
             .form-control
-                button.btn.btn-warning.btn-sm(type='button') 修改
-                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 保存
+                button.btn.btn-default.btn-sm(type='submit') 修改
+                button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 取消
 
 
 
