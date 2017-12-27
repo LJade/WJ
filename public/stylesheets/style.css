@@ -669,7 +669,8 @@ textarea:focus {
     border: 1px solid #ececec;
     margin-right: 20px; }
     #common-header .header-right .header-search input {
-      width: 220px;
+      max-width: 220px;
+      min-width: 185px;
       height: 30px;
       border: none;
       outline: none;
@@ -989,7 +990,7 @@ input[type='checkbox'] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0 15px 50px;
+  padding: 0 15px 30px;
   width: 600px;
   margin-left: 100px; }
   .role-control .user-list {
