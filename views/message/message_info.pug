@@ -1,0 +1,59 @@
+extends ../components/base
+block title
+    title 消息
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
+    +asideNav(routerObj,1)
+block common_header
+    include ../components/header
+    +commonheader(0)
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/message.css')
+    style.
+        #main-wrapper {
+            margin-top: 10px;
+        }
+block main_content
+    include ../components/mixin
+    +RouteNav('消息')
+    #message(style="margin-top:5px")
+        .aside-wrapper
+            .message-nav.active
+                .intro
+                    .icon-wrapper.notice
+                        i.icon.icon-sound
+                    .name 通知
+                    .tag 4
+                .time 20:59
+            .message-nav
+                .intro
+                    .icon-wrapper.document
+                        i.icon.icon-envelope
+                    .name 公告
+                .time 20:59
+        .dialog-wrapper
+            table.table.table-bordered
+                thead
+                    tr
+                        td
+                            input(type='checkbox')
+                        td  标题
+                        td  发布人
+                        td  发布时间
+                        td  新闻状态
+                        td  操作
+                tbody
+                    if(newsList.length)
+                        each news in newsList
+                            tr
+                                td
+                                    input(type='checkbox' data-id=news.journalismId)
+                                td  #{news.title}
+                                td  #{news.publicName}
+                                td  #{news.publicTime}
+                                td  #{news.readStatus ? '已阅读' : '未阅读'}
+                                td
+                                    a.link(href='/news/news_detail?edit=true&journalismId=' + news.journalismId) 编辑
+            if(rowsCount > 10)
+                #pageInfo.pager(style="text-align:center" data-count=rowsCount)

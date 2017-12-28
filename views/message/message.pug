@@ -1,6 +1,13 @@
 extends ../components/base
 block title
     title 消息
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+    link(rel='stylesheet', href=__CSS_PATH__ + '/message.css')
+    style.
+        #main-wrapper {
+            margin-top: 10px;
+        }
 block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
@@ -8,12 +15,6 @@ block aside_content
 block common_header
     include ../components/header
     +commonheader(0)
-block style
-    link(rel='stylesheet', href=__CSS_PATH__ + '/message.css')
-    style.
-        #main-wrapper {
-            margin-top: 10px;
-        }
 block main_content
     include ../components/mixin
     +RouteNav('消息')
@@ -39,8 +40,8 @@ block main_content
                         i.icon.icon-envelope
                     .name 公告
                 .time 20:59
-        .dialog-wrapper
-            .dialog-content
+        .dialog-wrapper.imList(style="display:none")
+            .dialog-content()
                 .dialog-time 15:30
                 .dialog-item.left
                     .avatar-wrapper
@@ -62,3 +63,45 @@ block main_content
                 .text-wrapper
                     textarea
                 .send-wrapper 发送
+        .dialog-wrapper.newsList(style="display:none;")
+            div.section-block(style="min-height:600px;")
+                table.table.table-bordered
+                    thead
+                        tr
+                            td  标题
+                            td  发布人
+                            td  发布时间
+                    tbody
+                        if(newsMessages.length)
+                            each news in newsMessages
+                                tr
+                                    td  #{news.title}
+                                    td  #{news.publicName}
+                                    td  #{news.publicTime}
+        .dialog-wrapper.noticeList(style="display:block;")
+            div.section-block(style="min-height:600px;")
+                table.table.table-bordered
+                    thead
+                        tr
+                            td  标题
+                            td  发布人
+                            td  发布时间
+                    tbody
+                        if(noticeMessages.length)
+                            each news in noticeMessages
+                                tr
+                                    td  #{news.title}
+                                    td  #{news.publicName}
+                                    td  #{news.publicTime}
+block script
+    script(type="text/javascript").
+        $(".message-nav").on('click',function () {
+            var allNav = $(".message-nav");
+            allNav.removeClass("active");
+            $(this).addClass("active");
+            //获取点击的index
+            var index = $(this).index();
+            var allDialog = $(".dialog-wrapper");
+            allDialog.hide();
+            allDialog.eq(index).show();
+        });

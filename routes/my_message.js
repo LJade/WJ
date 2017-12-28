@@ -5,7 +5,17 @@ var message = function (req, res, next) {
     //获取消息列表
     var messageList = assert.apiRequest("get", "/index/messageList", req);
     messageList.then(function (results) {
-        var messagesList = JSON.parse(results);
+        var messagesList = {
+            code:1,
+            dat:{
+                details:[]
+            }
+        };
+        try {
+            messagesList = JSON.parse(results);
+        }catch(e){
+            console.log("接口请求错误");
+        }
         if (messagesList.code === 1) {
             //对数据处理
             var messageTypeCount = [0, 0, 0];
@@ -36,7 +46,6 @@ var message = function (req, res, next) {
             res.render("error/error", {message: messagesList.msg});
         }
     });
-    res.render('message/message', JADE_VAR);
 };
 
 var test = function (req, res, next) {
