@@ -123,6 +123,25 @@ var notice_approve = function(req, res, next) {
     assert.apiRequest("get",'/announcement/myApproveList',req).then(function (results) {
         var noticeListInfo = JSON.parse(results);
         if(noticeListInfo.code === 1){
+            if(noticeListInfo.dat.details.length === 0) {
+                noticeListInfo.dat.details = [
+                    {
+                        "announcementId": "公告id",
+                        "announcementLookUpPersonId": null,
+                        "flowApproveUserId": "6",
+                        "title": "主题",
+                        "publicName": "发布人姓名",
+                        "publicTime": "发布时间 2017-11-13",
+                        "lookUpPersonId": null,
+                        "content": "内容",
+                        "approveStatus": "0",
+                        "ifJurisdiction": null,
+                        "userId": null,
+                        "userList": null,
+                        "readStatus": null
+                    }
+                ];
+            }
             JADE_VAR.noticesList = noticeListInfo.dat.details;
             JADE_VAR.noticeTotal = noticeListInfo.dat.totalPage;
             JADE_VAR.rowsCount = noticeListInfo.dat.rowsCount;
@@ -150,6 +169,23 @@ var notice_delete = function (req, res, next) {
     });
 };
 
+var notice_approve_detail = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    //检查登陆
+    if(!req.session.user || !req.session.user.accessToken){
+        res.redirect("/login");
+    }
+    assert.apiRequest("get","/announcement/myApproveDetail",req).then(function (results) {
+        var approveInfoRes = JSON.parse(results);
+        if(approveInfoRes.code === 1){
+            JADE_VAR.approveInfo = approveInfoRes.dat;
+            res.render("notice/notice_approve_detail",JADE_VAR);
+        }else{
+            res.render("error/error",{message:approveInfoRes.msg});
+        }
+    })
+
+};
 
 module.exports = {
     notice_list:notice_list,
@@ -158,5 +194,6 @@ module.exports = {
     notice_approve:notice_approve,
     notice_detail:notice_create,
     notice_save:notice_save,
-    notice_delete:notice_delete
+    notice_delete:notice_delete,
+    notice_approve_detail:notice_approve_detail
 };

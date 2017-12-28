@@ -49,8 +49,10 @@ block main_content
                                 td  #{notice.publicName}
                                 td  #{notice.publicTime}
                                 td  #{notice.approveStatus ? '是' : '否' }
-                                if(!notice.approveStatus)
-                                    td.link  审核
+                                td
+                                    a.link(href="/notice/notice_approve_detail?flowApproveUserId="+notice.flowApproveUserId) 查看
+                                    if(!notice.approveStatus)
+                                        a.link(style="margin-left:20px;")  审核
         if(rowsCount > 10)
             #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 block script

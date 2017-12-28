@@ -63,6 +63,7 @@ module.exports = function (app) {
     app.get('/news/news_manage', news.news_manage);
     app.get('/news/news_create', news.news_create);
     app.get('/news/news_approve', news.news_approve);
+    app.get('/news/news_approveDetail', news.news_approveDetail);
     app.get('/news/news_category', news.news_category);
     app.post('/news/news_save', news.save_news);
     app.post('/news/news_delete',news.news_delete);
@@ -97,6 +98,7 @@ module.exports = function (app) {
     app.get('/notice/notice_create', notice.notice_create);
     app.get('/notice/notice_manage', notice.notice_manage);
     app.get('/notice/notice_approve', notice.notice_approve);
+    app.get('/notice/notice_approve_detail', notice.notice_approve_detail);
     app.get('/notice/notice_detail', notice.notice_detail);
     app.post('/notice/notice_save', notice.notice_save);
     app.post('/notice/notice_delete',notice.notice_delete);
@@ -112,6 +114,7 @@ module.exports = function (app) {
 
     /** 会议相关路由 */
     app.get('/conference/con_approve',conference.con_approve);
+    app.get('/conference/con_approve_detail',conference.con_approve_detail);
     app.get('/conference/con_create', conference.con_create);
     app.get('/conference/con_history', conference.con_history);
     app.get('/conference/con_summary', conference.con_summary);

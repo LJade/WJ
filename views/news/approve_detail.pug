@@ -1,15 +1,15 @@
 extends ../components/base
 block title
-    title 待我审核
+    title 待我审批
 block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'/docu/docu_list',text:'公文查阅'},{link:'/docu/docu_create',text:'公文发布'},{link:'/docu/docu_manage',text:'公文管理'},{link:'/docu/docu_approve',text:'待我审核'}]
-    +asideNav(routerObj,3)
+    -var routerObj = [{link:'/news/news_list',text:'新闻查阅'},{link:'/news/news_manage',text:'新闻管理'},{link:'/news/news_category',text:'分类管理'},{link:'/news/news_create',text:'发布新闻'},{link:'#',text:'待我审批'}]
+    +asideNav(routerObj,4)
 block main_content
     include ../components/mixin
-    +RouteNav('审批')
+    +RouteNav('待我审批')
     .condition
         .inline-group(style='margin:0')
             button.btn.btn-warning.btn-sm(type='button') 审批流程查阅
@@ -17,25 +17,27 @@ block main_content
         .content-list.section-block
             table.table.table-bordered(border="1" cellspacing="0" style='border:1px solid #ececec;width:850px')
                 tr
-                    td.em.fixed-width 公文名称
-                    td XXX工单
+                    td.em.fixed-width 新闻名称
+                    td 我的病假申请
                     td.em.fixed-width 发布时间
-                    td 2017-11-08
+                    td 2017-11-13
                 tr
                     td.em.fixed-width 发布人
-                    td(colspan='3') XXX
+                    td(colspan='3') 芦苇
                 tr
                     td.em.multi.fixed-width 发布内容
-                    td.multi(colspan='3') XXX
+                    td.multi(colspan='3') 我生病了，要请假呀
                 tr
                     td.em.fixed-width 审批人
-                    td(colspan='3') XXX
+                    td(colspan='3') 卢师傅
                 tr
                     td.em.fixed-width 审批意见
-                    td(colspan='3') XXX
+                    td(colspan='3') 通过
             .content-bottom-handle
                 button.btn.btn-default.btn-sm(type='button') 审批通过
                 button.btn.btn-primary.btn-sm(type='button' style='margin-left:20px') 审批不通过
+
+
 
 
 

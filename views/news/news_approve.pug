@@ -51,8 +51,13 @@ block main_content
                                 td  #{news.journalismTypeName}
                                 td  #{news.publicTime}
                                 td  #{news.approveStatus == 1 ? '已审核' : '未审核'}
-                                if(news.approveStatus == 0)
-                                    td.link  审核
+                                td
+                                    a.link(href="/news/news_approveDetail?flowApproveUserId="+news.flowApproveUserId) 查看
+                                    if(news.approveStatus == 0)
+                                        a.link(style="margin-left:20px;")  审核
+
+
+
         if(rowsCount > 10)
             #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 block script

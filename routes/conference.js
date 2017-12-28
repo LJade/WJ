@@ -26,7 +26,7 @@ var con_approve = function(req, res, next) {
                     "endTime": "2017-11-17",
                     "summaryContent": "会议纪要内容哈哈",
                     "approveStatus": "1",
-                    "flowApproveUserId": "0"
+                    "flowApproveUserId": "56"
                 }];
                 JADE_VAR.rowsCount = 0;
             }
@@ -38,6 +38,23 @@ var con_approve = function(req, res, next) {
         }
         res.render('conference/con_approve',JADE_VAR);
     });
+};
+
+var con_approve_detail = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    //检查登陆
+    if(!req.session.user || !req.session.user.accessToken){
+        res.redirect("/login");
+    }
+    assert.apiRequest("get","/meeting/myApproveDetail",req).then(function (results) {
+        var approveInfoRes = JSON.parse(results);
+        if(approveInfoRes.code === 1){
+            JADE_VAR.approveInfo = approveInfoRes.dat;
+            res.render("conference/con_approve_detail",JADE_VAR);
+        }else{
+            res.render("error/error",{message:approveInfoRes.msg});
+        }
+    })
 };
 
 var con_create = function(req, res, next) {
@@ -367,6 +384,7 @@ var con_room_resource_save = function (req, res, next) {
 
 module.exports = {
     con_approve:con_approve,
+    con_approve_detail:con_approve_detail,
     con_create:con_create,
     con_history:con_history,
     con_summary:con_summary,

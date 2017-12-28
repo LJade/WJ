@@ -87,6 +87,46 @@ var docu_approve = function(req, res, next) {
     assert.apiRequest("get",'/commonalityArticle/myApproveList',req).then(function (results) {
         var documentListInfo = JSON.parse(results);
         if(documentListInfo.code == 1){
+            if(documentListInfo.dat.details.length === 0) {
+                documentListInfo.dat.details = [
+                    {
+                        "page": 0,
+                        "pageSize": 20,
+                        "begin": 0,
+                        "commonalityArticleId": 2,
+                        "commonalityArticleLookUpPersonId": null,
+                        "flowApproveUserId": "23",
+                        "title": "公文发布1",
+                        "publicName": "卢磊",
+                        "publicTime": "2017-11-11",
+                        "content": null,
+                        "lookUpPersonId": null,
+                        "approveStatus": 0,
+                        "readStatus": null,
+                        "userId": null,
+                        "userList": null,
+                        "ifJurisdiction": null
+                    },
+                    {
+                        "page": 0,
+                        "pageSize": 20,
+                        "begin": 0,
+                        "commonalityArticleId": 1,
+                        "commonalityArticleLookUpPersonId": null,
+                        "flowApproveUserId": 6,
+                        "title": "公文发布1",
+                        "publicName": "卢磊",
+                        "publicTime": "2017-11-11",
+                        "content": null,
+                        "lookUpPersonId": null,
+                        "approveStatus": 0,
+                        "readStatus": null,
+                        "userId": null,
+                        "userList": null,
+                        "ifJurisdiction": null
+                    }
+                ];
+            }
             JADE_VAR.doucments = documentListInfo.dat.details;
             JADE_VAR.documentsTotal = documentListInfo.dat.totalPage;
             JADE_VAR.rowsCount = documentListInfo.dat.rowsCount;
@@ -149,7 +189,20 @@ var docu_detail = function (req, res, next) {
 
 var approve_detail = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('document/docu_detail')
+    //检查登陆
+    if(!req.session.user || !req.session.user.accessToken){
+        res.redirect("/login");
+    }
+    assert.apiRequest("get","/commonalityArticle/myApproveDetail",req).then(function (results) {
+        var approveInfoRes = JSON.parse(results);
+        if(approveInfoRes.code === 1){
+            JADE_VAR.approveInfo = approveInfoRes.dat;
+            res.render('document/docu_detail',JADE_VAR)
+        }else{
+            res.render("error/error",{message:approveInfoRes.msg});
+        }
+    })
+
 };
 
 

@@ -125,6 +125,25 @@ var news_approve = function (req, res, next) {
     assert.apiRequest("get",'/journalism/myApproveList',req).then(function (results) {
         var documentListInfo = JSON.parse(results);
         if(documentListInfo.code === 1){
+            if(documentListInfo.dat.details.length === 0) {
+                documentListInfo.dat.details = [
+                    {
+                        "journalismId": 1,
+                        "flowApproveUserId": 1,
+                        "title": "全城围捕修改",
+                        "publicName": "卢磊",
+                        "publicTime": "2017-11-12",
+                        "journalismTypeId": null,
+                        "journalismTypeName": "新闻广播",
+                        "lookUpPersonId": null,
+                        "content": null,
+                        "approveStatus": 0,
+                        "ifJurisdiction": null,
+                        "userId": null,
+                        "userList": null
+                    }
+                ];
+            }
             JADE_VAR.newsList = documentListInfo.dat.details;
             JADE_VAR.rowsCount = documentListInfo.dat.rowsCount;
             JADE_VAR.totalPage = documentListInfo.dat.totalPage;
@@ -135,6 +154,24 @@ var news_approve = function (req, res, next) {
         }
         res.render('news/news_approve', JADE_VAR);
     });
+};
+
+var news_approveDetail = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    //检查登陆
+    if(!req.session.user || !req.session.user.accessToken){
+        res.redirect("/login");
+    }
+    assert.apiRequest("get","/journalism/myApproveDetail",req).then(function (results) {
+        var approveInfoRes = JSON.parse(results);
+        if(approveInfoRes.code === 1){
+            JADE_VAR.approveInfo = approveInfoRes.dat;
+            res.render("news/approve_detail",JADE_VAR);
+        }else{
+            res.render("error/error",{message:approveInfoRes.msg});
+        }
+    })
+
 };
 
 var news_category = function (req, res, next) {
@@ -231,5 +268,6 @@ module.exports = {
     category_save:category_save,
     category_edit:category_edit,
     category_update:category_update,
-    news_detail:news_detail
+    news_detail:news_detail,
+    news_approveDetail:news_approveDetail
 };

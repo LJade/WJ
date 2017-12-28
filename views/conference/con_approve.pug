@@ -44,7 +44,8 @@ block main_content
                                 td  #{conference.approveStatus === 0 ? "未审批" : conference.approveStatus === 1 ? '审批通过' : conference.approveStatus === 2 ? '审批不通过' : '他人已审批'}
                                 td  #{conference.startTime}
                                 td  #{conference.summaryContent}
-                                td.link  审核
+                                td
+                                    a.link(href="/conference/con_approve_detail?flowApproveUserId="+conference.flowApproveUserId)  审核
         if(rowsCount > 10)
             #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 block script

@@ -67,7 +67,21 @@ var order_mine = function(req, res, next) {
 
 var approve_detail = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('workOrder/order_detail',JADE_VAR);
+    var JADE_VAR = assert.getJADE();
+    //检查登陆
+    if(!req.session.user || !req.session.user.accessToken){
+        res.redirect("/login");
+    }
+    assert.apiRequest("get","/workOrderApply/myApproveDetail",req).then(function (results) {
+        var approveInfoRes = JSON.parse(results);
+        if(approveInfoRes.code === 1){
+            JADE_VAR.approveInfo = approveInfoRes.dat;
+            res.render('workOrder/order_detail',JADE_VAR);
+        }else{
+            res.render("error/error",{message:approveInfoRes.msg});
+        }
+    });
+
 };
 
 var save_order = function (req, res, next) {
