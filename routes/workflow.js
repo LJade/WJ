@@ -4,7 +4,6 @@ var assert = require('./assert.js');
 var workflow_config = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
     //获取所有人员列表
-    req.query['id'] = 1;
     var getWorkflowInfo = assert.apiRequest("get",'/flow/detail',req);
     //请求数据
     Promise.all([getWorkflowInfo]).then(function (results) {
@@ -13,7 +12,7 @@ var workflow_config = function(req, res, next) {
             var workflowInfo = JSON.parse(results[0]);
             JADE_VAR.flow_id = workflowInfo.dat.id;
             JADE_VAR.flow_name = workflowInfo.dat.name;
-            if(workflowInfo.dat.nodeInfo === ""){
+            if(workflowInfo.dat.nodeInfo === "" || workflowInfo.dat.nodeInfo === null){
                 JADE_VAR.processData = JSON.stringify({});
             }else{
                 var workflowInfoJSON = JSON.parse(workflowInfo.dat.nodeInfo);
@@ -208,6 +207,33 @@ var workflow_delete =  function (req, res, next) {
     })
 };
 
+var workflow_my = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    JADE_VAR.nodeInfo = JSON.stringify([{ id: '95',
+        process_name: '新建步骤',
+        flow_id: 1,
+        type:2,
+        process_to: '123,124',
+        icon: 'icon-ok',
+        style: 'width:100px;height:50px;line-height:50px;color:#0e76a8;left:93px;top:250px;' },
+        { id: '123',
+            process_name: '普通节点123',
+            flow_id: 1,
+            type:1,
+            process_to: '',
+            icon: 'icon-ok',
+            style: 'width:100px;height:50px;line-height:50px;color:#0e76a8;left:303px;top:157px;' },
+        { id: '124',
+            process_name: '普通节点124',
+            flow_id: 1,
+            type:3,
+            process_to: '',
+            icon: 'icon-ok',
+            style: 'width:100px;height:50px;line-height:50px;color:#0e76a8;left:309px;top:321px;' }]
+    );
+    res.render('workflow/myflow',JADE_VAR);
+};
+
 
 
 module.exports = {
@@ -221,6 +247,6 @@ module.exports = {
     workflow_save:workflow_save,
     workflow_new:workflow_new,
     workflow_detail:workflow_detail,
-    workflow_delete:workflow_delete
-
+    workflow_delete:workflow_delete,
+    workflow_my:workflow_my
 };

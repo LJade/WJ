@@ -27137,14 +27137,15 @@
 	                destroyGroup: this.props.destroyGroup
 	            }));
 	        }
-
+            var titleName = getNickNameById(this.props.name);
 	        return React.createElement(
 	            'div',
 	            { className: 'webim-chatwindow ' + this.props.className },
 	            React.createElement(
 	                'div',
 	                { className: 'webim-chatwindow-title' },
-	                Demo.selectedCate == 'chatrooms' || Demo.selectedCate == 'groups' ? Demo.lan.groupMemberLabel : this.props.name,
+                    //根据name 获取昵称
+	                Demo.selectedCate == 'chatrooms' || Demo.selectedCate == 'groups' ? Demo.lan.groupMemberLabel : titleName,
 	                React.createElement(
 	                    'i',
 	                    { ref: 'i',
@@ -29517,15 +29518,16 @@
 	            default:
 
 	        }
-
+            var nickname = getNickNameById(this.props.name);
+            var src = getIcon(this.props.className === 'right',this.props);
 	        return React.createElement(
 	            'div',
 	            { className: 'rel ' + this.props.className },
-	            React.createElement(Avatar, { src: this.props.src, className: this.props.className + ' small' }),
+	            React.createElement(Avatar, { src: src, className: this.props.className + ' small' }),
 	            React.createElement(
 	                'p',
 	                { className: this.props.className },
-	                this.props.name,
+	                nickname,
 	                ' ',
 	                this.props.time
 	            ),
@@ -29570,9 +29572,14 @@
 	    };
 
 	    //获取src
-        var src = getIcon(sentByMe,props)
+        var src = getIcon(sentByMe,props);
         if(src){
            props.src = src;
+        }
+
+        var nickname = getNickNameById(props.name);
+        if(nickname){
+            props.name = nickname;
         }
 
 	    var node = document.createElement('div');
@@ -29660,14 +29667,16 @@
 	        } else {
 	            imgs.push(React.createElement('img', { key: '0', ref: 'img', className: 'webim-msg-img', src: this.props.value, onClick: this.show }));
 	        }
+	        var nickname = getNickNameById(this.props.name);
+	        var src = getIcon(this.props.className === 'right',this.props);
 	        return React.createElement(
 	            'div',
 	            { className: 'rel ' + this.props.className },
-	            React.createElement(Avatar, { src: this.props.src, className: this.props.className + ' small' }),
+	            React.createElement(Avatar, { src: src, className: this.props.className + ' small' }),
 	            React.createElement(
 	                'p',
 	                { className: this.props.className },
-	                this.props.name,
+                    nickname,
 	                ' ',
 	                this.props.time
 	            ),
@@ -29818,15 +29827,16 @@
 	                Demo.lan.download
 	            ));
 	        }
-
+            var nickname = getNickNameById(this.props.name);
+            var src = getIcon(this.props.className === 'right',this.props);
 	        return React.createElement(
 	            'div',
 	            { className: 'rel ' + this.props.className },
-	            React.createElement(Avatar, { src: this.props.src, className: this.props.className + ' small' }),
+	            React.createElement(Avatar, { src: src, className: this.props.className + ' small' }),
 	            React.createElement(
 	                'p',
 	                { className: this.props.className },
-	                this.props.name,
+                    nickname,
 	                ' ',
 	                this.props.time
 	            ),
@@ -30945,15 +30955,16 @@
 
 	    render: function render() {
 	        var icon = this.props.className === 'left' ? 'H' : 'I';
-
+            var nickname = getNickNameById(this.props.name);
+            var src = getIcon(this.props.className === 'right',this.props);
 	        return React.createElement(
 	            'div',
 	            { className: 'rel ' + this.props.className },
-	            React.createElement(Avatar, { src: this.props.src, className: this.props.className + ' small' }),
+	            React.createElement(Avatar, { src: src, className: this.props.className + ' small' }),
 	            React.createElement(
 	                'p',
 	                { className: this.props.className },
-	                this.props.name,
+                    nickname,
 	                ' ',
 	                this.props.time
 	            ),
@@ -31106,15 +31117,16 @@
 
 	    render: function render() {
 	        var icon = this.props.className === 'left' ? 'H' : 'I';
-
+            var nickname = getNickNameById(this.props.name);
+            var src = getIcon(this.props.className === 'right',this.props);
 	        return React.createElement(
 	            'div',
 	            { className: 'rel pointer ' + this.props.className },
-	            React.createElement(Avatar, { src: this.props.src, className: this.props.className + ' small' }),
+	            React.createElement(Avatar, { src: src, className: this.props.className + ' small' }),
 	            React.createElement(
 	                'p',
 	                { className: this.props.className },
-	                this.props.name,
+	                nickname,
 	                ' ',
 	                this.props.time
 	            ),
@@ -31202,15 +31214,16 @@
 
 	    render: function render() {
 	        var icon = this.props.className === 'left' ? 'H' : 'I';
-
+            var nickname = getNickNameById(this.props.name);
+            var src = getIcon(this.props.className === 'right',this.props);
 	        return React.createElement(
 	            'div',
 	            { className: 'rel pointer ' + this.props.className },
-	            React.createElement(Avatar, { src: this.props.src, className: this.props.className + ' small' }),
+	            React.createElement(Avatar, { src: src, className: this.props.className + ' small' }),
 	            React.createElement(
 	                'p',
 	                { className: this.props.className },
-	                this.props.name,
+	                nickname,
 	                ' ',
 	                this.props.time
 	            ),

@@ -3,8 +3,8 @@ block title
     title 单位网盘
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'#',text:'单位网盘'},{link:'/netdisk/company_disk_parson',text:'个人网盘'}]
-    +asideNav(routerObj,0)
+    -var routerObj = [{link:'/netdisk/company_disk',text:'单位网盘'},{link:'#',text:'个人网盘'}]
+    +asideNav(routerObj,1)
 block common_header
     include ../components/header
     +commonheader(2)

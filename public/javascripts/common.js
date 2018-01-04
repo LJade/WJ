@@ -390,7 +390,7 @@ function initSearchInfo(){
 
 function getIcon(isMe,name) {
     if(isMe){
-        return $.cookie("headIcon");
+        return $(".webim-profile-avatar").find("img").attr("src");
     }else{
         var iconInfo = JSON.parse(window.localStorage.getItem("iconInfo"));
         var src = '';
@@ -404,7 +404,7 @@ function getIcon(isMe,name) {
         if(src){
             return src;
         }else{
-            return false;
+            return name.src;
         }
     }
 }

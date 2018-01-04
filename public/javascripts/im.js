@@ -40,3 +40,18 @@ var refershIcon = setInterval(function () {
         console.log("等待loading");
     }
 },50);
+
+var getNickNameById = function (name) {
+    var results = name;
+    var iconInfo = window.localStorage.getItem("iconInfo");
+    if(iconInfo){
+        iconInfo = JSON.parse(iconInfo);
+        iconInfo.forEach(function (info) {
+            console.log(info.imAccount === name);
+            if(info.imAccount === name){
+                results = info.nickname;
+            }
+        })
+    }
+    return results;
+};

@@ -53,7 +53,7 @@ block main_content
                                 td  #{flow.sortNum}
                                 td
                                     a.link(href='/workflow/workflow_new?flow_id='+flow.id) 编辑
-                                    a.link(style='margin-left:20px;' href='/workflow/workflow_detail?id='+ flow.id + '"') 流程配置
+                                    a.link(style='margin-left:20px;' href='/workflow/workflow_config?id='+ flow.id) 流程配置
         if(rowsCount > 10)
             #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 block script

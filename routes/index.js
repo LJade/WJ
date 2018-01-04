@@ -148,6 +148,7 @@ module.exports = function (app) {
     /** 网盘相关 */
     app.get('/netdisk/company_disk', netdisk.company_disk);
     app.get('/netdisk/company_disk_recycle', netdisk.company_disk_recycle);
+    app.get('/netdisk/company_disk_parson', netdisk.company_disk_parson);
 
     /** 流程配置相关 */
     app.get('/workflow/workflow_config', workflow.workflow_config);
@@ -160,6 +161,7 @@ module.exports = function (app) {
     app.post('/workflow/workflow_save',workflow.workflow_save);
     app.get('/workflow/workflow_detail',workflow.workflow_detail);
     app.get('/workflow/workflow_new',workflow.workflow_new);
+    app.get("/workflow/workflow_my",workflow.workflow_my);
     app.post('/workflow/workflow_new',workflow.workflow_new);
     app.post('/workflow/flow_delete',workflow.workflow_delete);
 
