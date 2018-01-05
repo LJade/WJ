@@ -231,7 +231,7 @@ var workflow_my = function (req, res, next) {
             icon: 'icon-ok',
             style: 'width:100px;height:50px;line-height:50px;color:#0e76a8;left:309px;top:321px;' }]
     );
-    res.render('workflow/myflow',JADE_VAR);
+    res.render('workflow/workflow_my',JADE_VAR);
 };
 
 

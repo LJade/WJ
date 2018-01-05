@@ -24,62 +24,6 @@ var home = function(req, res, next) {
             var modules = JSON.parse(results[0]);
             //组装数据
             var modulesInfo = [];
-            modules.dat.apps = [
-                {
-                    "groupName": "日常办公",
-                    "name": "智慧港航",
-                    "icon": "default-icon",
-                    "id": "256eb2a515f54e1ab52f5a938f8301f5",
-                    "openType": 2,
-                    "url": "https://www.baidu.com",
-                    "extParam": null
-                },
-                {
-                    "groupName": "日常办公",
-                    "name": "系统管理",
-                    "icon": "http://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epqmKVPg9RrCTia56xA0mC2ia1t82IdOFib2G2fdXSA9l4Q7QdcqWv5Qc0RSSia2jZMiaCXHQVfGF2VzrQ/0",
-                    "id": "sys_manage",
-                    "openType": 2,
-                    "url": "",
-                    "extParam": null
-                },
-                {
-                    "groupName": "日常办公",
-                    "name": "新闻",
-                    "icon": "http://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epqmKVPg9RrCTia56xA0mC2ia1t82IdOFib2G2fdXSA9l4Q7QdcqWv5Qc0RSSia2jZMiaCXHQVfGF2VzrQ/0",
-                    "id": "news",
-                    "openType": 2,
-                    "url": "jtj://news/news_list",
-                    "extParam": null
-                },
-                {
-                    "groupName": "日常办公",
-                    "name": "公告",
-                    "icon": "http://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epqmKVPg9RrCTia56xA0mC2ia1t82IdOFib2G2fdXSA9l4Q7QdcqWv5Qc0RSSia2jZMiaCXHQVfGF2VzrQ/0",
-                    "id": "notice",
-                    "openType": 2,
-                    "url": "jtj://notice/notice_list",
-                    "extParam": null
-                },
-                {
-                    "groupName": "日常办公",
-                    "name": "公文",
-                    "icon": "http://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epqmKVPg9RrCTia56xA0mC2ia1t82IdOFib2G2fdXSA9l4Q7QdcqWv5Qc0RSSia2jZMiaCXHQVfGF2VzrQ/0",
-                    "id": "document",
-                    "openType": 2,
-                    "url": "jtj://docu/docu_list",
-                    "extParam": null
-                },
-                {
-                    "groupName": "日常办公",
-                    "name": "邮箱",
-                    "icon": "http://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epqmKVPg9RrCTia56xA0mC2ia1t82IdOFib2G2fdXSA9l4Q7QdcqWv5Qc0RSSia2jZMiaCXHQVfGF2VzrQ/0",
-                    "id": "mail",
-                    "openType": 2,
-                    "url": "jtj://mail/mail_create",
-                    "extParam": null
-                }
-            ];
             modules.dat.apps.forEach(function (appInfo) {
                 if(modulesInfo.indexOf(appInfo.groupName) === -1){
                     modulesInfo.push(appInfo.groupName);
