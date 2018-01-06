@@ -50,6 +50,9 @@ block main_content
                     li#cmEnd
                         i.icon-lock
                         span._label 添加结束
+                    li#cmChangeLine
+                        i.icon-plus
+                        span._label 切换虚实线
                     li#cmRefresh
                         i.icon-refresh
                         span._label 刷新 F5
@@ -72,6 +75,7 @@ block root
     input#processData(type="hidden" value=processData)
     input#flowID(type="hidden" value=flow_id)
     input#flowName(type="hidden" value=flow_name)
+    input#curLine(type="hidden" value="solid")
     style.
         .modal-body::-webkit-scrollbar{
             display: none;

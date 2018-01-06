@@ -33,6 +33,10 @@ var workflow_config = function(req, res, next) {
                         }
                     }
                     tempNode.style = nodeInfo.ext;
+                    tempNode.back_to = "";
+                    if(tempNode.id === "124"){
+                        tempNode.back_to = "123"
+                    }
                     parseProcessData.push(tempNode);
                 });
                 console.log(parseProcessData);
@@ -154,8 +158,9 @@ var workflow_save = function (req, res, next) {
            "id": data,
            "name":workflowInfo[data].name.trim(),
            "type":workflowInfo[data].type,
-           "ext":"width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+workflowInfo[data].left+"px;top:"+workflowInfo[data].top+"px;",
-           "processTo":String(workflowInfo[data].process_to)
+           "ext":"width:130px;height:40px;line-height:40px;color:#0e76a8;left:"+workflowInfo[data].left+"px;top:"+workflowInfo[data].top+"px;",
+           "processTo":String(workflowInfo[data].process_to),
+           "back_to":String(workflowInfo[data].back_to)
        };
        paramsList.push(temp);
     });

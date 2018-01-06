@@ -108,8 +108,9 @@ $(function () {
                         "flow_id": flowID,
                         "process_name": "开始节点",
                         "process_to": "",
+                        "back_to":"",
                         "icon": "icon-play",
-                        "style": "width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
+                        "style": "width:130px;height:40px;line-height:40px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
                     };
                     if (!_canvas.addProcess(data.info)){
                         mAlert("添加失败");
@@ -141,7 +142,8 @@ $(function () {
                         "process_name": "结束节点",
                         "process_to": "",
                         "icon": "icon-lock",
-                        "style": "width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
+                        "back_to":"",
+                        "style": "width:130px;height:40px;line-height:40px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
                     };
                     if (!_canvas.addProcess(data.info)){
                         mAlert("添加失败");
@@ -165,7 +167,8 @@ $(function () {
                         "process_name": "普通节点"+result.dat.nodeId,
                         "process_to": "",
                         "icon": "icon-ok",
-                        "style": "width:150px;height:50px;line-height:50px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
+                        "back_to":"",
+                        "style": "width:130px;height:40px;line-height:40px;color:#0e76a8;left:"+mLeft+";top:"+mTop+";"
                     };
                     if (!_canvas.addProcess(data.info)){
                         mAlert("添加失败");
@@ -186,8 +189,10 @@ $(function () {
             },
             "cmHelp": function (t) {
                 mAlert("请刷新页面");
+            },
+            "cmChangeLine":function (t) {
+                _canvas.changeLine();
             }
-
         }
         /*步骤右键*/
         , processMenus: {

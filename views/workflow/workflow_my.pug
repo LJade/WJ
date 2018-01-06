@@ -20,10 +20,11 @@ block main_content
     +RouteNav('流程配置')
     .condition
         .inline-group
-            button.btn.btn-default.btn-sm#createNode(type='button' onclick="createNode();") 新建节点
+            button.btn.btn-default.btn-sm#createNode(type='button' onclick="createNode(1);") 新建节点
+            button.btn.btn-default.btn-sm#createFenNode(type='button' onclick="createNode(3);") 新建节点
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 编辑节点
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="deleteNode();") 删除节点
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 保存
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="saveNode();") 保存
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="window.location.href='/workflow/workflow_manage'") 返回
             input#choose_box(type="hidden" value="")
             input#fenzhi_num(type="hidden" value="1")
