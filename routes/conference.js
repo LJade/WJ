@@ -67,7 +67,7 @@ var con_create = function(req, res, next) {
         JADE_VAR.allUsers = modules.dat.list;
         JADE_VAR.depAll = assert.makeZTreeData([modules.dat.tree],[]);
         var meetingRoom = JSON.parse(results[1]);
-        if(meetingRoom.code == 1) {
+        if(meetingRoom.code === 1) {
             JADE_VAR.meetingRooms = meetingRoom.dat.details;
         }else{
             JADE_VAR.meetingRooms = [];
@@ -105,7 +105,7 @@ var con_history = function(req, res, next) {
     //获取list列表信息
     assert.apiRequest("get",'/meeting/historyMeetingList',req).then(function (results) {
         var conferenceListInfo = JSON.parse(results);
-        if(conferenceListInfo.code == 1){
+        if(conferenceListInfo.code === 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
             JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
@@ -131,7 +131,7 @@ var con_summary = function(req, res, next) {
     //获取list列表信息
     assert.apiRequest("get",'/meeting/summaryList',req).then(function (results) {
         var conferenceListInfo = JSON.parse(results);
-        if(conferenceListInfo.code == 1){
+        if(conferenceListInfo.code === 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
             JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
@@ -153,7 +153,7 @@ var con_summary_detail = function(req, res, next) {
     //获取list列表信息
     assert.apiRequest("get",'/meeting/summaryList',req).then(function (results) {
         var conferenceListInfo = JSON.parse(results);
-        if(conferenceListInfo.code == 1){
+        if(conferenceListInfo.code === 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
         }else{
@@ -174,7 +174,7 @@ var con_sign = function(req, res, next) {
     //获取list列表信息
     assert.apiRequest("get",'/meeting/meetingSignInList',req).then(function (results) {
         var conferenceListInfo = JSON.parse(results);
-        if(conferenceListInfo.code == 1){
+        if(conferenceListInfo.code === 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
             JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
@@ -202,7 +202,7 @@ var con_apply = function(req, res, next) {
     //获取list列表信息
     assert.apiRequest("get",'/meeting/meetingList',req).then(function (results) {
         var conferenceListInfo = JSON.parse(results);
-        if(conferenceListInfo.code == 1){
+        if(conferenceListInfo.code === 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
             JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
@@ -224,7 +224,7 @@ var con_room = function(req, res, next) {
     //获取list列表信息
     assert.apiRequest("get",'/meeting/meetingRoomList',req).then(function (results) {
         var conferenceListInfo = JSON.parse(results);
-        if(conferenceListInfo.code == 1){
+        if(conferenceListInfo.code === 1){
             JADE_VAR.confercences = conferenceListInfo.dat.details;
             JADE_VAR.confercenceTotal = conferenceListInfo.dat.totalPage;
             JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
@@ -251,7 +251,7 @@ var con_room_edit = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     assert.apiRequest('get','/meeting/meetingRoomDetail',req).then(function (results) {
         var roomInfo = JSON.parse(results);
-        if(roomInfo.code == 1){
+        if(roomInfo.code === 1){
             JADE_VAR.roomInfo = roomInfo.dat;
             res.render('/conference/create_room',JADE_VAR);
         }else{
@@ -270,7 +270,7 @@ var con_room_resource = function(req, res, next) {
     //获取list列表信息
     assert.apiRequest("get",'/meeting/resourceList',req).then(function (results) {
         var conferenceListInfo = JSON.parse(results);
-        if(conferenceListInfo.code == 1){
+        if(conferenceListInfo.code === 1){
             JADE_VAR.resLists = conferenceListInfo.dat.details;
             JADE_VAR.resTotal = conferenceListInfo.dat.totalPage;
             JADE_VAR.rowsCount = conferenceListInfo.dat.rowsCount;
@@ -319,6 +319,22 @@ var con_detail = function (req, res, next) {
             JADE_VAR.depAll = assert.makeZTreeData([allUsers.dat.tree],[]);
             JADE_VAR.meetingRooms = meetingRooms.dat.details;
             JADE_VAR.isEdit = isEdit;
+            //需要对数据进行加工
+            var createNames = [];
+            conferenceInfo.dat.meetingCreateUser.forEach(function (data) {
+               createNames.push(data.name);
+            });
+            var joinNames = [];
+            conferenceInfo.dat.withConferencePeople.forEach(function (data) {
+                joinNames.push(data.name);
+            });
+            var summaryNames = [];
+            conferenceInfo.dat.summaryPeople.forEach(function (data) {
+                summaryNames.push(data.name);
+            });
+            JADE_VAR.createNames = String(createNames);
+            JADE_VAR.joinNames = String(joinNames);
+            JADE_VAR.summaryNames = String(summaryNames);
             res.render('conference/con_create', JADE_VAR);
         } else {
             res.render('error/error', JADE_VAR);

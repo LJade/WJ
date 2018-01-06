@@ -3,10 +3,10 @@ var assert = require('./assert.js');
 var app_create = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     JADE_VAR.appInfo = {
-        "id":"",
-        "name":"",
-        "uploaderName":"",
-        "uploadTime":""
+        "id": "",
+        "name": "",
+        "uploaderName": "",
+        "uploadTime": ""
     };
     JADE_VAR.edit = false;
     res.render('setting/app_create', JADE_VAR);
@@ -122,7 +122,7 @@ var user_manage = function (req, res, next) {
             JADE_VAR.rowsCount = userInfo.dat.rowsCount;
             res.render('setting/user_manage', JADE_VAR);
         } else {
-            console.log(userInfo,roleList);
+            console.log(userInfo, roleList);
             res.render('error/error', {"message": "获取信息失败"});
         }
     });
@@ -157,7 +157,6 @@ var role_manage = function (req, res, next) {
     })
 };
 
-
 var role_edit = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     var roleId = req.query.roleId ? req.query.roleId : "";
@@ -167,7 +166,7 @@ var role_edit = function (req, res, next) {
         name: "",
         modulesId: ""
     };
-    var getAllUser = assert.apiRequest("get",'/department/allDeptAndUser',req);
+    var getAllUser = assert.apiRequest("get", '/department/allDeptAndUser', req);
     if (!roleId) {
         //表示是新增
         JADE_VAR.roleInfo = roleInfo;
@@ -181,7 +180,7 @@ var role_edit = function (req, res, next) {
             } else {
                 //获取部门树和角色list
                 JADE_VAR.userList = usersList.dat.list;
-                JADE_VAR.depAll = assert.makeZTreeData([usersList.dat.tree],[]);
+                JADE_VAR.depAll = assert.makeZTreeData([usersList.dat.tree], []);
                 res.render('setting/role_create', JADE_VAR);
             }
         });
@@ -201,7 +200,7 @@ var role_edit = function (req, res, next) {
             } else {
                 //获取部门树和角色list
                 JADE_VAR.userList = userList.dat.list;
-                JADE_VAR.depAll = JSON.stringify(assert.makeZTreeData([userList.dat.tree],[]));
+                JADE_VAR.depAll = JSON.stringify(assert.makeZTreeData([userList.dat.tree], []));
                 JADE_VAR.roleInfo = roleInfo.dat;
                 res.render('setting/role_create', JADE_VAR);
             }
@@ -219,7 +218,7 @@ var role_permission = function (req, res, next) {
 var role_save = function (req, res, next) {
     var moduleIds = req.body.moduleIds;
     var urlPath = '/privilege/role/save';
-    if(moduleIds){
+    if (moduleIds) {
         urlPath = '/privilege/role/saveModule';
     }
     assert.apiRequest("post", urlPath, req).then(function (results) {
@@ -234,18 +233,53 @@ var location_manage = function (req, res, next) {
 
 var log_manage = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('setting/log_manage', JADE_VAR);
+    if(req.query.date){
+        req.query.opDate = req.query.date;
+    }
+    assert.apiRequest("get","/userLog/list",req).then(function (results) {
+        results = JSON.stringify({
+            "msg": "请求成功",
+            "code": 1,
+            "dat":
+                {
+                    "rowsCount": 2,
+                    "totalPage": 1,
+                    "details":
+                        [
+                            {
+                                "userName": "单位管理员",
+                                "op": "登录",
+                                "opTime": "2017-12-20"
+                            },
+                            {
+                                "userName": "管理员",
+                                "op": "登录",
+                                "opTime": "2017-12-19"
+                            }
+                        ]
+                }
+        });
+        var logRes = JSON.parse(results);
+        if(logRes.code === 1){
+            JADE_VAR.logList = logRes.dat.details;
+            JADE_VAR.rowsCount = logRes.dat.rowsCount;
+            res.render('setting/log_manage', JADE_VAR);
+        }else{
+            res.render('error/error', {message:logRes.msg});
+        }
+    })
+
 };
 
 var app_permission = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    assert.apiRequest('get','/clientExe/iconList',req).then(function (results) {
+    assert.apiRequest('get', '/clientExe/iconList', req).then(function (results) {
         var appListRes = JSON.parse(results);
-        if(appListRes.code === 1){
+        if (appListRes.code === 1) {
             JADE_VAR.apps = appListRes.dat;
-            res.render('setting/app_permission',JADE_VAR);
-        }else{
-            res.render('error/error',{message:appListRes.msg});
+            res.render('setting/app_permission', JADE_VAR);
+        } else {
+            res.render('error/error', {message: appListRes.msg});
         }
     });
 };
@@ -262,26 +296,110 @@ var contact_addpage = function (req, res, next) {
         "indexUrl": ""
     };
     JADE_VAR.edit = false;
-    if(id){
-        assert.apiRequest('get','/thirdPart/detail',req).then(function (results) {
+    if (id) {
+        assert.apiRequest('get', '/thirdPart/detail', req).then(function (results) {
             var webInfoRes = JSON.parse(results);
-            if(webInfoRes.code === 1){
+            if (webInfoRes.code === 1) {
                 JADE_VAR.webInfo = webInfoRes.dat;
                 JADE_VAR.edit = true;
                 res.render('setting/contact_addpage', JADE_VAR);
-            }else{
-                res.render('error/error',{message:webInfoRes.msg});
+            } else {
+                res.render('error/error', {message: webInfoRes.msg});
                 return;
             }
         })
-    }else{
+    } else {
         res.render('setting/contact_addpage', JADE_VAR);
     }
 };
 
 var contact_config = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('setting/contact_config', JADE_VAR);
+    //首先获取人员和部门信息
+    var getAllUser = assert.apiRequest("get", '/department/allDeptAndUser', req);
+    //获取配置详情
+    var getRoleDetail = assert.apiRequest('get', '/privilege/role/detail', req);
+    //获取子系统1
+    var getSysList1 = assert.apiRequest('get', '/contact/sys1', req);
+    //获取子系统2
+    var getSysList2 = assert.apiRequest('get', '/contact/sys2', req);
+    //对数据进行处理
+    Promise.all([getAllUser,getRoleDetail,getSysList1,getSysList2]).then(function (results) {
+        results[1] = JSON.stringify({
+            code:1,
+            msg:"成功",
+            dat:null
+        });
+        results[2] = JSON.stringify({
+            code :1,
+            msg:"成功",
+            dat:[
+                {
+                    id:"XXX01",
+                    label:"功能1",
+                    parentId:"pc"
+                },
+                {
+                    id:"XXX01_01",
+                    label:"功能1-1",
+                    parentId:"XXX01"
+                },
+                {
+                    id:"XXX01_02",
+                    label:"功能1-2",
+                    parentId:"XXX01"
+                },
+                {
+                    id:"XXX02",
+                    label:"功能2",
+                    parentId:"pc"
+                },
+            ]
+        });
+        results[3] = JSON.stringify({
+            code :1,
+            msg:"成功",
+            dat:[
+                {
+                    id:"MMM01",
+                    label:"手机1",
+                    parentId:"app"
+                },
+                {
+                    id:"MMM01_01",
+                    label:"手机1-1",
+                    parentId:"MMM01"
+                },
+                {
+                    id:"MMM01_02",
+                    label:"手机1-2",
+                    parentId:"MMM01"
+                },
+                {
+                    id:"MMM02",
+                    label:"手机2",
+                    parentId:"app"
+                }
+            ]
+        });
+        var allUserInfoRes = JSON.parse(results[0]);
+        var contactDetailRes = JSON.parse(results[1]);
+        var sys1ListRes = JSON.parse(results[2]);
+        var sys2ListRes = JSON.parse(results[3]);
+        if(allUserInfoRes.code === 1 && contactDetailRes.code === 1 && sys1ListRes.code === 1 && sys2ListRes.code === 1){
+            //所有数据请求正常
+            //获取部门树和角色list
+            JADE_VAR.userList = allUserInfoRes.dat.list;
+            JADE_VAR.depAll = assert.makeZTreeData([allUserInfoRes.dat.tree], []);
+            JADE_VAR.sys1Tree = JSON.stringify(sys1ListRes.dat);
+            JADE_VAR.sys2Tree = JSON.stringify(sys2ListRes.dat);
+            res.render('setting/contact_config', JADE_VAR);
+        }else{
+            res.render("error/error", {message:"数据请求错误"});
+        }
+    });
+
+
 };
 
 var user_delete = function (req, res, next) {
@@ -362,33 +480,33 @@ var user_edit = function (req, res, next) {
     }
 };
 
-var contact_manage = function (req, res, next){
+var contact_manage = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    assert.apiRequest('get',"/thirdPart/list",req).then(function (results) {
+    assert.apiRequest('get', "/thirdPart/list", req).then(function (results) {
         var webList = JSON.parse(results);
-        if(webList.code === 1){
+        if (webList.code === 1) {
             JADE_VAR.webLists = webList.dat;
             JADE_VAR.rowsCount = webList.dat.length;
-            res.render("setting/contact_manage",JADE_VAR);
-        }else{
-            res.render('error/error',{message:webList.msg});
+            res.render("setting/contact_manage", JADE_VAR);
+        } else {
+            res.render('error/error', {message: webList.msg});
         }
     });
 };
 
-var contact_delete = function (req, res,next) {
-    assert.apiRequest('post','/thirdPart/delete',req).then(function (results) {
+var contact_delete = function (req, res, next) {
+    assert.apiRequest('post', '/thirdPart/delete', req).then(function (results) {
         res.send(results);
     })
 };
 
 var contact_save = function (req, res, next) {
-    assert.apiRequest('post','/thirdPart/save',req).then(function (results) {
+    assert.apiRequest('post', '/thirdPart/save', req).then(function (results) {
         var saveRes = JSON.parse(results);
-        if(saveRes.code === 1){
+        if (saveRes.code === 1) {
             res.redirect('/setting/contact_manage');
-        }else{
-            res.render("error/error",{message:saveRes.m})
+        } else {
+            res.render("error/error", {message: saveRes.m})
         }
     })
 };
@@ -396,14 +514,133 @@ var contact_save = function (req, res, next) {
 
 var app_manage = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    assert.apiRequest('get','/clientExe/list',req).then(function (results) {
+    assert.apiRequest('get', '/clientExe/list', req).then(function (results) {
         var appListRes = JSON.parse(results);
-        if(appListRes.code === 1){
+        if (appListRes.code === 1) {
             JADE_VAR.apps = appListRes.dat;
-            res.render('setting/app_manage',JADE_VAR);
-        }else{
-            res.render('error/error',{message:appListRes.msg});
+            res.render('setting/app_manage', JADE_VAR);
+        } else {
+            res.render('error/error', {message: appListRes.msg});
         }
+    })
+};
+
+var data_service = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    assert.apiRequest("get", "/api/apiList", req).then(function (results) {
+        results = JSON.stringify({
+            "msg": "请求成功",
+            "code": 1,
+            "dat":
+                [
+                    {
+                        "id": 1,
+                        "name": "智慧港航",
+                        "sortNum": 0,
+                        "descText": "智慧港航是一个很大的工程",
+                        "indexUrl": "https://www.baidu.com"
+                    }
+                ]
+        });
+        var resultsRes = JSON.parse(results);
+        console.log(resultsRes);
+        if (resultsRes.code === 1) {
+            var apiList = resultsRes.dat;
+            JADE_VAR.apis = apiList;
+            JADE_VAR.rowsCount = apiList.length;
+            res.render("setting/data_service", JADE_VAR);
+        } else {
+            res.render("error/error", {message: resultsRes.msg});
+        }
+    })
+};
+
+var data_service_config = function (req, res, next) {
+    var JADE_VAR = assert.getJADE();
+    var getApiInfo = assert.apiRequest("get", "/api/detail", req);
+    var getApiList = assert.apiRequest("get", "/api/allList", req);
+    Promise.all([getApiInfo, getApiList]).then(function (results) {
+        results = [];
+        results[0] = JSON.stringify({
+            "msg": "请求成功",
+            "code": 1,
+            "dat":
+                {
+                    "id": 1,
+                    "name": "智慧港航",
+                    "sortNum": 0,
+                    "descText": "智慧港航是一个很大的工程",
+                    "indexUrl": "https://www.baidu.com",
+                    "clientKey": "uyhashdy123klhahf",
+                    "clientSecret": "354313541",
+                    "apis": "1,4,26,6",
+                    "openStatus":"open"
+                }
+        });
+        results[1] = JSON.stringify({
+            "msg": "请求成功",
+            "code": 1,
+            "dat":
+                [
+                    {
+                        "id": 1,
+                        "name": "智慧港航"
+                    },
+                    {
+                        "id": 4,
+                        "name": "妈卖批啊"
+                    },
+                    {
+                        "id": 6,
+                        "name": "哈航哈"
+                    },
+                    {
+                        "id": 26,
+                        "name": "去吧去吧"
+                    }
+                ]
+        });
+        var apiInfoRes = JSON.parse(results[0]);
+        var apiListRes = JSON.parse(results[1]);
+        if (apiInfoRes.code === 1 && apiListRes.code === 1) {
+            JADE_VAR.apiInfo = apiInfoRes.dat;
+            JADE_VAR.apiList = apiListRes.dat;
+            res.render("setting/data_service_config", JADE_VAR);
+        } else {
+            res.render("error/error", {message: apiInfoRes.msg + apiListRes.msg});
+        }
+    })
+};
+
+var data_service_delete = function (req, res, next) {
+    assert.apiRequest("post", "/api/delete", req).then(function (results) {
+        results = JSON.stringify({code: 1, msg: "成功", dat: null});
+        var resulstRes = JSON.parse(results);
+        if (resulstRes.code === 1) {
+            res.send(results);
+        } else {
+            res.render("error/error", {message: resulstRes.msg});
+        }
+    })
+};
+
+var data_service_save = function (req, res, next) {
+    console.log(req.body);
+    assert.apiRequest("post", "/api/save", req).then(function (results) {
+        results = JSON.stringify({code: 1, msg: "成功", dat: null});
+        var resultsRes = JSON.parse(results);
+        if (resultsRes.code === 1) {
+            res.redirect("/setting/data_service");
+        } else {
+            res.render("error/error", {message: resultsRes.msg});
+        }
+    })
+};
+
+var log_delete = function (req, res, next) {
+    assert.apiRequest("post","/userLog/delete",req).then(function (results) {
+        results = JSON.stringify({code:1,msg:"成功",dat:null});
+        res.send(results)
     })
 };
 
@@ -420,7 +657,7 @@ module.exports = {
     log_manage: log_manage,
     app_permission: app_permission,
     contact_addpage: contact_addpage,
-    contact_edit:contact_addpage,
+    contact_edit: contact_addpage,
     contact_config: contact_config,
     organization_save: organization_save,
     user_delete: user_delete,
@@ -429,9 +666,13 @@ module.exports = {
     role_permission: role_permission,
     role_edit: role_edit,
     role_save: role_save,
-    contact_manage:contact_manage,
-    contact_delete:contact_delete,
-    contact_save:contact_save,
-    app_manage:app_manage
-
+    contact_manage: contact_manage,
+    contact_delete: contact_delete,
+    contact_save: contact_save,
+    app_manage: app_manage,
+    data_service: data_service,
+    data_service_config: data_service_config,
+    data_service_delete: data_service_delete,
+    data_service_save: data_service_save,
+    log_delete:log_delete
 };

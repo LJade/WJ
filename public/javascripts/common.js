@@ -65,6 +65,8 @@ window.onload = function () {
         }();
         workflowCreate.init();
     }
+
+
 };
 
 function skipUrl(url,param, val) {
@@ -199,6 +201,10 @@ function deleteSomething(modules,typeThing) {
             break;
         case 'setting_app':
             delOption.url = '/setting/app_delete';
+            delOption.data.ids = deleleIDs;
+            break;
+        case 'setting_log':
+            delOption.url = '/setting/log_delete';
             delOption.data.ids = deleleIDs;
             break;
         default:
@@ -409,7 +415,10 @@ function getIcon(isMe,name) {
     }
 }
 
-function zTreeLoad() {
+function zTreeLoad(id) {
+    if(!id){
+        id = 'tree';
+    }
     var setting = {
         check: {
             enable: true
@@ -439,7 +448,8 @@ function zTreeLoad() {
         }
     };
 
-    var zNodes = JSON.parse($('#tree').attr('data-node'));
+    var zNodes = JSON.parse($('#'+id).attr('data-node'));
+    console.log(zNodes);
     var stringChecked = $('#deptIds').val();
     var checkedIds = stringChecked === "" ? [] : stringChecked.split(",");
     zNodes.forEach(function (node) {
@@ -502,8 +512,15 @@ function zTreeLoad() {
     }
 
     $(document).ready(function () {
-        var t = $("#tree");
-        t = $.fn.zTree.init(t, setting, zNodes);
-        setCheck();
+        if(!id){
+            var t = $("#tree");
+            t = $.fn.zTree.init(t, setting, zNodes);
+            setCheck();
+        }else{
+            var t = $("#"+id);
+            t = $.fn.zTree.init(t, setting, zNodes);
+            setCheck();
+        }
+
     });
 }

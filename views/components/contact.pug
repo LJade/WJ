@@ -1,31 +1,32 @@
 mixin ContactBook
-    .role-control(style="margin-top:20px")
-        .user-list.option-user
-            .list-title
-                i.icon-down
-                .title-item.all
-                    span.title-tab 按照人员选择
-                .title-item.dep(style="display:none")
-                    span.title-tab 按照部门选择
-            .list-wrapper.allUserOption
-                if(allUsers.length)
-                    each user in allUsers
-                        .list-item(data-person-id=user.id data-person-name=user.name) #{user.name}
-            .list-wrapper.departmentUserOption(style="display:none")
-                .structure
-                    ul#tree.ztree(data-node=depAll style="margin-left:0;")
-        .role-handle
-            button.work-btn.work-btn-default.work-btn-sm#addSelectUser(type='button' data-type='user') 添加>
-            br
-            button.work-btn.work-btn-default.work-btn-sm#deleteSelectUser(type='button' data-type='user') <删除
-        .user-list.select-user
-            .list-title
-                .title-item
-                    span 已选人员
-            .list-wrapper.selectedBox
-        if(lookUpPersonIds)
-            input(type='hidden' id='choosePersonId' value=lookUpPersonIds)
-        input#deptIds(type="hidden" value="" name="deptIds")
+    .init
+        .role-control(style="margin-top:20px")
+            .user-list.option-user
+                .list-title
+                    i.icon-down
+                    .title-item.all
+                        span.title-tab 按照人员选择
+                    .title-item.dep(style="display:none")
+                        span.title-tab 按照部门选择
+                .list-wrapper.allUserOption
+                    if(allUsers.length)
+                        each user in allUsers
+                            .list-item(data-person-id=user.id data-person-name=user.name) #{user.name}
+                .list-wrapper.departmentUserOption(style="display:none")
+                    .structure
+                        ul#tree.ztree(data-node=depAll style="margin-left:0;")
+            .role-handle
+                button.work-btn.work-btn-default.work-btn-sm#addSelectUser(type='button' data-type='user') 添加>
+                br
+                button.work-btn.work-btn-default.work-btn-sm#deleteSelectUser(type='button' data-type='user') <删除
+            .user-list.select-user
+                .list-title
+                    .title-item
+                        span 已选人员
+                .list-wrapper.selectedBox
+    if(lookUpPersonIds)
+        input(type='hidden' id='choosePersonId' value=lookUpPersonIds)
+    input#deptIds(type="hidden" value="" name="deptIds")
     .form-control.btn-wrapper(style="text-align:center;")
         button.work-btn.work-btn-default.work-btn-sm.addConfirm(type='button') 保存
         button.work-btn.work-btn-disable.work-btn-sm.addCancel(type='button' style='margin-left:20px') 取消
@@ -33,25 +34,41 @@ mixin ContactBook
     script(type='text/javascript').
         //初始化ztree
         zTreeLoad();
+
         //初始化数据
-        $(document).ready(function () {
+        function initChooseInfo() {
+            //先把selectedBox的东西弄回去
+            var chosenItem = $(".list-wrapper.selectedBox").find(".list-item");
+            console.log(chosenItem);
+            chosenItem.each(function (index, item) {
+                console.log(item);
+                $(".list-wrapper.allUserOption").append($(item).clone()).bind('click', clickItem);
+            })
+            chosenItem.remove();
+            //然后按照选中的加入
             var choosePersonId = $('#choosePersonId');
-            if (choosePersonId.length) {
+            if (choosePersonId.length && choosePersonId.val() !== "") {
                 var chooseArr = choosePersonId.val().split(",");
+                console.log(chooseArr);
                 //先去掉在左边的人
                 var chooseNames = [];
                 chooseArr.forEach(function (data, index) {
                     var chooseItem = $('.list-wrapper.allUserOption').find("div[data-person-id=" + data + "]");
-                    $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click',clickItem));
+                    $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click', clickItem));
                     chooseNames.push(chooseItem.attr("data-person-name"))
                     chooseItem.remove();
                 });
+
                 if ($('#approver').length) {
                     $('#approver').val(String(chooseNames));
                 } else {
                     console.log("没找到啊")
                 }
             }
+        }
+
+        $(document).ready(function () {
+            initChooseInfo();
         });
 
         $('.list-title i.icon-down').on('click', function () {
@@ -197,11 +214,31 @@ mixin ContactBook
                 chooseNameArr.push(personName);
             }
             var choosePersonId = $('#choosePersonId');
+            var choose_type = $("#choose_type");
+            //将选择的数据加入到input
             if (choosePersonId.length) {
                 choosePersonId.val(String(personIDArr));
             } else {
                 $('body').append('<input type="hidden" id="choosePersonId" value="' + String(personIDArr) + '"/>');
             }
+
+            if (choose_type.length) {
+                //会议中根据类别把选的人加入到对应的隐藏域中
+                var typeStr = choose_type.val();
+                if (typeStr === 'create') {
+                    $("#selectCreateIds").val(String(personIDArr));
+                    $('#meetingCreateUserId').val(String(chooseNameArr))
+                } else {
+                    if (typeStr === 'join') {
+                        $("#selectJoinIds").val(String(personIDArr));
+                        $('#withConferencePeopleId').val(String(chooseNameArr))
+                    } else {
+                        $("#selectSummaryIds").val(String(personIDArr));
+                        $('#summaryPeopleId').val(String(chooseNameArr))
+                    }
+                }
+            }
+            //将名字信息写入对应的框中
             if ($('#approver').length) {
                 $('#approver').val(String(chooseNameArr));
             } else {

@@ -17,15 +17,17 @@ block style
 block main_content
     include ../components/mixin
     -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_manage',text:'对接系统管理'},{link:'/setting/app_manage',text:'第三方应用系统管理'},{link:'/setting/data_service',text:'数据服务管理'}]
-    +menuLink(menuObj,1)
-    -var navObj = [{link:'/setting/contact_manage',text:'应用管理'},{link:'/setting/contact_config',text:'应用权限配置'}]
+    +menuLink(menuObj,3)
+    -var navObj = [{link:'/setting/data_service',text:'数据服务'},{link:'/setting/data_service_config',text:'接口权限配置'}]
     +menuNav(navObj,0)
-    +RouteNav('应用管理')
+    +RouteNav('数据服务')
     #inner-wrapper
         header.head-block
-            .handle
-                button.btn.btn-sm.btn-default(type='button' style='margin-right:20px' onclick="window.location.href='/setting/contact_addpage'") 添加
-                button.btn.btn-sm.btn-default(type='button' style='margin-left:20px' onclick="window.location.href='/setting/contact_config'") 权限配置
+            .inline-group
+                label(for='name') 应用名称:
+                input#name(type='text')
+            .inline-group
+                button.btn.btn-sm.btn-default(type='button' style='margin-left:20px' onclick="searchSomething();") 查询
         .content-list.section-block
             table.table.table-bordered
                 thead
@@ -36,30 +38,36 @@ block main_content
                         td  应用描述
                         td  操作
                 tbody
-                    if(webLists.length)
-                        each web in webLists
+                    if(apis.length)
+                        each api in apis
                             tr
-                                td  #{web.name}
-                                td  #{web.sortNum}
-                                td  #{web.indexUrl}
-                                td  #{web.descText}
+                                td  #{api.name}
+                                td  #{api.sortNum}
+                                td  #{api.indexUrl}
+                                td  #{api.descText}
                                 td
-                                    a.link(href='/setting/contact_edit?edit=true&id=' + web.id) 修改
-                                    a.link.deleteContact(href='javascript:void(0);' data-id=web.id style='margin-left:20px;') 删除
+                                    a.link(href='/setting/data_service_config?edit=true&id=' + api.id) 接口权限配置
+                                    a.link.deleteAPI(href='javascript:void(0);' data-id=api.id style='margin-left:20px;') 删除
+        if(rowsCount > 10)
+            #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 block script
     script(type='text/javascript').
-        function deleteContact(id) {
-            $.post("/setting/contact_delete",{id:id},function (data) {
+        initSearchInfo();
+        function deleteAPI(id) {
+            $.post("/setting/data_service_delete",{id:id},function (data) {
                 if(data.code === 1){
-                    window.location.reload();
+                    layerAlert("删除成功", "ok");
+                    setTimeout(function () {
+                        window.location.reload();
+                    },1000);
                 }else{
                     layerAlert("删除失败","error");
                 }
             },'json')
         }
-        $('.deleteContact').on('click',function (e) {
+        $('.deleteAPI').on('click',function (e) {
             var id = $(this).attr("data-id");
             if(id){
-                layerAlert("确认删除吗?","confirm",deleteContact,id);
+                layerAlert("确认删除吗?","confirm",deleteAPI,id);
             }
         });

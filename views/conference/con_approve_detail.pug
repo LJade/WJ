@@ -1,0 +1,43 @@
+extends ../components/base
+block title
+    title 待我审批
+block style
+    link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
+block aside_content
+    include ../components/mixin
+    -var routerObj = [{link:'/conference/con_room',text:'会议室维护'},{link:'/conference/con_apply',text:'会议申请'},{link:'/conference/con_approve',text:'待我审批'},{link:'/conference/con_summary',text:'会议纪要'},{link:'/conference/con_history',text:'历史会议'},{link:'/conference/con_sign',text:'会议签到情况'}]
+    +asideNav(routerObj,2)
+block main_content
+    include ../components/mixin
+    +RouteNav('待我审批')
+    .condition
+        .inline-group(style='margin:0')
+            button.btn.btn-warning.btn-sm(type='button') 审批流程查阅
+    #inner-wrapper
+        .content-list.section-block
+            table.table.table-bordered(border="1" cellspacing="0" style='border:1px solid #ececec;width:850px')
+                tr
+                    td.em.fixed-width 公文名称
+                    td XXX工单
+                    td.em.fixed-width 发布时间
+                    td 2017-11-08
+                tr
+                    td.em.fixed-width 发布人
+                    td(colspan='3') XXX
+                tr
+                    td.em.multi.fixed-width 发布内容
+                    td.multi(colspan='3') XXX
+                tr
+                    td.em.fixed-width 审批人
+                    td(colspan='3') XXX
+                tr
+                    td.em.fixed-width 审批意见
+                    td(colspan='3') XXX
+            .content-bottom-handle
+                button.btn.btn-default.btn-sm(type='button') 审批通过
+                button.btn.btn-primary.btn-sm(type='button' style='margin-left:20px') 审批不通过
+
+
+
+
+

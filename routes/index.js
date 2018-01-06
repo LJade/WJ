@@ -56,6 +56,11 @@ module.exports = function (app) {
     app.get("/setting/contact_edit",setting.contact_edit);
     app.post("/setting/contact_save",setting.contact_save);
     app.post("/setting/contact_delete",setting.contact_delete);
+    app.get("/setting/data_service",setting.data_service);
+    app.get("/setting/data_service_config",setting.data_service_config);
+    app.post("/setting/data_service_delete",setting.data_service_delete);
+    app.post("/setting/data_service_save",setting.data_service_save);
+    app.post("/setting/log_delete",setting.log_delete);
 
 
     /** 新闻相关路由*/

@@ -24,12 +24,14 @@ block main_content
                 input#endTimeString.form-control(type='text' value=conferenceDetail.endTime)
             .form-control
                 label.control-label(for='meetingCreateUserId') 会议发起人:
-                input#meetingCreateUserId.form-control(type='text' value=conferenceDetail.meetingCreateUserId)
-            .form-control
-                label.control-label(for='approver') 与会人员:
-                input#approver.form-control(type='text' readonly value=conferenceDetail.withConferencePeopleId)
+                input#meetingCreateUserId.form-control(type='text' readonly value=createNames)
                 if(isEdit)
-                    i.icon.icon-add#addUser
+                    i.icon.icon-add.addUser(data-type="create")
+            .form-control
+                label.control-label(for='withConferencePeopleId') 与会人员:
+                input#withConferencePeopleId.form-control(type='text' readonly value=joinNames)
+                if(isEdit)
+                    i.icon.icon-add.addUser(data-type="join")
             .form-control
                 label.control-label(for='meetingRoomId') 会议室:
                 select#meetingRoomId
@@ -43,11 +45,18 @@ block main_content
                 label.control-label(for='resource') 会议室资源:
                 textarea#resource.form-control(rows=4) #{conferenceDetail.meetingRoomResource}
             .form-control
-                label.control-label(for='summary') 会议纪要人员:
-                input#summary.form-control(type='text' value=conferenceDetail.summaryPeopleId)
+                label.control-label(for='summaryPeopleId') 会议纪要人员:
+                input#summaryPeopleId.form-control(type='text' readonly value=summaryNames)
+                if(isEdit)
+                    i.icon.icon-add.addUser(data-type="summary")
             .form-control
                 label.control-label(for='detail') 会议内容:
                 textarea#detail.form-control(rows=10) #{conferenceDetail.meetingContent}
+                input#choose_type(type="hidden" value="")
+                input#selectCreateIds(type="hidden" value=conferenceDetail.meetingCreateUserId)
+                input#selectJoinIds(type="hidden" value=conferenceDetail.withConferencePeopleId)
+                input#selectSummaryIds(type="hidden" value=conferenceDetail.summaryPeopleId)
+                input#choosePersonId(type="hidden" value="")
             if(isEdit)
                 .form-control.btn-wrapper
                     input#meetingId(type="hidden" value=conferenceDetail.meetingId)
@@ -58,7 +67,43 @@ block main_content
             +ContactBook
 block script
     script(src=__JS_PATH__ + "/conference.js" type="text/javascript")
+    script(type="text/javascript").
+        var contactCreate = function () {
+            var addUser = function () {
+                $('.addUser').on('click', function () {
+                    layerShow('modal');
+                    var choose_type = $(this).attr("data-type");
+                    $("#choose_type").val(choose_type);
+                    var choosePersonId = $("#choosePersonId");
+                    if(choose_type === 'create'){
+                        choosePersonId.val($('#selectCreateIds').val());
+                    }else{
+                        if(choose_type === 'join'){
+                            choosePersonId.val($("#selectJoinIds").val());
+                        }else{
+                            choosePersonId.val($("#selectSummaryIds").val());
+                        }
+                    }
+                    //每次进去初始化下数据
+                    console.log(choosePersonId.val());
+                    initChooseInfo();
+                })
+            };
 
+            var addConfirm = function () {
+                $('.addConfirm').on('click', function () {
+                    layerCloseAll();
+                })
+            };
+
+            return {
+                init: function () {
+                    addUser();
+                    addConfirm();
+                }
+            }
+        }();
+        contactCreate.init();
 
 
 

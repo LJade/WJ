@@ -3,10 +3,10 @@ var doCreateCon = function () {
     data.title = getElementValue('title');
     data.startTimeString = getElementValue('startTimeString') + ' 00:00:00';
     data.endTimeString = getElementValue('endTimeString') + ' 00:00:00';
-    data.meetingCreateUserId = getElementValue('meetingCreateUserId');
-    data.withConferencePeopleId = getElementValue('choosePersonId');
+    data.meetingCreateUserId = getElementValue('selectCreateIds');
+    data.withConferencePeopleId = getElementValue('selectJoinIds');
     data.meetingRoomId = getElementValue('meetingRoomId');
-    data.summaryPeopleId = getElementValue('summary');
+    data.summaryPeopleId = getElementValue('selectSummaryIds');
     data.meetingContent = getElementValue('detail');
     var checkInfo = checkValue(data);
     if(checkInfo){
@@ -35,7 +35,7 @@ var doCreateConRoom = function () {
     var data = {};
     data.name = getElementValue('name');
     data.accommodatePeopleNumber = parseInt(getElementValue('accommodatePeopleNumber'));
-    data.meetingRoomResource = getElementValue('meetingRoomResource')
+    data.meetingRoomResource = getElementValue('meetingRoomResource');
     var checkInfo = checkValue(data);
     if(checkInfo){
         layerAlert(checkInfo,'error');
