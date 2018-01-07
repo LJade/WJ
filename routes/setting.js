@@ -237,28 +237,6 @@ var log_manage = function (req, res, next) {
         req.query.opDate = req.query.date;
     }
     assert.apiRequest("get","/userLog/list",req).then(function (results) {
-        results = JSON.stringify({
-            "msg": "请求成功",
-            "code": 1,
-            "dat":
-                {
-                    "rowsCount": 2,
-                    "totalPage": 1,
-                    "details":
-                        [
-                            {
-                                "userName": "单位管理员",
-                                "op": "登录",
-                                "opTime": "2017-12-20"
-                            },
-                            {
-                                "userName": "管理员",
-                                "op": "登录",
-                                "opTime": "2017-12-19"
-                            }
-                        ]
-                }
-        });
         var logRes = JSON.parse(results);
         if(logRes.code === 1){
             JADE_VAR.logList = logRes.dat.details;
@@ -317,82 +295,22 @@ var contact_config = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     //首先获取人员和部门信息
     var getAllUser = assert.apiRequest("get", '/department/allDeptAndUser', req);
-    //获取配置详情
-    var getRoleDetail = assert.apiRequest('get', '/privilege/role/detail', req);
-    //获取子系统1
-    var getSysList1 = assert.apiRequest('get', '/contact/sys1', req);
-    //获取子系统2
-    var getSysList2 = assert.apiRequest('get', '/contact/sys2', req);
+    //获取子系统
+    var getConfigDetail = assert.apiRequest('get', '/thirdPart/allTree', req);
     //对数据进行处理
-    Promise.all([getAllUser,getRoleDetail,getSysList1,getSysList2]).then(function (results) {
-        results[1] = JSON.stringify({
-            code:1,
-            msg:"成功",
-            dat:null
-        });
-        results[2] = JSON.stringify({
-            code :1,
-            msg:"成功",
-            dat:[
-                {
-                    id:"XXX01",
-                    label:"功能1",
-                    parentId:"pc"
-                },
-                {
-                    id:"XXX01_01",
-                    label:"功能1-1",
-                    parentId:"XXX01"
-                },
-                {
-                    id:"XXX01_02",
-                    label:"功能1-2",
-                    parentId:"XXX01"
-                },
-                {
-                    id:"XXX02",
-                    label:"功能2",
-                    parentId:"pc"
-                },
-            ]
-        });
-        results[3] = JSON.stringify({
-            code :1,
-            msg:"成功",
-            dat:[
-                {
-                    id:"MMM01",
-                    label:"手机1",
-                    parentId:"app"
-                },
-                {
-                    id:"MMM01_01",
-                    label:"手机1-1",
-                    parentId:"MMM01"
-                },
-                {
-                    id:"MMM01_02",
-                    label:"手机1-2",
-                    parentId:"MMM01"
-                },
-                {
-                    id:"MMM02",
-                    label:"手机2",
-                    parentId:"app"
-                }
-            ]
-        });
+    Promise.all([getAllUser,getConfigDetail]).then(function (results) {
         var allUserInfoRes = JSON.parse(results[0]);
         var contactDetailRes = JSON.parse(results[1]);
-        var sys1ListRes = JSON.parse(results[2]);
-        var sys2ListRes = JSON.parse(results[3]);
-        if(allUserInfoRes.code === 1 && contactDetailRes.code === 1 && sys1ListRes.code === 1 && sys2ListRes.code === 1){
+        if(allUserInfoRes.code === 1 && contactDetailRes.code === 1){
             //所有数据请求正常
             //获取部门树和角色list
+            contactDetailRes.dat[1] = contactDetailRes.dat[0];
+            contactDetailRes.dat[2] = contactDetailRes.dat[1];
+            contactDetailRes.dat[3] = contactDetailRes.dat[1];
+            contactDetailRes.dat[4] = contactDetailRes.dat[1];
             JADE_VAR.userList = allUserInfoRes.dat.list;
             JADE_VAR.depAll = assert.makeZTreeData([allUserInfoRes.dat.tree], []);
-            JADE_VAR.sys1Tree = JSON.stringify(sys1ListRes.dat);
-            JADE_VAR.sys2Tree = JSON.stringify(sys2ListRes.dat);
+            JADE_VAR.contactInfo = contactDetailRes.dat;
             res.render('setting/contact_config', JADE_VAR);
         }else{
             res.render("error/error", {message:"数据请求错误"});
@@ -644,6 +562,12 @@ var log_delete = function (req, res, next) {
     })
 };
 
+var contact_config_save = function (req, res, next) {
+    assert.apiRequest("post","/thirdPart/saveUserPrivilege",req).then(function (results) {
+        res.send(results);
+    })
+};
+
 module.exports = {
     app_create: app_create,
     region_manage: region_manage,
@@ -674,5 +598,6 @@ module.exports = {
     data_service_config: data_service_config,
     data_service_delete: data_service_delete,
     data_service_save: data_service_save,
-    log_delete:log_delete
+    log_delete:log_delete,
+    contact_config_save:contact_config_save
 };

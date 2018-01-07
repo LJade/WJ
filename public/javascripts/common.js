@@ -415,10 +415,7 @@ function getIcon(isMe,name) {
     }
 }
 
-function zTreeLoad(id) {
-    if(!id){
-        id = 'tree';
-    }
+function zTreeLoad() {
     var setting = {
         check: {
             enable: true
@@ -448,8 +445,7 @@ function zTreeLoad(id) {
         }
     };
 
-    var zNodes = JSON.parse($('#'+id).attr('data-node'));
-    console.log(zNodes);
+    var zNodes = JSON.parse($('#tree').attr('data-node'));
     var stringChecked = $('#deptIds').val();
     var checkedIds = stringChecked === "" ? [] : stringChecked.split(",");
     zNodes.forEach(function (node) {
@@ -493,7 +489,7 @@ function zTreeLoad(id) {
 
     function setCheck() {
         var zTree = $.fn.zTree.getZTreeObj('tree');
-        type = {"Y": "", "N": ""};
+        type = {"Y": "s", "N": "s"};
         zTree.setting.check.chkboxType = type;
     }
 
@@ -512,15 +508,107 @@ function zTreeLoad(id) {
     }
 
     $(document).ready(function () {
+        var t = $("#tree");
+        t = $.fn.zTree.init(t, setting, zNodes);
+        setCheck();
+    });
+}
+
+function zTreeMultiLoad(id) {
+    var setting = {
+        check: {
+            enable: true
+        },
+        view: {
+            dblClickExpand: false,
+            showLine: true,
+            selectedMulti: false
+        },
+        data: {
+            key: {
+                name: "label"
+            },
+            simpleData: {
+                enable: true,
+                name: "label",
+                title: "label",
+                idKey: "id",
+                pIdKey: "parentId",
+                rootPId: ""
+            }
+        },
+        callback: {
+            beforeDblClick: beforeMouseDoubleClick,
+            onClick: beforeMouseDown,
+            onCheck: checkEvent,
+            beforeCollapse:beforeCollapse
+        }
+    };
+
+    var zNodes = JSON.parse($('#'+id).attr('data-node'));
+    var stringChecked = $('#'+id + "_choose").val();
+    var checkedIds = stringChecked === "" ? [] : stringChecked.split(",");
+    zNodes.forEach(function (node) {
+        node.open = true;
+        node.expand = false;
+        node.collapse = false;
+        var index = $.inArray(String(node.id), checkedIds);
+        if (index !== -1) {
+            node.checked = true
+        }
+    });
+
+    function beforeCollapse(treeId, treeNode) {
+        return (treeNode.collapse !== false);
+    }
+
+    function checkEvent(e, treeId, treeNode) {
+        var stringChecked = $('#'+treeId + "_choose").val();
+        var checkedIds = stringChecked === "" ? [] : stringChecked.split(",");
+        //根据所选类别判断
+        var rootType = treeNode.getPath()[0].id;
+        var checkedId = rootType + "_" + String(treeNode.id);
+        var index = $.inArray(checkedId, checkedIds);
+        if (treeNode.checked === false) {
+            if (index !== -1) {
+                checkedIds.splice(index, 1);
+            }
+        } else {
+            if (index === -1) {
+                checkedIds.push(checkedId);
+            }
+        }
+        $("#"+treeId + "_choose").val(String(checkedIds));
+    }
+
+    function setCheck(zTree) {
+        type = {"Y": "", "N": ""};
+        zTree.setting.check.chkboxType = type;
+    }
+
+    function beforeMouseDown(e, treeId, treeNode) {
+        $('#'+treeId).attr('data-cur-id', treeNode.id).attr('data-cur-pid', treeNode.parentId);
+    }
+
+    function beforeMouseDoubleClick(treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj(treeId);
+        if (treeNode.isParent) {
+            zTree.expandNode(treeNode);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $(document).ready(function () {
         if(!id){
             var t = $("#tree");
-            t = $.fn.zTree.init(t, setting, zNodes);
-            setCheck();
+            tT = $.fn.zTree.init(t, setting, zNodes);
+            setCheck(tT);
         }else{
             var t = $("#"+id);
-            t = $.fn.zTree.init(t, setting, zNodes);
-            setCheck();
+            tT = $.fn.zTree.init(t, setting, zNodes);
+            setCheck(tT);
         }
-
     });
 }

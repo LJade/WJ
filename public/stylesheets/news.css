@@ -626,7 +626,7 @@ textarea:focus {
       -ms-flex-align: center;
           align-items: center; }
   .condition .inline-group {
-    margin-right: 25px; }
+    margin-right: 15px; }
     .condition .inline-group input[type='text'] {
       -webkit-box-sizing: border-box;
               box-sizing: border-box;

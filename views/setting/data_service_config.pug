@@ -42,22 +42,30 @@ block main_content
                 label.control-label(for='openStatus') 接口开放:
                 input#openStatus.form-control(type='hidden' name='openStatus' value=apiInfo.openStatus)
                 if(apiInfo.openStatus === "open")
-                    button.btn.btn-default.btn-sm(type='submit') 开
-                    button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 关
+                    button.statusBtn.btn.btn-default.btn-sm(type='button' data-status="open") 开
+                    button.statusBtn.btn.btn-disable.btn-sm(type='button' style='margin-left:20px' data-status="close") 关
                 else
-                    button.btn.btn-disable.btn-sm(type='submit') 开
-                    button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 关
-            .form-control_new
+                    button.statusBtn.btn.btn-disable.btn-sm(type='button'  data-status="open") 开
+                    button.statusBtn.btn.btn-default.btn-sm(type='button' style='margin-left:20px' data-status="close") 关
+            .form-control
                 label.control-label(for='apis') 接口列表:
                 input#apis.form-control(type='hidden' name='apis' value=apiInfo.apis)
                 if(apiList.length)
                     each api in apiList
                         if(apiInfo.apis.indexOf(api.id))
-                            input(type="checkbox" checked value=api.id)
+                            input(type="checkbox" checked value=api.id style="min-width:15px;width:15px;")
                         else
-                            input(type="checkbox" value=api.id)
-                        span #{api.name}
+                            input(type="checkbox" value=api.id style="min-width:15px;width:15px;")
+                        span(style="width: 60px;display: block;min-width: 80px;") #{api.name}
             .form-control.btn-wrapper
                 input#id.form-control(type='hidden' name='id' value=apiInfo.id)
                 button.btn.btn-default.btn-sm(type='submit') 保存
                 button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+block script
+    script(type="text/javascript").
+       $(".statusBtn").on('click',function (e) {
+           var chooseStatus = $(this).attr("data-status");
+           $("#openStatus").val(chooseStatus);
+           $(".statusBtn").removeClass("btn-default").addClass("btn-disable");
+           $(this).removeClass("btn-disable").addClass("btn-default");
+       })

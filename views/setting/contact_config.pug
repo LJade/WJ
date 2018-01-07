@@ -1,6 +1,6 @@
 extends ../components/base
 block title
-    title 应用添加
+    title 对接系统管理-权限配置
 block aside_content
     include ../components/mixin
     -var routerObj = [{link:'/',text:'应用',icon:'icon-app'},{link:'/message',text:'消息',icon:'icon-message2'},{link:'/setting/user_manage',text:'平台管理',icon:'icon-setting'}]
@@ -18,18 +18,22 @@ block main_content
     include ../components/mixin
     -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_manage',text:'对接系统管理'},{link:'/setting/app_manage',text:'第三方应用系统管理'},{link:'/setting/data_service',text:'数据服务管理'}]
     +menuLink(menuObj,1)
-    -var navObj = [{link:'/setting/contact_manage',text:'应用配置'},{link:'/setting/contact_config',text:'应用权限配置'}]
+    -var navObj = [{link:'/setting/contact_manage',text:'应用列表'},{link:'/setting/contact_config',text:'应用权限配置'}]
     +menuNav(navObj,1)
     +RouteNav('权限配置')
     #inner-wrapper
         .news-create
-            .form-control
-                label.control-label(for='sysName') 系统名称:
+            .form-control(style="width:800px;display:block;")
                 input#sysName.form-control(type='hidden')
-                .permission-handle
-                    ul#tree1.ztree(data-node=sys1Tree)
-                .permission-handle
-                    ul#tree2.ztree(data-node=sys2Tree)
+                if(contactInfo.length)
+                    -var i = 0;
+                    each contact in contactInfo
+                        .permission-handle(style="margin-top:30px;margin-left:30px;display:inline-block;")
+                            label.control-label #{contact.name}
+                            input.chooseInput(id="tree"+i+"_choose" value="" type="hidden")
+                            input.clientKeyInput(id="tree"+i+"_clientKey" value=contact.clientKey type="hidden")
+                            ul.ztree(id="tree"+i data-node=JSON.stringify(contact.authTree))
+                            - i++
             .form-control
                 label.control-label(for='chooseUser') 系统访问权限:
                 input#chooseUser.form-control(type='hidden')
@@ -57,9 +61,10 @@ block main_content
                         .title-item
                             span 已选人员
                     .list-wrapper.selectedBox
-            input#choosePersonId(type="hidden" value="0" name="choosePersonId")
+            input#choosePersonId(type="hidden" value="" name="choosePersonId")
             input#deptIds(type="hidden" value="user_0" name="deptIds")
             input#roleId(type='hidden' value=roleId name="roleId")
+            input#sysCount(type="hidden" value=contactInfo.length)
             .form-control.btn-wrapper
                 button#addConfirm.btn.btn-default.btn-sm(type='button') 保存
                 button.btn.btn-disable.btn-sm(type='button' onclick="window.location.href='/setting/role_manage'" style='margin-left:20px') 取消
@@ -69,11 +74,15 @@ block script
         $(document).ready(function () {
             //zTree
             zTreeLoad();
-            zTreeLoad("tree1");
-            zTreeLoad("tree2");
+            //对系统树进行初始化
+            var sysCount = parseInt($("#sysCount").val());
+            for(var j = 0; j < sysCount; j++){
+                zTreeMultiLoad("tree"+j);
+            }
+
             //初始化选择
             var choosePersonId = $('#choosePersonId');
-            if (choosePersonId.length) {
+            if (choosePersonId.length && choosePersonId.val()) {
                 var chooseArr = choosePersonId.val().split(",");
                 //先去掉在左边的人
                 var chooseNames = [];
@@ -235,10 +244,65 @@ block script
             var roleId = $('#roleId').val();
             var name = $('#role').val();
             var usersId = String(personIDArr);
-            function goBack() {
-                window.location.href = "/setting/role_manage";
+            
+            //获取个个系统check的数据
+            function getAllPrivileges() {
+                var treeDivs = $(".permission-handle");
+                var privileges = [];
+                if(treeDivs.length > 0){
+                    treeDivs.each(function(index,node){
+                        var tempPrivilege = {};
+                        var chooseIds = $(node).find(".chooseInput").val();
+                        var clientKey = $(node).find(".clientKeyInput").val();
+                        //然后是区分app和pc
+                        var chooseIdArr = chooseIds.split(",")
+                        var tempPcIds = [];
+                        var tempAppIds = [];
+                        chooseIdArr.forEach(function (data) {
+                            if(data !== "app_app" && data !== "pc_pc"){
+                                if(data.indexOf("pc_") !== -1){
+                                    tempPcIds.push(data.split("pc_")[1]);
+                                }else{
+                                    if(data.indexOf("app_") !== -1){
+                                        tempAppIds.push(data.split("app_")[1]);
+                                    }
+                                }
+                            }
+                        });
+                        //开始组装数据
+                        console.log(tempAppIds,tempPcIds);
+                        if(tempAppIds.length === 0 && tempPcIds.length === 0){
+                            console.log("这个系统没有选取权限");
+                        }else{
+                            tempPrivilege.clientKey = clientKey;
+                            tempPrivilege.moduleJson = {
+                                "pc": String(tempPcIds),
+                                "app": String(tempAppIds)
+                            };
+                            //写入privileges
+                            privileges.push(tempPrivilege);
+                        }
+                    });
+                    return privileges;
+                }else{
+                    return privileges;
+                }
             }
-            $.post("/setting/role_save",{id:roleId,name:name,userIds:usersId},function (data) {
+
+            //组装最终数据
+            var privileges = getAllPrivileges();
+            if(privileges.length === 0){
+                layerAlert("获取系统权限失败！", 'error');
+                return false;
+            }else{
+                var ajaxData = {}
+                ajaxData.usersId = usersId;
+                ajaxData.privileges = privileges;
+            }
+            function goBack() {
+                window.location.href = "/setting/contact_manage";
+            }
+            $.post("/setting/contact_config_save",{"auth":JSON.stringify(ajaxData)},function (data) {
                 if(data.code === 1){
                     layerAlert("操作成功！！",'ok',goBack);
                 }else{

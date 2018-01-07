@@ -61,6 +61,7 @@ module.exports = function (app) {
     app.post("/setting/data_service_delete",setting.data_service_delete);
     app.post("/setting/data_service_save",setting.data_service_save);
     app.post("/setting/log_delete",setting.log_delete);
+    app.post("/setting/contact_config_save",setting.contact_config_save);
 
 
     /** 新闻相关路由*/
