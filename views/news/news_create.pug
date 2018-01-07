@@ -43,7 +43,7 @@ block main_content
                     input#date.form-control(type='text')
                 .form-control
                     label.control-label(for='journalismTypeId') 新闻类别:
-                    select#journalismTypeId.form-control
+                    select#journalismTypeId.form-control(style="padding:0;")
                         if(typeInfo.length)
                             each typeD in typeInfo
                                 option(value=typeD.journalismTypeId) #{typeD.typeName}
@@ -66,7 +66,7 @@ block main_content
                     input#date.form-control(type='text' value=newsInfo.publicTime)
                 .form-control
                     label.control-label(for='journalismTypeId') 新闻类别:
-                    select#journalismTypeId.form-control
+                    select#journalismTypeId.form-control(style="padding:0;")
                         if(typeInfo.length)
                             each typeD in typeInfo
                                 if typeD.journalismTypeId === newsInfo.journalismTypeId

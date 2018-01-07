@@ -12,30 +12,34 @@ block main_content
     +RouteNav('待我审批')
     .condition
         .inline-group(style='margin:0')
-            button.btn.btn-warning.btn-sm(type='button') 审批流程查阅
+            button.btn.btn-warning.btn-sm(type='button' onclick="window.open('/workflow/workflow_config?id=" + approveInfo.flowApproveUserId + "')") 审批流程查阅
     #inner-wrapper
         .content-list.section-block
-            table.table.table-bordered(border="1" cellspacing="0" style='border:1px solid #ececec;width:850px')
+            table.table.table-bordered(border="1" cellspacing="0" style='border:1px solid #ececec;width:750px')
                 tr
-                    td.em.fixed-width 公文名称
-                    td XXX工单
-                    td.em.fixed-width 发布时间
-                    td 2017-11-08
+                    td.em.fixed-width 会议名称
+                    td #{approveInfo.title}
+                    td.em.fixed-width 开始时间
+                    td #{approveInfo.startTime}
                 tr
                     td.em.fixed-width 发布人
-                    td(colspan='3') XXX
+                    td #{createNames}
+                    td.em.fixed-width 会议室
+                    td #{approveInfo.meetingRoomName}
                 tr
-                    td.em.multi.fixed-width 发布内容
-                    td.multi(colspan='3') XXX
+                    td.em.multi.fixed-width 会议内容
+                    td.multi(colspan='3') #{approveInfo.meetingContent}
                 tr
-                    td.em.fixed-width 审批人
-                    td(colspan='3') XXX
+                    td.em.multi.fixed-width 其他审批意见
+                    td.multi(colspan='3')
                 tr
                     td.em.fixed-width 审批意见
-                    td(colspan='3') XXX
+                    td(colspan='3')
+                        input#option(type="text" value="" placeholder="请在这里填写您的审批意见" style="border：none;border:none;width:400px" autofocus)
             .content-bottom-handle
-                button.btn.btn-default.btn-sm(type='button') 审批通过
-                button.btn.btn-primary.btn-sm(type='button' style='margin-left:20px') 审批不通过
+                input#flowApproveUserId(type="hidden" value=approveInfo.flowApproveUserId)
+                button.btn.btn-default.btn-sm(type='button' onclick="approveSend(1);") 审批通过
+                button.btn.btn-primary.btn-sm(type='button' onclick="approveSend(0);" style='margin-left:20px') 审批不通过
 
 
 

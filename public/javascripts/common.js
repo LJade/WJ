@@ -612,3 +612,22 @@ function zTreeMultiLoad(id) {
         }
     });
 }
+
+function approveSend(type) {
+    var result = {
+        "flowInstanceId":$("#flowApproveUserId").val(),
+        "result": parseInt(type),
+        "option": $("#option").val() ? $("#option").val() : "默认通过"
+    };
+    $.post("/setting/approveSend",result,function (results) {
+        if(results.code === 1){
+            layerAlert("审批提交成功","ok");
+            setTimeout(function () {
+                window.location.reload();
+            },1000)
+        }else{
+            layerAlert(results.msg, "error");
+        }
+    },'json');
+}
+

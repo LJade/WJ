@@ -62,6 +62,8 @@ module.exports = function (app) {
     app.post("/setting/data_service_save",setting.data_service_save);
     app.post("/setting/log_delete",setting.log_delete);
     app.post("/setting/contact_config_save",setting.contact_config_save);
+    //统一的审批提交接口
+    app.post("/setting/approveSend",setting.approve_send);
 
 
     /** 新闻相关路由*/

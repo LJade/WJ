@@ -25,8 +25,6 @@ block main_content
             input#date(type='text')
         .inline-group
             button.btn.btn-warning.btn-sm(type='button' style='margin-left:20px' onclick='searchSomething();') 查询
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 审批通过
-            button.btn.btn-default.btn-sm(type='button') 审批不通过
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -50,7 +48,7 @@ block main_content
                                 td  #{document.publicTime}
                                 td  #{document.approveStatus === 0 ? "未审批" : document.approveStatus === 1 ? '审批通过' : document.approveStatus === 2 ? '审批不通过' : '他人已审批'}
                                 td
-                                    a.link(href='/docu/approve_detail?flowApproveUserId=' + document.flowApproveUserId) 审核
+                                    a.link(href='/docu/approve_detail?flowApproveUserId=' + document.flowApproveUserId) 审批
         if(rowsCount > 10)
             #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 block script

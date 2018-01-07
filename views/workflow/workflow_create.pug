@@ -8,7 +8,9 @@ block style
     .work-form-control
         label.work-control-label(for='approver') 审批人配置:
         input#approver.form-control(type='text' readonly value=nodeInfo.approveUsersId)
-        i.icon.icon-add#addUser
+        if(!isRead)
+            i.icon.icon-add#addUser
+        input#choosePersonId(type="hidden" value=nodeInfo.approveUsersId)
     .work-form-control
         label.work-control-label 执行规则:
         label.text-label
@@ -21,7 +23,7 @@ block style
             if(nodeInfo.executeCond === 'ONE')
                 input.form-control(type='radio' checked  name='rule' value="ONE")
             else
-                input.form-control(type='radio' name='rule' value="ONE")
+                input.form-control(type='radio' checked name='rule' value="ONE")
             span 任意一人审批即通过
     .work-form-control
         label.work-control-label 节点跳转设置:
@@ -35,7 +37,7 @@ block style
             if(nodeInfo.forwardCond === 'N')
                 input.form-control(type='radio' checked  name='forwardCond' value="N")
             else
-                input.form-control(type='radio' name='forwardCond' value="N")
+                input.form-control(type='radio' checked name='forwardCond' value="N")
             span 不允许指定跳转节点
     .work-form-control
         label.work-control-label 执行时间配置:
@@ -63,7 +65,6 @@ block style
         .work-form-control.btn-wrapper.margin-top-20(style="justify-content: center;")
             button#saveNode.work-btn.work-btn-default.work-btn-sm(type='button') 保存
             button.work-btn.work-btn-default.work-btn-sm(type='button' style='margin-left:20px' onclick="$('#attributeModal').modal('hide');") 关闭
-if(!isRead)
     #modal(style='display:none')
         +ContactBook
     #mask(style='display:none')

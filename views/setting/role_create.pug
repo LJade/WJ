@@ -56,7 +56,7 @@ block main_content
                         .title-item
                             span 已选人员
                     .list-wrapper.selectedBox
-            input#choosePersonId(type="hidden" value="0" name="choosePersonId")
+            input#choosePersonId(type="hidden" value=lookUpPersonId name="choosePersonId")
             input#deptIds(type="hidden" value="user_0" name="deptIds")
             input#roleId(type='hidden' value=roleId name="roleId")
             .form-control.btn-wrapper
@@ -70,7 +70,7 @@ block script
             zTreeLoad();
             //初始化选择
             var choosePersonId = $('#choosePersonId');
-            if (choosePersonId.length) {
+            if (choosePersonId.length && choosePersonId.val()) {
                 var chooseArr = choosePersonId.val().split(",");
                 //先去掉在左边的人
                 var chooseNames = [];

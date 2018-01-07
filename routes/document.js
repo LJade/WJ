@@ -195,7 +195,8 @@ var approve_detail = function (req, res, next) {
     }
     assert.apiRequest("get","/commonalityArticle/myApproveDetail",req).then(function (results) {
         var approveInfoRes = JSON.parse(results);
-        if(approveInfoRes.code === 1){
+        if(approveInfoRes.code === 1 && approveInfoRes.dat !== null){
+            console.log(approveInfoRes.dat);
             JADE_VAR.approveInfo = approveInfoRes.dat;
             res.render('document/docu_detail',JADE_VAR)
         }else{

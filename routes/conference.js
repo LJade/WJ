@@ -48,8 +48,13 @@ var con_approve_detail = function (req, res, next) {
     }
     assert.apiRequest("get","/meeting/myApproveDetail",req).then(function (results) {
         var approveInfoRes = JSON.parse(results);
-        if(approveInfoRes.code === 1){
+        if(approveInfoRes.code === 1 && approveInfoRes.dat !== null){
             JADE_VAR.approveInfo = approveInfoRes.dat;
+            var createNames = [];
+            approveInfoRes.dat.meetingCreateUser.forEach(function (create) {
+               createNames.push(create.name);
+            });
+            JADE_VAR.createNames = String(createNames);
             res.render("conference/con_approve_detail",JADE_VAR);
         }else{
             res.render("error/error",{message:approveInfoRes.msg});

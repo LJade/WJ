@@ -159,12 +159,12 @@ var news_approve = function (req, res, next) {
 var news_approveDetail = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     //检查登陆
-    if(!req.session.user || !req.session.user.accessToken){
+    if(!req.session.user){
         res.redirect("/login");
     }
     assert.apiRequest("get","/journalism/myApproveDetail",req).then(function (results) {
         var approveInfoRes = JSON.parse(results);
-        if(approveInfoRes.code === 1){
+        if(approveInfoRes.code === 1 && approveInfoRes.dat !== null){
             JADE_VAR.approveInfo = approveInfoRes.dat;
             res.render("news/approve_detail",JADE_VAR);
         }else{

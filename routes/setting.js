@@ -181,6 +181,7 @@ var role_edit = function (req, res, next) {
                 //获取部门树和角色list
                 JADE_VAR.userList = usersList.dat.list;
                 JADE_VAR.depAll = assert.makeZTreeData([usersList.dat.tree], []);
+                JADE_VAR.lookUpPersonId = "";
                 res.render('setting/role_create', JADE_VAR);
             }
         });
@@ -200,8 +201,9 @@ var role_edit = function (req, res, next) {
             } else {
                 //获取部门树和角色list
                 JADE_VAR.userList = userList.dat.list;
-                JADE_VAR.depAll = JSON.stringify(assert.makeZTreeData([userList.dat.tree], []));
+                JADE_VAR.depAll = assert.makeZTreeData([userList.dat.tree], []);
                 JADE_VAR.roleInfo = roleInfo.dat;
+                JADE_VAR.lookUpPersonId = roleInfo.dat.userIds;
                 res.render('setting/role_create', JADE_VAR);
             }
         });
@@ -568,6 +570,14 @@ var contact_config_save = function (req, res, next) {
     })
 };
 
+var approve_send = function (req, res, next) {
+    assert.apiRequest("post","/flow/audit",req).then(function (results) {
+        results = JSON.stringify({code:1,msg:"操作成功",dat:null});
+        var resRes = JSON.parse(results);
+        res.send(results);
+    })
+};
+
 module.exports = {
     app_create: app_create,
     region_manage: region_manage,
@@ -599,5 +609,6 @@ module.exports = {
     data_service_delete: data_service_delete,
     data_service_save: data_service_save,
     log_delete:log_delete,
-    contact_config_save:contact_config_save
+    contact_config_save:contact_config_save,
+    approve_send:approve_send
 };

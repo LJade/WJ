@@ -53,11 +53,8 @@ block main_content
                                 td  #{order.businessCreateTime}
                                 td  #{order.approveStatus === 0 ? "未审批" : order.approveStatus === 1 ? '审批通过' : order.approveStatus === 2 ? '审批不通过' : '他人已审批'}
                                 td
-                                    a.link(href='/order/approve_detail?edit=false&workOrderApplyId=' + order.workOrderApplyId) 查看
-                                    a.link(style='margin-left:20px;' href='/order/approve_detail?edit=true&workOrderApplyId=' + order.workOrderApplyId) 编辑
-            .content-bottom-handle
-                button.btn.btn-default.btn-sm(type='button') 审批通过
-                button.btn.btn-primary.btn-sm(type='button' style='margin-left:20px') 审批不通过
+                                    a.link(href='/order/order_detail?edit=false&workOrderApplyId='+order.workOrderApplyId) 查看
+                                    a.link(style='margin-left:20px;' href='/order/approve_detail?edit=true&flowApproveUserId=' + order.flowApproveUserId) 审批
         if(rowsCount > 10)
             #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 block script
