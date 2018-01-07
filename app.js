@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var debug = true;
+var debug = false;
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
