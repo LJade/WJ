@@ -404,7 +404,6 @@ Q 群：143263697
             });
             //执行完之后重新绑定时间
             jsPlumb.bind("jsPlumbConnection", function (info) {
-                console.log(info);
                 var curLine = $("#curLine").val();
                 var allPath = document.getElementsByTagName("path");
                 if(curLine === 'solid'){
