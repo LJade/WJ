@@ -330,7 +330,7 @@ var user_delete = function (req, res, next) {
 };
 
 var user_save = function (req, res, next) {
-    req.body.roleIds = String(req.body.roleIds);
+    req.body.roleIds = req.body.roleIds ?  String(req.body.roleIds) : "";
     req.body.id = req.body.userId;
     delete req.body.userId;
     assert.apiRequest('post', '/privilege/user/save', req).then(function (results) {

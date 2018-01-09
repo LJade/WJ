@@ -3,6 +3,8 @@ var crypto = require('crypto');
 var request = require('request');
 var qs = require('querystring');
 var WJConf = require('../hmConfig');
+var formidable = require("formidable");
+var fs = require("fs");
 
 var API_HOST = 'http://jtj.yewufeifei.com/web';
 
@@ -49,9 +51,6 @@ var getError = function (code,message) {
 
 var apiRequest = function (method, url, req) {
     var sessionId = req.session.user === undefined ? "" : req.session.user.accessToken;
-    if(!sessionId){
-        sessionId = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTQxNzAzNzcsImlhdCI6MTUxMzkxMTE3N30.7WlZnktj5N03bPZdIEPIlCD5It3MxgtKOP4CFI8u6nQ';
-    }
     if(method === 'get'){
         //这里对分页做统一处理
         if(req.query.page){
@@ -100,6 +99,38 @@ var apiRequest = function (method, url, req) {
             }
         );
     }
+};
+
+var apiRequestWithFiles = function (method, url, req) {
+    var sessionId = req.session.user === undefined ? "" : req.session.user.accessToken;
+    var options = {
+        url:API_HOST + url,
+        method:'POST',
+        headers:{
+            'WJ-AUTH':sessionId
+        }
+    };
+    //获取请求上传的文件
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+        var formData = fields;
+        formData.file = files.file;
+        options.formDate = formData;
+
+    });
+    return new Promise(
+        function(resolve,reject){
+            console.log(options);
+            request(options,function(error,response,body){
+                console.log(body);
+                if(error){
+                    reject(error);
+                }else{
+                    resolve(body);
+                }
+            });
+        }
+    );
 };
 
 
@@ -593,6 +624,36 @@ var makeZTreeData = function (depInfo,resultsData) {
     return JSON.stringify(resultsData);
 };
 
+function formatNum(str){
+    var newStr = "";
+    var count = 0;
+
+    if(str.indexOf(".")==-1){
+        for(var i=str.length-1;i>=0;i--){
+            if(count % 3 == 0 && count != 0){
+                newStr = str.charAt(i) + "," + newStr;
+            }else{
+                newStr = str.charAt(i) + newStr;
+            }
+            count++;
+        }
+        return newStr; //自动补小数点后两位
+    }
+    else
+    {
+        for(var i = str.indexOf(".")-1;i>=0;i--){
+            if(count % 3 == 0 && count != 0){
+                newStr = str.charAt(i) + "," + newStr;
+            }else{
+                newStr = str.charAt(i) + newStr; //逐个字符相接起来
+            }
+            count++;
+        }
+        str = newStr + (str + "00").substr((str + "00").indexOf("."),3);
+        return str
+    }
+}
+
 module.exports = {
 
     _utf_encode:_utf_encode,
@@ -608,5 +669,8 @@ module.exports = {
     getError:getError,
     coverParams:coverParams,
     getArrPost:getArrPost,
-    makeZTreeData:makeZTreeData
+    makeZTreeData:makeZTreeData,
+    apiRequestWithFiles:apiRequestWithFiles,
+    API_HOST:API_HOST,
+    formatNum:formatNum
 };

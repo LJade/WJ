@@ -158,7 +158,9 @@ module.exports = function (app) {
     app.get('/netdisk/company_disk_recycle', netdisk.company_disk_recycle);
     app.get('/netdisk/company_disk_parson', netdisk.company_disk_parson);
     app.post("/netdisk/uploadFile",netdisk.disk_upload_file);
-    app.options('/web/netDisk/upload',netdisk.disk_upload_file);
+    app.post('/netdisk/delete_file',netdisk.delete_file);
+    app.post('/netdisk/new_folder',netdisk.new_folder);
+    app.get("/netdisk/download_file",netdisk.download_file);
 
     /** 流程配置相关 */
     app.get('/workflow/workflow_config', workflow.workflow_config);

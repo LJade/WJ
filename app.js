@@ -27,7 +27,7 @@ if(debug){
         req.session.user = {};
         res.cookie('headIcon',"http://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epqmKVPg9RrCTia56xA0mC2ia1t82IdOFib2G2fdXSA9l4Q7QdcqWv5Qc0RSSia2jZMiaCXHQVfGF2VzrQ/0");
         res.cookie("headName","哈哈哈");
-        req.session.user.accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTU3NTIyMzAsImlhdCI6MTUxNTQ5MzAzMH0.t0KV4FiQWETo9K7GtHaGDgELdJ_7-7fpw_auZ0A5QKY';
+        req.session.user.accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTU3NzY4NTgsImlhdCI6MTUxNTUxNzY1OH0.eKIstewbNWm5asGl6CFTanwo6xEyigwQWz_FJpZ-1PI';
         req.session.user.roleType = 1;
         next();
     });
