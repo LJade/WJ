@@ -14,16 +14,25 @@ block style
         #main-wrapper {
             margin-top: 10px;
         }
+        .diskFileName:hover{
+            cursor: pointer;
+            color: #0e90d2;
+        }
 block main_content
     include ../components/mixin
     +RouteNav('回收站')
     .condition
         .inline-group
-            button.btn.btn-default.btn-sm(type='button') 上传
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 新建文件夹
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 下载
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 分享
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 回收站
+            button.btn.btn-default.btn-sm(type='button' onclick="uploadFileToDisk();") 上传
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="createNewFolder('"+ pKey +"');") 新建文件夹
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="downloadFile('"+ pKey +"');") 下载
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="shareFile();") 分享
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="window.location.href='/netdisk/company_disk_recycle'") 回收站
+        form#uploadForm.hide(action="http://jtj.yewufeifei.com/web/netDisk/upload" method="post" enctype="multipart/form-data")
+            input#uploadFile(type="file" style="display:none" name="file")
+            input#authData(type="hidden" name="WJ-AUTH" value=authData)
+            input#pkey(type="hidden" name="pkey" value=String(pKey))
+            input(type="hidden" name="type" value=1)
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered.disk-table
@@ -36,73 +45,17 @@ block main_content
                         td  修改时间
                         td  操作
                 tbody
-                    tr
-                        td
-                            input(type='checkbox')
-                        td
-                            i.icon.icon-folder
-                            span 交通局项目.rar
-                        td  15M
-                        td  2017-12-01
-                        td
-                            button.btn.btn-sm.btn-warning 删除
-                    tr
-                        td
-                            input(type='checkbox')
-                        td
-                            i.icon.icon-word
-                            span 交通局项目文档.doc
-                        td  12.5K
-                        td  2017-12-01
-                        td
-                            button.btn.btn-sm.btn-warning 删除
-                    tr
-                        td
-                            input(type='checkbox')
-                        td
-                            i.icon.icon-picture
-                            span 交通局项目登录设计预览图.jpg
-                        td  22K
-                        td  2017-12-01
-                        td
-                            button.btn.btn-sm.btn-warning 删除
-                    tr
-                        td
-                            input(type='checkbox')
-                        td
-                            i.icon.icon-sound
-                            span 交通音频讲解.mp3
-                        td  15M
-                        td  2017-12-01
-                        td
-                            button.btn.btn-sm.btn-warning 删除
-                    tr
-                        td
-                            input(type='checkbox')
-                        td
-                            i.icon.icon-file
-                            span 公开课培训.ppt
-                        td  15M
-                        td  2017-12-01
-                        td
-                            button.btn.btn-sm.btn-warning 删除
-                    tr
-                        td
-                            input(type='checkbox')
-                        td
-                            i.icon.icon-file
-                            span 2017-12-12日单位分配表.xls
-                        td  15M
-                        td  2017-12-01
-                        td
-                            button.btn.btn-sm.btn-warning 删除
-                    tr
-                        td
-                            input(type='checkbox')
-                        td
-                            i.icon.icon-file
-                            span 公开课培训录像1.avi
-                        td  15M
-                        td  2017-12-01
-                        td
-                            button.btn.btn-sm.btn-warning 删除
+                    if(diskList.length)
+                        each disk in diskList
+                            tr
+                                td
+                                    input(type='checkbox' data-id=disk.key)
+                                td
+                                    i(class="icon icon-" + disk.icon_type)
+                                    span.diskFileName(data-key=disk.key data-isDir=disk.isDir) #{disk.name}
+                                td  #{disk.fileSize}
+                                td  #{disk.uploadTime}
+                                td
+                                    button.btn.btn-sm.btn-warning 删除
+block script
+    script(type="text/javascript" src=__JS_PATH__ + "/netdisk.js")
