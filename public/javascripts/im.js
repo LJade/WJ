@@ -16,13 +16,13 @@ var refershIcon = setInterval(function () {
                 contact.push($(data).attr("id"));
             }
         });
-        console.log(contact);
         //获取到了所有的ID,则开始请求接口
         if(contact.length > 0){
             $.post("/im/getIMAccountIcon",{imAccounts:String(contact)},function (result) {
                 //然后执行替换操作
                 if(result.code !== 1){
                     layerAlert("获取聊天好友头像信息失败",'error');
+                    clearInterval(refershIcon);
                 }else{
                     //开始替换
                     result.dat.forEach(function (iconInfo) {
@@ -47,7 +47,6 @@ var getNickNameById = function (name) {
     if(iconInfo){
         iconInfo = JSON.parse(iconInfo);
         iconInfo.forEach(function (info) {
-            console.log(info.imAccount === name);
             if(info.imAccount === name){
                 results = info.nickname;
             }

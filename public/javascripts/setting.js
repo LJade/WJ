@@ -1,7 +1,7 @@
 function createNewDep() {
     var curNode = $('#tree').attr("data-cur-id");
     if(curNode !== undefined){
-        window.location.href = '/setting/organization_create?pId='+curNode;
+        window.location.href = '/setting/organization_create?pId='+curNode +'&edit=false';
     }else{
         layerAlert('请先选择一个部门进行操作','error');
     }
@@ -11,7 +11,7 @@ function editNewDep() {
     var curNode = $('#tree').attr("data-cur-id");
     var curPId = $('#tree').attr("data-cur-pid");
     if(curNode !== undefined){
-        window.location.href = '/setting/organization_create?pId='+curNode + '&curId='+curPId;
+        window.location.href = '/setting/organization_create?pId='+curPId + '&curId='+curNode + '&edit=true';
     }else{
         layerAlert('请先选择一个部门进行操作','error');
     }
@@ -79,3 +79,29 @@ $('#editRole').on('click',function (e) {
         layerAlert("请在下方先选中一个角色","error")
     }
 });
+
+function userEditSave() {
+    var userSaveForm = new FormData(document.getElementById("userEdit"));
+    $.ajax({
+        url:"/setting/user_save",
+        type:"post",
+        data:userSaveForm,
+        processData:false,
+        contentType:false,
+        success:function(data){
+            var resObj = JSON.parse(data);
+            if(resObj.code === 1){
+                layerAlert("用户信息保存成功","ok");
+                setTimeout(function () {
+                    window.location.reload();
+                },1000)
+            }else{
+                layerAlert("用户信息保存失败："+resObj.msg,"error");
+            }
+        },
+        error:function(e){
+            layerAlert("网络错误，请稍后再试","error");
+        }
+    })
+
+}

@@ -1,9 +1,14 @@
 extends ../components/layout
 block content
-  h1  #{message}
+  h1#error  #{message}
 block script
   script(type="text/javascript").
     setTimeout(function () {
-      window.history.go(-1);
-      window.reload();
+      if(document.getElementById('error').innerText === '未登录'){
+        var redirect = document.referrer;
+        window.location.href = '/login?redirect='+redirect;
+      }else{
+        window.history.go(-1);
+        window.reload();
+      }
     },2000);

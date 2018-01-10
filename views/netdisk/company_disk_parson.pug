@@ -26,14 +26,17 @@ block main_content
             button.btn.btn-default.btn-sm(type='button' onclick="uploadFileToDisk();") 上传
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="createNewFolder('"+ pKey +"');") 新建文件夹
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="shareFile();") 分享
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="history.go(-1);") 返回上一层
+            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="backToTopLevel();") 返回上一层
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="window.location.href='/netdisk/company_disk_recycle'") 回收站
     form#uploadForm.hide(action="/netdisk/uploadFile" method="post" enctype="multipart/form-data")
         input#uploadFile(type="file" style="display:none" name="file")
         input#pkey(type="hidden" name="pkey" value=String(pKey))
-        input(type="hidden" name="type" value=2)
+        input#type(type="hidden" name="type" value="2")
     #inner-wrapper
         .content-list.section-block
+            span(style="color:#999999;margin:10px;") 当前文档路径 :
+            span#curPath(style="color:#36a4e3").curPath #{curPath}
+            input#dirname(type="hidden" value=dirname)
             table.table.table-bordered.disk-table
                 thead
                     tr
@@ -51,7 +54,7 @@ block main_content
                                     input(type='checkbox' data-id=disk.key)
                                 td
                                     i(class="icon icon-" + disk.icon_type)
-                                    span.diskFileName(data-key=disk.key data-isDir=disk.isDir) #{disk.name}
+                                    span.diskFileName(data-key=disk.key data-pkey=pKey data-dirName=disk.name data-isDir=disk.isDir) #{disk.name}
                                 td  #{disk.fileSize}KB
                                 td  #{disk.uploadTime}
                                 td

@@ -30,6 +30,10 @@ var set_pass = function (req, res, next) {
 
 var register = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
+    var redirectUrl = req.query.redirect;
+    if(redirectUrl){
+        JADE_VAR.redirectUrl = redirectUrl;
+    }
     res.render('login/register', JADE_VAR);
 };
 
@@ -37,10 +41,10 @@ var doLogin = function (req, res, next) {
 
     req = assert.coverParams(req,"body",['account','pwd']);
     req.body.pwd = md5(req.body.pwd);
+    var redirectUrl = req.body.redirectUrl;
     assert.apiRequest("post", "/user/ptlogin", req).then(function (results) {
         var loginInfo = JSON.parse(results);
-        console.log(loginInfo.dat.accessToken);
-        if (loginInfo.code == 1) {
+        if (loginInfo.code === 1) {
             req.session.user = {
                 userName: loginInfo.dat.name,
                 accessToken: loginInfo.dat.accessToken,
@@ -49,8 +53,18 @@ var doLogin = function (req, res, next) {
                 IMPwd:loginInfo.dat.imPass,
                 roleType:loginInfo.dat.roleType
             };
+
+            if(redirectUrl){
+                res.redirect(redirectUrl)
+            }else{
+                res.redirect("/");
+            }
+        }else{
+            var JADE_VAR = assert.getJADE();
+            JADE_VAR.loginError = loginInfo.msg;
+            res.render('login/login', JADE_VAR);
+
         }
-        res.redirect("/");
     })
 };
 

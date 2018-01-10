@@ -489,7 +489,7 @@ function zTreeLoad() {
 
     function setCheck() {
         var zTree = $.fn.zTree.getZTreeObj('tree');
-        type = {"Y": "s", "N": "s"};
+        type = {"Y": "", "N": ""};
         zTree.setting.check.chkboxType = type;
     }
 

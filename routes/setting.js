@@ -35,29 +35,31 @@ var organization_manage = function (req, res, next) {
 var organization_create = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
     var depAll = assert.apiRequest('get', '/department/allDept', req);
-    if (req.query.curId) {
+    if (req.query.edit === 'true') {
         //这里为编辑
         Promise.all([depAll]).then(function (results) {
             var depInfo = JSON.parse(results[0]);
-            JADE_VAR.pId = req.query.pId;
-            JADE_VAR.curId = req.query.curId;
             if (depInfo.code === 1) {
+                JADE_VAR.pId = req.query.pId;
+                JADE_VAR.curId = req.query.curId;
                 //从所有的列表中获取到
-                JADE_VAR.depName = '';
-                JADE_VAR.depInfo = {
-                    label: "",
-                    sortNum: ""
-                };
+                var parentName = "";
+                var name = "";
                 depInfo.dat.forEach(function (dep) {
-                    if (dep.id === parseInt(req.query.pId)) {
-                        JADE_VAR.depName = dep.label;
+                    if (parseInt(dep.id) === parseInt(req.query.pId)) {
+                        parentName = dep.label;
                     }
-                    if (dep.id === parseInt(req.query.curId)) {
-                        JADE_VAR.depInfo.label = dep.label;
-                        JADE_VAR.depInfo.sortNum = 0;
+
+                    if (parseInt(dep.id) === parseInt(req.query.curId)) {
+                        name = dep.label;
                     }
                 });
-                if (JADE_VAR.depName) {
+                if (parentName && name) {
+                    JADE_VAR.depInfo = {
+                        label:name,
+                        sortNum:0
+                    };
+                    JADE_VAR.depName = parentName;
                     res.render('setting/organization_create', JADE_VAR);
                 } else {
                     res.render('error/error', {"message": "获取部门信息失败"});
@@ -65,13 +67,16 @@ var organization_create = function (req, res, next) {
             } else {
                 res.render('error/error', {"message": depInfo.msg});
             }
+        }).catch(function(error){
+            assert.processError(error,res);
         });
     } else {
         depAll.then(function (results) {
             JADE_VAR.pId = req.query.pId;
             JADE_VAR.depName = '';
+            console.log(req.query);
             JSON.parse(results).dat.forEach(function (dep) {
-                if (dep.id === parseInt(req.query.pId)) {
+                if (parseInt(dep.id) === parseInt(req.query.pId)) {
                     JADE_VAR.depName = dep.label;
                 }
             });
@@ -84,13 +89,15 @@ var organization_create = function (req, res, next) {
             } else {
                 res.render('error/error', {"message": "获取部门信息失败"});
             }
+        }).catch(function(error){
+            assert.processError(error,res);
         })
     }
 };
 
 var organization_save = function (req, res, next) {
     var id = req.body.id;
-    if (id === '') {
+    if (id === '' || !id) {
         delete req.body.id
     }
     assert.apiRequest('post', '/department/save', req).then(function (results) {
@@ -100,6 +107,8 @@ var organization_save = function (req, res, next) {
         } else {
             res.render('error/error', {message: result.msg})
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -122,9 +131,10 @@ var user_manage = function (req, res, next) {
             JADE_VAR.rowsCount = userInfo.dat.rowsCount;
             res.render('setting/user_manage', JADE_VAR);
         } else {
-            console.log(userInfo, roleList);
-            res.render('error/error', {"message": "获取信息失败"});
+            res.render('error/error', {"message": userInfo.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     });
 };
 
@@ -154,6 +164,8 @@ var role_manage = function (req, res, next) {
         } else {
             res.render('error/error', {message: rolesList.msg + "   " + modulesList.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -184,6 +196,8 @@ var role_edit = function (req, res, next) {
                 JADE_VAR.lookUpPersonId = "";
                 res.render('setting/role_create', JADE_VAR);
             }
+        }).catch(function(error){
+            assert.processError(error,res);
         });
     } else {
         //表示是编辑
@@ -206,14 +220,17 @@ var role_edit = function (req, res, next) {
                 JADE_VAR.lookUpPersonId = roleInfo.dat.userIds;
                 res.render('setting/role_create', JADE_VAR);
             }
+        }).catch(function(error){
+            assert.processError(error,res);
         });
-
     }
 };
 
 var role_permission = function (req, res, next) {
     assert.apiRequest('get', '/privilege/role/detail', req).then(function (results) {
         res.send(results);
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -225,6 +242,8 @@ var role_save = function (req, res, next) {
     }
     assert.apiRequest("post", urlPath, req).then(function (results) {
         res.send(results);
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -247,6 +266,8 @@ var log_manage = function (req, res, next) {
         }else{
             res.render('error/error', {message:logRes.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 
 };
@@ -261,6 +282,8 @@ var app_permission = function (req, res, next) {
         } else {
             res.render('error/error', {message: appListRes.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     });
 };
 
@@ -287,6 +310,8 @@ var contact_addpage = function (req, res, next) {
                 res.render('error/error', {message: webInfoRes.msg});
                 return;
             }
+        }).catch(function(error){
+            assert.processError(error,res);
         })
     } else {
         res.render('setting/contact_addpage', JADE_VAR);
@@ -305,11 +330,6 @@ var contact_config = function (req, res, next) {
         var contactDetailRes = JSON.parse(results[1]);
         if(allUserInfoRes.code === 1 && contactDetailRes.code === 1){
             //所有数据请求正常
-            //获取部门树和角色list
-            contactDetailRes.dat[1] = contactDetailRes.dat[0];
-            contactDetailRes.dat[2] = contactDetailRes.dat[1];
-            contactDetailRes.dat[3] = contactDetailRes.dat[1];
-            contactDetailRes.dat[4] = contactDetailRes.dat[1];
             JADE_VAR.userList = allUserInfoRes.dat.list;
             JADE_VAR.depAll = assert.makeZTreeData([allUserInfoRes.dat.tree], []);
             JADE_VAR.contactInfo = contactDetailRes.dat;
@@ -317,19 +337,27 @@ var contact_config = function (req, res, next) {
         }else{
             res.render("error/error", {message:"数据请求错误"});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     });
-
-
 };
 
 var user_delete = function (req, res, next) {
     req = assert.getArrPost(req, 'userIds');
     assert.apiRequest('post', '/privilege/user/delete', req).then(function (results) {
         res.send(results);
+    }).catch(function(error){
+        assert.processError(error,res);
     });
 };
 
 var user_save = function (req, res, next) {
+    var roleIds = req.body.roleIds;
+    var deptIds = req.body.deptIds;
+    if(!roleIds || deptIds === "" || roleIds === "" || !deptIds){
+        res.render('error/error', {message: "部门或角色不能为空!"});
+        return;
+    }
     req.body.roleIds = req.body.roleIds ?  String(req.body.roleIds) : "";
     req.body.id = req.body.userId;
     delete req.body.userId;
@@ -340,6 +368,8 @@ var user_save = function (req, res, next) {
         } else {
             res.render('error/error', {message: result.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     });
 };
 
@@ -373,6 +403,8 @@ var user_edit = function (req, res, next) {
                 JADE_VAR.depAll = JSON.stringify(depList.dat);
                 res.render('setting/user_create', JADE_VAR);
             }
+        }).catch(function(error){
+            assert.processError(error,res);
         });
     } else {
         //表示是编辑
@@ -395,8 +427,9 @@ var user_edit = function (req, res, next) {
                 JADE_VAR.userInfo = userInfoAPI.dat;
                 res.render('setting/user_create', JADE_VAR);
             }
+        }).catch(function(error){
+            assert.processError(error,res);
         });
-
     }
 };
 
@@ -411,12 +444,16 @@ var contact_manage = function (req, res, next) {
         } else {
             res.render('error/error', {message: webList.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     });
 };
 
 var contact_delete = function (req, res, next) {
     assert.apiRequest('post', '/thirdPart/delete', req).then(function (results) {
         res.send(results);
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -428,9 +465,10 @@ var contact_save = function (req, res, next) {
         } else {
             res.render("error/error", {message: saveRes.m})
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
-
 
 var app_manage = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
@@ -442,6 +480,8 @@ var app_manage = function (req, res, next) {
         } else {
             res.render('error/error', {message: appListRes.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -463,7 +503,6 @@ var data_service = function (req, res, next) {
                 ]
         });
         var resultsRes = JSON.parse(results);
-        console.log(resultsRes);
         if (resultsRes.code === 1) {
             var apiList = resultsRes.dat;
             JADE_VAR.apis = apiList;
@@ -472,6 +511,8 @@ var data_service = function (req, res, next) {
         } else {
             res.render("error/error", {message: resultsRes.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -529,6 +570,8 @@ var data_service_config = function (req, res, next) {
         } else {
             res.render("error/error", {message: apiInfoRes.msg + apiListRes.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -541,6 +584,8 @@ var data_service_delete = function (req, res, next) {
         } else {
             res.render("error/error", {message: resulstRes.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -554,6 +599,8 @@ var data_service_save = function (req, res, next) {
         } else {
             res.render("error/error", {message: resultsRes.msg});
         }
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -561,12 +608,16 @@ var log_delete = function (req, res, next) {
     assert.apiRequest("post","/userLog/delete",req).then(function (results) {
         results = JSON.stringify({code:1,msg:"成功",dat:null});
         res.send(results)
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
 var contact_config_save = function (req, res, next) {
     assert.apiRequest("post","/thirdPart/saveUserPrivilege",req).then(function (results) {
         res.send(results);
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 
@@ -575,6 +626,8 @@ var approve_send = function (req, res, next) {
         results = JSON.stringify({code:1,msg:"操作成功",dat:null});
         var resRes = JSON.parse(results);
         res.send(results);
+    }).catch(function(error){
+        assert.processError(error,res);
     })
 };
 

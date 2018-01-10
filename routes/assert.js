@@ -69,7 +69,7 @@ var apiRequest = function (method, url, req) {
                 request( options_get,function(error,response,body){
                     console.log(body);
                     if(error){
-                        reject('{"msg": '+ error +',"code": 0,"dat": null')
+                        resolve('{"msg": '+ error +',"code": 0,"dat": "null"}')
                     }else{
                         resolve(body);
                     }
@@ -91,7 +91,7 @@ var apiRequest = function (method, url, req) {
                 request(options,function(error,response,body){
                     console.log(body);
                     if(error){
-                        reject(error);
+                        resolve('{"msg": '+ error +',"code": 0,"dat": "null"}')
                     }else{
                         resolve(body);
                     }
@@ -654,6 +654,11 @@ function formatNum(str){
     }
 }
 
+var processError = function (error,res) {
+    console.log(error);
+    res.render("error/error",{message:"网络异常,请登录重试"});
+};
+
 module.exports = {
 
     _utf_encode:_utf_encode,
@@ -672,5 +677,6 @@ module.exports = {
     makeZTreeData:makeZTreeData,
     apiRequestWithFiles:apiRequestWithFiles,
     API_HOST:API_HOST,
-    formatNum:formatNum
+    formatNum:formatNum,
+    processError:processError
 };

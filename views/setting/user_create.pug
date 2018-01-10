@@ -27,7 +27,7 @@ block main_content
     else
         +RouteNav('用户查看')
     #inner-wrapper
-        form.news-create(action="/setting/user_save" method="post")
+        form#userEdit.news-create(action="/setting/user_save" method="post")
             .work-form-control
                 label.control-label(for='name') 用户名:
                 input#name.form-control(type='text' name="name" value=userInfo.name)
@@ -40,12 +40,12 @@ block main_content
                     each role in rolesList
                         if(userInfo.roleIds)
                             if(userInfo.roleIds.indexOf(role.id) !== -1)
-                                input(type='checkbox' checked name="roleIds" value=role.id)
+                                input(type='checkbox' checked  name="roleIds" value=role.id)
                             else
                                 input(type='checkbox' name="roleIds" value=role.id)
                         else
                             input(type='checkbox' name="roleIds" value=role.id)
-                        span #{role.name}
+                        div(style="margin-top:5px;") #{role.name}
             .work-form-control
                 label.control-label(for='deptIds') 部门分配:
                 input#deptIds(type='hidden' name="deptIds" value=userInfo.deptIds)

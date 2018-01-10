@@ -16,7 +16,6 @@ var home = function(req, res, next) {
     var nowDate = new Date();
     req.query.date = nowDate.getFullYear() + "-" + nowDate.getMonth();
     var getUserMeet = assert.apiRequest("get","/meeting/awaitList",req);
-    // var getNoticeNum = assert.apiRequest("get","/",req);
 
     //请求数据
     Promise.all([getModules,getUserMeet]).then(function (results) {
@@ -24,6 +23,10 @@ var home = function(req, res, next) {
             var modules = JSON.parse(results[0]);
             //组装数据
             var modulesInfo = [];
+            if(modules.code !== 1){
+                res.redirect("/login");
+                return;
+            }
             modules.dat.apps.forEach(function (appInfo) {
                 if(modulesInfo.indexOf(appInfo.groupName) === -1){
                     modulesInfo.push(appInfo.groupName);
@@ -39,12 +42,12 @@ var home = function(req, res, next) {
                     var meetingDay = data.startTime.split(" ")[0];
                     calendarList[meetingDay] = "会议召开";
                 });
-                JADE_VAR.mark = JSON.stringify({"2017-12-19":"会议召开"});
+                JADE_VAR.mark = JSON.stringify({"2018-01-19":"会议召开"});
             }else{
-                JADE_VAR.mark = JSON.stringify({"2017-12-19":"会议召开"});
+                JADE_VAR.mark = JSON.stringify({"2018-01-19":"会议召开"});
             }
             //将权限信息写入session
-            req.session.accessManage = JSON.stringify(modules.dat.apps);
+            // req.session.accessManage = JSON.stringify(modules.dat.apps);
             //人物头像
             res.cookie('headIcon',req.session.user.headIcon);
             res.cookie("headName",req.session.user.userName);
@@ -53,10 +56,10 @@ var home = function(req, res, next) {
             JADE_VAR.message = results;
             res.render('error/error', JADE_VAR);
         }
-    }, function (error, err) {
+    }).catch(function(error){
         JADE_VAR.messagae = err;
         res.render('error/error', JADE_VAR);
-    });
+    })
 };
 
 var add_application = function(req, res, next) {

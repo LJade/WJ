@@ -1,12 +1,79 @@
+//清空localstorage
 $(".diskFileName").on('click',function (e) {
-    var pkey = $(this).attr("data-key");
+    var key = $(this).attr("data-key");
     var isDir = $(this).attr("data-isDir");
+    var type = $("#type").val();
+    var pkey = $(this).attr("data-pkey");
+    var dirname = $(this).attr("data-dirName");
+    var curPath = $("#curPath").text();
+    //根据type加载不同的网盘
+    var netdiskUrl = '/netdisk/company_disk?pkey=';
+    if(type === '2'){
+        netdiskUrl = '/netdisk/company_disk_parson?pkey='
+    }
+
+    var pathInfo = window.sessionStorage.getItem("pathInfo");
+    if(!pathInfo){
+        pathInfo = {}
+    }else{
+        pathInfo = JSON.parse(pathInfo);
+    }
+    pathInfo[key] = {};
+    pathInfo[key].pkey = pkey;
+    pathInfo[key].name = dirname;
+    pathInfo[key].curPath = curPath + "/" + dirname;
+
+    window.sessionStorage.setItem("pathInfo",JSON.stringify(pathInfo));
+
     if(parseInt(isDir) === 1){
-        window.location.href = '/netdisk/company_disk?pkey='+pkey
+        window.location.href = netdiskUrl+key;
     }else{
         layerAlert("点击查看文件详情",'ok');
     }
 });
+
+function initCurPath(){
+    var key = $("#pkey").val();
+    var pathInfo = window.sessionStorage.getItem("pathInfo");
+    if(!pathInfo){
+        pathInfo = {};
+        pathInfo[key] = {
+            pkey:"0",
+            name:"",
+            curPath:""
+        };
+        window.sessionStorage.setItem("pathInfo",JSON.stringify(pathInfo));
+    }else{
+        pathInfo = JSON.parse(pathInfo);
+    }
+    //从pathInfo中直接提取基本信息
+    if(pathInfo[key]){
+        if(key !== "0"){
+            $("#curPath").text((pathInfo[pathInfo[key].pkey].curPath + "/" + pathInfo[key].name).replace("//","/"));
+        }else{
+            $("#curPath").text("/")
+        }
+    }
+}
+initCurPath();
+
+function backToTopLevel() {
+    var key = $('#pkey').val();
+    var pathInfo = window.sessionStorage.getItem("pathInfo");
+    var pkey = 0;
+    var type = $("#type").val();
+    var netdiskUrl = '/netdisk/company_disk?pkey=';
+    if(type === '2'){
+        netdiskUrl = '/netdisk/company_disk_parson?pkey='
+    }
+    if(!pathInfo){
+        window.location.href = netdiskUrl + pkey;
+        return
+    }else{
+        pathInfo = JSON.parse(pathInfo);
+        window.location.href = netdiskUrl + pathInfo[key].pkey;
+    }
+}
 
 function uploadFileToDisk() {
     var pkey = $("#pkey").val();
@@ -103,27 +170,16 @@ function createNewFolder(pkey) {
     }
 }
 
-
 function downloadFile(pkey) {
     $.get("/netdisk/download_file",{key:pkey},function (results) {
         if(results.code === 1){
-
-            // var voiceUrl = results.dat.url;
-            // var iframe  = document.createElement("iframe");
-            // document.body.appendChild(iframe);
-            // iframe.src = voiceUrl;
-            // iframe.style.display = "none";
             var a = document.createElement("a");
             a.download ="test.mp3";
             a.href = results.dat.url;
             a.click();
-            // 直接下载，用户体验好
-            // var a = $("#downloadA");
-            // a.attr("href",results.dat.url);
-            // a.attr("download",results.dat.name);
-            // a.click();
         }else{
             layerAlert("下载文件失败："+results.msg,"error");
         }
     },'json')
 }
+

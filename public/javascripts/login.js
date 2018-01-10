@@ -33,5 +33,10 @@ var qrLogin = function(){
     },2000);
 };
 
+if($("#errorMsg").length){
+    var errorMsg = $("#errorMsg").val();
+    layerAlert(errorMsg,"error");
+}
+
 qrLogin();
 
