@@ -98,17 +98,23 @@ var sms_send = function (req, res, next) {
 };
 
 var qrLogin = function (req, res, next) {
-    assert.apiRequest("get", "/user/qrlogin", req).then(function (results) {
+    assert.apiRequest("post", "/user/qrlogin", req).then(function (results) {
         var loginInfo = JSON.parse(results);
-        if(loginInfo.code == 1){
-            res.session.user = {
-                userName:req.params.account,
-                accessToken:loginInfo.dat.accessToken,
-                headIcon:loginInfo.dat.headIcon
+        if(loginInfo.code === 1){
+            console.log(loginInfo);
+            req.session.user = {
+                userName: loginInfo.dat.name ? loginInfo.dat.name : "未知",
+                accessToken: loginInfo.dat.accessToken,
+                headIcon: loginInfo.dat.headIcon ? loginInfo.dat.headIcon : "/images/avatar.png",
+                IMAccount:loginInfo.dat.imAccount,
+                IMPwd:loginInfo.dat.imPass,
+                roleType:loginInfo.dat.roleType
             };
+            res.send(results);
+        }else{
+            res.send(results);
         }
-        res.redirect("/")
-    })
+    });
 };
 
 var withoutLoginCodeSend = function (req, res, next) {

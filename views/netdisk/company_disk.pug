@@ -56,8 +56,8 @@ block main_content
                                 td  #{disk.uploadTime}
                                 td
                                     button.btn.btn-sm.btn-warning(onclick="deleteDiskFile('"+ disk.key +"')") 删除
-                                    button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="downloadFile('"+ disk.key +"');") 下载
-        a#downloadA(href="" download="")
+                                    if(disk.isDir !== 1)
+                                        button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="downloadFile('"+ disk.key +"');") 下载
 
     #newFolderDiv.newFolder(style="display:none;margin-top:20px;text-align:center;")
         label(for='newFolder') 文件夹名称：
