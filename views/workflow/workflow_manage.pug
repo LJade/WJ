@@ -27,7 +27,6 @@ block main_content
         .inline-group
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='searchSomething();') 查询
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick="window.location.href='/workflow/workflow_new'") 新建
-            button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 编辑
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("workflow","workflow")') 删除
     #inner-wrapper
         .content-list.section-block
@@ -52,8 +51,8 @@ block main_content
                                 td  #{flow.updateName}
                                 td  #{flow.sortNum}
                                 td
-                                    a.link(href='/workflow/workflow_new?flow_id='+flow.id) 编辑
-                                    a.link(style='margin-left:20px;' href='/workflow/workflow_config?id='+ flow.id) 流程配置
+                                    a.link(href='/workflow/workflow_new?flow_id='+flow.id +"&flow_name=" + flow.name + "&flow_sort=" + flow.sortNum  ) 编辑
+                                    a.link(style='margin-left:20px;' href='/workflow/workflow_config?id='+ flow.id ) 流程配置
         if(rowsCount > 10)
             #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 block script

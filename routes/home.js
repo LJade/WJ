@@ -13,8 +13,8 @@ var home = function(req, res, next) {
     var getModules = assert.apiRequest("get","/user/myapps",req);
     //awaitList返回的请求信息
     req.query.ifJurisdiction = req.session.user.roleType;
-    var nowDate = new Date();
-    req.query.date = nowDate.getFullYear() + "-" + nowDate.getMonth();
+    var nowDate = new Date().format('isoDate').substr(0,7);
+    req.query.date = nowDate;
     var getUserMeet = assert.apiRequest("get","/meeting/awaitList",req);
 
     //请求数据

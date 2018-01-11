@@ -76,6 +76,8 @@ block root
     input#flowID(type="hidden" value=flow_id)
     input#flowName(type="hidden" value=flow_name)
     input#curLine(type="hidden" value="solid")
+    input#headIconF(type="hidden" value=headIcon)
+    input#headNameF(type="hidden" value=headName)
     style.
         .modal-body::-webkit-scrollbar{
             display: none;
@@ -93,5 +95,8 @@ block script
         var flowID = #{flow_id};
         var flowID = $('#flowID').val();
         var flowName = $('#flowName').val();
+        $("#headIcon").attr("src",$('#headIconF').val());
+        $("#headName").text($('#headNameF').val());
+        $("#aside").attr("style","margin:0 0;");
     script(type="text/javascript" src=__JS_PATH__ + "/workflow/formDesign_my.js")
 

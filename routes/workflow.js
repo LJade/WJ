@@ -2,6 +2,9 @@
 var assert = require('./assert.js');
 
 var workflow_config = function(req, res, next) {
+    if(!req.session.user){
+        res.redirect("/login");
+    }
     var JADE_VAR = assert.getJADE();
     //获取所有人员列表
     var getWorkflowInfo = assert.apiRequest("get",'/flow/detail',req);
@@ -41,6 +44,9 @@ var workflow_config = function(req, res, next) {
                 processData.total = parseProcessData.length;
                 processData.list = parseProcessData;
                 JADE_VAR.processData = JSON.stringify(processData);
+                //细节处理
+                JADE_VAR.headIcon = req.session.user.headIcon;
+                JADE_VAR.headName = req.session.user.userName;
             }
             //渲染页面
             res.render('workflow/flowDesigner',JADE_VAR);
@@ -57,6 +63,9 @@ var workflow_config = function(req, res, next) {
 };
 
 var workflow_new = function (req, res, next) {
+    if(!req.session.user){
+        res.redirect("/login");
+    }
     var JADE_VAR = assert.getJADE();
     //判断是否是post
     var flow_id = req.query.flow_id;
@@ -85,8 +94,11 @@ var workflow_new = function (req, res, next) {
                 id:""
             }
         }else{
-            JADE_VAR.id = flow_id;
-            //TODO 获取流程定义信息
+            JADE_VAR.flowInfo = {
+                name:req.query.flow_name,
+                sortNum:req.query.flow_sort,
+                id:flow_id
+            }
         }
         res.render('workflow/workflow_new',JADE_VAR);
     }
@@ -133,6 +145,9 @@ var node_create = function (req,res,next) {
 };
 
 var workflow_manage = function(req, res, next) {
+    if(!req.session.user){
+        res.redirect("/login");
+    }
     var JADE_VAR = assert.getJADE();
     assert.apiRequest("get","/flow/list",req).then(function (results) {
         var flowsListInfo = JSON.parse(results);

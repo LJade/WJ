@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var debug = true;
+var debug = false;
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +27,7 @@ if(debug){
         req.session.user = {};
         res.cookie('headIcon',"http://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epqmKVPg9RrCTia56xA0mC2ia1t82IdOFib2G2fdXSA9l4Q7QdcqWv5Qc0RSSia2jZMiaCXHQVfGF2VzrQ/0");
         res.cookie("headName","哈哈哈");
-        req.session.user.accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIwIiwiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTU3NzY4NTgsImlhdCI6MTUxNTUxNzY1OH0.eKIstewbNWm5asGl6CFTanwo6xEyigwQWz_FJpZ-1PI';
+        req.session.user.accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiiaXNzIjoiV0pKVEoiLCJleHAiOjE1MTU5MzM1NTksImlhdCI6MTUxNTY3NDM1OX0.uZjE8UhniJsg6P-drn9t3GmnVMeXdKJwkrM-9B9LZKE';
         req.session.user.roleType = 1;
         next();
     });
