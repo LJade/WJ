@@ -60,7 +60,7 @@ block main_content
             .form-control.btn-wrapper
                 input#id.form-control(type='hidden' name='id' value=apiInfo.id)
                 button.btn.btn-default.btn-sm(type='submit') 保存
-                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+                button.btn.btn-disable.btn-sm(type='button' onclick="history.go(-1);" style='margin-left:20px') 取消
 block script
     script(type="text/javascript").
        $(".statusBtn").on('click',function (e) {

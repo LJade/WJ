@@ -38,7 +38,7 @@ block main_content
             .form-control.btn-wrapper
                 input#id.form-control(type='hidden' name='id' value=webInfo.id)
                 button.btn.btn-default.btn-sm(type='submit') #{edit ? '保存' : '添加'}
-                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+                button.btn.btn-disable.btn-sm(type='button' onclick="history.go(-1);" style='margin-left:20px') 取消
 
 
 

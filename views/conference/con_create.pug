@@ -61,7 +61,7 @@ block main_content
                 .form-control.btn-wrapper
                     input#meetingId(type="hidden" value=conferenceDetail.meetingId)
                     button#save_con.btn.btn-default.btn-sm(type='button') 发起会议
-                    button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+                    button.btn.btn-disable.btn-sm(type='button' onclick="history.go(-1);" style='margin-left:20px') 取消
     if(isEdit)
         #modal(style='display:none')
             +ContactBook

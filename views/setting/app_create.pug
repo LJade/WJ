@@ -32,7 +32,7 @@ block main_content
                 input#file.form-control(type='file' name='file')
             .form-control.btn-wrapper
                 button.btn.btn-default.btn-sm(type='button' onclick="uploadFileForm();") 添加
-                button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
+                button.btn.btn-disable.btn-sm(type='button' onclick="history.go(-1);" style='margin-left:20px') 取消
 block script
     script(type="text/javascript").
         function uploadFileForm() {

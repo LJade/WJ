@@ -85,7 +85,7 @@ block main_content
                 input#journalismId(type='hidden' value=journalismId)
                 .form-control.btn-wrapper
                     button#save_news.btn.btn-default.btn-sm(type='button') 发布
-                    button.btn.btn-default.btn-sm(type='button' style='margin-left:20px') 取消
+                    button.btn.btn-default.btn-sm(type='button' onclick="history.go(-1);" style='margin-left:20px') 取消
     #modal(style='display:none')
         +ContactBook
 block script
