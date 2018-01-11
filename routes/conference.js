@@ -37,6 +37,8 @@ var con_approve = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_approve',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -59,6 +61,8 @@ var con_approve_detail = function (req, res, next) {
         }else{
             res.render("error/error",{message:approveInfoRes.msg});
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 };
 
@@ -93,6 +97,8 @@ var con_create = function(req, res, next) {
         JADE_VAR.isEdit = true;
         JADE_VAR.meetingId = "";
         res.render('conference/con_create',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 
 };
@@ -120,6 +126,8 @@ var con_history = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_history',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -146,6 +154,8 @@ var con_summary = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_summary',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -166,6 +176,8 @@ var con_summary_detail = function(req, res, next) {
             JADE_VAR.confercenceTotal = 0;
         }
         res.render('conference/con_summary_detail',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 
 };
@@ -189,6 +201,8 @@ var con_sign = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_sign',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 
 };
@@ -217,6 +231,8 @@ var con_apply = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_apply',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 

@@ -9,13 +9,15 @@ $text-gray:#999999;
 $text-vice:#666666;
 $white-color:#ffffff;
 $yellow-color:#f8b551;
+$font-weight:400;
 
 /*base setting*/
 html{
   height: 100%;
 }
 body {
-  font: 14px "微软雅黑", Helvetica, Arial, sans-serif;
+  font: 14px "Microsoft Yahei";
+  font-weight: $font-weight !important;
   height: 100%;
   color:$text-color;
 }
@@ -31,13 +33,13 @@ ul li{
 a{
   color: $text-color;
   text-decoration: none;
-  font-weight: 200;
+  font-weight: $font-weight;
   &:hover,&:active,&:focus{
     text-decoration: none!important;
   }
 }
 label{
-  font-weight: 200;
+  font-weight: $font-weight;
 }
 textarea{
   resize: none;

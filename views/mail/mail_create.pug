@@ -5,43 +5,47 @@ block style
     link(rel='stylesheet', href=__CSS_PATH__ + '/news.css')
 block aside_content
     include ../components/mixin
-    -var routerObj = [{link:'#',text:'发送邮件'},{link:'/mail/mail_send',text:'已发邮件'},{link:'/mail_receive',text:'已收邮件'}]
+    -var routerObj = [{link:'#',text:'发送邮件'},{link:'/mail/mail_send',text:'已发邮件'},{link:'/mail/mail_receive',text:'已收邮件'}]
     +asideNav(routerObj,0)
 block main_content
     include ../components/mixin
     include ../components/contact
     +RouteNav('发送邮件')
     #inner-wrapper
-        .news-create
+        form#mailSave.news-create
             .form-control
                 label.control-label(for='approver') 接收人:
-                input#approver.form-control(type='text' readonly placeholder='请选择')
+                input#approver.form-control(type='text' name="receivedUserIdList" readonly placeholder='请选择')
                 if(isEdit)
                     i.icon.icon-add#addUser
             .form-control
                 label.control-label(for='title') 标题:
-                input#title.form-control(type='text' value=mailDetail.title)
+                input#title.form-control(type='text' name="title" value=mailDetail.title)
             .form-control
                 label.control-label(for='creator') 发送人:
-                input#creator.form-control(type='text' value=mailDetail.sendName)
-            .form-control
-                label.control-label(for='date') 发布日期:
-                input#date.form-control(type='text' value=mailDetail.sendTime)
+                input#creator.form-control(type='text' name="sendName" value=mailDetail.sendName)
+            if(!isEdit)
+                .form-control
+                    label.control-label(for='date') 发布日期:
+                    input#date.form-control(type='text' name="sendTime" value=mailDetail.sendTime)
             .form-control
                 label.control-label(for='detail') 发布内容:
-                textarea#detail.form-control(rows=10 ) #{mailDetail.content}
+                textarea#detail.form-control(rows=10 name="content") #{mailDetail.content}
             if(isEdit)
+                .fileDIv
+                    .form-control.fileUpload
+                        label.control-label(for='file') 上传附件:
+                        input.form-control(type='file' name="fileList[0]")
                 .form-control
-                    label.control-label(for='file') 上传附件:
-                    input#file.form-control(type='file')
-                    p 可以支持多个附件上传，附件总大小为20
+                    label.control-label 增加附件:
+                    button.btn.btn-disable.btn-sm(type="button" onclick="addFiles();") +
+                    span(style="color:#999999;font-size:10px;margin-left:20px;margin-top:6px;") 可以支持多个附件上传，附件总大小为20
                 .form-control.btn-wrapper
                     input#sendMailId(type="hidden" value=sendMailId)
-                    button#send_mail.btn.btn-default.btn-sm(type='button') 发送
+                    button#send_mail.btn.btn-default.btn-sm(type='button' onclick="sendMail()") 发送
                     button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
-    if(isEdit)
-        #modal(style='display:none')
-            +ContactBook
+    #modal(style='display:none')
+        +ContactBook
 block script
     script(src=__JS_PATH__ + "/mail.js" type="text/javascript")
 

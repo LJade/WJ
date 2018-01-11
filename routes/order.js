@@ -26,28 +26,16 @@ var order_approve = function(req, res, next) {
         delete req.query.date;
     }
     assert.apiRequest("get",'/workOrderApply/myApproveList',req).then(function (results) {
-        JADE_VAR.orders = JSON.parse(results).dat.details;
-        JADE_VAR.rowsCount = JSON.parse(results).dat.rowsCount;
-        if(JADE_VAR.orders.length === 0){
-            JADE_VAR.orders = [{
-                "workOrderApplyId": "98",
-                "indexNumber": "312",
-                "publicName": "芦苇",
-                "informationType": "请假",
-                "informationName": "我的病假申请",
-                "departmentId": "1,2",
-                "businessCreateTime": "2017-11-13",
-                "takeEffectTime": "2017-11-14",
-                "abolishTime": "2017-11-15",
-                "flowApproveUserId": "5",
-                "content": "我生病了，要请假呀",
-                "approveStatus": "1",
-                "userId": null,
-                "departmentList": null
-            }];
-            JADE_VAR.rowsCount = 1;
+        var orderRes = JSON.parse(results);
+        if(orderRes.code === 1){
+            JADE_VAR.orders = JSON.parse(results).dat.details;
+            JADE_VAR.rowsCount = JSON.parse(results).dat.rowsCount;
+            res.render('workOrder/order_approve',JADE_VAR);
+        }else{
+            res.render("error/error",{message:orderRes.msg});
         }
-        res.render('workOrder/order_approve',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 
 };
@@ -62,6 +50,8 @@ var order_mine = function(req, res, next) {
         JADE_VAR.orders = JSON.parse(results).dat.details;
         JADE_VAR.rowsCount = JSON.parse(results).dat.rowsCount;
         res.render('workOrder/order_mine',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -79,14 +69,26 @@ var approve_detail = function(req, res, next) {
         }else{
             res.render("error/error",{message:approveInfoRes.msg});
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 
 };
 
 var save_order = function (req, res, next) {
-    assert.apiRequest('post','/workOrderApply/save',req).then(function (results) {
-        res.send(results);
-    })
+    if(req.body.workOrderApplyId){
+        assert.apiRequest('post','/workOrderApply/update',req).then(function (results) {
+            res.send(results);
+        }).catch(function (error) {
+            assert.processError(error,res);
+        })
+    }else{
+        assert.apiRequest('post','/workOrderApply/save',req).then(function (results) {
+            res.send(results);
+        }).catch(function (error) {
+            assert.processError(error,res);
+        })
+    }
 };
 
 var order_delete = function (req, res, next) {
@@ -95,6 +97,8 @@ var order_delete = function (req, res, next) {
     assert.apiRequest('post','/workOrderApply/delete',req).then(function (results) {
         console.log(results);
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -118,10 +122,13 @@ var order_detail = function (req, res, next) {
             JADE_VAR.allUsers = allUsers.dat.list;
             JADE_VAR.depAll = assert.makeZTreeData([allUsers.dat.tree],[]);
             JADE_VAR.isEdit = isEdit;
+            JADE_VAR.workOrderApplyId = orderInfo.dat.workOrderApplyId;
             res.render('workOrder/order_create', JADE_VAR);
         } else {
-            res.render('error/error', JADE_VAR);
+            res.render('error/error', {message:orderInfo.msg});
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 

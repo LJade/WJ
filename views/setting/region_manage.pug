@@ -31,40 +31,11 @@ block main_content
                         td  线
                         td  面
                 tbody
-                    tr
-                        td.link  交通局
-                        td  某某某区域
-                        td  某某某点
-                        td  某某某线
-                        td  某某某面
-                    tr
-                        td.link  交通局
-                        td  某某某区域
-                        td  某某某点
-                        td  某某某线
-                        td  某某某面
-                    tr
-                        td.link  交通局
-                        td  某某某区域
-                        td  某某某点
-                        td  某某某线
-                        td  某某某面
-                    tr
-                        td.link  交通局
-                        td  某某某区域
-                        td  某某某点
-                        td  某某某线
-                        td  某某某面
-
-                    tr
-                        td.link  交通局
-                        td  某某某区域
-                        td  某某某点
-                        td  某某某线
-                        td  某某某面
-                    tr
-                        td.link  交通局
-                        td  某某某区域
-                        td  某某某点
-                        td  某某某线
-                        td  某某某面
+                    if(regionList.length)
+                        each region in regionList
+                            tr
+                                td.link  #{region.dept}
+                                td  #{region.area}
+                                td  #{region.point}
+                                td  #{region.line}
+                                td  #{region.plane}

@@ -1,14 +1,23 @@
 extends ../components/layout
 block content
   h1#error  #{message}
+  if(redirect)
+    input#redirect(type="hidden" value=redirect)
 block script
   script(type="text/javascript").
-    setTimeout(function () {
-      if(document.getElementById('error').innerText === '未登录'){
-        var redirect = document.referrer;
-        window.location.href = '/login?redirect='+redirect;
-      }else{
-        window.history.go(-1);
-        window.reload();
-      }
-    },2000);
+
+    if(!document.getElementById("redirect")){
+      setTimeout(function () {
+        if (document.getElementById('error').innerText === '未登录') {
+          var redirect = document.referrer;
+          window.location.href = '/login?redirect=' + redirect;
+        } else {
+          window.history.go(-1);
+          window.reload();
+        }
+      }, 2000);
+    }else{
+      setTimeout(function () {
+          window.location.href = document.getElementById("redirect").value;
+      }, 2000);
+    }

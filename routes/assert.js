@@ -22,6 +22,21 @@ var getArrPost = function (req, key) {
     return req
 };
 
+var getFileArrPost = function (info, key) {
+    if(typeof info[key] === 'string'){
+        info[key + "[0]"] = info[key];
+    }else{
+        if(typeof info[key] === 'object'){
+            info[key].forEach(function (id,index) {
+                info[key + "["+ index +"]"] = id
+            });
+        }
+    }
+    delete info[key];
+    return info
+};
+
+
 var modulesIcon = {
     news:"news.png",
     mail:"mail.png",
@@ -656,7 +671,52 @@ function formatNum(str){
 
 var processError = function (error,res) {
     console.log(error);
-    res.render("error/error",{message:"网络异常,请登录重试"});
+    res.render("error/error",{message:"网络异常,请登录重试",redirect:"/login"});
+};
+
+var getLookUpPersonIds = function (userList) {
+    var ids = "";
+    if(userList){
+        var idArr = [];
+        if(userList.length > 0){
+            userList.forEach(function (data) {
+                idArr.push(data.id)
+            });
+            ids = String(idArr);
+        }
+    }
+    return ids;
+};
+
+var fileUpload = function (sessionId,file) {
+    var formData = {};
+    formData.file  = {
+        value:fs.createReadStream(file.path),
+        options:{
+            filename:file.name,
+            contentType:file.type
+        }
+    };
+    var options = {
+        method:"post",
+        formData:formData,
+        headers:{'WJ-AUTH': sessionId},
+        url:API_HOST + "/file/upload"
+    };
+    console.log(options);
+    return new Promise(
+        function(resolve,reject){
+            request( options ,function(error,response,body){
+                console.log(body);
+                if(error){
+                    console.log(error);
+                    reject('{"msg": '+ error +',"code": 0,"dat": "null"}')
+                }else{
+                    resolve(body);
+                }
+            });
+        }
+    );
 };
 
 module.exports = {
@@ -678,5 +738,8 @@ module.exports = {
     apiRequestWithFiles:apiRequestWithFiles,
     API_HOST:API_HOST,
     formatNum:formatNum,
-    processError:processError
+    processError:processError,
+    getLookUpPersonIds:getLookUpPersonIds,
+    getFileArrPost:getFileArrPost,
+    fileUpload:fileUpload
 };

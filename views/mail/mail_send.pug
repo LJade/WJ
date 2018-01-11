@@ -43,7 +43,6 @@ block main_content
                                 td  #{mail.sendName}
                                 td
                                     a.link(href='/mail/mail_detail?edit=false&sendMailId='+ mail.sendMailId) 查看
-                                    a.link(style='margin-left:20px;' href='/mail/mail_detail?edit=true&sendMailId=' + mail.sendMailId) 编辑
         if(rowsCount > 10)
             #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 block script

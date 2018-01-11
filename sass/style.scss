@@ -21,7 +21,7 @@
       line-height: 60px;
       display: block;
       padding: 0 15px;
-      font-weight: 400;
+      font-weight: $font-weight;
       color: $text-color;
       border-bottom: 2px solid transparent;
       i{
@@ -165,7 +165,7 @@
       h3{
         float:left ;
         font-size: 14px;
-        font-weight: 300;
+        font-weight:$font-weight;
         line-height: 40px;
       }
       a.more{
@@ -213,7 +213,7 @@
   line-height: 45px;
   font-size: 14px;
   color: #666;
-  font-weight: 200;
+  font-weight: $font-weight;
 }
 
 /* inner two column style*/
@@ -312,10 +312,10 @@ input[type='checkbox']{
     line-height: 2.5;
     font-size: 16px;
     border-collapse: collapse;
-    font-weight: 200;
+    font-weight: $font-weight;
     border-color: $border-color;
     >thead{
-      font-weight: 400;
+      font-weight: $font-weight;
       color: #afafaf;
       border-bottom: 1px solid $border-color;
     }
@@ -330,7 +330,7 @@ input[type='checkbox']{
          height: 200px;
         }
         &.em{
-          font-weight: 400;
+          font-weight: $font-weight;
         }
         &.fixed-width{
           width: 120px;
@@ -530,7 +530,7 @@ input[type='checkbox']{
       line-height: 2.2;
       padding-left: 20px;
       letter-spacing: 1px;
-      font-weight: 200;
+      font-weight: $font-weight;
     }
   }
   .user-wrapper{
@@ -622,7 +622,7 @@ input[type='checkbox']{
   .contact-header{
     .title{
       font-size: 18px;
-      font-weight: 400;
+      font-weight: $font-weight;
       text-align: center;
       margin-bottom: 25px;
     }

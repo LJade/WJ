@@ -13,8 +13,7 @@ var doCreateNews = function () {
     }
     // 开始提交
     var journalismId = $('#journalismId');
-    console.log(journalismId.val() !== '');
-    if(journalismId.val() !== ''){
+    if(journalismId && journalismId.val() !== ''){
         data.journalismId = journalismId.val();
     }
     $.ajax({
@@ -26,7 +25,11 @@ var doCreateNews = function () {
         success:function (data) {
             if(data.code == 1){
                 layerAlert("发布成功");
-                window.location.href = '/news/news_list';
+                if(journalismId && journalismId.val() !== ''){
+                    window.location.href = '/news/news_manage';
+                }else{
+                    window.location.href = '/news/news_list';
+                }
             }},
         error:function (err) {
             console.log(err);

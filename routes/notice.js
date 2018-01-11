@@ -43,16 +43,10 @@ var notice_create = function(req, res, next) {
             if (noticeDetailInfo.code === 1) {
                 JADE_VAR.noticeDetail = noticeDetailInfo.dat;
                 JADE_VAR.announcementId = req.query.announcementId;
-                JADE_VAR.lookUpPersonIds = noticeDetailInfo.dat.announcementLookUpPersonId  === null ? '' : noticeDetailInfo.dat.announcementLookUpPersonId;
+                JADE_VAR.lookUpPersonIds = assert.getLookUpPersonIds(noticeDetailInfo.dat.userList);
             } else {
-                JADE_VAR.noticeDetail = {
-                    title: "",
-                    publicName: "",
-                    publicTime: "",
-                    userlist: "",
-                    content: ''
-                };
-                JADE_VAR.announcementId = "";
+                res.render("error/error",{message:noticeDetailInfo.msg});
+                return;
             }
             var allUsers = JSON.parse(results[1]);
             JADE_VAR.allUsers = allUsers.dat.list;
@@ -75,6 +69,7 @@ var notice_create = function(req, res, next) {
                 userList: "",
                 content: ''
             };
+            JADE_VAR.lookUpPersonIds = "";
             JADE_VAR.announcementId = "";
             JADE_VAR.isEdit = true;
             res.render('notice/notice_create', JADE_VAR);
@@ -157,13 +152,21 @@ var notice_approve = function(req, res, next) {
 
 var notice_save = function (req, res, next) {
     req = assert.getArrPost(req,'lookUpPersonId');
-    assert.apiRequest('post','/announcement/save',req).then(function (results) {
-        res.send(results);
-    });
+    req = assert.getArrPost(req,'announcementIdList');
+    if(!req.body.announcementId || req.body.announcementId === ""){
+        delete req.body.announcementId;
+        assert.apiRequest('post','/announcement/save',req).then(function (results) {
+            res.send(results);
+        });
+    }else{
+        assert.apiRequest('post','/announcement/update',req).then(function (results) {
+            res.send(results);
+        });
+    }
+
 };
 
 var notice_delete = function (req, res, next) {
-    req = assert.getArrPost(req,'announcementIdList');
     assert.apiRequest('post','/announcement/delete',req).then(function (results) {
         res.send(results);
     });

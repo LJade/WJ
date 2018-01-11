@@ -18,7 +18,7 @@ block main_content
     include ../components/mixin
     -var menuObj = [{link:'/setting/organization_manage',text:'平台自身管理'},{link:'/setting/contact_manage',text:'对接系统管理'},{link:'/setting/app_manage',text:'第三方应用系统管理'},{link:'/setting/data_service',text:'数据服务管理'}]
     +menuLink(menuObj,3)
-    -var navObj = [{link:'/setting/data_service',text:'数据服务'},{link:'/setting/data_service_config',text:'接口权限配置'}]
+    -var navObj = [{link:'/setting/data_service',text:'数据服务'}]
     +menuNav(navObj,0)
     +RouteNav('数据服务')
     #inner-wrapper
@@ -47,7 +47,6 @@ block main_content
                                 td  #{api.descText}
                                 td
                                     a.link(href='/setting/data_service_config?edit=true&id=' + api.id) 接口权限配置
-                                    a.link.deleteAPI(href='javascript:void(0);' data-id=api.id style='margin-left:20px;') 删除
         if(rowsCount > 10)
             #pageInfo.pager(style="text-align:center" data-count=rowsCount)
 block script

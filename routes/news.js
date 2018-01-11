@@ -21,7 +21,9 @@ var news_list = function (req, res, next) {
             JADE_VAR.totalPage = newsList.dat.totalPage;
         }
         res.render('news/news_list', JADE_VAR);
-    })
+    }).catch(function (error) {
+        assert.processError(error,res);
+    });
 
 };
 
@@ -43,7 +45,9 @@ var news_manage = function (req, res, next) {
             JADE_VAR.totalPage = newsList.dat.totalPage;
         }
         res.render('news/news_manage', JADE_VAR);
-    })
+    }).catch(function (error) {
+        assert.processError(error,res);
+    });
 };
 
 var news_create = function (req, res, next) {
@@ -70,6 +74,8 @@ var news_create = function (req, res, next) {
         res.render('news/news_create', JADE_VAR);
     },function (err,error) {
         console.log(err,error);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -102,7 +108,7 @@ var news_detail = function (req, res, next) {
             if(newsInfo.code == 1) {
                 JADE_VAR.newsInfo = newsInfo.dat;
                 JADE_VAR.journalismId = req.query.journalismId;
-                JADE_VAR.lookUpPersonIds = String(newsInfo.dat.lookUpPersonId  === null ? '' : newsInfo.dat.lookUpPersonId);
+                JADE_VAR.lookUpPersonIds = assert.getLookUpPersonIds(newsInfo.dat.userList);
                 JADE_VAR.isRead = false;
                 JADE_VAR.isEdit = isEdit;
                 res.render('news/news_create', JADE_VAR);
@@ -112,6 +118,8 @@ var news_detail = function (req, res, next) {
         }else{
             res.render('error/error',{message:"获取新闻详情错误"});
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -153,6 +161,8 @@ var news_approve = function (req, res, next) {
             JADE_VAR.totalPage = 0;
         }
         res.render('news/news_approve', JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -170,7 +180,9 @@ var news_approveDetail = function (req, res, next) {
         }else{
             res.render("error/error",{message:approveInfoRes.msg});
         }
-    })
+    }).catch(function (error) {
+        assert.processError(error,res);
+    });
 
 };
 
@@ -187,7 +199,9 @@ var news_category = function (req, res, next) {
             JADE_VAR.totalPage = newsList.dat.totalPage;
         }
         res.render('news/news_category', JADE_VAR);
-    })
+    }).catch(function (error) {
+        assert.processError(error,res);
+    });
 };
 
 var save_news = function (req, res, next) {
@@ -197,10 +211,14 @@ var save_news = function (req, res, next) {
         //表示是修改
         assert.apiRequest('post','/journalism/update',req).then(function (results) {
             res.send(results);
+        }).catch(function (error) {
+            assert.processError(error,res);
         });
     }else{
         assert.apiRequest('post','/journalism/save',req).then(function (results) {
             res.send(results);
+        }).catch(function (error) {
+            assert.processError(error,res);
         });
     }
 
@@ -217,6 +235,8 @@ var category_delete = function (req, res, next) {
     req = assert.getArrPost(req,'journalismTypeIdList');
     assert.apiRequest('post','/journalism/typeDelete',req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -229,6 +249,8 @@ var category_create = function (req, res, next) {
 var category_save = function (req, res, next) {
     assert.apiRequest('post','/journalism/saveType',req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -245,12 +267,16 @@ var category_edit = function (req, res, next) {
             JADE_VAR.journalismTypeId = req.query.journalismTypeId
         }
         res.render('news/category_create',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
 var category_update = function (req, res, next) {
     assert.apiRequest('post','/journalism/typeUpdate',req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 

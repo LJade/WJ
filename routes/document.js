@@ -24,6 +24,8 @@ var docu_list = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('document/docu_list',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -40,8 +42,11 @@ var docu_create = function(req, res, next) {
             content: '',
             commonalityArticleId:''
         };
+        JADE_VAR.lookUpPersonIds = "";
         JADE_VAR.isEdit = true;
         res.render('document/docu_create', JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -56,7 +61,7 @@ var docu_manage = function(req, res, next) {
         delete req.query.date;
     }
     //加入权限判断
-    req.query.ifJurisdiction = req.session.user.ifJurisdiction;
+    req.query.ifJurisdiction = req.session.user.roleType;
     //获取list列表信息
     assert.apiRequest("get",'/commonalityArticle/manageList',req).then(function (results) {
         var documentListInfo = JSON.parse(results);
@@ -70,6 +75,8 @@ var docu_manage = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('document/docu_manage',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -136,6 +143,8 @@ var docu_approve = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('document/docu_approve',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -145,10 +154,14 @@ var docu_save = function (req, res ,next) {
     if(req.body.commonalityArticleId) {
         assert.apiRequest('post','/commonalityArticle/update',req).then(function (results) {
             res.send(results);
+        }).catch(function (error) {
+            assert.processError(error,res);
         });
     }else{
         assert.apiRequest('post','/commonalityArticle/save',req).then(function (results) {
             res.send(results);
+        }).catch(function (error) {
+            assert.processError(error,res);
         });
     }
 };
@@ -157,6 +170,8 @@ var docu_delete = function (req, res, next) {
     req = assert.getArrPost(req, 'CommonalityArticleIdList');
     assert.apiRequest('post','/commonalityArticle/delete',req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -176,7 +191,7 @@ var docu_detail = function (req, res, next) {
         if (documentInfo.code === 1) {
             JADE_VAR.documentDetail = documentInfo.dat;
             JADE_VAR.commonalityArticleId =documentInfo.dat.commonalityArticleId;
-            JADE_VAR.lookUpPersonIds = documentInfo.dat.commonalityArticleLookUpPersonId  === null ? '' : documentInfo.dat.commonalityArticleLookUpPersonId;
+            JADE_VAR.lookUpPersonIds = assert.getLookUpPersonIds(documentInfo.dat.userList);
             JADE_VAR.allUsers = allUsers.dat.list;
             JADE_VAR.depAll = assert.makeZTreeData([allUsers.dat.tree],[]);
             JADE_VAR.isEdit = isEdit;
@@ -184,6 +199,8 @@ var docu_detail = function (req, res, next) {
         } else {
             res.render('error/error', JADE_VAR);
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -202,6 +219,8 @@ var approve_detail = function (req, res, next) {
         }else{
             res.render("error/error",{message:approveInfoRes.msg});
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 
 };

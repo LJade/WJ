@@ -47,6 +47,7 @@ var company_disk = function (req, res, next) {
             });
             JADE_VAR.diskList = diskList;
             JADE_VAR.pKey = req.query.pkey;
+            JADE_VAR.authData = req.session.user.accessToken;
             res.render('netdisk/company_disk', JADE_VAR);
         } else {
             res.render("error/error", {message: diskRes.msg})
@@ -98,11 +99,6 @@ var company_disk_parson = function (req, res, next) {
             JADE_VAR.diskList = diskList;
             JADE_VAR.pKey = req.query.pkey;
             JADE_VAR.authData = req.session.user.accessToken;
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "X-Requested-With,WJ-AUTH");
-            res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-            res.header("X-Powered-By", ' 3.2.1');
-            next();
             res.render('netdisk/company_disk_parson', JADE_VAR);
         } else {
             res.render("error/error", {message: diskRes.msg})

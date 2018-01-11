@@ -24,7 +24,12 @@ var doCreateDocument = function () {
         success:function (data) {
             if(data.code == 1){
                 layerAlert("发布成功");
-                window.location.href = '/docu/docu_manage';
+                if(commonalityArticleId.length && commonalityArticleId.val() !== ''){
+                    window.location.href = '/docu/docu_manage';
+                }else{
+                    window.location.href = '/docu/docu_list';
+                }
+
             }},
         error:function (err) {
             window.location.reload();

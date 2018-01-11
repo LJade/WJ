@@ -10,6 +10,13 @@ var doCreateNotice = function () {
         layerAlert(checkInfo,'error');
         return;
     }
+    //获取消息ID
+    var announcementId = $("#announcementId");
+    if(announcementId.length){
+        data.announcementId = announcementId.val();
+    }else {
+        data.announcementId = "";
+    }
     //开始提交
     $.ajax({
         url:"/notice/notice_save",
@@ -19,8 +26,12 @@ var doCreateNotice = function () {
         dataType:'json',
         success:function (data) {
         if(data.code == 1){
-            layerAlert("发布公告成功");
-            window.location.href='/notice/notice_list';
+            layerAlert("操作成功");
+            if(announcementId.length){
+                window.location.href='/notice/notice_manage';
+            }else {
+                window.location.href='/notice/notice_list';
+            }
         }else{
             layerAlert(data.msg,'error');
         }},

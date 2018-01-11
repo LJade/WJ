@@ -23,24 +23,43 @@ block main_content
     +menuNav(navObj,0)
     +RouteNav('应用管理')
     #inner-wrapper
-        form.news-create(action='/setting/contact_save' method='post')
+        form#saveForm.news-create(action='/setting/app_save' method='post')
             .form-control
                 label.control-label(for='sysName') 应用名称:
                 input#sysName.form-control(type='text' name='name' value=appInfo.name)
             .form-control
-                label.control-label(for='source') 上传人:
-                input#source.form-control(type='text' name='uploaderName' value=appInfo.uploaderName)
-            .form-control
-                label.control-label(for='date') 上传时间:
-                input#date.form-control(type='text' name='uploadTime' value=appInfo.uploadTime)
-            .form-control
                 label.control-label(for='file') 程序上传:
                 input#file.form-control(type='file' name='file')
             .form-control.btn-wrapper
-                input#id.form-control(type='hidden' name='id' value=appInfo.id)
-                button.btn.btn-default.btn-sm(type='submit') #{edit ? '保存' : '添加'}
+                button.btn.btn-default.btn-sm(type='button' onclick="uploadFileForm();") 添加
                 button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
-
+block script
+    script(type="text/javascript").
+        function uploadFileForm() {
+            var form = new FormData(document.getElementById("saveForm"));
+            $.ajax({
+                url: "/setting/app_save",
+                type: "post",
+                data: form,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    var resObj = JSON.parse(data);
+                    console.log(data);
+                    if (resObj.code === 1) {
+                        layerAlert("添加成功", "ok");
+                        setTimeout(function () {
+                            window.location.href="/setting/app_manage";
+                        }, 1000)
+                    } else {
+                        layerAlert("添加失败：" + resObj.msg, "error");
+                    }
+                },
+                error: function (e) {
+                    layerAlert("网络错误，请稍后再试", "error");
+                }
+            });
+        }
 
 
 

@@ -22,12 +22,6 @@ block main_content
         .aside-wrapper
             .message-nav.active
                 .intro
-                    .avatar-wrapper
-                        img(src=__IMAGES_PATH__ + '/avatar.png')
-                    .name 沈慧云
-                .time 21:09
-            .message-nav
-                .intro
                     .icon-wrapper.notice
                         i.icon.icon-sound
                     .name 通知
@@ -38,30 +32,7 @@ block main_content
                         i.icon.icon-envelope
                     .name 公告
                 .time 20:59
-        .dialog-wrapper.imList(style="display:none")
-            .dialog-content()
-                .dialog-time 15:30
-                .dialog-item.left
-                    .avatar-wrapper
-                        img(src=__IMAGES_PATH__ + '/avatar.png')
-                    .content-text 吃饭了吗，在吗。老铁？
-                .dialog-item.left
-                    .avatar-wrapper
-                        img(src=__IMAGES_PATH__ + '/avatar.png')
-                    .content-text 最近天气挺冷的呀，我都穿秋裤了，昨天买了羽绒服，哦，太棒！
-                .dialog-item.right
-                    .avatar-wrapper
-                        img(src=__IMAGES_PATH__ + '/avatar.png')
-                    .content-text 你这个二狗子
-                .dialog-item.right
-                    .avatar-wrapper
-                        img(src=__IMAGES_PATH__ + '/avatar.png')
-                    .content-text 秋裤是什么，你这么胖还需要秋裤，脂肪不是可以保暖吗？哈哈哈哈 死胖子
-            .dialog-bottom
-                .text-wrapper
-                    textarea
-                .send-wrapper 发送
-        .dialog-wrapper.newsList(style="display:none;")
+        .dialog-wrapper.newsList
             div.section-block(style="min-height:600px;")
                 table.table.table-bordered
                     thead
@@ -76,7 +47,7 @@ block main_content
                                     td  #{news.title}
                                     td  #{news.publicName}
                                     td  #{news.publicTime}
-        .dialog-wrapper.noticeList(style="display:block;")
+        .dialog-wrapper.noticeList(style="display:none;")
             div.section-block(style="min-height:600px;")
                 table.table.table-bordered
                     thead

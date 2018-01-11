@@ -1,6 +1,13 @@
+var formidable = require("formidable");
 var assert = require('./assert.js');
+var request = require('request');
+var fs = require("fs");
 
 var app_create = function (req, res, next) {
+    if(!req.session.user){
+        res.redirect("/login");
+        return;
+    }
     var JADE_VAR = assert.getJADE();
     JADE_VAR.appInfo = {
         "id": "",
@@ -14,7 +21,33 @@ var app_create = function (req, res, next) {
 
 var region_manage = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    res.render('setting/region_manage', JADE_VAR);
+    assert.apiRequest("get","/common/region",req).then(function (resutls) {
+        resutls = JSON.stringify({
+            "msg": "请求成功",
+            "code": 1,
+            "dat":
+                [
+                    {
+                        "id": 1,
+                        "dept": "吴江交通局",
+                        "area": "吴江区",
+                        "point": "中心点",
+                        "line": "一线",
+                        "plane": "总体面"
+                    }
+                ]
+        });
+        var regionRes = JSON.parse(resutls);
+        if(regionRes.code === 1){
+            JADE_VAR.regionList = regionRes.dat;
+            res.render('setting/region_manage', JADE_VAR);
+        }else{
+            res.render('error/error', {message:regionRes.msg});
+        }
+    }).catch(function (error) {
+        assert.processError(error,res);
+    });
+
 };
 
 var organization_manage = function (req, res, next) {
@@ -631,6 +664,74 @@ var approve_send = function (req, res, next) {
     })
 };
 
+var app_exeUpload = function (req, res, next) {
+    if(!req.session.user){
+        res.send(JSON.stringify({code:-1,msg:"登陆信息获取失败"}));
+        return;
+    }
+    var sessionId = req.session.user.accessToken;
+    //获取请求上传的文件
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+        var formData = fields;
+        formData.file = {
+            value:fs.createReadStream(files.file.path),
+            options:{
+                filename:files.file.name,
+                contentType:files.file.type
+            }
+        };
+        console.log(formData);
+        request.post({
+            url: assert.API_HOST + "/clientExe/upload",
+            headers: {'WJ-AUTH': sessionId},
+            formData: formData
+        }, function optionalCallback(err, httpResponse, body) {
+            if (err) {
+                res.send(JSON.stringify({code:-1,msg:String(err)}))
+            }else{
+                res.send(body);
+            }
+        });
+    });
+};
+
+var app_save = function (req, res, next) {
+    if(!req.session.user){
+        res.send(JSON.stringify({code:-1,msg:"登陆信息获取失败"}));
+        return;
+    }
+    var sessionId = req.session.user.accessToken;
+    //获取请求上传的文件
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+        var formData = fields;
+        formData.file = {
+            value:fs.createReadStream(files.file.path),
+            options:{
+                filename:files.file.name,
+                contentType:files.file.type
+            }
+        };
+        console.log(formData);
+        request.post({
+            url: assert.API_HOST + "/clientExe/save",
+            headers: {'WJ-AUTH': sessionId},
+            formData: formData
+        }, function optionalCallback(err, httpResponse, body) {
+            if (err) {
+                res.render("error/error",{message:String(err),redirect:"/setting/app_manage"})
+            }else{
+                if (err) {
+                    res.send(JSON.stringify({code:-1,msg:String(err)}))
+                }else{
+                    res.send(body);
+                }
+            }
+        });
+    });
+}
+
 module.exports = {
     app_create: app_create,
     region_manage: region_manage,
@@ -663,5 +764,7 @@ module.exports = {
     data_service_save: data_service_save,
     log_delete:log_delete,
     contact_config_save:contact_config_save,
-    approve_send:approve_send
+    approve_send:approve_send,
+    app_exeUpload:app_exeUpload,
+    app_save:app_save
 };

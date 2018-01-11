@@ -57,8 +57,7 @@ var home = function(req, res, next) {
             res.render('error/error', JADE_VAR);
         }
     }).catch(function(error){
-        JADE_VAR.messagae = err;
-        res.render('error/error', JADE_VAR);
+        assert.processError(error,res);
     })
 };
 

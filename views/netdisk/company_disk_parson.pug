@@ -32,6 +32,7 @@ block main_content
         input#uploadFile(type="file" style="display:none" name="file")
         input#pkey(type="hidden" name="pkey" value=String(pKey))
         input#type(type="hidden" name="type" value="2")
+        input#token(type="hidden" name="token" value=authData)
     #inner-wrapper
         .content-list.section-block
             span(style="color:#999999;margin:10px;") 当前文档路径 :

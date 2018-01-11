@@ -31,13 +31,14 @@ block main_content
                     input#date.form-control(type='text' value=noticeDetail.publicTime)
                 .form-control
                     label.control-label(for='lookUpPersonId') 查阅人员:
-                    input#approver.form-control(type='text' readonly value=noticeDetail.userlist)
+                    input#approver.form-control(type='text' readonly value="")
                     if(isEdit)
                         i.icon.icon-add#addUser
                 .form-control
                     label.control-label(for='content') 发布内容:
                     textarea#content.form-control(rows=10) #{noticeDetail.content}
-                input(type="hidden" name="announcementId" value=announcementId)
+                if(announcementId)
+                    input#announcementId(type="hidden" name="announcementId" value=announcementId)
             else
                 .form-control
                     label.control-label(for='title') 标题:

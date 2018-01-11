@@ -29,9 +29,12 @@ block main_content
                         each app in apps
                             li
                                 a(href="#" data-id=app.clientKey)
-                                    .img-wrapper
-                                        img(style="width:60px;" src=app.icon)
-                                    span #{app.name}
+                                    .img-wrapper(style="width:100px;margin-top:10px;")
+                                        if(app.icon === "default")
+                                            img(style="width:60px;" src=__IMAGES_PATH__ + "/nav.png")
+                                        else
+                                            img(style="width:60px;" src=app.icon)
+                                        span #{app.name}
 
 
 

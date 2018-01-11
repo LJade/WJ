@@ -14,6 +14,10 @@ var doCreateOrder = function () {
         layerAlert(checkInfo,'error');
         return;
     }
+    var workOrderApplyId = $("#workOrderApplyId");
+    if(workOrderApplyId.length && workOrderApplyId.val() !== ""){
+        data.workOrderApplyId = workOrderApplyId.val();
+    }
     // 开始提交
     $.ajax({
         url:"/order/save_order",

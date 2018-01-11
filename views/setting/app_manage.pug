@@ -29,6 +29,9 @@ block main_content
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='deleteSomething("app","app")') 删除
             button.btn.btn-default.btn-sm(type='button' style='margin-left:20px' onclick='window.location.href="/setting/app_create"') 新建
             button.btn.btn-default.btn-sm(type='button' onclick='searchSomething();') 查询
+        form#exeFileUpload.hide
+            input#exeFile(type="file" style="display:none;" name="file" value)
+            input#id(type="hidden" name="id" value="")
     #inner-wrapper
         .content-list.section-block
             table.table.table-bordered
@@ -48,9 +51,49 @@ block main_content
                                 td
                                     input(type='checkbox' data-id=app.id)
                                 td.link  #{app.name}
-                                td  #{app.loginAccount}
-                                td  #{user.roleNames}
-                                td  #{user.deptNames}
-                                td  #{user.createTime}
+                                td  #{app.uploaderName}
+                                td  #{app.deptNames}
+                                td  #{app.uploadTime}
                                 td
-                                    a.link(href='/setting/user_edit?edit=true&userId=' + user.id) 编辑
+                                    button.link.btn.btn-default.btn-sm(onclick="uploadExeFile('"+app.id+"');") 上传程序
+block script
+    script(type="text/javascript").
+        function uploadExeFile(id) {
+            if(id){
+                $('#id').val(id);
+            }else{
+                layerAlert("获取上传ID失败","error");
+                return;
+            }
+            //开始上传逻辑,先选则文件
+            $("#exeFile").click();
+        }
+
+        $("#exeFile").on("change",function (e) {
+            var form = new FormData(document.getElementById('exeFileUpload'));
+            $.ajax({
+                url: "/setting/app_exeUpload",
+                type: "post",
+                data: form,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    var resObj = JSON.parse(data);
+                    console.log(data);
+                    if (resObj.code === 1) {
+                        layerAlert("上传文件成功", "ok");
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000)
+                    } else {
+                        layerAlert("上传文件失败：" + resObj.msg, "error");
+                        window.location.reload();
+                    }
+                },
+                error: function (e) {
+                    layerAlert("网络错误，请稍后再试", "error");
+                }
+            });
+        });
+
+

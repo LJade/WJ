@@ -64,6 +64,8 @@ module.exports = function (app) {
     app.post("/setting/contact_config_save",setting.contact_config_save);
     //统一的审批提交接口
     app.post("/setting/approveSend",setting.approve_send);
+    app.post("/setting/app_exeUpload",setting.app_exeUpload);
+    app.post("/setting/app_save",setting.app_save);
 
 
     /** 新闻相关路由*/

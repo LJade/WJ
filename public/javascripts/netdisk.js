@@ -28,7 +28,13 @@ $(".diskFileName").on('click',function (e) {
     if(parseInt(isDir) === 1){
         window.location.href = netdiskUrl+key;
     }else{
-        layerAlert("点击查看文件详情",'ok');
+        layui.use('layer', function() {
+            var $ = layui.jquery, layerIn = layui.layer;
+            layer.confirm("是否下载该文件?", {icon: 3, title:'提示'}, function(index){
+                downloadFile(key);
+                layerIn.close(index);
+            });
+        });
     }
 });
 
@@ -171,15 +177,15 @@ function createNewFolder(pkey) {
 }
 
 function downloadFile(pkey) {
-    $.get("/netdisk/download_file",{key:pkey},function (results) {
-        if(results.code === 1){
-            var a = document.createElement("a");
-            a.download ="test.mp3";
-            a.href = results.dat.url;
-            a.click();
-        }else{
-            layerAlert("下载文件失败："+results.msg,"error");
-        }
-    },'json')
+    var tokenInfo = $('#token').val();
+    if(!tokenInfo){
+        layerAlert("获取下载token失败","error");
+        return;
+    }
+    var host = "http://jtj.yewufeifei.com/web/netDisk/download";
+    var a = document.createElement("a");
+    a.download = pkey;
+    a.href = host + "?key="+pkey+"&token=" + tokenInfo ;
+    a.click();
 }
 

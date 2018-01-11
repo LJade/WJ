@@ -43,6 +43,7 @@ block main_content
                 textarea#detail.form-control(rows=10 ) #{orderDetail.content}
             if(isEdit)
                 .form-control.btn-wrapper
+                    input#workOrderApplyId.form-control(type='hidden' value=workOrderApplyId)
                     button#save_order.btn.btn-default.btn-sm(type='button') 发布
                     button.btn.btn-disable.btn-sm(type='button' style='margin-left:20px') 取消
 block script
