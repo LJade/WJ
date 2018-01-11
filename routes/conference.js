@@ -253,6 +253,8 @@ var con_room = function(req, res, next) {
         }else{
             res.render("error/error",{message:conferenceListInfo.msg})
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -278,6 +280,8 @@ var con_room_edit = function (req, res, next) {
         }else{
             res.render("error/error",{message:roomInfo.msg})
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -301,12 +305,16 @@ var con_room_resource = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('conference/con_room_resource',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
 var con_save = function (req, res, next) {
     assert.apiRequest('post','/meeting/saveMeeting',req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -314,6 +322,8 @@ var con_delete = function (req, res, next) {
     req = assert.getArrPost(req, 'meetingIdList');
     assert.apiRequest('post','/meeting/deleteMeeting',req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -360,6 +370,8 @@ var con_detail = function (req, res, next) {
         } else {
             res.render('error/error', JADE_VAR);
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -367,6 +379,8 @@ var con_room_delete = function (req, res, next) {
     req = assert.getArrPost(req, 'idList');
     assert.apiRequest('post','/meeting/deleteMeetingRoom',req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 }
 
@@ -375,10 +389,14 @@ var con_room_save = function (req,res,next) {
     if(roomID){
         assert.apiRequest('post','/meeting/updateMeetingRoom',req).then(function (results) {
             res.send(results);
+        }).catch(function (error) {
+            assert.processError(error,res);
         });
     }else{
         assert.apiRequest('post','/meeting/saveMeetingRoom',req).then(function (results) {
             res.send(results);
+        }).catch(function (error) {
+            assert.processError(error,res);
         });
     }
 
@@ -400,6 +418,8 @@ var con_room_detail = function (req, res, next) {
         }else{
             res.render("error/error",{message:roomInfo.msg})
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -416,6 +436,8 @@ var con_room_resource_save = function (req, res, next) {
         }else{
             res.render("error/error",{message:resOBj.msg});
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 };
 

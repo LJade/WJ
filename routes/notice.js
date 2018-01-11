@@ -24,6 +24,8 @@ var notice_list = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('notice/notice_list',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 
 };
@@ -57,6 +59,8 @@ var notice_create = function(req, res, next) {
                 JADE_VAR.isEdit = false;
             }
             res.render('notice/notice_create', JADE_VAR);
+        }).catch(function (error) {
+            assert.processError(error,res);
         });
     }else{
         assert.apiRequest("get",'/department/allDeptAndUser',req).then(function (results) {
@@ -73,6 +77,8 @@ var notice_create = function(req, res, next) {
             JADE_VAR.announcementId = "";
             JADE_VAR.isEdit = true;
             res.render('notice/notice_create', JADE_VAR);
+        }).catch(function (error) {
+            assert.processError(error,res);
         })
     }
 };
@@ -101,6 +107,8 @@ var notice_manage = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('notice/notice_manage',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -146,6 +154,8 @@ var notice_approve = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('notice/notice_approve',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 
 };
@@ -157,10 +167,14 @@ var notice_save = function (req, res, next) {
         delete req.body.announcementId;
         assert.apiRequest('post','/announcement/save',req).then(function (results) {
             res.send(results);
+        }).catch(function (error) {
+            assert.processError(error,res);
         });
     }else{
         assert.apiRequest('post','/announcement/update',req).then(function (results) {
             res.send(results);
+        }).catch(function (error) {
+            assert.processError(error,res);
         });
     }
 
@@ -169,6 +183,8 @@ var notice_save = function (req, res, next) {
 var notice_delete = function (req, res, next) {
     assert.apiRequest('post','/announcement/delete',req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -186,6 +202,8 @@ var notice_approve_detail = function (req, res, next) {
         }else{
             res.render("error/error",{message:approveInfoRes.msg});
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 
 };

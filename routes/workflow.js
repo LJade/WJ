@@ -51,6 +51,8 @@ var workflow_config = function(req, res, next) {
     }, function (error, err) {
         JADE_VAR.messagae = err;
         res.render('error/error', JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -70,6 +72,8 @@ var workflow_new = function (req, res, next) {
             }else{
                 res.render('error/error',{message:resOBJ.msg});
             }
+        }).catch(function (error) {
+            assert.processError(error,res);
         });
     }else{
         if(!flow_id){
@@ -115,12 +119,16 @@ var workflow_edit = function(req, res, next) {
         }
     }, function (error, err) {
         res.send("请求接口出错，错误为："+  error +"请稍后再试")
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
 var node_create = function (req,res,next) {
    assert.apiRequest("post","/flow/addNode",req).then(function (results) {
       res.send(results);
+   }).catch(function (error) {
+       assert.processError(error,res);
    });
 };
 
@@ -138,6 +146,8 @@ var workflow_manage = function(req, res, next) {
             JADE_VAR.rowsCount = 0;
         }
         res.render('workflow/workflow_manage',JADE_VAR);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -167,6 +177,8 @@ var workflow_save = function (req, res, next) {
     delete req.body.process_info;
     assert.apiRequest("post","/flow/saveDefine",req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -179,6 +191,8 @@ var flowDesigner = function (req, res, next) {
 var node_save = function (req,res,next) {
     assert.apiRequest("post","/flow/saveNode",req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -195,6 +209,8 @@ var node_info = function (req,res,next) {
         }else{
             res.send("获取节点详情失败");
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 

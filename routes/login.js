@@ -65,12 +65,16 @@ var doLogin = function (req, res, next) {
             res.render('login/login', JADE_VAR);
 
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 };
 
 var do_set_pass = function (req, res, next) {
     assert.apiRequest("post", "/login/set_pass", req.body).then(function (results) {
         res.send(results)
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 };
 
@@ -94,6 +98,8 @@ var qrCodeImg = function (req, res, next) {
             res.writeHead(414, {'Content-Type': 'text/html'});
             res.end('<h1>404 get qrCode failed!!!</h1>');
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 };
 
@@ -102,12 +108,16 @@ var qrResult = function (req, res, next) {
     assert.apiRequest("get", "/user/qrResult", req).then(function (results) {
         res.header("Content-Type","application/json; charset=utf-8");
         res.send(results)
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 };
 
 var sms_send = function (req, res, next) {
     assert.apiRequest("post", "/login/sms_send", req.body).then(function (results) {
         res.send(results)
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 };
 
@@ -128,6 +138,8 @@ var qrLogin = function (req, res, next) {
         }else{
             res.send(results);
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 

@@ -45,6 +45,8 @@ var message = function (req, res, next) {
         } else {
             res.render("error/error", {message: messagesList.msg});
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 

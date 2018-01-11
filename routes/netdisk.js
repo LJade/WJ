@@ -52,6 +52,8 @@ var company_disk = function (req, res, next) {
         } else {
             res.render("error/error", {message: diskRes.msg})
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -103,6 +105,8 @@ var company_disk_parson = function (req, res, next) {
         } else {
             res.render("error/error", {message: diskRes.msg})
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -135,6 +139,8 @@ var disk_upload_file = function (req, res, next) {
                 res.send(body);
             }
         });
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -147,12 +153,16 @@ var delete_file = function (req, res, next) {
 var new_folder = function (req, res, next) {
     assert.apiRequest("post","/netDisk/createDir",req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 };
 
 var download_file = function (req, res, next) {
     assert.apiRequest("get","/netDisk/download",req).then(function (results) {
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 };
 

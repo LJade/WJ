@@ -22,6 +22,8 @@ var getIMAccountIcon = function (req, res, next) {
     assert.apiRequest("get",'/user/contacts',req).then(function (results) {
         res.header('Content-Type',"application/json");
         res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 };
 

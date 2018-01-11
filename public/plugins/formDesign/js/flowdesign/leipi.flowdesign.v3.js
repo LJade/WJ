@@ -120,7 +120,6 @@ Q 群：143263697
                 var target = $('#' + aConnections[j].targetId).attr('process_id');
                 var insertTo = from + "," + target;
                 var isAddIn = $("#leipi_process_info").find("input[value='"+ insertTo +"']").length;
-                console.log(insertTo,isAddIn);
                 var tempStr = "";
                 if(!isAddIn){
                      tempStr = "<input type='hidden' value=\"" + from + "," + target + "\">";
@@ -548,7 +547,6 @@ Q 群：143263697
                 });
                 /*位置*/
                 var resultsProcessData = {};
-                console.log(dProcessData,aProcessData);
                 _canvas.find("div.process-step").each(function (i) { //生成Json字符串，发送到服务器解析
                     if ($(this).attr('id')) {
                         var pId = $(this).attr('process_id');
@@ -570,10 +568,8 @@ Q 群：143263697
                         }else{
                             resultsProcessData[pId]['back_to'] = [];
                         }
-
                     }
                 });
-                console.log(resultsProcessData);
                 return JSON.stringify(resultsProcessData);
             },
             clear: function () {

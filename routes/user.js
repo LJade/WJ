@@ -12,6 +12,8 @@ var user_center = function(req, res, next) {
         }else{
             res.render('error/error',{message:userRes.msg});
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     });
 };
 
@@ -28,6 +30,8 @@ var user_save = function (req, res, next) {
         }else{
             res.render("error/error",{message:saveRes.msg});
         }
+    }).catch(function (error) {
+        assert.processError(error,res);
     })
 }
 
