@@ -104,7 +104,9 @@ block main_content
                 startYear: 2010,
                 endYear: 2049
             },
-            mark: JSON.parse($('#calendarMark').val()),
+            mark: {
+                '2018-1-25': '上学'
+            },
             theme: {
                 changeAble: true,
                 weeks: {
@@ -121,5 +123,7 @@ block main_content
                 activeSelectColor: '#82C2F1',
             }
         };
+        var mark = JSON.parse($('#calendarMark').val().replace("-0","-"));
+        console.log(mark);
         var myCalendar = new SimpleCalendar('#calendar',options);
 

@@ -36,15 +36,16 @@ var home = function(req, res, next) {
             JADE_VAR.modulesInfo = modules.dat.apps;
             //日历上的会议信息
             var calendarRes = JSON.parse(results[1]);
+            var meetingDay = {"2018-01-19":"会议召开"};
             if(calendarRes === 1){
                 var calendarList = {};
                 calendarRes.dat.forEach(function (data) {
-                    var meetingDay = data.startTime.split(" ")[0];
+                    meetingDay = data.startTime.split(" ")[0];
                     calendarList[meetingDay] = "会议召开";
                 });
-                JADE_VAR.mark = JSON.stringify({"2018-01-19":"会议召开"});
+                JADE_VAR.mark = JSON.stringify(meetingDay);
             }else{
-                JADE_VAR.mark = JSON.stringify({"2018-01-19":"会议召开"});
+                JADE_VAR.mark = JSON.stringify(meetingDay);
             }
             //将权限信息写入session
             // req.session.accessManage = JSON.stringify(modules.dat.apps);

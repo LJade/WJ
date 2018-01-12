@@ -646,7 +646,7 @@ var SimpleCalendar = function () {
             var dayNum = this.getElementsByClassName("day")[0].innerHTML;
             var selectYear = $('.sc-select-year').val();
             var selectMonth = $('.sc-select-month').val();
-            openwin('/news/news_list?date=' + selectYear + "-" + selectMonth + "-" + dayNum);
+            openwin('/conference/con_apply?date=' + selectYear + "-" + selectMonth + "-" + dayNum);
           }
 
         };
