@@ -23,15 +23,15 @@ var message = function (req, res, next) {
             var newsMessages = [];
             var noticeMessages = [];
             messagesList.dat.details.forEach(function (message) {
-                if (message.messageTye === 1) {
+                if (message.messageType === 1) {
                     messageTypeCount[0] += 1;
                     documentMessages.push(message);
                 }
-                if (message.messageTye === 2) {
+                if (message.messageType === 2) {
                     messageTypeCount[1] += 1;
                     newsMessages.push(message);
                 }
-                if (message.messageTye === 3) {
+                if (message.messageType === 3) {
                     messageTypeCount[2] += 1;
                     noticeMessages.push(message);
                 }

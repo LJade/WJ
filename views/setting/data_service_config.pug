@@ -25,38 +25,41 @@ block main_content
         form.news-create(action='/setting/data_service_save' method='post')
             .form-control
                 label.control-label(for='name') 中文名称:
-                input#name.form-control(type='text' name='name' value=apiInfo.name)
+                input#name.form-control(type='text' readonly value=apiInfo.name)
             .form-control
                 label.control-label(for='indexUrl') URL:
-                input#indexUrl.form-control(type='text' name='indexUrl' value=apiInfo.indexUrl)
+                input#indexUrl.form-control(type='text' readonly value=apiInfo.indexUrl)
             .form-control
                 label.control-label(for='descText') 接口描述:
-                input#descText.form-control(type='text' name='descText' value=apiInfo.descText)
+                input#descText.form-control(type='text' readonly value=apiInfo.descText)
             .form-control
                 label.control-label(for='clientKey') Client Key:
-                input#clientKey.form-control(type='text' name='clientKey' value=apiInfo.clientKey)
+                input#clientKey.form-control(type='text' readonly value=apiInfo.clientKey)
             .form-control
                 label.control-label(for='clientSecret') Client Key:
-                input#clientSecret.form-control(type='text' name='clientSecret' value=apiInfo.clientSecret)
+                input#clientSecret.form-control(type='text' readonly value=apiInfo.clientSecret)
             .form-control
                 label.control-label(for='openStatus') 接口开放:
-                input#openStatus.form-control(type='hidden' name='openStatus' value=apiInfo.openStatus)
-                if(apiInfo.openStatus === "open")
+                input#openStatus.form-control(type='hidden' name='isOpen' value=apiInfo.isOpen)
+                if(apiInfo.isOpen === "1")
                     button.statusBtn.btn.btn-default.btn-sm(type='button' data-status="open") 开
                     button.statusBtn.btn.btn-disable.btn-sm(type='button' style='margin-left:20px' data-status="close") 关
                 else
                     button.statusBtn.btn.btn-disable.btn-sm(type='button'  data-status="open") 开
                     button.statusBtn.btn.btn-default.btn-sm(type='button' style='margin-left:20px' data-status="close") 关
             .form-control
-                label.control-label(for='apis') 接口列表:
-                input#apis.form-control(type='hidden' name='apis' value=apiInfo.apis)
+                label.control-label 接口列表:
                 if(apiList.length)
                     each api in apiList
-                        if(apiInfo.interfaceIds.indexOf(api.id))
-                            input(type="checkbox" checked value=api.id style="min-width:15px;width:15px;")
+                        if(apiInfo.interfaceIds)
+                            if(apiInfo.interfaceIds.indexOf(api.id))
+                                input(type="checkbox" name="interfaceIds" checked value=api.id style="min-width:15px;width:15px;")
+                            else
+                                input(type="checkbox" name="interfaceIds" value=api.id style="min-width:15px;width:15px;")
+                            span(style="width: 60px;display: block;min-width: 80px;") #{api.name}
                         else
-                            input(type="checkbox" value=api.id style="min-width:15px;width:15px;")
-                        span(style="width: 60px;display: block;min-width: 80px;") #{api.name}
+                            input(type="checkbox" name="interfaceIds" value=api.id style="min-width:15px;width:15px;")
+                            span(style="width: 60px;display: block;min-width: 80px;") #{api.name}
             .form-control.btn-wrapper
                 input#id.form-control(type='hidden' name='id' value=apiInfo.id)
                 button.btn.btn-default.btn-sm(type='submit') 保存
@@ -65,7 +68,11 @@ block script
     script(type="text/javascript").
        $(".statusBtn").on('click',function (e) {
            var chooseStatus = $(this).attr("data-status");
-           $("#openStatus").val(chooseStatus);
+           var chooseVal = 0;
+           if(chooseStatus === 'open'){
+               chooseVal = 1
+           }
+           $("#openStatus").val(chooseVal);
            $(".statusBtn").removeClass("btn-default").addClass("btn-disable");
            $(this).removeClass("btn-disable").addClass("btn-default");
-       })
+       });

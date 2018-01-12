@@ -520,21 +520,7 @@ var app_manage = function (req, res, next) {
 
 var data_service = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    assert.apiRequest("get", "/thirdPart/allInterface", req).then(function (results) {
-        results = JSON.stringify({
-            "msg": "请求成功",
-            "code": 1,
-            "dat":
-                [
-                    {
-                        "id": 1,
-                        "name": "智慧港航",
-                        "sortNum": 0,
-                        "descText": "智慧港航是一个很大的工程",
-                        "indexUrl": "https://www.baidu.com"
-                    }
-                ]
-        });
+    assert.apiRequest("get", "/thirdPart/list", req).then(function (results) {
         var resultsRes = JSON.parse(results);
         if (resultsRes.code === 1) {
             var apiList = resultsRes.dat;
@@ -551,46 +537,16 @@ var data_service = function (req, res, next) {
 
 var data_service_config = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    var getApiInfo = assert.apiRequest("get", "/thirdPart/detail", req);
+    var getApiInfo = assert.apiRequest("get", "/thirdPart/interfaceDetail", req);
     var getApiList = assert.apiRequest("get", "/thirdPart/allInterface", req);
     Promise.all([getApiInfo, getApiList]).then(function (results) {
-        results = [];
-        results[0] = JSON.stringify({
-            "msg": "请求成功",
-            "code": 1,
-            "dat":
-                {
-                    "id": 1,
-                    "name": "智慧港航",
-                    "sortNum": 0,
-                    "descText": "智慧港航是一个很大的工程",
-                    "indexUrl": "https://www.baidu.com",
-                    "clientKey": "uyhashdy123klhahf",
-                    "clientSecret": "354313541",
-                    "interfaceIds": "1",
-                    "openStatus":"open"
-                }
-        });
-        results[1] = JSON.stringify({
-            "msg": "请求成功",
-            "code": 1,
-            "dat":
-                [
-                    {
-                        "id": 1,
-                        "name": "智慧港航"
-                    },
-                    {
-                        "id": 4,
-                        "name": "吴江交通"
-                    }
-                ]
-        });
         var apiInfoRes = JSON.parse(results[0]);
         var apiListRes = JSON.parse(results[1]);
         if (apiInfoRes.code === 1 && apiListRes.code === 1) {
             JADE_VAR.apiInfo = apiInfoRes.dat;
+            JADE_VAR.apiInfo.id = req.query.id;
             JADE_VAR.apiList = apiListRes.dat;
+            console.log(JADE_VAR);
             res.render("setting/data_service_config", JADE_VAR);
         } else {
             res.render("error/error", {message: apiInfoRes.msg + apiListRes.msg});
@@ -616,7 +572,7 @@ var data_service_delete = function (req, res, next) {
 
 var data_service_save = function (req, res, next) {
     console.log(req.body);
-    assert.apiRequest("post", "/thirdPart/save", req).then(function (results) {
+    assert.apiRequest("post", "/thirdPart/saveInterfaceAuth", req).then(function (results) {
         results = JSON.stringify({code: 1, msg: "成功", dat: null});
         var resultsRes = JSON.parse(results);
         if (resultsRes.code === 1) {

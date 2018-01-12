@@ -48,9 +48,16 @@ var modulesIcon = {
 
 
 var getJADE = function () {
-    var env = false;
-    WJConf.init(env);
-    return hmConfig.jade_config;
+    // var env = false;
+    // WJConf.init(env);
+    // return hmConfig.jade_config;
+    return {
+        __PLUGINS_PATH__: '../plugins',
+        __CSS_PATH__: '../stylesheets',
+        __JS_PATH__: '../javascripts',
+        __IMAGES_PATH__: '../images',
+        __COMPRESSED_SUFFIX__: '',
+    }
 };
 
 
