@@ -52,7 +52,7 @@ block main_content
                 input#apis.form-control(type='hidden' name='apis' value=apiInfo.apis)
                 if(apiList.length)
                     each api in apiList
-                        if(apiInfo.apis.indexOf(api.id))
+                        if(apiInfo.interfaceIds.indexOf(api.id))
                             input(type="checkbox" checked value=api.id style="min-width:15px;width:15px;")
                         else
                             input(type="checkbox" value=api.id style="min-width:15px;width:15px;")

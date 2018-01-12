@@ -66,6 +66,7 @@ module.exports = function (app) {
     app.post("/setting/approveSend",setting.approve_send);
     app.post("/setting/app_exeUpload",setting.app_exeUpload);
     app.post("/setting/app_save",setting.app_save);
+    app.post("/setting/organization_delete",setting.organization_delete);
 
 
     /** 新闻相关路由*/

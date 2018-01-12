@@ -520,7 +520,7 @@ var app_manage = function (req, res, next) {
 
 var data_service = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    assert.apiRequest("get", "/api/apiList", req).then(function (results) {
+    assert.apiRequest("get", "/thirdPart/allInterface", req).then(function (results) {
         results = JSON.stringify({
             "msg": "请求成功",
             "code": 1,
@@ -551,8 +551,8 @@ var data_service = function (req, res, next) {
 
 var data_service_config = function (req, res, next) {
     var JADE_VAR = assert.getJADE();
-    var getApiInfo = assert.apiRequest("get", "/api/detail", req);
-    var getApiList = assert.apiRequest("get", "/api/allList", req);
+    var getApiInfo = assert.apiRequest("get", "/thirdPart/detail", req);
+    var getApiList = assert.apiRequest("get", "/thirdPart/allInterface", req);
     Promise.all([getApiInfo, getApiList]).then(function (results) {
         results = [];
         results[0] = JSON.stringify({
@@ -567,7 +567,7 @@ var data_service_config = function (req, res, next) {
                     "indexUrl": "https://www.baidu.com",
                     "clientKey": "uyhashdy123klhahf",
                     "clientSecret": "354313541",
-                    "apis": "1,4,26,6",
+                    "interfaceIds": "1",
                     "openStatus":"open"
                 }
         });
@@ -582,15 +582,7 @@ var data_service_config = function (req, res, next) {
                     },
                     {
                         "id": 4,
-                        "name": "妈卖批啊"
-                    },
-                    {
-                        "id": 6,
-                        "name": "哈航哈"
-                    },
-                    {
-                        "id": 26,
-                        "name": "去吧去吧"
+                        "name": "吴江交通"
                     }
                 ]
         });
@@ -624,7 +616,7 @@ var data_service_delete = function (req, res, next) {
 
 var data_service_save = function (req, res, next) {
     console.log(req.body);
-    assert.apiRequest("post", "/api/save", req).then(function (results) {
+    assert.apiRequest("post", "/thirdPart/save", req).then(function (results) {
         results = JSON.stringify({code: 1, msg: "成功", dat: null});
         var resultsRes = JSON.parse(results);
         if (resultsRes.code === 1) {
@@ -730,7 +722,15 @@ var app_save = function (req, res, next) {
             }
         });
     });
-}
+};
+
+var organization_delete = function (req, res, next) {
+    assert.apiRequest("post","/department/delete",req).then(function (results) {
+        res.send(results);
+    }).catch(function (error) {
+        assert.processError(error,res);
+    });
+};
 
 module.exports = {
     app_create: app_create,
@@ -766,5 +766,6 @@ module.exports = {
     contact_config_save:contact_config_save,
     approve_send:approve_send,
     app_exeUpload:app_exeUpload,
-    app_save:app_save
+    app_save:app_save,
+    organization_delete:organization_delete
 };

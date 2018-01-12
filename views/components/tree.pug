@@ -30,7 +30,9 @@ mixin treeShow()
             };
 
             var zNodes = JSON.parse($('#tree').attr('data-node'));
-            zNodes[0].open = true;
+            zNodes.forEach(function (node) {
+                node.open = true;
+            });
 
 
             function beforeMouseDown(e,treeId, treeNode) {
