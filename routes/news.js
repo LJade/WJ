@@ -132,26 +132,7 @@ var news_approve = function (req, res, next) {
     //获取list列表信息
     assert.apiRequest("get",'/journalism/myApproveList',req).then(function (results) {
         var documentListInfo = JSON.parse(results);
-        if(documentListInfo.code === 1){
-            if(documentListInfo.dat.details.length === 0) {
-                documentListInfo.dat.details = [
-                    {
-                        "journalismId": 1,
-                        "flowApproveUserId": 1,
-                        "title": "全城围捕修改",
-                        "publicName": "卢磊",
-                        "publicTime": "2017-11-12",
-                        "journalismTypeId": null,
-                        "journalismTypeName": "新闻广播",
-                        "lookUpPersonId": null,
-                        "content": null,
-                        "approveStatus": 0,
-                        "ifJurisdiction": null,
-                        "userId": null,
-                        "userList": null
-                    }
-                ];
-            }
+        if(documentListInfo.code === 1 && documentListInfo.dat !== null){
             JADE_VAR.newsList = documentListInfo.dat.details;
             JADE_VAR.rowsCount = documentListInfo.dat.rowsCount;
             JADE_VAR.totalPage = documentListInfo.dat.totalPage;

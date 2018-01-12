@@ -125,26 +125,7 @@ var notice_approve = function(req, res, next) {
     //获取list列表信息
     assert.apiRequest("get",'/announcement/myApproveList',req).then(function (results) {
         var noticeListInfo = JSON.parse(results);
-        if(noticeListInfo.code === 1){
-            if(noticeListInfo.dat.details.length === 0) {
-                noticeListInfo.dat.details = [
-                    {
-                        "announcementId": "公告id",
-                        "announcementLookUpPersonId": null,
-                        "flowApproveUserId": "6",
-                        "title": "主题",
-                        "publicName": "发布人姓名",
-                        "publicTime": "发布时间 2017-11-13",
-                        "lookUpPersonId": null,
-                        "content": "内容",
-                        "approveStatus": "0",
-                        "ifJurisdiction": null,
-                        "userId": null,
-                        "userList": null,
-                        "readStatus": null
-                    }
-                ];
-            }
+        if(noticeListInfo.code === 1 && noticeListInfo.dat !== null){
             JADE_VAR.noticesList = noticeListInfo.dat.details;
             JADE_VAR.noticeTotal = noticeListInfo.dat.totalPage;
             JADE_VAR.rowsCount = noticeListInfo.dat.rowsCount;
