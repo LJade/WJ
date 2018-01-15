@@ -1161,3 +1161,9 @@ input[type='checkbox'] {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center; }
+
+.ok_IMG {
+  position: relative;
+  width: 25px !important;
+  top: -20px;
+  right: -25px; }

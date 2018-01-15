@@ -16,86 +16,25 @@ block aside_content
 block main_content
     .home.clearfix
         .module-wrapper
-            //if(moduleGroups.length)
-            //    each group in moduleGroups
-            //        .module-nav
-            //            .nav-heading.clearfix
-            //                h3 #{group}
-            //                a.more(href="/add_application")
-            //                    | 更多
-            //                    i.icon-add
-            //            ul.nav-body.clearfix
-            //                each module in modulesInfo
-            //                    if(module.groupName === group)
-            //                        li
-            //                            if(module.openType === 1)
-            //                                a(href=module.url data-id=module.id)
-            //                            else
-            //                                a(href="javascript:window.open('"+ module.url +"');" data-id=module.id)
-            //                                    .img-wrapper
-            //                                        img(style="width:60px;" src = module.icon === "default-icon" ? __IMAGES_PATH__ + '/nav.png' : module.icon)
-            //                                    span #{module.name}
-            .module-nav
-                .nav-heading.clearfix
-                    h3 智慧港航
-                    a.more
-                        | 更多
-                        i.icon-add
-                ul.nav-body.clearfix
-                    li
-                        a(href='javascript:window.open("/news/news_list")' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/nav.png')
-                            span 新闻
-                    li
-                        a(href='javascript:window.open("/notice/notice_list")' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/notice.png')
-                            span  公告
-                    li
-                        a(href='javascript:window.open("/docu/docu_list")' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/document.png')
-                            span 公文
-                    li
-                        a(href=href='javascript:window.open("/workflow/workflow_manage")' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/nav.png')
-                            span 流程
-            .module-nav
-                .nav-heading.clearfix
-                    h3 日常办公
-                    a.more
-                        | 更多
-                        i.icon-add
-                ul.nav-body.clearfix
-                    li
-                        a(href='javascript:window.open("/mail/mail_receive")' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/mail.png')
-                            span 邮箱
-                    li
-                        a(href='javascript:window.open("/order/order_mine")' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/function.png')
-                            span 工单
-                    li
-                        a(href='javascript:window.open("/conference/con_history")' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/conference.png')
-                            span 会议管理
-            .module-nav
-                .nav-heading.clearfix
-                    h3 综合执法
-                    a.more
-                        | 更多
-                        i.icon-add
-                ul.nav-body.clearfix
-                    li
-                        a(href='#' target="_blank")
-                            .img-wrapper
-                                img(src=__IMAGES_PATH__ + '/cerDB.png')
-                            span 证据仓库
+            if(moduleGroups.length)
+                each group in moduleGroups
+                    .module-nav
+                        .nav-heading.clearfix
+                            h3 #{group}
+                            a.more(href="/add_application")
+                                | 更多
+                                i.icon-add
+                        ul.nav-body.clearfix
+                            each module in modulesInfo
+                                if(module.groupName === group)
+                                    li
+                                        if(module.openType === 1)
+                                            a(href=module.url data-id=module.id)
+                                        else
+                                            a(href="javascript:window.open('"+ module.url +"');" data-id=module.id)
+                                                .img-wrapper
+                                                    img(style="width:60px;" src = module.icon === "default-icon" ? __IMAGES_PATH__ + '/nav.png' : module.icon)
+                                                span #{module.name}
 
         #calendar
         input#calendarMark(type="hidden" value=mark)

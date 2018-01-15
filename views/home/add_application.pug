@@ -19,22 +19,43 @@ block main_content
     +RouteNav('桌面应用添加')
     #inner-wrapper
         .news-create
-            .form-control
-                label.col-sm-2.control-label(for='name') 应用名称
-                input#name.form-control(type='text', placeholder='')
-            .form-control
-                label.col-sm-2.control-label(for='appName') 应用选择
-                select.form-control#appName
-                    option 1
-                    option 2
-                    option 3
-                    option 4
-                    option 5
-            .form-control
-                label.col-sm-2.control-label(for='icon') 图标上传
-                input#icon(type='file')
-            .form-control.btn-wrapper
-                button.btn.btn-default.btn-sm(type='button' onclick="createApp();") 创建
-                button.btn.btn-disable.btn-sm(type='button' onclick="history.go(-1);" style='margin-left:20px') 取消
+            .form-control(style="background-color:#f2f0f0;height:40px;padding:10px 10px 10px 10px;")
+                label.col-sm-2.control-label 已选应用
+            .module-nav
+                ul.nav-body.clearfix
+                    li
+                        a(href='javascript:window.open("/mail/mail_receive")' target="_blank")
+                            .img-wrapper
+                                img(src=__IMAGES_PATH__ + '/mail.png')
+                            span 邮箱
+                    li
+                        a(href='javascript:window.open("/order/order_mine")' target="_blank")
+                            .img-wrapper
+                                img(src=__IMAGES_PATH__ + '/function.png')
+                            span 工单
+                    li
+                        a(href='javascript:window.open("/conference/con_history")' target="_blank")
+                            .img-wrapper
+                                img(src=__IMAGES_PATH__ + '/conference.png')
+                            span 会议管理
 
+            .form-control(style="background-color:#f2f0f0;height:40px;padding:10px 10px 10px 10px;")
+                label.col-sm-2.control-label 系统功能
+            .module-nav
+                ul.nav-body.clearfix
+                    li
+                        a(href='javascript:window.open("/mail/mail_receive")' target="_blank")
+                            .img-wrapper
+                                img(src=__IMAGES_PATH__ + '/mail.png')
+                            span 邮箱
+                    li
+                        a(href='javascript:window.open("/order/order_mine")' target="_blank")
+                            .img-wrapper
+                                img(src=__IMAGES_PATH__ + '/function.png')
+                            span 工单
+                    li
+                        a(href='javascript:window.open("/conference/con_history")' target="_blank")
+                            .img-wrapper
+                                img(src=__IMAGES_PATH__ + '/conference.png')
+                            span 会议管理
 
