@@ -16,25 +16,39 @@ block aside_content
 block main_content
     .home.clearfix
         .module-wrapper
-            if(moduleGroups.length)
-                each group in moduleGroups
+            if(moduleGroups.groupArr.length)
+                each group in moduleGroups.groupArr
                     .module-nav
                         .nav-heading.clearfix
-                            h3 #{group}
-                            a.more(href="/add_application")
+                            h3 #{group.groupName}
+                            a.more(href="/add_application?groupId="+group.groupId)
                                 | 更多
                                 i.icon-add
                         ul.nav-body.clearfix
                             each module in modulesInfo
-                                if(module.groupName === group)
+                                if(module.groupName === group.groupName)
                                     li
                                         if(module.openType === 1)
                                             a(href=module.url data-id=module.id)
                                         else
                                             a(href="javascript:window.open('"+ module.url +"');" data-id=module.id)
                                                 .img-wrapper
-                                                    img(style="width:60px;" src = module.icon === "default-icon" ? __IMAGES_PATH__ + '/nav.png' : module.icon)
+                                                    img(style="width:60px;" src = module.icon === "default" ? __IMAGES_PATH__ + '/nav.png' : module.icon)
                                                 span #{module.name}
+            if(noAppGroups.length)
+                each ngroup in noAppGroups
+                    .module-nav
+                        .nav-heading.clearfix
+                            h3 #{ngroup.groupName}
+                            a.more(href="/add_application?groupId="+ngroup.groupId)
+                                | 更多
+                                i.icon-add
+                        ul.nav-body.clearfix
+                            a(href="javascript:window.open('/add_application?groupId="+ ngroup.groupId +"');")
+                                .img-wrapper
+                                    img(style="width:60px;" src = __IMAGES_PATH__ + "/add.png")
+                                span 添加应用
+
 
         #calendar
         input#calendarMark(type="hidden" value=mark)
@@ -75,6 +89,6 @@ block main_content
             }
         };
         var mark = JSON.parse($('#calendarMark').val().replace("-0","-"));
-        console.log(mark);
+        options.mark = mark;
         var myCalendar = new SimpleCalendar('#calendar',options);
 

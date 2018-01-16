@@ -22,18 +22,29 @@ var home = function(req, res, next) {
         if (results) {
             var modules = JSON.parse(results[0]);
             //组装数据
-            var modulesInfo = [];
+            var modulesInfo = {};
+            modulesInfo.groupArr = [];
+            modulesInfo.groupNameArr = [];
             if(modules.code !== 1){
                 res.redirect("/login");
                 return;
             }
             modules.dat.apps.forEach(function (appInfo) {
-                if(modulesInfo.indexOf(appInfo.groupName) === -1){
-                    modulesInfo.push(appInfo.groupName);
+                if(modulesInfo.groupNameArr.indexOf(appInfo.groupName) === -1){
+                    modulesInfo.groupNameArr.push(appInfo.groupName);
+                    modulesInfo.groupArr.push({groupId:appInfo.groupId,groupName:appInfo.groupName});
                 }
             });
             JADE_VAR.moduleGroups = modulesInfo;
+            //那些没有应用的groups
+            var noAppGroups = [];
+            modules.dat.groups.forEach(function (groupInfo) {
+                if(modulesInfo.groupNameArr.indexOf(groupInfo.groupName) === -1){
+                    noAppGroups.push(groupInfo);
+                }
+            });
             JADE_VAR.modulesInfo = modules.dat.apps;
+            JADE_VAR.noAppGroups = noAppGroups;
             //日历上的会议信息
             var calendarRes = JSON.parse(results[1]);
             var meetingDay = {"2018-01-19":"会议召开"};
@@ -64,6 +75,10 @@ var home = function(req, res, next) {
 
 var add_application = function(req, res, next) {
     var JADE_VAR = assert.getJADE();
+    assert.apiRequest("get","/user/myappsAll",req).then(function (results) {
+        var appsRes = JSON.parse(results);
+
+    });
     res.render('home/add_application',JADE_VAR);
 };
 
