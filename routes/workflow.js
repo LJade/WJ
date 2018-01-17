@@ -214,16 +214,29 @@ var node_save = function (req,res,next) {
 var node_info = function (req,res,next) {
     var JADE_VAR = assert.getJADE();
     req.body = req.query;
-    assert.apiRequest("post","/flow/nodeDetail",req).then(function (results) {
-        var nodeInfoJSON = JSON.parse(results);
-        if(nodeInfoJSON.code === 1){
-            JADE_VAR.nodeInfo = nodeInfoJSON.dat;
-            JADE_VAR.isRead = true;
-            //渲染页面
-            res.render('workflow/workflow_create',JADE_VAR);
-        }else{
-            res.send("获取节点详情失败");
+    var getAllUser = assert.apiRequest("get",'/department/allDeptAndUser',req);
+    var getFlowDetail = assert.apiRequest("post","/flow/nodeDetail",req);
+    //请求数据
+    Promise.all([getAllUser,getFlowDetail]).then(function (results) {
+        if (results) {
+            var modules = JSON.parse(results[0]);
+            JADE_VAR.allUsers = modules.dat.list;
+            JADE_VAR.depAll = assert.makeZTreeData([modules.dat.tree],[]);
+            //获取单个节点得配置信息
+            var nodeInfoJSON = JSON.parse(results[1]);
+            if(nodeInfoJSON.code === 1){
+                JADE_VAR.isRead = true;
+                JADE_VAR.nodeInfo = nodeInfoJSON.dat;
+                res.render('workflow/workflow_create',JADE_VAR);
+            }else{
+                res.send(nodeInfoJSON.msg);
+            }
+        } else {
+            JADE_VAR.message = results;
+            res.send("请求接口出错，请稍后再试")
         }
+    }, function (error, err) {
+        res.send("请求接口出错，错误为："+  error +"请稍后再试")
     }).catch(function (error) {
         assert.processError(error,res);
     });
