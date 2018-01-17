@@ -603,7 +603,7 @@ var contact_config_save = function (req, res, next) {
 };
 
 var approve_send = function (req, res, next) {
-    assert.apiRequest("post","/flow/audit",req).then(function (results) {
+    assert.apiRequest("post","/flow/instance/audit",req).then(function (results) {
         results = JSON.stringify({code:1,msg:"操作成功",dat:null});
         var resRes = JSON.parse(results);
         res.send(results);

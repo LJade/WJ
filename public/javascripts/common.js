@@ -455,6 +455,7 @@ function zTreeLoad() {
             node.checked = true
         }
     });
+    console.log(zNodes);
 
     function checkEvent(e, treeId, treeNode) {
         var stringChecked = $('#deptIds').val();
@@ -615,7 +616,7 @@ function zTreeMultiLoad(id) {
 
 function approveSend(type) {
     var result = {
-        "flowInstanceId":$("#flowApproveUserId").val(),
+        "approveId":$("#flowApproveUserId").val(),
         "result": parseInt(type),
         "option": $("#option").val() ? $("#option").val() : "默认通过"
     };

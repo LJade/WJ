@@ -33,7 +33,7 @@ mixin ContactBook
     script(type='text/javascript' src=__PLUGINS_PATH__ + '/ztree/jquery.ztree.all.min.js')
     script(type='text/javascript').
         //初始化ztree
-        zTreeLoad();
+
 
         //初始化数据
         function initChooseInfo() {
@@ -49,31 +49,35 @@ mixin ContactBook
             var choosePersonId = $('#choosePersonId');
             if (choosePersonId.length && choosePersonId.val() !== "") {
                 var chooseArr = choosePersonId.val().split(",");
-                console.log(chooseArr);
                 //先去掉在左边的人
                 var chooseNames = [];
+                var deptIds = [];
                 chooseArr.forEach(function (data, index) {
                     var chooseItem = $('.list-wrapper.allUserOption').find("div[data-person-id=" + data + "]");
                     $('.list-wrapper.selectedBox').append(chooseItem.clone().bind('click', clickItem));
-                    chooseNames.push(chooseItem.attr("data-person-name"))
+                    chooseNames.push(chooseItem.attr("data-person-name"));
                     chooseItem.remove();
+                    //将数据写入到deptIds中去
+                    deptIds.push("user_"+data);
                 });
-
                 if ($('#approver').length) {
                     $('#approver').val(String(chooseNames));
                 } else {
                     console.log("没找到啊")
                 }
+                $('#deptIds').val(String(deptIds));
             }
         }
 
         $(document).ready(function () {
+            zTreeLoad();
             initChooseInfo();
         });
 
         $('.list-title i.icon-down').on('click', function () {
             $('.title-item').show()
-        })
+        });
+
         $('.title-item').on('click', function () {
             $(this).siblings('.title-item').hide()
             if ($(this).hasClass('all')) {
@@ -86,6 +90,7 @@ mixin ContactBook
                 $('.departmentUserOption').show()
                 $('#addSelectUser').attr('data-type', 'dp')
                 $('#deleteSelectUser').attr('data-type', 'dp')
+                //在页面加载数据是,将吊钩选上
                 console.log('异步刷新数');
                 zTreeLoad();
             }
@@ -197,8 +202,13 @@ mixin ContactBook
 
 
         $('.addCancel').on('click', function () {
-            layerCloseAll();
-        })
+            var ajaxModel = $('#modal');
+            if(ajaxModel.length){
+                ajaxModel.hide();
+            }else{
+                layerCloseAll();
+            }
+        });
 
         $('.addConfirm').on('click', function () {
             $('input[name="choosePersonId"]').remove();
